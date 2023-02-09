@@ -3,24 +3,30 @@ package kdg.be.parchis.views;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class ParchisMenuView extends VBox
-        {
-    // private Node attributen (controls)
-            private Label title;
-            private Button startButton;
-            private Button leaderboards;
-            private Button cheat;
-            private Button exit;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
-    public ParchisMenuView() {
-        super(20);
+public class ParchisMenuView extends StackPane {
+    // private Node attributen (controls)
+    private Label title;
+    private Button startButton;
+    private Button leaderboards;
+    private Button cheat;
+    private Button exit;
+
+    public ParchisMenuView() throws FileNotFoundException {
         this.initialiseNodes();
         this.layoutNodes();
     }
+
     private void initialiseNodes() {
         title = new Label("PARCHIS!");
         startButton = new Button("Start game");
@@ -32,7 +38,8 @@ public class ParchisMenuView extends VBox
 // button = new Button("...")
 // label = new Label("...")
     }
-    private void layoutNodes() {
+
+    private void layoutNodes() throws FileNotFoundException {
 // Layout van de Nodes
 // add... methodes (of set...)
 // Insets, padding, alignment, ...
@@ -40,13 +47,25 @@ public class ParchisMenuView extends VBox
         leaderboards.setMaxWidth(150);
         cheat.setMaxWidth(150);
 
-        this.getChildren().add(title);
-        this.getChildren().add(startButton);
-        this.getChildren().add(leaderboards);
-        this.getChildren().add(cheat);
-        this.getChildren().add(exit);
-        this.setAlignment(Pos.CENTER);
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(startButton, leaderboards, cheat);
+        layout.setAlignment(Pos.CENTER);
+
+        VBox bottom = new VBox(10);
+        bottom.getChildren().add(exit);
+        bottom.setAlignment(Pos.BOTTOM_CENTER);
+
+        BorderPane top = new BorderPane();
+        Image logo = new Image(new FileInputStream("src\\main\\java\\kdg\\be\\parchis\\resources\\logo_big.png"));
+        ImageView im = new ImageView(logo);
+        top.setTop(im);
+        BorderPane.setAlignment(im, Pos.TOP_CENTER);
+
+        this.getChildren().addAll(layout,top ,bottom);
+        Image background = new Image(new FileInputStream("src\\main\\java\\kdg\\be\\parchis\\resources\\Background.jpg"));
+        this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+
+        // implementatie van de nodige
+        // package-private Getters
     }
-// implementatie van de nodige
-// package-private Getters
 }
