@@ -1,12 +1,13 @@
 package kdg.be.parchis.views;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
-public class ParchisMenuView extends BorderPane
+public class ParchisMenuView extends VBox
         {
     // private Node attributen (controls)
             private Label title;
@@ -16,6 +17,7 @@ public class ParchisMenuView extends BorderPane
             private Button exit;
 
     public ParchisMenuView() {
+        super(20);
         this.initialiseNodes();
         this.layoutNodes();
     }
@@ -34,13 +36,16 @@ public class ParchisMenuView extends BorderPane
 // Layout van de Nodes
 // add... methodes (of set...)
 // Insets, padding, alignment, ...
-        this.setTop(title);
-        this.setCenter(startButton);
-        this.setBottom(exit);
-        BorderPane.setAlignment(title, Pos.TOP_CENTER);
-        BorderPane.setAlignment(exit, Pos.TOP_CENTER);
-        BorderPane.setMargin(title, new Insets(10,10,10,10));
-        BorderPane.setMargin(exit, new Insets(10,10,10,10));
+        startButton.setMaxWidth(150);
+        leaderboards.setMaxWidth(150);
+        cheat.setMaxWidth(150);
+
+        this.getChildren().add(title);
+        this.getChildren().add(startButton);
+        this.getChildren().add(leaderboards);
+        this.getChildren().add(cheat);
+        this.getChildren().add(exit);
+        this.setAlignment(Pos.CENTER);
     }
 // implementatie van de nodige
 // package-private Getters
