@@ -44,10 +44,11 @@ public class ParchisMenuView extends StackPane {
 
     MediaPlayer mediaPlayer;
     private void menuMusic() {
-        String path = "src\\main\\java\\kdg\\be\\parchis\\resources\\menu_music.mp3";
+        String path = "src\\main\\java\\kdg\\be\\parchis\\resources\\erika_fecked.mp3";
         //toURI transforms url to uri, which is converted to a string. It is needed to play audio.
         Media media = new Media(new File(path).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
 

@@ -23,7 +23,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(menu));
         presenter.addWindowEventHandlers();
         primaryStage.setTitle("Parchis");
-        //primaryStage.getIcons().add(new Image(new FileInputStream("Icon.png")));
+        primaryStage.getIcons().add(new Image(new FileInputStream("src\\main\\java\\kdg\\be\\parchis\\resources\\Icon.png")));
         primaryStage.setWidth(1280);
         primaryStage.setHeight(720);
         primaryStage.show();
