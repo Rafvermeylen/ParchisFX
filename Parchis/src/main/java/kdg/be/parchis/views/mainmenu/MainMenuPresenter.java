@@ -4,6 +4,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import kdg.be.parchis.model.ParchisModel;
+import kdg.be.parchis.views.leaderboards.LeaderboardPresenter;
+import kdg.be.parchis.views.leaderboards.LeaderboardView;
+
+import java.io.FileNotFoundException;
 
 public class MainMenuPresenter {
     private ParchisModel model;
@@ -40,7 +44,14 @@ public class MainMenuPresenter {
         view.getLeaderboards().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                LeaderboardView leadView = null;
+                try {
+                    leadView = new LeaderboardView();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                LeaderboardPresenter leadPres = new LeaderboardPresenter(leadView.getLeaderboards(),leadView, view);
+                view.getScene().setRoot(leadView);
             }
         });
     }

@@ -68,7 +68,7 @@ public class MainMenuView extends BorderPane {
         BorderPane.setAlignment(buttonsmiddle, Pos.CENTER);
         BorderPane.setAlignment(im, Pos.TOP_CENTER);
         BorderPane.setAlignment(exit, Pos.BOTTOM_CENTER);
-        BorderPane.setMargin(exit, new Insets(10));
+        BorderPane.setMargin(exit, new Insets(30));
 
         Image background = new Image(new FileInputStream("resources\\Background.png"));
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
