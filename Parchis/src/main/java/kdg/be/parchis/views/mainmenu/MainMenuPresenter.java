@@ -3,19 +3,22 @@ package kdg.be.parchis.views.mainmenu;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import kdg.be.parchis.model.ParchisModel;
 import kdg.be.parchis.views.leaderboards.LeaderboardPresenter;
 import kdg.be.parchis.views.leaderboards.LeaderboardView;
+import kdg.be.parchis.model.Cheats;
+import kdg.be.parchis.views.playerselect.PlayerSelectPresenter;
+import kdg.be.parchis.views.playerselect.PlayerSelectView;
+
 
 import java.io.FileNotFoundException;
 
 public class MainMenuPresenter {
-    private ParchisModel model;
+    private Cheats cheats;
     private MainMenuView view;
     public MainMenuPresenter(
-            ParchisModel model,
+            Cheats cheats,
             MainMenuView view) {
-        this.model = model;
+        this.cheats = cheats;
         this.view = view;
         this.addEventHandlers();
         this.updateView();
@@ -34,7 +37,8 @@ public class MainMenuPresenter {
         view.getCheat().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if (view.getCheat().getText().equals("Cheats: OFF")){
+                cheats.clickButton();
+                if (cheats.getActivated()){
                     view.getCheat().setText("Cheats: ON");
                 } else {
                     view.getCheat().setText("Cheats: OFF");
@@ -52,6 +56,19 @@ public class MainMenuPresenter {
                 }
                 LeaderboardPresenter leadPres = new LeaderboardPresenter(leadView.getLeaderboards(),leadView, view);
                 view.getScene().setRoot(leadView);
+            }
+        });
+        view.getStartButton().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                PlayerSelectView psView = null;
+                try {
+                    psView = new PlayerSelectView();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                PlayerSelectPresenter psPresenter = new PlayerSelectPresenter(psView);
+                view.getScene().setRoot(psView);
             }
         });
     }
