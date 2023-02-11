@@ -2,6 +2,7 @@ package kdg.be.parchis.views.playerselect;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import kdg.be.parchis.model.MusicLogic;
 import kdg.be.parchis.model.PlayerSetup;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 import kdg.be.parchis.views.playersetup.PlayerSetupPresenter;
@@ -32,6 +33,7 @@ public class PlayerSelectPresenter {
                 PlayerSetupView psView;
                 try {
                     psView = new PlayerSetupView(playerSetup);
+
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -85,7 +87,6 @@ public class PlayerSelectPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getScene().setRoot(backView);
-
             }
         });
     }

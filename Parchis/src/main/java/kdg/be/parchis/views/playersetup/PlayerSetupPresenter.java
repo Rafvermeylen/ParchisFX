@@ -3,6 +3,7 @@ package kdg.be.parchis.views.playersetup;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.BorderPane;
+import kdg.be.parchis.model.MusicLogic;
 import kdg.be.parchis.model.PlayerSetup;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 import kdg.be.parchis.views.playerselect.PlayerSelectView;

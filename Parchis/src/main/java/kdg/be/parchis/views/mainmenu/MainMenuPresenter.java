@@ -3,6 +3,7 @@ package kdg.be.parchis.views.mainmenu;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import kdg.be.parchis.model.MusicLogic;
 import kdg.be.parchis.views.leaderboards.LeaderboardPresenter;
 import kdg.be.parchis.views.leaderboards.LeaderboardView;
 import kdg.be.parchis.model.Cheats;

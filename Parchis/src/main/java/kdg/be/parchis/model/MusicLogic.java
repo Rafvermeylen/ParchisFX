@@ -7,9 +7,10 @@ import java.io.File;
 import java.util.Random;
 
 public class MusicLogic {
-    String path = "src\\main\\java\\kdg\\be\\parchis\\resources\\";
-    String[] musicArray = {};
-    Random r = new Random();
+    //https://stackoverflow.com/questions/46655056/how-to-play-multiple-consecutive-sound-files-with-javafx
+    static String path = "src\\main\\java\\kdg\\be\\parchis\\resources\\";
+    static String[] musicArray = {};
+    static Random r = new Random();
     int randomMusic;
 
 
@@ -17,10 +18,10 @@ public class MusicLogic {
 
     }
 
-    MediaPlayer music;
-    MediaPlayer soundFx;
+    static MediaPlayer music;
 
-    public void mainMenuUp() throws InterruptedException {
+
+    public static void mainMenuUp() throws InterruptedException {
         path = path + "menu_music.mp3";
         Media media = new Media(new File(path).toURI().toString());
         music = new MediaPlayer(media);
@@ -34,29 +35,24 @@ public class MusicLogic {
         }
     }
 
-    public void mainMenuDown() throws InterruptedException {
+    public static void mainMenuDown() throws InterruptedException {
         while (music.getVolume() > 0) {
             music.setVolume(music.getVolume() - 5);
             Thread.sleep(200);
         }
     }
 
-    public void musicMute() {
+    public static void musicMute() {
         music.setVolume(0);
     }
 
-    public void musicUnmute() {
+    public static void musicUnmute() {
         music.setVolume(100);
     }
 
-    public void fxMute() {
-        soundFx.setVolume(0);
-    }
 
-    public void fxUnmute() {
-        soundFx.setVolume(100);
-    }
-    public void gameMusic() {
+
+    public static void gameMusic() {
         while (musicArray != null) {
             r.nextInt(musicArray.length);
             music.play();
