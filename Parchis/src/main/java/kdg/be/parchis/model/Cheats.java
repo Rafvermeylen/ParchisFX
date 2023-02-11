@@ -1,12 +1,15 @@
 package kdg.be.parchis.model;
 
 public class Cheats {
-    public static boolean activated = false;
-    public static void clickButton(){
+    private boolean activated;
+    public Cheats(){
+        activated = false;
+    }
+    public void clickButton(){
         activated = !activated;
     }
 
-    public static boolean getActivated(){
+    public boolean getActivated(){
         return activated;
     }
 }

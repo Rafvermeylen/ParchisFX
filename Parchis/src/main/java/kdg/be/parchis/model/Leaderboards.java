@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Leaderboards {
-    private static List<Score> scores;
+    private List<Score> scores;
 
-    public static void addScore(Score score){
+    public void addScore(Score score){
         scores.add(score);
     }
 
-    public static void read(){
+    public void read(){
         ArrayList<Score> newList = new ArrayList<>();
         Scanner fileScanner = null;
         try {
@@ -38,7 +38,7 @@ public class Leaderboards {
         scores = new ArrayList<>(newList);
     }
 
-    public static void store(){
+    public void store(){
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(Paths.get("src\\be\\kdg\\Parchis\\Data\\scores.csv").toFile()))) {
 
@@ -54,7 +54,7 @@ public class Leaderboards {
         }
     }
 
-    public static String printScores(){
+    public String printScores(){
         StringBuilder sb = new StringBuilder();
         scores.sort(Collections.reverseOrder());
         for (int i = 0; i<5; i++){
