@@ -8,8 +8,10 @@ import java.util.Random;
 
 public class MusicLogic {
     //https://stackoverflow.com/questions/46655056/how-to-play-multiple-consecutive-sound-files-with-javafx
-    static String path = "src\\main\\java\\kdg\\be\\parchis\\resources\\";
-    static String[] musicArray = {};
+    static String path = "resources\\audio\\";
+    static String[] musicArray = {path + "Nancy Drew - _Legend of the Crystal Skull_ (Music_ _Bruno_).mp3", path +
+    "Super Monkey Ball OST - Monkey Billiards Menu.mp3", path +
+            "Turnabout Jazz Soul - Track 8 - Godot - The Fragrance of Dark Coffee.mp3"};
     static Random r = new Random();
     int randomMusic;
 
