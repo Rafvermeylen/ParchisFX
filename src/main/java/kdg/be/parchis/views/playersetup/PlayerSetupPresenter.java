@@ -3,8 +3,12 @@ package kdg.be.parchis.views.playersetup;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
 import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.views.playerselect.PlayerSelectView;
+
+import java.io.File;
 
 public class PlayerSetupPresenter extends BorderPane {
     private PlayerSetup setup;
@@ -28,6 +32,11 @@ public class PlayerSetupPresenter extends BorderPane {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                String path = "resources\\audio\\click.mp3";
+                Media media = new Media(new File(path).toURI().toString());
+                // Just media doesn't work, x.getSource has to be added as well.
+                AudioClip sound = new AudioClip(media.getSource());
+                sound.play();
                 view.getScene().setRoot(backView);
             }
         });
