@@ -71,7 +71,7 @@ public class PlayerSetupPresenter extends BorderPane {
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-                OrderPresenter orderPresenter = new OrderPresenter(view.getSetup(), orderview);
+                OrderPresenter orderPresenter = new OrderPresenter(view.getSetup(), orderview, view);
                 view.getScene().setRoot(orderview);
             }
         });

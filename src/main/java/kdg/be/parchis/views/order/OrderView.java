@@ -1,5 +1,6 @@
 package kdg.be.parchis.views.order;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,6 +19,7 @@ public class OrderView extends BorderPane {
     private Label player3Name;
     private Label player4Name;
     private Button roll;
+    private Button back;
 
 
     public OrderView (PlayerSetup setup) throws FileNotFoundException {
@@ -32,6 +34,7 @@ public class OrderView extends BorderPane {
         player3Name = new Label(setup.getPlayers().get(2).getName());
         player4Name = new Label(setup.getPlayers().get(3).getName());
         roll = new Button("Roll");
+        back = new Button("Back");
     }
     private void layoutNodes() {
         VBox names = new VBox(20);
@@ -41,8 +44,15 @@ public class OrderView extends BorderPane {
         layout.getChildren().addAll(names, roll);
         layout.setAlignment(Pos.CENTER);
         this.setCenter(layout);
+        this.setBottom(back);
         BorderPane.setAlignment(layout, Pos.CENTER);
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+
+        BorderPane.setAlignment(back, Pos.CENTER_LEFT);
+        BorderPane.setMargin(back, new Insets(20));
     }
 
+    public Button getBack() {
+        return back;
+    }
 }
