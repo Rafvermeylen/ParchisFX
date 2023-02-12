@@ -31,12 +31,14 @@ public class LeaderboardView extends BorderPane {
         scores.setText(Leaderboards.printScores());
         scores.setScaleX(2);scores.setScaleY(2);
 
-        this.setCenter(scores);
-        this.setBottom(back);
+        VBox vBox = new VBox(100);
+        vBox.getChildren().addAll(scores, back);
+        vBox.setAlignment(Pos.CENTER);
+
+        this.setCenter(vBox);
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
-        BorderPane.setAlignment(scores, Pos.CENTER);
-        BorderPane.setAlignment(back, Pos.TOP_CENTER);
+        BorderPane.setAlignment(vBox, Pos.CENTER);
         BorderPane.setMargin(back, new Insets(90));
 // Layout van de Nodes
 // add... methodes (of set...)
