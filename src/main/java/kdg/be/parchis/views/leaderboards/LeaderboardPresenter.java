@@ -2,9 +2,6 @@ package kdg.be.parchis.views.leaderboards;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import kdg.be.parchis.model.Leaderboards;
-import kdg.be.parchis.model.MusicLogic;
-import kdg.be.parchis.model.SoundLogic;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
 public class LeaderboardPresenter {

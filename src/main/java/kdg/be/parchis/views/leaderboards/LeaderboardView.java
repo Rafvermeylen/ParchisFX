@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import kdg.be.parchis.model.Leaderboards;
+import kdg.be.parchis.model.menu.Leaderboards;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -4,11 +4,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import kdg.be.parchis.model.PlayerSetup;
+import kdg.be.parchis.model.menu.PlayerSetup;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -79,7 +78,7 @@ public class PlayerSetupView extends BorderPane {
         }
         setupNames.setAlignment(Pos.CENTER);
 
-        VBox vBox = new VBox(30);
+        VBox vBox = new VBox(60);
         vBox.getChildren().addAll(setupNames, play);
         vBox.setAlignment(Pos.CENTER);
 

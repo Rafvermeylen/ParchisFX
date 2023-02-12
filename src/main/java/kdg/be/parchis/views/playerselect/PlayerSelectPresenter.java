@@ -2,8 +2,7 @@ package kdg.be.parchis.views.playerselect;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import kdg.be.parchis.model.MusicLogic;
-import kdg.be.parchis.model.PlayerSetup;
+import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 import kdg.be.parchis.views.playersetup.PlayerSetupPresenter;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;

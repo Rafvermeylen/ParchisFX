@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import kdg.be.parchis.model.Cheats;
+import kdg.be.parchis.model.menu.Cheats;
 import kdg.be.parchis.views.mainmenu.MainMenuPresenter;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
