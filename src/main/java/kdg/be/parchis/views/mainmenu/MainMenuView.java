@@ -58,7 +58,7 @@ public class MainMenuView extends BorderPane {
         buttonsmiddle.getChildren().addAll(startButton, leaderboards, cheat);
         buttonsmiddle.setAlignment(Pos.CENTER);
 
-        Image logo = new Image(new FileInputStream("resources\\graphics\\logo_big.png"));
+        Image logo = new Image(new FileInputStream("resources\\graphics\\logo.png"));
         ImageView im = new ImageView(logo);
 
         this.setCenter(buttonsmiddle);
