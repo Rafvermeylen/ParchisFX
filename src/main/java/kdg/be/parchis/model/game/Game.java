@@ -8,7 +8,6 @@ public class Game {
     private int turn;
     private final List<Player> players;
     private final Board board;
-    private final Die die;
     private Score winner;
 
 
@@ -16,7 +15,6 @@ public class Game {
         turn = 1;
         players = new ArrayList<>(4);
         board = new Board();
-        die = new Die();
         winner = null;
     }
 
@@ -56,7 +54,7 @@ public class Game {
                     if (s instanceof ai_Player){
                         thrown = ((ai_Player) s).throwDie();
                     } else {
-                        thrown = die.throwDie();
+                        thrown = Die.throwDie();
                     }
                     amountOfThrows++;
 
@@ -310,7 +308,7 @@ public class Game {
         for (Player player : players) {
             if (!(player instanceof ai_Player)){
                 //ui.throwForOrder(player);
-                roll = die.throwDie();
+                roll = Die.throwDie();
                 //ui.printThrow(roll);
             } else {
                 roll = ((ai_Player) player).throwDie();
@@ -337,7 +335,7 @@ public class Game {
                 for (Player player : maxPlayers) {
                     if (!(player instanceof ai_Player)){
                         //ui.throwForOrder(player);
-                        roll = die.throwDie();
+                        roll = Die.throwDie();
                         //ui.printThrow(roll);
                     } else {
                         roll = ((ai_Player) player).throwDie();
