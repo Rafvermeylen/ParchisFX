@@ -77,9 +77,11 @@ public class PlayerSetupView extends BorderPane {
             player4NameArea.setPrefWidth(200);
             setupNames.getChildren().addAll(player1NameArea, player2NameArea, player3NameArea, player4NameArea);
         }
+        setupNames.setAlignment(Pos.CENTER);
 
         VBox vBox = new VBox(30);
         vBox.getChildren().addAll(setupNames, play);
+        vBox.setAlignment(Pos.CENTER);
 
         this.setTop(amountPlayers);
         this.setCenter(vBox);
