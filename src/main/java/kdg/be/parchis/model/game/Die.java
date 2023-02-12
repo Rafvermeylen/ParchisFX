@@ -5,14 +5,8 @@ import java.util.Random;
 import static java.lang.Thread.sleep;
 
 public class Die {
-    private int total;
-    Random rn;
-    Die() {
-        rn = new Random();
-    }
-
-    public int throwDie() {
-        if (!Cheats.getActivated()){
+    private static Random rn = new Random();
+    public static int throwDie() {
             //dice sound
             /*
             UIMusicStuff musicObject = new UIMusicStuff();
@@ -26,9 +20,6 @@ public class Die {
              */
 
             // Get random number between 1 and 6 for the die.
-            total = rn.nextInt(1, 7);
-            return total;
-        }
-        return Cheats.chooseThrow();
+            return rn.nextInt(1, 7);
     }
 }
