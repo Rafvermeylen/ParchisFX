@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
-import kdg.be.parchis.model.menu.Leaderboards;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
 import java.io.File;
