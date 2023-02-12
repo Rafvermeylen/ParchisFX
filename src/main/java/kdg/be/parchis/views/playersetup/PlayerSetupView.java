@@ -99,6 +99,10 @@ public class PlayerSetupView extends BorderPane {
         return back;
     }
 
+    public Button getPlay() {
+        return play;
+    }
+
     public PlayerSetup getSetup() {
         return setup;
     }

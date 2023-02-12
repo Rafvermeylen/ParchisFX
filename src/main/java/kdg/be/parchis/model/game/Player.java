@@ -66,16 +66,6 @@ public class Player {
     }
 
 
-    public boolean isNestFree(Board board) {
-        for (Pawn p : pawns) {
-            if (p.getLocation() == board.board.get(nestPosition) && !p.isFinished()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
     public void firstLeavesNest(Tile startTile) {
         for (Pawn p : pawns) {
             if (!p.isInGame()) {
