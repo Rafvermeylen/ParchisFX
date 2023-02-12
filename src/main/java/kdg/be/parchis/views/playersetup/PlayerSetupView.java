@@ -100,4 +100,23 @@ public class PlayerSetupView extends BorderPane {
         return back;
     }
 
+    public PlayerSetup getSetup() {
+        return setup;
+    }
+
+    public TextField getPlayer1NameArea() {
+        return player1NameArea;
+    }
+
+    public TextField getPlayer2NameArea() {
+        return player2NameArea;
+    }
+
+    public TextField getPlayer3NameArea() {
+        return player3NameArea;
+    }
+
+    public TextField getPlayer4NameArea() {
+        return player4NameArea;
+    }
 }
