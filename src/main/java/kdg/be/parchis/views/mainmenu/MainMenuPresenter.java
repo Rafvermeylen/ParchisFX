@@ -17,9 +17,7 @@ import java.io.FileNotFoundException;
 
 public class MainMenuPresenter {
     private MainMenuView view;
-    public MainMenuPresenter(
-            Cheats cheats,
-            MainMenuView view) {
+    public MainMenuPresenter(MainMenuView view) {
         this.view = view;
         this.addEventHandlers();
         this.updateView();

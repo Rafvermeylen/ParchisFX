@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.io.FileInputStream;
@@ -11,9 +12,16 @@ import java.io.FileNotFoundException;
 
 public class PlayerSelectView extends BorderPane {
     private Button onePlayer;
+    private Image onePlayerPic;
     private Button twoPlayers;
+    private Image twoPlayerPic;
+
     private Button threePlayers;
+    private Image threePlayerPic;
+
     private Button fourPlayers;
+    private Image fourPlayerPic;
+
     private Image background;
     private Button back;
 
@@ -23,11 +31,16 @@ public class PlayerSelectView extends BorderPane {
     }
     private void initialiseNodes() throws FileNotFoundException {
         back = new Button("Back");
-        onePlayer = new Button("One Player");
-        twoPlayers = new Button("Two Players");
-        threePlayers = new Button("Three Players");
-        fourPlayers = new Button("Four Players");
+        onePlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\one_player.png"));
+        twoPlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\two_player.png"));
+        threePlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\three_player.png"));
+        fourPlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\four_player.png"));
+        onePlayer = new Button("", new ImageView(onePlayerPic));
+        twoPlayers = new Button("", new ImageView(twoPlayerPic));
+        threePlayers = new Button("", new ImageView(threePlayerPic));
+        fourPlayers = new Button("", new ImageView(fourPlayerPic));
         background = new Image(new FileInputStream("resources\\backgrounds\\Background.png"));
+
     }
     private void layoutNodes() {
         HBox hBox = new HBox(20);
@@ -35,6 +48,7 @@ public class PlayerSelectView extends BorderPane {
         twoPlayers.setPrefSize(100,100);
         threePlayers.setPrefSize(100,100);
         fourPlayers.setPrefSize(100,100);
+
         hBox.getChildren().addAll(onePlayer, twoPlayers, threePlayers, fourPlayers);
         hBox.setAlignment(Pos.CENTER);
 

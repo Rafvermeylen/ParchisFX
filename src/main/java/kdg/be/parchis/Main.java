@@ -14,12 +14,10 @@ import java.io.FileNotFoundException;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException {
-        Cheats cheats =
-                new Cheats();
         MainMenuView menu =
                 new MainMenuView();
         MainMenuPresenter presenter =
-                new MainMenuPresenter(cheats, menu);
+                new MainMenuPresenter(menu);
         primaryStage.setScene(new Scene(menu));
         presenter.addWindowEventHandlers();
         primaryStage.setTitle("Parchis");

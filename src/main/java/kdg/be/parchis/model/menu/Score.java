@@ -24,6 +24,6 @@ public class Score implements Comparable<Score> {
 
     @Override
     public String toString() {
-        return String.format("%-20s %-5d",name,score);
+        return String.format("%10s: %-1d",name,score);
     }
 }
