@@ -29,7 +29,8 @@ public class PlayerSetup {
         for (Player player : players) {
             if (!(player instanceof ai_Player)){
                 //ui.throwForOrder(player);
-                roll = Die.throwDie();
+                Die.throwDie();
+                roll = Die.getThrown();
                 //ui.printThrow(roll);
             } else {
                 roll = ((ai_Player) player).throwDie();
@@ -56,7 +57,8 @@ public class PlayerSetup {
                 for (kdg.be.parchis.model.game.Player player : maxPlayers) {
                     if (!(player instanceof ai_Player)){
                         //ui.throwForOrder(player);
-                        roll = Die.throwDie();
+                        Die.throwDie();
+                        roll = Die.getThrown();
                         //ui.printThrow(roll);
                     } else {
                         roll = ((ai_Player) player).throwDie();

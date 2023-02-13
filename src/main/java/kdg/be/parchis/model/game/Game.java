@@ -54,7 +54,8 @@ public class Game {
                     if (s instanceof ai_Player){
                         thrown = ((ai_Player) s).throwDie();
                     } else {
-                        thrown = Die.throwDie();
+                        Die.throwDie();
+                        thrown = Die.getThrown();
                     }
                     amountOfThrows++;
 
@@ -308,7 +309,8 @@ public class Game {
         for (Player player : players) {
             if (!(player instanceof ai_Player)){
                 //ui.throwForOrder(player);
-                roll = Die.throwDie();
+                Die.throwDie();
+                roll = Die.getThrown();
                 //ui.printThrow(roll);
             } else {
                 roll = ((ai_Player) player).throwDie();
@@ -335,7 +337,8 @@ public class Game {
                 for (Player player : maxPlayers) {
                     if (!(player instanceof ai_Player)){
                         //ui.throwForOrder(player);
-                        roll = Die.throwDie();
+                        Die.throwDie();
+                        roll = Die.getThrown();
                         //ui.printThrow(roll);
                     } else {
                         roll = ((ai_Player) player).throwDie();

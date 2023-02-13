@@ -59,20 +59,9 @@ public class OrderPresenter {
                     throw new RuntimeException(e);
                 }
                 view.getRoll().setDisable(false);
-                roll = Die.throwDie();
-                if (roll == 1){
-                    view.getDiceFoto().setImage(view.getDie1());
-                } else if (roll == 2){
-                    view.getDiceFoto().setImage(view.getDie2());
-                } else if (roll == 3){
-                    view.getDiceFoto().setImage(view.getDie3());
-                } else if (roll == 4){
-                    view.getDiceFoto().setImage(view.getDie4());
-                } else if (roll == 5){
-                    view.getDiceFoto().setImage(view.getDie5());
-                } else if (roll == 6){
-                    view.getDiceFoto().setImage(view.getDie6());
-                }
+                Die.throwDie();
+                roll = Die.getThrown();
+                view.getDiceFoto().setImage(Die.getDiceFoto().getImage());
             }
         });
     }
