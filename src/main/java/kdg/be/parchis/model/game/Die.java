@@ -106,4 +106,8 @@ public class Die {
     public static ImageView getDiceFoto() {
         return diceFoto;
     }
+
+    public static Image getEmpty() {
+        return empty;
+    }
 }
