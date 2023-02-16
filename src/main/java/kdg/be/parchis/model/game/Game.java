@@ -11,9 +11,9 @@ public class Game {
     private Score winner;
 
 
-    public Game() {
+    public Game(List<Player> players) {
         turn = 1;
-        players = new ArrayList<>(4);
+        this.players =players;
         board = new Board();
         winner = null;
     }
@@ -25,7 +25,6 @@ public class Game {
         players.get(1).setPawns();
         players.get(2).setPawns();
         players.get(3).setPawns();
-        determineOrder(players);
     }
 
 
@@ -303,53 +302,8 @@ public class Game {
         return winner;
     }
 
-    public void determineOrder(List<Player> players) {
-        Map<Player, Integer> playerRolls = new HashMap<>();
-        int roll;
-        for (Player player : players) {
-            if (!(player instanceof ai_Player)){
-                //ui.throwForOrder(player);
-                Die.throwDie();
-                roll = Die.getThrown();
-                //ui.printThrow(roll);
-            } else {
-                roll = ((ai_Player) player).throwDie();
-                //ui.printThrowBot(roll, player);
-            }
-
-            playerRolls.put(player, roll);
-        }
-
-        List<Player> result = new ArrayList<>();
-        while (result.size() < 4) {
-            int maxRoll = Collections.max(playerRolls.values());
-            List<Player> maxPlayers = new ArrayList<>();
-            for (Map.Entry<Player, Integer> entry : playerRolls.entrySet()) {
-                if (entry.getValue() == maxRoll) {
-                    maxPlayers.add(entry.getKey());
-                }
-            }
-
-            if (maxPlayers.size() == 1) {
-                result.add(maxPlayers.get(0));
-                playerRolls.remove(maxPlayers.get(0));
-            } else {
-                for (Player player : maxPlayers) {
-                    if (!(player instanceof ai_Player)){
-                        //ui.throwForOrder(player);
-                        Die.throwDie();
-                        roll = Die.getThrown();
-                        //ui.printThrow(roll);
-                    } else {
-                        roll = ((ai_Player) player).throwDie();
-                        //ui.printThrowBot(roll, player);
-                    }
-                    playerRolls.put(player, roll);
-                }
-            }
-        }
-        players.clear();
-        players.addAll(result);
-        //ui.displayOrder(result);
+    public List<Player> getPlayers() {
+        return players;
     }
+
 }

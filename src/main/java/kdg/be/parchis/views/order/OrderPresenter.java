@@ -5,10 +5,14 @@ import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import kdg.be.parchis.model.game.Die;
+import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.menu.PlayerSetup;
+import kdg.be.parchis.views.game.GamePresenter;
+import kdg.be.parchis.views.game.GameView;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import static java.lang.Thread.sleep;
 
@@ -66,6 +70,16 @@ public class OrderPresenter {
                 if (setup.didPlayersRoll()){
                     setup.order();
                     setup.showOrder();
+                    //Go to gameView
+                    GameView gameView = null;
+                    try {
+                        gameView = new GameView();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Game gameSession = new Game(setup.getPlayers());
+                    GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
+                    view.getScene().setRoot(gameView);
                 }
             }
         });
@@ -92,6 +106,16 @@ public class OrderPresenter {
                 if (setup.didPlayersRoll()){
                     setup.order();
                     setup.showOrder();
+                    //Go to gameView
+                    GameView gameView = null;
+                    try {
+                        gameView = new GameView();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Game gameSession = new Game(setup.getPlayers());
+                    GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
+                    view.getScene().setRoot(gameView);
                 }
             }
         });
@@ -118,6 +142,16 @@ public class OrderPresenter {
                 if (setup.didPlayersRoll()){
                     setup.order();
                     setup.showOrder();
+                    //Go to gameView
+                    GameView gameView = null;
+                    try {
+                        gameView = new GameView();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Game gameSession = new Game(setup.getPlayers());
+                    GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
+                    view.getScene().setRoot(gameView);
                 }
             }
         });
@@ -144,12 +178,27 @@ public class OrderPresenter {
                 if (setup.didPlayersRoll()){
                     setup.order();
                     setup.showOrder();
+                    //Go to gameView
+                    GameView gameView = null;
+                    try {
+                        gameView = new GameView();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Game gameSession = new Game(setup.getPlayers());
+                    GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
+                    view.getScene().setRoot(gameView);
                 }
             }
         });
     }
     private void updateView() {
 // Vult de view met data uit model
+        try {
+            sleep(2 * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void addWindowEventHandlers () {
 // Window event handlers (anon. inner klassen)
