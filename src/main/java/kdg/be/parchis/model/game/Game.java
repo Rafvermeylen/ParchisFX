@@ -238,7 +238,6 @@ public class Game {
             for (Pawn p : moved.getPosition().getStandingPawns()) {
                 if (p.owner != moved.owner) {
                     p.toNest(board.board.get(p.owner.getNestPosition()));
-                    //ui.killMessage(p);
                     break;
                 }
             }
@@ -306,4 +305,7 @@ public class Game {
         return players;
     }
 
+    public void roll(){
+        Die.throwDie();
+    }
 }

@@ -28,6 +28,8 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image(new FileInputStream("resources\\graphics\\Icon.png")));
         primaryStage.setWidth(1280);
         primaryStage.setHeight(720);
+        primaryStage.setMinWidth(800);
+        primaryStage.setMinHeight(600);
         primaryStage.show();
     }
     
