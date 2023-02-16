@@ -10,21 +10,19 @@ import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
+import kdg.be.parchis.model.musicLogic.MainMusic;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class MainMenuView extends BorderPane {
-    // private Node attributen (controls)
     private Button startButton;
     private Button leaderboards;
     private Button cheat;
     private Button exit;
     private Button soundButton;
     private Button fxButton;
-    private MediaPlayer mediaPlayer;
-    private Media menu_music;
     private Image logo;
     private ImageView imageViewLogo;
 
@@ -52,21 +50,9 @@ public class MainMenuView extends BorderPane {
         leaderboards = new Button("Leaderboards");
         cheat = new Button("Cheats: OFF");
         exit = new Button("Exit");
-        menu_music = new Media(new File("resources\\audio\\menu_music.mp3").toURI().toString());
-        mediaPlayer = new MediaPlayer(menu_music);
-
-
-// Initialisatie van de Nodes
-// bvb.:
-// button = new Button("...")
-// label = new Label("...")
     }
 
     private void layoutNodes() throws FileNotFoundException {
-// Layout van de Nodes
-// add... methodes (of set...)
-// Insets, padding, alignment, ...
-
         startButton.setMaxWidth(150);
         leaderboards.setMaxWidth(150);
         cheat.setMaxWidth(150);
@@ -93,11 +79,7 @@ public class MainMenuView extends BorderPane {
         Image background = new Image(new FileInputStream("resources\\backgrounds\\Background.png"));
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
-
-        // implementatie van de nodige
-        // package-private Getters
+        MainMusic.playMenuMusic();
     }
 
     public Button getStartButton() {

@@ -7,6 +7,7 @@ import javafx.scene.media.Media;
 import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.menu.PlayerSetup;
+import kdg.be.parchis.model.musicLogic.MainMusic;
 import kdg.be.parchis.views.game.GamePresenter;
 import kdg.be.parchis.views.game.GameView;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;
@@ -45,6 +46,8 @@ public class OrderPresenter {
                 AudioClip sound = new AudioClip(media.getSource());
                 sound.play();
                 view.getScene().setRoot(backView);
+                MainMusic.stopMusic();
+                MainMusic.playMenuMusic();
             }
         });
         view.getRoll1().setOnAction(new EventHandler<ActionEvent>() {

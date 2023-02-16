@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import kdg.be.parchis.model.menu.PlayerSetup;
+import kdg.be.parchis.model.musicLogic.MainMusic;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

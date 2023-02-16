@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.menu.PlayerSetup;
+import kdg.be.parchis.model.musicLogic.MainMusic;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -38,7 +39,7 @@ public class OrderView extends StackPane {
 
     private int aiRoll4;
 
-    public OrderView (PlayerSetup setup) throws FileNotFoundException {
+    public OrderView (PlayerSetup setup) throws FileNotFoundException, InterruptedException {
         this.setup = setup;
         this.initialiseNodes();
         this.layoutNodes();
@@ -62,7 +63,7 @@ public class OrderView extends StackPane {
         diceFoto3 = new ImageView(Die.getEmpty());
         diceFoto4 = new ImageView(Die.getEmpty());
     }
-    private void layoutNodes() {
+    private void layoutNodes() throws InterruptedException {
         this.getChildren().add(boardView);
 
         //player1 stuff
@@ -136,6 +137,10 @@ public class OrderView extends StackPane {
         this.getChildren().add(back);
         StackPane.setAlignment(back, Pos.BOTTOM_LEFT);
         StackPane.setMargin(back, new Insets(20));
+
+        MainMusic.stopMusic();
+        MainMusic.playGameMusic();
+
     }
 
     public Button getBack() {
