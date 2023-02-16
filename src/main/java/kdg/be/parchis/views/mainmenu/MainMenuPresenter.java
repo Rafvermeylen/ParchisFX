@@ -3,28 +3,19 @@ package kdg.be.parchis.views.mainmenu;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-import javafx.stage.WindowEvent;
+import kdg.be.parchis.model.menu.Cheats;
 import kdg.be.parchis.views.leaderboards.LeaderboardPresenter;
 import kdg.be.parchis.views.leaderboards.LeaderboardView;
-import kdg.be.parchis.model.menu.Cheats;
 import kdg.be.parchis.views.playerselect.PlayerSelectPresenter;
 import kdg.be.parchis.views.playerselect.PlayerSelectView;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Optional;
 
 public class MainMenuPresenter {
     private MainMenuView view;
@@ -120,20 +111,26 @@ public class MainMenuPresenter {
             }
         });
         //confirm window alert
-        /*
+/*
         Window window = view.getScene().getWindow();
         window.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
-            public void handle(WindowEvent windowEvent) {
-                Alert areYouSure = new Alert(Alert.AlertType.CONFIRMATION);
-                areYouSure.setHeaderText("Quiting already?");
-                areYouSure.setContentText("Are you sure you want to quit?");
-                Optional<ButtonType> keuze = areYouSure.showAndWait();
-                if (keuze.get().getText().equalsIgnoreCase("CANCEL")) {
-                    windowEvent.consume();
+            public void handle(WindowEvent event) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Exit program");
+                alert.setHeaderText("Quiting already?");
+                alert.setContentText("Are you sure you want to quit?");
+
+                Optional<ButtonType> choice = alert.showAndWait();
+
+                if (choice.isPresent() && choice.get() == ButtonType.OK) {
+                    Platform.exit();
+                } else {
+                    event.consume();
                 }
             }
         });
-         */
+
+ */
     }
 }

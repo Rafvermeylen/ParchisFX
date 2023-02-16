@@ -2,12 +2,10 @@ package kdg.be.parchis.model.game;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import kdg.be.parchis.model.menu.Cheats;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Random;
-import static java.lang.Thread.sleep;
 
 public class Die {
     private static int thrown=0;
@@ -70,19 +68,7 @@ public class Die {
     private static ImageView diceFoto = new ImageView(empty);
     private static Random rn = new Random();
     public static void throwDie() {
-            //dice sound
-            /*
-            UIMusicStuff musicObject = new UIMusicStuff();
-            musicObject.playMusic("src\\be\\kdg\\Parchis\\Resources\\fullroll.wav");
-            try {
-                sleep(2 * 1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-             */
-
-            // Get random number between 1 and 6 for the die.
+    // Get random number between 1 and 6 for the die.
         thrown = rn.nextInt(1,7);
         if (thrown == 1){
             getDiceFoto().setImage(die1);
