@@ -60,9 +60,13 @@ public class OrderPresenter {
                 }
                 view.getRoll1().setDisable(false);
                 Die.throwDie();
-                roll = Die.getThrown();
+                setup.addRoll(0, Die.getThrown());
                 view.getDiceFoto1().setImage(Die.getDiceFoto().getImage());
                 view.getBack().setVisible(false);
+                if (setup.didPlayersRoll()){
+                    setup.order();
+                    setup.showOrder();
+                }
             }
         });
         view.getRoll2().setOnAction(new EventHandler<ActionEvent>() {
@@ -82,9 +86,13 @@ public class OrderPresenter {
                 }
                 view.getRoll2().setDisable(false);
                 Die.throwDie();
-                roll = Die.getThrown();
+                setup.addRoll(1, Die.getThrown());
                 view.getDiceFoto2().setImage(Die.getDiceFoto().getImage());
                 view.getBack().setVisible(false);
+                if (setup.didPlayersRoll()){
+                    setup.order();
+                    setup.showOrder();
+                }
             }
         });
         view.getRoll3().setOnAction(new EventHandler<ActionEvent>() {
@@ -104,9 +112,13 @@ public class OrderPresenter {
                 }
                 view.getRoll3().setDisable(false);
                 Die.throwDie();
-                roll = Die.getThrown();
+                setup.addRoll(2, Die.getThrown());
                 view.getDiceFoto3().setImage(Die.getDiceFoto().getImage());
                 view.getBack().setVisible(false);
+                if (setup.didPlayersRoll()){
+                    setup.order();
+                    setup.showOrder();
+                }
             }
         });
         view.getRoll4().setOnAction(new EventHandler<ActionEvent>() {
@@ -126,9 +138,13 @@ public class OrderPresenter {
                 }
                 view.getRoll4().setDisable(false);
                 Die.throwDie();
-                roll = Die.getThrown();
+                setup.addRoll(3, Die.getThrown());
                 view.getDiceFoto4().setImage(Die.getDiceFoto().getImage());
                 view.getBack().setVisible(false);
+                if (setup.didPlayersRoll()){
+                    setup.order();
+                    setup.showOrder();
+                }
             }
         });
     }

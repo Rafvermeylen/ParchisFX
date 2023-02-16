@@ -236,4 +236,9 @@ public class Player {
     public boolean getHasBarrier(){
         return hasBarrier;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

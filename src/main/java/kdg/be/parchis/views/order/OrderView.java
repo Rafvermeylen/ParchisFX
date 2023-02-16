@@ -32,8 +32,11 @@ public class OrderView extends StackPane {
     private ImageView diceFoto3;
     private ImageView diceFoto4;
 
+    private int aiRoll2;
 
+    private int aiRoll3;
 
+    private int aiRoll4;
 
     public OrderView (PlayerSetup setup) throws FileNotFoundException {
         this.setup = setup;
@@ -58,7 +61,6 @@ public class OrderView extends StackPane {
         diceFoto2 = new ImageView(Die.getEmpty());
         diceFoto3 = new ImageView(Die.getEmpty());
         diceFoto4 = new ImageView(Die.getEmpty());
-
     }
     private void layoutNodes() {
         this.getChildren().add(boardView);
@@ -88,7 +90,9 @@ public class OrderView extends StackPane {
             roll2.setVisible(false);
             //roll as cpu
             Die.throwDie();
+            aiRoll2 = Die.getThrown();
             diceFoto2.setImage(Die.getDiceFoto().getImage());
+            setup.addRoll(1, Die.getThrown());
         }
 
         //player3 stuff
@@ -105,7 +109,9 @@ public class OrderView extends StackPane {
             roll3.setVisible(false);
             //roll as cpu
             Die.throwDie();
+            aiRoll3 = Die.getThrown();
             diceFoto3.setImage(Die.getDiceFoto().getImage());
+            setup.addRoll(2, Die.getThrown());
         }
 
         //player4 stuff
@@ -122,7 +128,9 @@ public class OrderView extends StackPane {
             roll4.setVisible(false);
             //roll as cpu
             Die.throwDie();
+            aiRoll4 = Die.getThrown();
             diceFoto4.setImage(Die.getDiceFoto().getImage());
+            setup.addRoll(3, Die.getThrown());
         }
 
         this.getChildren().add(back);
@@ -184,5 +192,17 @@ public class OrderView extends StackPane {
 
     public ImageView getDiceFoto4() {
         return diceFoto4;
+    }
+
+    public int getAiRoll2() {
+        return aiRoll2;
+    }
+
+    public int getAiRoll3() {
+        return aiRoll3;
+    }
+
+    public int getAiRoll4() {
+        return aiRoll4;
     }
 }

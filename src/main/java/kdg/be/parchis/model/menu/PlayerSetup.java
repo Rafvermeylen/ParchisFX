@@ -10,9 +10,12 @@ import java.util.*;
 public class PlayerSetup {
     private List<Player> players = new ArrayList<>(4);
     private final int amountPlayers;
+    private int[] rolls;
+    private List<Integer> aiRolls = new ArrayList<>(3);
+
     public PlayerSetup(int amountPlayers){
         this.amountPlayers = amountPlayers;
-
+        rolls = new int[]{0,0,0,0};
     }
 
     public List<Player> getPlayers() {
@@ -105,4 +108,50 @@ public class PlayerSetup {
 
     }
 
+    public void order(){
+// Sort the rolls in descending order using a simple sorting algorithm
+        for (int i = 0; i < 4; i++) {
+            int maxIndex = i;
+            for (int j = i + 1; j < 4; j++) {
+                if (rolls[j] > rolls[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+            if (maxIndex != i) {
+                int temp = rolls[i];
+                rolls[i] = rolls[maxIndex];
+                rolls[maxIndex] = temp;
+                Player tempPlayer = players.get(i);
+                players.set(i, players.get(maxIndex));
+                players.set(maxIndex, tempPlayer);
+            }
+        }
+// The players list is now sorted based on the values in the rolls array
+// The player at index 0 in the list corresponds to the highest roll in the rolls array
+// The player at index 3 in the list corresponds to the lowest roll in the rolls array
+    }
+
+    public boolean didPlayersRoll(){
+        for (Integer roll : rolls){
+            if (roll == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void addRoll(int index, int rolled){
+        rolls[index] = rolled;
+    }
+
+    public String showOrder(){
+        StringBuilder sb = new StringBuilder();
+
+        for (Player p : players){
+            System.out.println(p);
+            sb.append(p).append("\n");
+        }
+
+        return sb.toString();
+    }
 }
