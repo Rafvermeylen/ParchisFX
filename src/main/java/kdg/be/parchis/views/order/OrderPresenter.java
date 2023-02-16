@@ -4,13 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
-import kdg.be.parchis.model.MusicLogic;
 import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;
 
 import java.io.File;
-import java.util.Set;
 
 import static java.lang.Thread.sleep;
 
@@ -45,24 +43,92 @@ public class OrderPresenter {
                 view.getScene().setRoot(backView);
             }
         });
-        view.getRoll().setOnAction(new EventHandler<ActionEvent>() {
+        view.getRoll1().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                view.getRoll1().setVisible(false);
                 String path = "resources\\audio\\roll.wav";
                 Media media = new Media(new File(path).toURI().toString());
                 // Just media doesn't work, x.getSource has to be added as well.
                 AudioClip sound = new AudioClip(media.getSource());
                     sound.play();
-                    view.getRoll().setDisable(true);
+                    view.getRoll1().setDisable(true);
                 try {
                     sleep(2 * 1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                view.getRoll().setDisable(false);
+                view.getRoll1().setDisable(false);
                 Die.throwDie();
                 roll = Die.getThrown();
-                view.getDiceFoto().setImage(Die.getDiceFoto().getImage());
+                view.getDiceFoto1().setImage(Die.getDiceFoto().getImage());
+                view.getBack().setVisible(false);
+            }
+        });
+        view.getRoll2().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                view.getRoll2().setVisible(false);
+                String path = "resources\\audio\\roll.wav";
+                Media media = new Media(new File(path).toURI().toString());
+                // Just media doesn't work, x.getSource has to be added as well.
+                AudioClip sound = new AudioClip(media.getSource());
+                sound.play();
+                view.getRoll2().setDisable(true);
+                try {
+                    sleep(2 * 1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                view.getRoll2().setDisable(false);
+                Die.throwDie();
+                roll = Die.getThrown();
+                view.getDiceFoto2().setImage(Die.getDiceFoto().getImage());
+                view.getBack().setVisible(false);
+            }
+        });
+        view.getRoll3().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                view.getRoll3().setVisible(false);
+                String path = "resources\\audio\\roll.wav";
+                Media media = new Media(new File(path).toURI().toString());
+                // Just media doesn't work, x.getSource has to be added as well.
+                AudioClip sound = new AudioClip(media.getSource());
+                sound.play();
+                view.getRoll3().setDisable(true);
+                try {
+                    sleep(2 * 1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                view.getRoll3().setDisable(false);
+                Die.throwDie();
+                roll = Die.getThrown();
+                view.getDiceFoto3().setImage(Die.getDiceFoto().getImage());
+                view.getBack().setVisible(false);
+            }
+        });
+        view.getRoll4().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                view.getRoll4().setVisible(false);
+                String path = "resources\\audio\\roll.wav";
+                Media media = new Media(new File(path).toURI().toString());
+                // Just media doesn't work, x.getSource has to be added as well.
+                AudioClip sound = new AudioClip(media.getSource());
+                sound.play();
+                view.getRoll4().setDisable(true);
+                try {
+                    sleep(2 * 1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                view.getRoll4().setDisable(false);
+                Die.throwDie();
+                roll = Die.getThrown();
+                view.getDiceFoto4().setImage(Die.getDiceFoto().getImage());
+                view.getBack().setVisible(false);
             }
         });
     }
