@@ -2,9 +2,8 @@ package kdg.be.parchis.views.playerselect;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
 import kdg.be.parchis.model.menu.PlayerSetup;
+import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 import kdg.be.parchis.views.playersetup.PlayerSetupPresenter;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;
@@ -54,11 +53,7 @@ public class PlayerSelectPresenter {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String path = "resources\\audio\\click.mp3";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                sound.play();
+                SoundClass.playClick();
                 view.getScene().setRoot(backView);
             }
         });
@@ -79,11 +74,7 @@ public class PlayerSelectPresenter {
             throw new RuntimeException(e);
         }
         PlayerSetupPresenter psPres = new PlayerSetupPresenter(playerSetup, psView, view);
-        String path = "resources\\audio\\click.mp3";
-        Media media = new Media(new File(path).toURI().toString());
-        // Just media doesn't work, x.getSource has to be added as well.
-        AudioClip sound = new AudioClip(media.getSource());
-        sound.play();
+        SoundClass.playClick();
         view.getScene().setRoot(psView);
     }
 }

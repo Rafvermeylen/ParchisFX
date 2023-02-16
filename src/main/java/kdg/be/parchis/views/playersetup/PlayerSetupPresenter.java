@@ -6,6 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import kdg.be.parchis.model.menu.PlayerSetup;
+import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.order.OrderPresenter;
 import kdg.be.parchis.views.order.OrderView;
 import kdg.be.parchis.views.playerselect.PlayerSelectView;
@@ -29,21 +30,13 @@ public class PlayerSetupPresenter extends BorderPane {
     }
     private void addEventHandlers() {
         view.getBack().setOnAction(actionEvent -> {
-            String path = "resources\\audio\\click.mp3";
-            Media media = new Media(new File(path).toURI().toString());
-            // Just media doesn't work, x.getSource has to be added as well.
-            AudioClip sound = new AudioClip(media.getSource());
-            sound.play();
+            SoundClass.playClick();
             view.getScene().setRoot(backView);
         });
         view.getPlay().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String path = "resources\\audio\\click.mp3";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                sound.play();
+                SoundClass.playClick();
                 //Add players to playerlist
                 if (view.getSetup().getAmountPlayers() == 1) {
                     view.getSetup().setPlayers(

@@ -8,6 +8,7 @@ import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.model.musicLogic.MainMusic;
+import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.game.GamePresenter;
 import kdg.be.parchis.views.game.GameView;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;
@@ -40,11 +41,7 @@ public class OrderPresenter {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String path = "resources\\audio\\click.mp3";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                sound.play();
+                SoundClass.playClick();
                 view.getScene().setRoot(backView);
                 MainMusic.stopMusic();
                 MainMusic.playMenuMusic();
@@ -54,12 +51,8 @@ public class OrderPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll1().setVisible(false);
-                String path = "resources\\audio\\roll.wav";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                    sound.play();
-                    view.getRoll1().setDisable(true);
+                SoundClass.playRoll();
+                view.getRoll1().setDisable(true);
                 try {
                     sleep(2 * 1000);
                 } catch (InterruptedException e) {
@@ -90,11 +83,7 @@ public class OrderPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll2().setVisible(false);
-                String path = "resources\\audio\\roll.wav";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                sound.play();
+                SoundClass.playRoll();
                 view.getRoll2().setDisable(true);
                 try {
                     sleep(2 * 1000);
@@ -126,11 +115,7 @@ public class OrderPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll3().setVisible(false);
-                String path = "resources\\audio\\roll.wav";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                sound.play();
+                SoundClass.playRoll();
                 view.getRoll3().setDisable(true);
                 try {
                     sleep(2 * 1000);
@@ -162,11 +147,7 @@ public class OrderPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll4().setVisible(false);
-                String path = "resources\\audio\\roll.wav";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                sound.play();
+                SoundClass.playRoll();
                 view.getRoll4().setDisable(true);
                 try {
                     sleep(2 * 1000);

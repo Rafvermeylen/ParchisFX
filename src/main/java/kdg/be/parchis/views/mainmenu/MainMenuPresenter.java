@@ -9,6 +9,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.stage.Stage;
 import kdg.be.parchis.model.menu.Cheats;
+import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.leaderboards.LeaderboardPresenter;
 import kdg.be.parchis.views.leaderboards.LeaderboardView;
 import kdg.be.parchis.views.playerselect.PlayerSelectPresenter;
@@ -42,12 +43,7 @@ public class MainMenuPresenter {
         view.getCheat().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                //Show if cheats have been activated or disabled
-                String path = "resources\\audio\\click.mp3";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                sound.play();
+                SoundClass.playClick();
                 Cheats.clickButton();
                 updateView();
             }
@@ -62,11 +58,7 @@ public class MainMenuPresenter {
                     throw new RuntimeException(e);
                 }
                 LeaderboardPresenter leadPres = new LeaderboardPresenter(leadView, view);
-                String path = "resources\\audio\\click.mp3";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                sound.play();
+                SoundClass.playClick();
                 view.getScene().setRoot(leadView);
             }
         });
@@ -80,11 +72,7 @@ public class MainMenuPresenter {
                     throw new RuntimeException(e);
                 }
                 PlayerSelectPresenter psPresenter = new PlayerSelectPresenter(psView, view);
-                String path = "resources\\audio\\click.mp3";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                sound.play();
+                SoundClass.playClick();
                 view.getScene().setRoot(psView);
             }
         });

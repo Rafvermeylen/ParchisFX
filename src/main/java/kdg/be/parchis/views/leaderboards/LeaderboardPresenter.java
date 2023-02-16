@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
+import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
 import java.io.File;
@@ -26,12 +27,7 @@ public class LeaderboardPresenter {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String path = "resources\\audio\\click.mp3";
-                Media media = new Media(new File(path).toURI().toString());
-                // Just media doesn't work, x.getSource has to be added as well.
-                AudioClip sound = new AudioClip(media.getSource());
-                sound.play();
-
+                SoundClass.playClick();
                 view.getScene().setRoot(backView);
             }
         });
