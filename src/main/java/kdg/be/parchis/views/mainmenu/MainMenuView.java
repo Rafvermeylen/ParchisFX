@@ -23,6 +23,7 @@ public class MainMenuView extends BorderPane {
     private Image musicLoud;
     private Image musicMute;
     private Image sfxLoud;
+    private Image sfxMute;
     private ImageView imageViewLogo;
     private ImageView musicPic;
     private ImageView soundPic;
@@ -38,6 +39,7 @@ public class MainMenuView extends BorderPane {
         musicMute = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_muted.png"));
 
         sfxLoud = new Image(new FileInputStream("resources/graphics/buttons/mute/SFX_loud.png"));
+        sfxMute = new Image(new FileInputStream("resources/graphics/buttons/mute/SFX_muted.png"));
 
         musicPic = new ImageView(musicLoud);
         soundPic = new ImageView(sfxLoud);
@@ -141,5 +143,9 @@ public class MainMenuView extends BorderPane {
 
     public Image getMusicMute() {
         return musicMute;
+    }
+
+    public Image getSfxMute() {
+        return sfxMute;
     }
 }

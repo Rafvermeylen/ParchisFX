@@ -59,6 +59,19 @@ public class MainMenuPresenter {
             }
         });
 
+        view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                SoundClass.clickMute();
+
+                if (SoundClass.isMuted()) {
+                    view.getSoundPic().setImage(view.getSfxMute());
+                } else {
+                    view.getSoundPic().setImage(view.getSfxLoud());
+                }
+            }
+        });
+
         view.getCheat().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
