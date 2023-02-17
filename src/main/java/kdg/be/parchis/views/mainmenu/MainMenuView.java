@@ -98,4 +98,28 @@ public class MainMenuView extends BorderPane {
     public Button getExit() {
         return exit;
     }
+
+    public Button getSoundButton() {
+        return soundButton;
+    }
+
+    public Button getFxButton() {
+        return fxButton;
+    }
+
+    public Image getLogo() {
+        return logo;
+    }
+
+    public Image getMusicLoud() {
+        return musicLoud;
+    }
+
+    public Image getSfxLoud() {
+        return sfxLoud;
+    }
+
+    public ImageView getImageViewLogo() {
+        return imageViewLogo;
+    }
 }

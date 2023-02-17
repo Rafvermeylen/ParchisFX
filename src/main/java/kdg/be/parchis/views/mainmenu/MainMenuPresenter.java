@@ -4,22 +4,27 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
 import javafx.stage.Stage;
 import kdg.be.parchis.model.menu.Cheats;
+import kdg.be.parchis.model.musicLogic.MainMusic;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.leaderboards.LeaderboardPresenter;
 import kdg.be.parchis.views.leaderboards.LeaderboardView;
 import kdg.be.parchis.views.playerselect.PlayerSelectPresenter;
 import kdg.be.parchis.views.playerselect.PlayerSelectView;
 
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class MainMenuPresenter {
     private MainMenuView view;
+    private Image musicMute;
+    private Button soundButton;
+
     private final KeyCode fullscreenKey = KeyCode.F;
     private final KeyCode cheatKey = KeyCode.C;
 
@@ -40,6 +45,23 @@ public class MainMenuPresenter {
                 Platform.exit();
             }
         });
+
+        view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                MainMusic.muteMenuMusic();
+
+                /*
+                try {
+                    musicMute = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_muted.png"));
+                    soundButton = new Button("", new ImageView(musicMute));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                */
+            }
+        });
+
         view.getCheat().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
