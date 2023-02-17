@@ -1,18 +1,14 @@
 package kdg.be.parchis.views.mainmenu;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 import kdg.be.parchis.model.musicLogic.MainMusic;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -24,6 +20,8 @@ public class MainMenuView extends BorderPane {
     private Button soundButton;
     private Button fxButton;
     private Image logo;
+    private Image musicLoud;
+    private Image sfxLoud;
     private ImageView imageViewLogo;
 
 
@@ -32,10 +30,13 @@ public class MainMenuView extends BorderPane {
         this.layoutNodes();
     }
 
-    private void initialiseNodes() {
+    private void initialiseNodes() throws FileNotFoundException {
+        musicLoud = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_loud.png"));
+        sfxLoud = new Image(new FileInputStream("resources/graphics/buttons/mute/SFX_loud.png"));
+
         double r = 1.5;
-        soundButton = new Button();
-        fxButton = new Button();
+        soundButton = new Button("", new ImageView(musicLoud));
+        fxButton = new Button("", new ImageView(sfxLoud));
 
         soundButton.setShape(new Circle(r));
         fxButton.setShape(new Circle(r));
