@@ -23,6 +23,7 @@ import java.io.FileNotFoundException;
 public class MainMenuPresenter {
     private MainMenuView view;
     private Image musicMute;
+    private ImageView imageView;
     private Button soundButton;
 
     private final KeyCode fullscreenKey = KeyCode.F;
@@ -50,6 +51,17 @@ public class MainMenuPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 MainMusic.muteMenuMusic();
+
+                /*
+                Image img = new Image("resources\\graphics\\buttons\\mute\\MuteButton_muted.png");
+                imageView.setImage(img);
+                */
+
+                /*
+                Image img = new Image("resources/graphics/buttons/mute/MuteButton_muted.png");
+                ImageView imgView = new ImageView(img);
+                soundButton.setGraphic(imgView);
+                */
 
                 /*
                 try {
