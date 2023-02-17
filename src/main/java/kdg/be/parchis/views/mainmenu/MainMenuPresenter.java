@@ -17,7 +17,6 @@ import kdg.be.parchis.views.leaderboards.LeaderboardView;
 import kdg.be.parchis.views.playerselect.PlayerSelectPresenter;
 import kdg.be.parchis.views.playerselect.PlayerSelectView;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class MainMenuPresenter {
@@ -52,25 +51,11 @@ public class MainMenuPresenter {
             public void handle(ActionEvent actionEvent) {
                 MainMusic.muteMenuMusic();
 
-                /*
-                Image img = new Image("resources\\graphics\\buttons\\mute\\MuteButton_muted.png");
-                imageView.setImage(img);
-                */
-
-                /*
-                Image img = new Image("resources/graphics/buttons/mute/MuteButton_muted.png");
-                ImageView imgView = new ImageView(img);
-                soundButton.setGraphic(imgView);
-                */
-
-                /*
-                try {
-                    musicMute = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_muted.png"));
-                    soundButton = new Button("", new ImageView(musicMute));
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
+                if (MainMusic.getMediaPlayer().isMute()) {
+                    view.getMusicPic().setImage(view.getMusicMute());
+                } else {
+                    view.getMusicPic().setImage(view.getMusicLoud());
                 }
-                */
             }
         });
 

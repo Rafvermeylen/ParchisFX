@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="ParchisJavaFX" options="--add-exports javafx.graphics/com.sun.javafx.font=kdg.be.parchis" />
+      <module name="ParchisJavaFX" options="" />
     </option>
   </component>
 </project>

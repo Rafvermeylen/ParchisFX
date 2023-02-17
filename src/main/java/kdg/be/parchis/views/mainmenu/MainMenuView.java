@@ -21,8 +21,11 @@ public class MainMenuView extends BorderPane {
     private Button fxButton;
     private Image logo;
     private Image musicLoud;
+    private Image musicMute;
     private Image sfxLoud;
     private ImageView imageViewLogo;
+    private ImageView musicPic;
+    private ImageView soundPic;
 
 
     public MainMenuView() throws FileNotFoundException {
@@ -32,11 +35,16 @@ public class MainMenuView extends BorderPane {
 
     private void initialiseNodes() throws FileNotFoundException {
         musicLoud = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_loud.png"));
+        musicMute = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_muted.png"));
+
         sfxLoud = new Image(new FileInputStream("resources/graphics/buttons/mute/SFX_loud.png"));
 
+        musicPic = new ImageView(musicLoud);
+        soundPic = new ImageView(sfxLoud);
+
         double r = 1.5;
-        soundButton = new Button("", new ImageView(musicLoud));
-        fxButton = new Button("", new ImageView(sfxLoud));
+        soundButton = new Button("", musicPic);
+        fxButton = new Button("", soundPic);
 
         soundButton.setShape(new Circle(r));
         fxButton.setShape(new Circle(r));
@@ -121,5 +129,17 @@ public class MainMenuView extends BorderPane {
 
     public ImageView getImageViewLogo() {
         return imageViewLogo;
+    }
+
+    public ImageView getMusicPic() {
+        return musicPic;
+    }
+
+    public ImageView getSoundPic() {
+        return soundPic;
+    }
+
+    public Image getMusicMute() {
+        return musicMute;
     }
 }
