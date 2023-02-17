@@ -29,6 +29,7 @@ public class PlayerSelectView extends BorderPane {
         this.initialiseNodes();
         this.layoutNodes();
     }
+
     private void initialiseNodes() throws FileNotFoundException {
         back = new Button("Back");
         onePlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\one_player.png"));
@@ -42,12 +43,13 @@ public class PlayerSelectView extends BorderPane {
         background = new Image(new FileInputStream("resources\\backgrounds\\Background.png"));
 
     }
+
     private void layoutNodes() {
         HBox hBox = new HBox(20);
-        onePlayer.setPrefSize(100,100);
-        twoPlayers.setPrefSize(100,100);
-        threePlayers.setPrefSize(100,100);
-        fourPlayers.setPrefSize(100,100);
+        onePlayer.setPrefSize(100, 100);
+        twoPlayers.setPrefSize(100, 100);
+        threePlayers.setPrefSize(100, 100);
+        fourPlayers.setPrefSize(100, 100);
 
         hBox.getChildren().addAll(onePlayer, twoPlayers, threePlayers, fourPlayers);
         hBox.setAlignment(Pos.CENTER);
