@@ -19,12 +19,13 @@ public class MainMenuView extends BorderPane {
     private Button exit;
     private Button soundButton;
     private Button fxButton;
+    private Image background;
     private Image logo;
     private Image musicLoud;
     private Image musicMute;
     private Image sfxLoud;
     private Image sfxMute;
-    private ImageView imageViewLogo;
+    private ImageView im;
     private ImageView musicPic;
     private ImageView soundPic;
 
@@ -35,6 +36,10 @@ public class MainMenuView extends BorderPane {
     }
 
     private void initialiseNodes() throws FileNotFoundException {
+        background = new Image(new FileInputStream("resources\\backgrounds\\Background.png"));
+        logo = new Image(new FileInputStream("resources\\graphics\\logo.png"));
+        im = new ImageView(logo);
+
         musicLoud = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_loud.png"));
         musicMute = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_muted.png"));
 
@@ -63,12 +68,10 @@ public class MainMenuView extends BorderPane {
         exit = new Button("Exit");
     }
 
-    private void layoutNodes() throws FileNotFoundException {
+    private void layoutNodes() {
         startButton.setMaxWidth(150);
         leaderboards.setMaxWidth(150);
         cheat.setMaxWidth(150);
-        Image logo = new Image(new FileInputStream("resources\\graphics\\logo.png"));
-        ImageView im = new ImageView(logo);
 
         HBox buttonsTop = new HBox(15);
         buttonsTop.getChildren().addAll(soundButton, fxButton);
@@ -87,7 +90,6 @@ public class MainMenuView extends BorderPane {
         BorderPane.setAlignment(exit, Pos.BOTTOM_CENTER);
         BorderPane.setMargin(exit, new Insets(30));
 
-        Image background = new Image(new FileInputStream("resources\\backgrounds\\Background.png"));
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
         MainMusic.playMenuMusic();
@@ -117,20 +119,12 @@ public class MainMenuView extends BorderPane {
         return fxButton;
     }
 
-    public Image getLogo() {
-        return logo;
-    }
-
     public Image getMusicLoud() {
         return musicLoud;
     }
 
     public Image getSfxLoud() {
         return sfxLoud;
-    }
-
-    public ImageView getImageViewLogo() {
-        return imageViewLogo;
     }
 
     public ImageView getMusicPic() {

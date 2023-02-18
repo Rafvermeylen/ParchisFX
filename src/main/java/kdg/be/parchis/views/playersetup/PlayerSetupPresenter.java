@@ -2,6 +2,7 @@ package kdg.be.parchis.views.playersetup;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
@@ -38,20 +39,20 @@ public class PlayerSetupPresenter extends BorderPane {
             public void handle(ActionEvent event) {
                 SoundClass.playClick();
                 //Add players to playerlist
-                if (view.getSetup().getAmountPlayers() == 1) {
-                    view.getSetup().setPlayers(
+                if (setup.getAmountPlayers() == 1) {
+                    setup.setPlayers(
                             view.getPlayer1NameArea().getText());
-                } else if (view.getSetup().getAmountPlayers() == 2) {
-                    view.getSetup().setPlayers(
+                } else if (setup.getAmountPlayers() == 2) {
+                    setup.setPlayers(
                             view.getPlayer1NameArea().getText(),
                             view.getPlayer2NameArea().getText());
-                } else if (view.getSetup().getAmountPlayers() == 3) {
-                    view.getSetup().setPlayers(
+                } else if (setup.getAmountPlayers() == 3) {
+                    setup.setPlayers(
                             view.getPlayer1NameArea().getText(),
                             view.getPlayer2NameArea().getText(),
                             view.getPlayer3NameArea().getText());
-                } else if (view.getSetup().getAmountPlayers() == 4) {
-                    view.getSetup().setPlayers(
+                } else if (setup.getAmountPlayers() == 4) {
+                    setup.setPlayers(
                             view.getPlayer1NameArea().getText(),
                             view.getPlayer2NameArea().getText(),
                             view.getPlayer3NameArea().getText(),
@@ -60,23 +61,29 @@ public class PlayerSetupPresenter extends BorderPane {
                 //change view
                 OrderView orderview = null;
                 try {
-                    orderview = new OrderView(setup);
+                    orderview = new OrderView();
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                OrderPresenter orderPresenter = new OrderPresenter(view.getSetup(), orderview, view);
+                OrderPresenter orderPresenter = new OrderPresenter(setup, orderview, view);
                 view.getScene().setRoot(orderview);
             }
         });
     }
     private void updateView() {
-// Vult de view met data uit model
+        if (setup.getAmountPlayers()==1){
+            view.getSetupNames().getChildren().add(view.getPlayer1NameArea());
+        } else if (setup.getAmountPlayers()==2){
+            view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(),view.getPlayer2NameArea());
+        }else if (setup.getAmountPlayers()==3){
+            view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(), view.getPlayer2NameArea(),view.getPlayer3NameArea());
+        }else if (setup.getAmountPlayers()==4){
+            view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(),view.getPlayer2NameArea(),view.getPlayer3NameArea(),view.getPlayer4NameArea());
+        }
     }
     public void addWindowEventHandlers () {
-// Window event handlers (anon. inner klassen)
-// Koppeling via view.getScene().getWindow()
-    }
 
+    }
 }

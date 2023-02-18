@@ -8,14 +8,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import kdg.be.parchis.model.game.Die;
-import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.model.musicLogic.MainMusic;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class OrderView extends StackPane {
-    private PlayerSetup setup;
     private Image background;
     private Image board;
     private ImageView boardView;
@@ -39,17 +37,16 @@ public class OrderView extends StackPane {
 
     private int aiRoll4;
 
-    public OrderView (PlayerSetup setup) throws FileNotFoundException, InterruptedException {
-        this.setup = setup;
+    public OrderView () throws FileNotFoundException, InterruptedException {
         this.initialiseNodes();
         this.layoutNodes();
     }
     private void initialiseNodes() throws FileNotFoundException {
-        background = new Image(new FileInputStream("resources\\graphics\\game\\background_ingame.png"));
-        player1Name = new Label(setup.getPlayers().get(0).getName());
-        player2Name = new Label(setup.getPlayers().get(1).getName());
-        player3Name = new Label(setup.getPlayers().get(2).getName());
-        player4Name = new Label(setup.getPlayers().get(3).getName());
+        background = new Image(new FileInputStream("resources\\backgrounds\\ingame_background.png"));
+        player1Name = new Label();
+        player2Name = new Label();
+        player3Name = new Label();
+        player4Name = new Label();
         roll1 = new Button("Roll");
         roll2 = new Button("Roll");
         roll3 = new Button("Roll");
@@ -87,14 +84,6 @@ public class OrderView extends StackPane {
         player2Name.setTranslateY(-290);
         controls2.setTranslateX(-350);
         controls2.setTranslateY(-220);
-        if(setup.getAmountPlayers()<2){
-            roll2.setVisible(false);
-            //roll as cpu
-            Die.throwDie();
-            aiRoll2 = Die.getThrown();
-            diceFoto2.setImage(Die.getDiceFoto().getImage());
-            setup.addRoll(1, Die.getThrown());
-        }
 
         //player3 stuff
         VBox controls3 = new VBox(20);
@@ -106,14 +95,7 @@ public class OrderView extends StackPane {
         player3Name.setTranslateY(180);
         controls3.setTranslateX(-350);
         controls3.setTranslateY(250);
-        if(setup.getAmountPlayers()<3){
-            roll3.setVisible(false);
-            //roll as cpu
-            Die.throwDie();
-            aiRoll3 = Die.getThrown();
-            diceFoto3.setImage(Die.getDiceFoto().getImage());
-            setup.addRoll(2, Die.getThrown());
-        }
+
 
         //player4 stuff
         VBox controls4 = new VBox(20);
@@ -125,18 +107,12 @@ public class OrderView extends StackPane {
         player4Name.setTranslateY(180);
         controls4.setTranslateX(350);
         controls4.setTranslateY(250);
-        if(setup.getAmountPlayers()<4){
-            roll4.setVisible(false);
-            //roll as cpu
-            Die.throwDie();
-            aiRoll4 = Die.getThrown();
-            diceFoto4.setImage(Die.getDiceFoto().getImage());
-            setup.addRoll(3, Die.getThrown());
-        }
 
         this.getChildren().add(back);
         StackPane.setAlignment(back, Pos.BOTTOM_LEFT);
         StackPane.setMargin(back, new Insets(20));
+
+        this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
         MainMusic.stopMusic();
         MainMusic.playGameMusic();

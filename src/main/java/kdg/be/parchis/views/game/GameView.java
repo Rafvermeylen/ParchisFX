@@ -5,8 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,6 +29,7 @@ public class GameView extends BorderPane {
     private ImageView die4;
     private Button finish4;
     private Image boardImg;
+    private Image background;
     private ImageView board;
 
     public GameView () throws FileNotFoundException {
@@ -38,11 +38,12 @@ public class GameView extends BorderPane {
     }
     private void initialiseNodes() throws FileNotFoundException {
         boardImg = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
+        background = new Image(new FileInputStream("resources\\backgrounds\\ingame_background.png"));
         board = new ImageView(boardImg);
 
-        yellowPlayer = new Label();
-        bluePlayer = new Label();
-        redPlayer = new Label();
+        yellowPlayer = new Label("yellow");
+        bluePlayer = new Label("blue");
+        redPlayer = new Label("red");
         greenPlayer = new Label();
 
 
@@ -51,12 +52,22 @@ public class GameView extends BorderPane {
 // Layout van de Nodes
 // add... methodes (of set...)
 // Insets, padding, alignment, ...
+        GridPane gp = new GridPane();
+        gp.setGridLinesVisible(true);
+        gp.getChildren().addAll(yellowPlayer);
+        gp.getChildren().add(bluePlayer);
+        gp.getChildren().add(redPlayer);
+        gp.setAlignment(Pos.CENTER);
+
+
         StackPane game = new StackPane();
         game.getChildren().add(board);
 
         game.setAlignment(Pos.CENTER);
 
-        this.setCenter(game);
+        this.setCenter(gp);
+        BorderPane.setAlignment(gp, Pos.CENTER);
+        this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
 // implementatie van de nodige
 // package-private Getters

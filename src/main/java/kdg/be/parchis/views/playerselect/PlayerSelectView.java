@@ -61,9 +61,6 @@ public class PlayerSelectView extends BorderPane {
         BorderPane.setAlignment(back, Pos.CENTER_LEFT);
         BorderPane.setMargin(back, new Insets(20));
     }
-// implementatie van de nodige
-// package-private Getters
-
 
     public Button getOnePlayer() {
         return onePlayer;

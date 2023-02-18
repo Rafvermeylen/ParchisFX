@@ -69,7 +69,7 @@ public class PlayerSelectPresenter {
     public void selectedPlayers(PlayerSetup playerSetup) {
         PlayerSetupView psView;
         try {
-            psView = new PlayerSetupView(playerSetup);
+            psView = new PlayerSetupView();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
