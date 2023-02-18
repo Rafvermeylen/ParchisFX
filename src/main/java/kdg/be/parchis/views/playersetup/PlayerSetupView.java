@@ -32,10 +32,10 @@ public class PlayerSetupView extends BorderPane {
         back = new Button("Back");
         background = new Image(new FileInputStream("resources\\backgrounds\\Background.png"));
 
-        player1NameArea = new TextField("");
-        player2NameArea = new TextField("");
-        player3NameArea = new TextField("");
-        player4NameArea = new TextField("");
+        player1NameArea = new TextField("player 1");
+        player2NameArea = new TextField("player 2");
+        player3NameArea = new TextField("player 3");
+        player4NameArea = new TextField("player 4");
         setupNames = new HBox(20);
 
         play = new Button("Play!");
