@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MainMusic {
     private static Media menu_music;
-    private static int currentSongIndex;
+    private static int currentIndex;
     private static MediaPlayer mediaPlayer;
     private static List<Media> songs = new ArrayList<>();
 
@@ -53,24 +53,28 @@ public class MainMusic {
 
         Collections.shuffle(songs);
 
-        mediaPlayer = new MediaPlayer(songs.get(currentSongIndex));
-
-        mediaPlayer.setOnEndOfMedia(() -> {
-            // Increment the index to play the next song
-            currentSongIndex++;
-
-            // If the index goes above the number of songs in the list, set it back to 0 to loop back to the beginning
-            if (currentSongIndex >= songs.size()) {
-                currentSongIndex = 0;
-            }
-
-            // Create a new MediaPlayer for the next song and play it
-            mediaPlayer.dispose();
-            mediaPlayer = new MediaPlayer(songs.get(currentSongIndex));
-            mediaPlayer.play();
-        });
-
+        // Create a MediaPlayer with the first song
+        mediaPlayer = new MediaPlayer(songs.get(0));
         mediaPlayer.play();
+
+        // Set up the onEndOfMedia event to play the next song when the current one finishes
+        mediaPlayer.setOnEndOfMedia(() -> {
+            // Get the index of the current song
+            currentIndex = songs.indexOf(mediaPlayer.getMedia());
+
+            // If there's another song in the list, play it
+            if (currentIndex < songs.size() - 1) {
+                mediaPlayer.dispose();
+                mediaPlayer = new MediaPlayer(songs.get(currentIndex + 1));
+                mediaPlayer.play();
+            }
+            // Otherwise, loop back to the beginning and play the first song
+            else {
+                mediaPlayer.dispose();
+                mediaPlayer = new MediaPlayer(songs.get(0));
+                mediaPlayer.play();
+            }
+        });
     }
 
     public static void stopMusic() {
