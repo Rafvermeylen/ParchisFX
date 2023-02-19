@@ -10,11 +10,8 @@ import java.util.List;
 
 public class MainMusic {
     private static Media menu_music;
-
-    private static int currentSongIndex = 0;
-
+    private static int currentSongIndex;
     private static MediaPlayer mediaPlayer;
-
     private static List<Media> songs = new ArrayList<>();
 
     /*
@@ -58,34 +55,21 @@ public class MainMusic {
 
         mediaPlayer = new MediaPlayer(songs.get(currentSongIndex));
 
-        // A lambda expression is a function that doesn’t belong to any class.
-        // For my understanding, this will happen if the song has ended. It will keep looping until list is completed.
-        // If list is completed, currentSongIndex will be set back to 0, restarting the process.
-        do {
-            mediaPlayer.setOnEndOfMedia(() -> {
-                // Increment the index to play the next song
-                currentSongIndex++;
+        mediaPlayer.setOnEndOfMedia(() -> {
+            // Increment the index to play the next song
+            currentSongIndex++;
 
-                // Create a new MediaPlayer for the next song and play it
-                mediaPlayer.dispose();
-                mediaPlayer = new MediaPlayer(songs.get(currentSongIndex));
+            // If the index goes above the number of songs in the list, set it back to 0 to loop back to the beginning
+            if (currentSongIndex >= songs.size()) {
+                currentSongIndex = 0;
+            }
 
-                // :: operator refers to a method reference ==> simplified way
-                // of writing a lambda expression in order to call a method.
-                //mediaPlayer.setOnEndOfMedia(mediaPlayer::stop);
-                mediaPlayer.play();
-            });
-        } while (currentSongIndex >= songs.size());
-
-        if (currentSongIndex >= songs.size()) {
-            // If the index goes above 0, set it back to 0 to loop back to the beginning
-            currentSongIndex = 0;
-        }
-/*
-        mediaPlayer.setOnStopped(() -> {
+            // Create a new MediaPlayer for the next song and play it
             mediaPlayer.dispose();
+            mediaPlayer = new MediaPlayer(songs.get(currentSongIndex));
+            mediaPlayer.play();
         });
- */
+
         mediaPlayer.play();
     }
 
