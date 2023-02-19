@@ -66,16 +66,7 @@ public class OrderPresenter {
                 if (setup.didPlayersRoll()){
                     setup.order();
                     setup.showOrder();
-                    //Go to gameView
-                    GameView gameView = null;
-                    try {
-                        gameView = new GameView();
-                    } catch (FileNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    Game gameSession = new Game(setup.getPlayers());
-                    GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
-                    view.getScene().setRoot(gameView);
+                    view.getStart().setVisible(true);
                 }
             }
         });
@@ -98,16 +89,7 @@ public class OrderPresenter {
                 if (setup.didPlayersRoll()){
                     setup.order();
                     setup.showOrder();
-                    //Go to gameView
-                    GameView gameView = null;
-                    try {
-                        gameView = new GameView();
-                    } catch (FileNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    Game gameSession = new Game(setup.getPlayers());
-                    GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
-                    view.getScene().setRoot(gameView);
+                    view.getStart().setVisible(true);
                 }
             }
         });
@@ -130,16 +112,7 @@ public class OrderPresenter {
                 if (setup.didPlayersRoll()){
                     setup.order();
                     setup.showOrder();
-                    //Go to gameView
-                    GameView gameView = null;
-                    try {
-                        gameView = new GameView();
-                    } catch (FileNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    Game gameSession = new Game(setup.getPlayers());
-                    GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
-                    view.getScene().setRoot(gameView);
+                    view.getStart().setVisible(true);
                 }
             }
         });
@@ -162,17 +135,23 @@ public class OrderPresenter {
                 if (setup.didPlayersRoll()){
                     setup.order();
                     setup.showOrder();
-                    //Go to gameView
-                    GameView gameView = null;
-                    try {
-                        gameView = new GameView();
-                    } catch (FileNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    Game gameSession = new Game(setup.getPlayers());
-                    GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
-                    view.getScene().setRoot(gameView);
+                    view.getStart().setVisible(true);
                 }
+            }
+        });
+
+        view.getStart().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                SoundClass.playRoll();
+                Game gameSession = new Game(setup.getPlayers());
+                GameView gameView = null;
+                try {
+                    gameView = new GameView();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }                GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
+                view.getScene().setRoot(gameView);
             }
         });
     }

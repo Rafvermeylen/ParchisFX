@@ -26,6 +26,7 @@ public class OrderView extends StackPane {
     private Label player4Name;
     private Button roll4;
     private Button back;
+    private Button start;
     private ImageView diceFoto1;
     private ImageView diceFoto2;
     private ImageView diceFoto3;
@@ -53,6 +54,7 @@ public class OrderView extends StackPane {
         roll4 = new Button("Roll");
 
         back = new Button("Back");
+        start = new Button("START");
         board = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
         boardView = new ImageView(board);
         diceFoto1 = new ImageView(Die.getEmpty());
@@ -109,8 +111,12 @@ public class OrderView extends StackPane {
         controls4.setTranslateY(270);
 
         this.getChildren().add(back);
+        this.getChildren().add(start);
+        start.setPrefSize(150,150);
+        start.setVisible(false);
         StackPane.setAlignment(back, Pos.BOTTOM_LEFT);
         StackPane.setMargin(back, new Insets(20));
+        StackPane.setAlignment(start, Pos.CENTER);
 
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
@@ -185,5 +191,9 @@ public class OrderView extends StackPane {
 
     public int getAiRoll4() {
         return aiRoll4;
+    }
+
+    public Button getStart() {
+        return start;
     }
 }

@@ -9,6 +9,8 @@ public class Game {
     private final List<Player> players;
     private final Board board;
     private Score winner;
+    private int indexTurn;
+    private int amountThrows;
 
 
     public Game(List<Player> players) {
@@ -16,6 +18,8 @@ public class Game {
         this.players =players;
         board = new Board();
         winner = null;
+        indexTurn = 0;
+        amountThrows = 0;
     }
 
     // Check where players will start
@@ -297,6 +301,19 @@ public class Game {
         }
     }
 
+    public void endTurn(){
+        indexTurn++;
+        if (indexTurn == 4){
+            indexTurn=0;
+            turn++;
+        }
+        amountThrows = 0;
+    }
+
+    public void movePawn(){
+
+    }
+
     public Score getWinner() {
         return winner;
     }
@@ -307,5 +324,54 @@ public class Game {
 
     public void roll(){
         Die.throwDie();
+        amountThrows++;
+    }
+
+    public int getIndexTurn() {
+        return indexTurn;
+    }
+
+    public int getAmountThrows() {
+        return amountThrows;
+    }
+
+    public Player getYellowPlayer(){
+        for (Player p : players){
+            if (p.getColor().equals(Colors.YELLOW)){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Player getBluePlayer(){
+        for (Player p : players){
+            if (p.getColor().equals(Colors.BLUE)){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Player getRedPlayer(){
+        for (Player p : players){
+            if (p.getColor().equals(Colors.RED)){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Player getGreenPlayer(){
+        for (Player p : players){
+            if (p.getColor().equals(Colors.GREEN)){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public boolean canPlayerMove(Player p){
+        return p.canMove(board, Die.getThrown());
     }
 }
