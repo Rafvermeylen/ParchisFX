@@ -143,7 +143,7 @@ public class OrderPresenter {
         view.getStart().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SoundClass.playRoll();
+                //SoundClass.playRoll();
                 Game gameSession = new Game(setup.getPlayers());
                 GameView gameView = null;
                 try {
