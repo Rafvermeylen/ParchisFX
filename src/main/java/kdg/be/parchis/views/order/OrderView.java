@@ -69,10 +69,10 @@ public class OrderView extends StackPane {
         controls1.setAlignment(Pos.CENTER);
         this.getChildren().add(player1Name);
         this.getChildren().add(controls1);
-        player1Name.setTranslateX(350);
-        player1Name.setTranslateY(-290);
-        controls1.setTranslateX(350);
-        controls1.setTranslateY(-220);
+        player1Name.setTranslateX(500);
+        player1Name.setTranslateY(-250);
+        controls1.setTranslateX(500);
+        controls1.setTranslateY(-180);
 
         //player2 stuff
         VBox controls2 = new VBox(20);
@@ -80,10 +80,10 @@ public class OrderView extends StackPane {
         controls2.setAlignment(Pos.CENTER);
         this.getChildren().add(player2Name);
         this.getChildren().add(controls2);
-        player2Name.setTranslateX(-350);
-        player2Name.setTranslateY(-290);
-        controls2.setTranslateX(-350);
-        controls2.setTranslateY(-220);
+        player2Name.setTranslateX(-500);
+        player2Name.setTranslateY(-250);
+        controls2.setTranslateX(-500);
+        controls2.setTranslateY(-180);
 
         //player3 stuff
         VBox controls3 = new VBox(20);
@@ -91,10 +91,10 @@ public class OrderView extends StackPane {
         controls3.setAlignment(Pos.CENTER);
         this.getChildren().add(player3Name);
         this.getChildren().add(controls3);
-        player3Name.setTranslateX(-350);
-        player3Name.setTranslateY(180);
-        controls3.setTranslateX(-350);
-        controls3.setTranslateY(250);
+        player3Name.setTranslateX(-500);
+        player3Name.setTranslateY(200);
+        controls3.setTranslateX(-500);
+        controls3.setTranslateY(270);
 
 
         //player4 stuff
@@ -103,10 +103,10 @@ public class OrderView extends StackPane {
         controls4.setAlignment(Pos.CENTER);
         this.getChildren().add(player4Name);
         this.getChildren().add(controls4);
-        player4Name.setTranslateX(350);
-        player4Name.setTranslateY(180);
-        controls4.setTranslateX(350);
-        controls4.setTranslateY(250);
+        player4Name.setTranslateX(500);
+        player4Name.setTranslateY(200);
+        controls4.setTranslateX(500);
+        controls4.setTranslateY(270);
 
         this.getChildren().add(back);
         StackPane.setAlignment(back, Pos.BOTTOM_LEFT);
