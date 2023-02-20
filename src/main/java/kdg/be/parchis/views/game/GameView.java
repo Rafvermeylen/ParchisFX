@@ -37,6 +37,8 @@ public class GameView extends StackPane {
     private Image boardImg;
     private Image background;
     private ImageView board;
+    private Image status;
+    private ImageView statusBar;
     private Label turns;
 
     public GameView () throws FileNotFoundException {
@@ -47,6 +49,8 @@ public class GameView extends StackPane {
         boardImg = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
         background = new Image(new FileInputStream("resources\\backgrounds\\ingame_background.png"));
         board = new ImageView(boardImg);
+        status = new Image(new FileInputStream("resources\\graphics\\game\\statusBar.png"));
+        statusBar = new ImageView(status);
 
         turns = new Label();
 
@@ -164,8 +168,10 @@ public class GameView extends StackPane {
 
 
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        this.getChildren().add(statusBar);
+        setAlignment(statusBar, Pos.TOP_CENTER);
         this.getChildren().add(turns);
-        this.setAlignment(turns, Pos.TOP_CENTER);
+        setAlignment(turns, Pos.TOP_CENTER);
     }
 // implementatie van de nodige
 // package-private Getters

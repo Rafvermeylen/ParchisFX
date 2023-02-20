@@ -378,4 +378,36 @@ public class Game {
     public boolean canPlayerMove(Player p){
         return p.canMove(board, Die.getThrown());
     }
+
+    public void yellowLeaveNest(){
+        getYellowPlayer().firstLeavesNest(board.board.get(getYellowPlayer().getStartPosition()));
+        System.out.println("Yellow pawn left nest");
+    }
+
+    public void blueLeaveNest(){
+        getBluePlayer().firstLeavesNest(board.board.get(getBluePlayer().getStartPosition()));
+        System.out.println("blue pawn left nest");
+    }
+
+    public void redLeaveNest(){
+        getRedPlayer().firstLeavesNest(board.board.get(getRedPlayer().getStartPosition()));
+        System.out.println("red pawn left nest");
+    }
+
+    public void greenLeaveNest(){
+        getGreenPlayer().firstLeavesNest(board.board.get(getGreenPlayer().getStartPosition()));
+        System.out.println("green pawn left nest");
+    }
+
+    public void movePawn(Player player){
+        for (Pawn p : player.getPawns()){
+            if (p.isCanMove(board, Die.getThrown()) && p.isInGame()){
+                p.move(board.board.get(p.getPosition().getNr() + Die.getThrown()));
+                System.out.println("pawn " + p.getPawnNumber() + " is on tile " + p.getPosition().getNr());
+                return;
+            }
+        }
+        System.out.println("cant move");
+    }
+
 }

@@ -237,6 +237,10 @@ public class Player {
         return hasBarrier;
     }
 
+    public List<Pawn> getPawns() {
+        return pawns;
+    }
+
     @Override
     public String toString() {
         return name;

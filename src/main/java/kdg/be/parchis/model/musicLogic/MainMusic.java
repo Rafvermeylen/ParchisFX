@@ -56,8 +56,24 @@ public class MainMusic {
         // Create a MediaPlayer with the first song
         mediaPlayer = new MediaPlayer(songs.get(0));
         mediaPlayer.play();
-
         // Set up the onEndOfMedia event to play the next song when the current one finishes
+        mediaPlayer.setOnEndOfMedia(() -> {
+            // Get the index of the current song
+            currentIndex = songs.indexOf(mediaPlayer.getMedia());
+
+            // If there's another song in the list, play it
+            if (currentIndex < songs.size() - 1) {
+                mediaPlayer.dispose();
+                mediaPlayer = new MediaPlayer(songs.get(currentIndex + 1));
+                mediaPlayer.play();
+            }
+            // Otherwise, loop back to the beginning and play the first song
+            else {
+                mediaPlayer.dispose();
+                mediaPlayer = new MediaPlayer(songs.get(0));
+                mediaPlayer.play();
+            }
+        });
         mediaPlayer.setOnEndOfMedia(() -> {
             // Get the index of the current song
             currentIndex = songs.indexOf(mediaPlayer.getMedia());
@@ -77,15 +93,16 @@ public class MainMusic {
         });
     }
 
-    public static void stopMusic() {
-        mediaPlayer.stop();
-    }
 
-    public static void muteMenuMusic() {
-        mediaPlayer.setMute(!mediaPlayer.isMute());
-    }
+        public static void stopMusic () {
+            mediaPlayer.stop();
+        }
 
-    public static MediaPlayer getMediaPlayer() {
-        return mediaPlayer;
+        public static void muteMenuMusic () {
+            mediaPlayer.setMute(!mediaPlayer.isMute());
+        }
+
+        public static MediaPlayer getMediaPlayer () {
+            return mediaPlayer;
+        }
     }
-}
