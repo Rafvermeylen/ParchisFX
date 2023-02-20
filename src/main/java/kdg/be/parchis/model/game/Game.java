@@ -371,6 +371,10 @@ public class Game {
         return null;
     }
 
+    public int getTurn() {
+        return turn;
+    }
+
     public boolean canPlayerMove(Player p){
         return p.canMove(board, Die.getThrown());
     }

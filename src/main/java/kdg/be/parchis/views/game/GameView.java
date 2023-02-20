@@ -37,6 +37,7 @@ public class GameView extends StackPane {
     private Image boardImg;
     private Image background;
     private ImageView board;
+    private Label turns;
 
     public GameView () throws FileNotFoundException {
         this.initialiseNodes();
@@ -46,6 +47,8 @@ public class GameView extends StackPane {
         boardImg = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
         background = new Image(new FileInputStream("resources\\backgrounds\\ingame_background.png"));
         board = new ImageView(boardImg);
+
+        turns = new Label();
 
         yellowPlayer = new Label();
         yellowPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_yellow.png"));
@@ -98,10 +101,14 @@ public class GameView extends StackPane {
 
         Group yellow_pawns = new Group(yp_1, yp_2, yp_3, yp_4);
         this.getChildren().add(yellow_pawns);
-        yp_1.setTranslateX(160);
-        yp_1.setTranslateY(100);
-        yp_1.setTranslateX(120);
-        yp_1.setTranslateY(100);
+        yp_1.setTranslateX(585);
+        yp_1.setTranslateY(65);
+        yp_2.setTranslateX(120);
+        yp_2.setTranslateY(100);
+        yp_3.setTranslateX(10);
+        yp_3.setTranslateY(10);
+        yp_4.setTranslateX(10);
+        yp_4.setTranslateY(10);
 
         //player2 stuff
         VBox controls2 = new VBox(20);
@@ -157,6 +164,8 @@ public class GameView extends StackPane {
 
 
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        this.getChildren().add(turns);
+        this.setAlignment(turns, Pos.TOP_CENTER);
     }
 // implementatie van de nodige
 // package-private Getters
@@ -224,5 +233,9 @@ public class GameView extends StackPane {
 
     public Button getFinish4() {
         return finish4;
+    }
+
+    public Label getTurns() {
+        return turns;
     }
 }

@@ -2,8 +2,11 @@ package kdg.be.parchis.views.order;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
+import javafx.stage.Stage;
 import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.menu.PlayerSetup;
@@ -22,6 +25,8 @@ public class OrderPresenter {
     private PlayerSetup setup;
     private OrderView view;
     private PlayerSetupView backView;
+    private final KeyCode fullscreenKey = KeyCode.F;
+
     private int roll;
     public OrderPresenter(
             PlayerSetup model,
@@ -184,6 +189,15 @@ public class OrderPresenter {
         }
     }
     public void addWindowEventHandlers () {
+        view.getScene().setOnKeyPressed(e -> {
+            if (e.getCode() == fullscreenKey) {
+                Scene scene = view.getScene();
+                if (scene != null) {
+                    Stage stage = (Stage) scene.getWindow();
+                    stage.setFullScreen(!stage.isFullScreen());
+                }
+            }
+        });
 // Window event handlers (anon. inner klassen)
 // Koppeling via view.getScene().getWindow()
     }

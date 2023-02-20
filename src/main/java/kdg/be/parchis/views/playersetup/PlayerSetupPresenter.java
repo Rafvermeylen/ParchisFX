@@ -2,10 +2,13 @@ package kdg.be.parchis.views.playersetup;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
+import javafx.stage.Stage;
 import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.order.OrderPresenter;
@@ -19,6 +22,8 @@ public class PlayerSetupPresenter extends BorderPane {
     private PlayerSetup setup;
     private PlayerSetupView view;
     private PlayerSelectView backView;
+    private final KeyCode fullscreenKey = KeyCode.F;
+
     public PlayerSetupPresenter (
             PlayerSetup model,
             PlayerSetupView view,
@@ -84,6 +89,14 @@ public class PlayerSetupPresenter extends BorderPane {
         }
     }
     public void addWindowEventHandlers () {
-
+        view.getScene().setOnKeyPressed(e -> {
+            if (e.getCode() == fullscreenKey) {
+                Scene scene = view.getScene();
+                if (scene != null) {
+                    Stage stage = (Stage) scene.getWindow();
+                    stage.setFullScreen(!stage.isFullScreen());
+                }
+            }
+        });
     }
 }
