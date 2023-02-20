@@ -70,7 +70,8 @@ public class Player {
         for (Pawn p : pawns) {
             if (!p.isInGame()) {
                 p.leaveNest(startTile);
-                //p.ui.printEscapeNest();
+                System.out.println("really did leave nest");
+                System.out.println("move pawn " + p.getPawnNumber());
                 break;
             }
         }
@@ -245,4 +246,5 @@ public class Player {
     public String toString() {
         return name;
     }
+
 }

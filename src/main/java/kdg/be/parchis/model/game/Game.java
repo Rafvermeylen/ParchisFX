@@ -20,6 +20,7 @@ public class Game {
         winner = null;
         indexTurn = 0;
         amountThrows = 0;
+        startSetup();
     }
 
     // Check where players will start
@@ -403,11 +404,8 @@ public class Game {
         for (Pawn p : player.getPawns()){
             if (p.isCanMove(board, Die.getThrown()) && p.isInGame()){
                 p.move(board.board.get(p.getPosition().getNr() + Die.getThrown()));
-                System.out.println("pawn " + p.getPawnNumber() + " is on tile " + p.getPosition().getNr());
                 return;
             }
         }
-        System.out.println("cant move");
     }
-
 }

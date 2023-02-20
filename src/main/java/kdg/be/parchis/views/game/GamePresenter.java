@@ -43,12 +43,22 @@ public class GamePresenter {
                 view.getDie1().setVisible(true);
                 view.getDie1().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() != 5) {
+                    //do nothing when you cant do anything
                     view.getFinish1().setVisible(true);
                 } else if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() == 5 ){
+                    //automatically get pawn out of nest if there isn't anything else to do
                     gameSession.yellowLeaveNest();
                     view.getFinish1().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() != 5){
+                    //move pawn automatically if you didn't throw a 5
+                    //still needs selection incase you can choose which pawn to move.
+                    //333
                     gameSession.movePawn(gameSession.getYellowPlayer());
+                    view.getFinish1().setVisible(true);
+                } else {
+                    //choose to move or move out of nest
+                    //...
+                    view.getFinish1().setVisible(true);
                 }
             }
         });
@@ -70,8 +80,11 @@ public class GamePresenter {
                 } else if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() == 5 ){
                     gameSession.blueLeaveNest();
                     view.getFinish2().setVisible(true);
-                } else if (Die.getThrown() != 5){
+                } else if (gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() != 5){
                     gameSession.movePawn(gameSession.getBluePlayer());
+                    view.getFinish2().setVisible(true);
+                } else {
+                    view.getFinish2().setVisible(true);
                 }
             }
         });
@@ -90,8 +103,13 @@ public class GamePresenter {
                 view.getDie3().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() != 5) {
                     view.getFinish3().setVisible(true);
-                } else if (Die.getThrown() == 5 ){
+                } else if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() == 5 ){
                     gameSession.redLeaveNest();
+                    view.getFinish3().setVisible(true);
+                } else if (gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() != 5){
+                    gameSession.movePawn(gameSession.getRedPlayer());
+                    view.getFinish3().setVisible(true);
+                } else {
                     view.getFinish3().setVisible(true);
                 }
             }
@@ -111,8 +129,13 @@ public class GamePresenter {
                 view.getDie4().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getGreenPlayer()) && Die.getThrown() != 5) {
                     view.getFinish4().setVisible(true);
-                } else if (Die.getThrown() == 5 ){
+                } else if (!gameSession.canPlayerMove(gameSession.getGreenPlayer()) && Die.getThrown() == 5 ){
                     gameSession.greenLeaveNest();
+                    view.getFinish4().setVisible(true);
+                } else if (gameSession.canPlayerMove(gameSession.getGreenPlayer()) && Die.getThrown() != 5){
+                    gameSession.movePawn(gameSession.getGreenPlayer());
+                    view.getFinish4().setVisible(true);
+                } else {
                     view.getFinish4().setVisible(true);
                 }
             }
