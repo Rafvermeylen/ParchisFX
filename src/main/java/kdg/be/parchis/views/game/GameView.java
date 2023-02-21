@@ -37,6 +37,11 @@ public class GameView extends StackPane {
     private Image boardImg;
     private Image background;
     private ImageView board;
+    private Image glowNestYellow;
+    private Image glowNestBlue;
+    private Image glowNestRed;
+    private Image glowNestGreen;
+    private ImageView nestGlow;
     private Image status;
     private ImageView statusBar;
     private Label turns;
@@ -82,9 +87,18 @@ public class GameView extends StackPane {
         die3 = new ImageView(Die.getEmpty());
         die4 = new ImageView(Die.getEmpty());
 
+        glowNestYellow = new Image(new FileInputStream("resources\\graphics\\game\\yellow_nest_glow.png"));
+        glowNestBlue = new Image(new FileInputStream("resources\\graphics\\game\\blue_nest_glow.png"));
+        glowNestRed = new Image(new FileInputStream("resources\\graphics\\game\\red_nest_glow.png"));
+        glowNestGreen = new Image(new FileInputStream("resources\\graphics\\game\\green_nest_glow.png"));
+
+
+        nestGlow = new ImageView();
+
     }
     private void layoutNodes() {
         this.getChildren().add(board);
+
 
         //yellow player stuff
         VBox controls1 = new VBox(20);
@@ -104,7 +118,7 @@ public class GameView extends StackPane {
         finish1.setTranslateY(-210);
 
         Group yellow_pawns = new Group(yp_1, yp_2, yp_3, yp_4);
-        this.getChildren().add(yellow_pawns);
+        //this.getChildren().add(yellow_pawns);
         yp_1.setTranslateX(585);
         yp_1.setTranslateY(65);
         yp_2.setTranslateX(120);
@@ -172,6 +186,10 @@ public class GameView extends StackPane {
         setAlignment(statusBar, Pos.TOP_CENTER);
         this.getChildren().add(turns);
         setAlignment(turns, Pos.TOP_CENTER);
+
+
+        this.getChildren().addAll(nestGlow, yellow_pawns);
+        nestGlow.setVisible(false);
     }
 // implementatie van de nodige
 // package-private Getters
@@ -243,5 +261,25 @@ public class GameView extends StackPane {
 
     public Label getTurns() {
         return turns;
+    }
+
+    public Image getGlowNestYellow() {
+        return glowNestYellow;
+    }
+
+    public ImageView getNestGlow() {
+        return nestGlow;
+    }
+
+    public Image getGlowNestBlue() {
+        return glowNestBlue;
+    }
+
+    public Image getGlowNestRed() {
+        return glowNestRed;
+    }
+
+    public Image getGlowNestGreen() {
+        return glowNestGreen;
     }
 }

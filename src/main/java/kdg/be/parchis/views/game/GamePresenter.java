@@ -2,8 +2,10 @@ package kdg.be.parchis.views.game;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import kdg.be.parchis.model.game.Colors;
 import kdg.be.parchis.model.game.Die;
@@ -46,27 +48,34 @@ public class GamePresenter {
                 view.getDie1().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
+                    view.getFinish1().setVisible(true);
                 } else if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() == 5
                         && gameSession.isStartOK(gameSession.getYellowPlayer())){
                     //automatically get pawn out of nest if there isn't anything else to do
-                    gameSession.yellowLeaveNest();
+                    //gameSession.yellowLeaveNest();
+                    view.getNestGlow().setImage(view.getGlowNestYellow());
+                    view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() != 5){
                     //move pawn automatically if you didn't throw a 5
                     //still needs selection incase you can choose which pawn to move.
                     //...
                     gameSession.movePawn(gameSession.getYellowPlayer());
+                    view.getFinish1().setVisible(true);
+
                 } else {
                     //choose to move or move out of nest
                     //...
+                    view.getFinish1().setVisible(true);
                 }
 
                 if (Die.getThrown()==6){
                     view.getRoll1().setVisible(true);
-                } else {
-                    view.getFinish1().setVisible(true);
+                    view.getFinish1().setVisible(false);
                 }
             }
         });
+
+
         view.getRoll2().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -82,19 +91,29 @@ public class GamePresenter {
                 view.getDie2().setVisible(true);
                 view.getDie2().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() != 5) {
-
-                } else if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() == 5 ){
-                    gameSession.blueLeaveNest();
+                    //do nothing when you cant do anything
+                    view.getFinish2().setVisible(true);
+                } else if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() == 5
+                        && gameSession.isStartOK(gameSession.getBluePlayer())){
+                    //automatically get pawn out of nest if there isn't anything else to do
+                    //gameSession.yellowLeaveNest();
+                    view.getNestGlow().setImage(view.getGlowNestBlue());
+                    view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() != 5){
+                    //move pawn automatically if you didn't throw a 5
+                    //still needs selection incase you can choose which pawn to move.
+                    //...
                     gameSession.movePawn(gameSession.getBluePlayer());
+                    view.getFinish2().setVisible(true);
                 } else {
-
+                    //choose to move or move out of nest
+                    //...
+                    view.getFinish2().setVisible(true);
                 }
 
                 if (Die.getThrown()==6){
                     view.getRoll2().setVisible(true);
-                } else {
-                    view.getFinish2().setVisible(true);
+                    view.getFinish2().setVisible(false);
                 }
             }
         });
@@ -113,17 +132,29 @@ public class GamePresenter {
                 view.getDie3().setVisible(true);
                 view.getDie3().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() != 5) {
-                } else if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() == 5 ){
-                    gameSession.redLeaveNest();
+                    //do nothing when you cant do anything
+                    view.getFinish3().setVisible(true);
+                } else if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() == 5
+                        && gameSession.isStartOK(gameSession.getRedPlayer())){
+                    //automatically get pawn out of nest if there isn't anything else to do
+                    //gameSession.yellowLeaveNest();
+                    view.getNestGlow().setImage(view.getGlowNestRed());
+                    view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() != 5){
+                    //move pawn automatically if you didn't throw a 5
+                    //still needs selection incase you can choose which pawn to move.
+                    //...
                     gameSession.movePawn(gameSession.getRedPlayer());
+                    view.getFinish3().setVisible(true);
                 } else {
+                    //choose to move or move out of nest
+                    //...
+                    view.getFinish3().setVisible(true);
                 }
 
                 if (Die.getThrown()==6){
                     view.getRoll3().setVisible(true);
-                } else {
-                    view.getFinish3().setVisible(true);
+                    view.getFinish3().setVisible(false);
                 }
             }
         });
@@ -142,21 +173,29 @@ public class GamePresenter {
                 view.getDie4().setVisible(true);
                 view.getDie4().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getGreenPlayer()) && Die.getThrown() != 5) {
-
-                } else if (!gameSession.canPlayerMove(gameSession.getGreenPlayer()) && Die.getThrown() == 5 ){
-                    gameSession.greenLeaveNest();
-
+                    //do nothing when you cant do anything
+                    view.getFinish4().setVisible(true);
+                } else if (!gameSession.canPlayerMove(gameSession.getGreenPlayer()) && Die.getThrown() == 5
+                        && gameSession.isStartOK(gameSession.getGreenPlayer())){
+                    //automatically get pawn out of nest if there isn't anything else to do
+                    //gameSession.yellowLeaveNest();
+                    view.getNestGlow().setImage(view.getGlowNestGreen());
+                    view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getGreenPlayer()) && Die.getThrown() != 5){
+                    //move pawn automatically if you didn't throw a 5
+                    //still needs selection incase you can choose which pawn to move.
+                    //...
                     gameSession.movePawn(gameSession.getGreenPlayer());
-
+                    view.getFinish4().setVisible(true);
                 } else {
-
+                    //choose to move or move out of nest
+                    //...
+                    view.getFinish4().setVisible(true);
                 }
 
                 if (Die.getThrown()==6){
                     view.getRoll4().setVisible(true);
-                } else {
-                    view.getFinish4().setVisible(true);
+                    view.getFinish4().setVisible(false);
                 }
             }
         });
@@ -236,6 +275,28 @@ public class GamePresenter {
                 }
             }
         });
+
+        view.getNestGlow().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (view.getNestGlow().getImage().equals(view.getGlowNestYellow())){
+                    gameSession.yellowLeaveNest();
+                    view.getFinish1().setVisible(true);
+                } else if (view.getNestGlow().getImage().equals(view.getGlowNestBlue())){
+                    gameSession.blueLeaveNest();
+                    view.getFinish2().setVisible(true);
+                } else if (view.getNestGlow().getImage().equals(view.getGlowNestRed())){
+                    gameSession.redLeaveNest();
+                    view.getFinish3().setVisible(true);
+                } else if (view.getNestGlow().getImage().equals(view.getGlowNestGreen())){
+                    gameSession.greenLeaveNest();
+                    view.getFinish4().setVisible(true);
+                }
+                view.getNestGlow().setVisible(false);
+            }
+        });
+
+
     }
 
     private void updateView() {
