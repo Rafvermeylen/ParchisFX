@@ -52,7 +52,7 @@ public class GamePresenter {
                 } else if (gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() != 5){
                     //move pawn automatically if you didn't throw a 5
                     //still needs selection incase you can choose which pawn to move.
-                    //333
+                    //...
                     gameSession.movePawn(gameSession.getYellowPlayer());
                     view.getFinish1().setVisible(true);
                 } else {
