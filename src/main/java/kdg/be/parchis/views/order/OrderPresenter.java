@@ -39,10 +39,6 @@ public class OrderPresenter {
         this.updateView();
     }
     private void addEventHandlers() {
-// Koppelt event handlers (anon. inner klassen)
-// aan de controls uit de view.
-// Event handlers: roepen methodes aan uit het
-// model en zorgen voor een update van de view.
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -58,11 +54,6 @@ public class OrderPresenter {
                 view.getRoll1().setVisible(false);
                 SoundClass.playRoll();
                 view.getRoll1().setDisable(true);
-                try {
-                    sleep(2 * 1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
                 view.getRoll1().setDisable(false);
                 Die.throwDie();
                 setup.addRoll(0, Die.getThrown());
@@ -81,11 +72,6 @@ public class OrderPresenter {
                 view.getRoll2().setVisible(false);
                 SoundClass.playRoll();
                 view.getRoll2().setDisable(true);
-                try {
-                    sleep(2 * 1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
                 view.getRoll2().setDisable(false);
                 Die.throwDie();
                 setup.addRoll(1, Die.getThrown());
@@ -104,11 +90,6 @@ public class OrderPresenter {
                 view.getRoll3().setVisible(false);
                 SoundClass.playRoll();
                 view.getRoll3().setDisable(true);
-                try {
-                    sleep(2 * 1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
                 view.getRoll3().setDisable(false);
                 Die.throwDie();
                 setup.addRoll(2, Die.getThrown());
@@ -127,11 +108,6 @@ public class OrderPresenter {
                 view.getRoll4().setVisible(false);
                 SoundClass.playRoll();
                 view.getRoll4().setDisable(true);
-                try {
-                    sleep(2 * 1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
                 view.getRoll4().setDisable(false);
                 Die.throwDie();
                 setup.addRoll(3, Die.getThrown());
@@ -148,7 +124,7 @@ public class OrderPresenter {
         view.getStart().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                //SoundClass.playRoll();
+                SoundClass.playClick();
                 Game gameSession = new Game(setup.getPlayers());
                 GameView gameView = null;
                 try {

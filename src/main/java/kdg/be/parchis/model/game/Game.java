@@ -408,4 +408,9 @@ public class Game {
             }
         }
     }
+
+    public boolean isStartOK(Player p){
+        return !board.board.get(p.getStartPosition()).IsBarrier();
+    }
+
 }

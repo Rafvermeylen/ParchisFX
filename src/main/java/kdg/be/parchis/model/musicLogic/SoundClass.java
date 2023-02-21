@@ -5,6 +5,8 @@ import javafx.scene.media.Media;
 
 import java.io.File;
 
+import static java.lang.Thread.sleep;
+
 public class SoundClass {
     private static String path = "resources\\audio\\sfx\\";
     private static boolean muted = false;
@@ -24,6 +26,11 @@ public class SoundClass {
 
     public static void playRoll(){
         initSound(path, "roll.wav");
+        try {
+            sleep(2 * 1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void clickMute() {
