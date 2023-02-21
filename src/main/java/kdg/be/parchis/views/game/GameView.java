@@ -18,6 +18,7 @@ public class GameView extends StackPane {
     private ImageView die1;
     private Button finish1;
     private Image yellowPawn;
+    private Image yellowPawnGlow;
     private ImageView yp_1;
     private ImageView yp_2;
     private ImageView yp_3;
@@ -26,14 +27,32 @@ public class GameView extends StackPane {
     private Button roll2;
     private ImageView die2;
     private Button finish2;
+    private Image bluePawn;
+    private Image bluePawnGlow;
+    private ImageView bp_1;
+    private ImageView bp_2;
+    private ImageView bp_3;
+    private ImageView bp_4;
     private Label redPlayer;
     private Button roll3;
     private ImageView die3;
     private Button finish3;
+    private Image redPawn;
+    private Image redPawnGlow;
+    private ImageView rp_1;
+    private ImageView rp_2;
+    private ImageView rp_3;
+    private ImageView rp_4;
     private Label greenPlayer;
     private Button roll4;
     private ImageView die4;
     private Button finish4;
+    private Image greenPawn;
+    private Image greenPawnGlow;
+    private ImageView gp_1;
+    private ImageView gp_2;
+    private ImageView gp_3;
+    private ImageView gp_4;
     private Image boardImg;
     private Image background;
     private ImageView board;
@@ -61,17 +80,35 @@ public class GameView extends StackPane {
 
         yellowPlayer = new Label();
         yellowPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_yellow.png"));
+        yellowPawnGlow = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_yellow_glow.png"));
         yp_1 = new ImageView(yellowPawn);
         yp_2 = new ImageView(yellowPawn);
         yp_3 = new ImageView(yellowPawn);
         yp_4 = new ImageView(yellowPawn);
 
         bluePlayer = new Label();
+        bluePawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_blue.png"));
+        bluePawnGlow = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_blue_glow.png"));
+        bp_1 = new ImageView(bluePawn);
+        bp_2 = new ImageView(bluePawn);
+        bp_3 = new ImageView(bluePawn);
+        bp_4 = new ImageView(bluePawn);
 
         redPlayer = new Label();
+        redPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_red.png"));
+        redPawnGlow = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_red_glow.png"));
+        rp_1 = new ImageView(redPawn);
+        rp_2 = new ImageView(redPawn);
+        rp_3 = new ImageView(redPawn);
+        rp_4 = new ImageView(redPawn);
 
         greenPlayer = new Label();
-
+        greenPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_green.png"));
+        greenPawnGlow = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_green_glow.png"));
+        gp_1 = new ImageView(greenPawn);
+        gp_2 = new ImageView(greenPawn);
+        gp_3 = new ImageView(greenPawn);
+        gp_4 = new ImageView(greenPawn);
 
         roll1 = new Button("Roll");
         finish1 = new Button("Finish Turn");
@@ -91,14 +128,10 @@ public class GameView extends StackPane {
         glowNestBlue = new Image(new FileInputStream("resources\\graphics\\game\\blue_nest_glow.png"));
         glowNestRed = new Image(new FileInputStream("resources\\graphics\\game\\red_nest_glow.png"));
         glowNestGreen = new Image(new FileInputStream("resources\\graphics\\game\\green_nest_glow.png"));
-
-
         nestGlow = new ImageView();
-
     }
     private void layoutNodes() {
         this.getChildren().add(board);
-
 
         //yellow player stuff
         VBox controls1 = new VBox(20);
@@ -117,16 +150,15 @@ public class GameView extends StackPane {
         finish1.setTranslateX(500);
         finish1.setTranslateY(-210);
 
-        Group yellow_pawns = new Group(yp_1, yp_2, yp_3, yp_4);
-        //this.getChildren().add(yellow_pawns);
-        yp_1.setTranslateX(585);
-        yp_1.setTranslateY(65);
-        yp_2.setTranslateX(120);
-        yp_2.setTranslateY(100);
-        yp_3.setTranslateX(10);
-        yp_3.setTranslateY(10);
-        yp_4.setTranslateX(10);
-        yp_4.setTranslateY(10);
+        //yellow pawns
+        yp_1.setTranslateX(160);
+        yp_1.setTranslateY(-150);
+        yp_2.setTranslateX(185);
+        yp_2.setTranslateY(-150);
+        yp_3.setTranslateX(210);
+        yp_3.setTranslateY(-150);
+        yp_4.setTranslateX(235);
+        yp_4.setTranslateY(-150);
 
         //player2 stuff
         VBox controls2 = new VBox(20);
@@ -145,6 +177,16 @@ public class GameView extends StackPane {
         finish2.setTranslateX(-500);
         finish2.setTranslateY(-210);
 
+        //blue pawns
+        bp_1.setTranslateX(-160);
+        bp_1.setTranslateY(-150);
+        bp_2.setTranslateX(-185);
+        bp_2.setTranslateY(-150);
+        bp_3.setTranslateX(-210);
+        bp_3.setTranslateY(-150);
+        bp_4.setTranslateX(-235);
+        bp_4.setTranslateY(-150);
+
         //player3 stuff
         VBox controls3 = new VBox(20);
         controls3.getChildren().addAll(roll3, die3);
@@ -162,6 +204,15 @@ public class GameView extends StackPane {
         finish3.setTranslateX(-500);
         finish3.setTranslateY(240);
 
+        //red pawns
+        rp_1.setTranslateX(-160);
+        rp_1.setTranslateY(180);
+        rp_2.setTranslateX(-185);
+        rp_2.setTranslateY(180);
+        rp_3.setTranslateX(-210);
+        rp_3.setTranslateY(180);
+        rp_4.setTranslateX(-235);
+        rp_4.setTranslateY(180);
 
         //player4 stuff
         VBox controls4 = new VBox(20);
@@ -180,6 +231,15 @@ public class GameView extends StackPane {
         finish4.setTranslateX(500);
         finish4.setTranslateY(240);
 
+        //green pawns
+        gp_1.setTranslateX(160);
+        gp_1.setTranslateY(180);
+        gp_2.setTranslateX(185);
+        gp_2.setTranslateY(180);
+        gp_3.setTranslateX(210);
+        gp_3.setTranslateY(180);
+        gp_4.setTranslateX(235);
+        gp_4.setTranslateY(180);
 
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         this.getChildren().add(statusBar);
@@ -188,12 +248,13 @@ public class GameView extends StackPane {
         setAlignment(turns, Pos.TOP_CENTER);
 
 
-        this.getChildren().addAll(nestGlow, yellow_pawns);
+        this.getChildren().addAll(nestGlow,
+                yp_1, yp_2, yp_3, yp_4,
+                bp_1, bp_2, bp_3, bp_4,
+                rp_1, rp_2, rp_3, rp_4,
+                gp_1, gp_2, gp_3, gp_4);
         nestGlow.setVisible(false);
     }
-// implementatie van de nodige
-// package-private Getters
-
 
     public Label getYellowPlayer() {
         return yellowPlayer;
@@ -281,5 +342,101 @@ public class GameView extends StackPane {
 
     public Image getGlowNestGreen() {
         return glowNestGreen;
+    }
+
+    public Image getYellowPawn() {
+        return yellowPawn;
+    }
+
+    public ImageView getYp_1() {
+        return yp_1;
+    }
+
+    public ImageView getYp_2() {
+        return yp_2;
+    }
+
+    public ImageView getYp_3() {
+        return yp_3;
+    }
+
+    public ImageView getYp_4() {
+        return yp_4;
+    }
+
+    public Image getBluePawn() {
+        return bluePawn;
+    }
+
+    public ImageView getBp_1() {
+        return bp_1;
+    }
+
+    public ImageView getBp_2() {
+        return bp_2;
+    }
+
+    public ImageView getBp_3() {
+        return bp_3;
+    }
+
+    public ImageView getBp_4() {
+        return bp_4;
+    }
+
+    public Image getRedPawn() {
+        return redPawn;
+    }
+
+    public ImageView getRp_1() {
+        return rp_1;
+    }
+
+    public ImageView getRp_2() {
+        return rp_2;
+    }
+
+    public ImageView getRp_3() {
+        return rp_3;
+    }
+
+    public ImageView getRp_4() {
+        return rp_4;
+    }
+
+    public Image getGreenPawn() {
+        return greenPawn;
+    }
+
+    public ImageView getGp_1() {
+        return gp_1;
+    }
+
+    public ImageView getGp_2() {
+        return gp_2;
+    }
+
+    public ImageView getGp_3() {
+        return gp_3;
+    }
+
+    public ImageView getGp_4() {
+        return gp_4;
+    }
+
+    public Image getYellowPawnGlow() {
+        return yellowPawnGlow;
+    }
+
+    public Image getBluePawnGlow() {
+        return bluePawnGlow;
+    }
+
+    public Image getRedPawnGlow() {
+        return redPawnGlow;
+    }
+
+    public Image getGreenPawnGlow() {
+        return greenPawnGlow;
     }
 }

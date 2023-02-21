@@ -7,16 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import kdg.be.parchis.model.game.Colors;
-import kdg.be.parchis.model.game.Die;
-import kdg.be.parchis.model.game.Game;
-import kdg.be.parchis.model.game.Player;
+import kdg.be.parchis.model.game.*;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 
 import static java.lang.Thread.sleep;
 
 public class GamePresenter {
     private Game gameSession;
+    private CoordinateConverter converter;
     private GameView view;
     private final KeyCode fullscreenKey = KeyCode.F;
 
@@ -24,6 +22,7 @@ public class GamePresenter {
     public GamePresenter(
             Game model,
             GameView view) {
+        converter = new CoordinateConverter();
         this.gameSession = model;
         this.view = view;
         this.addEventHandlers();
@@ -74,8 +73,6 @@ public class GamePresenter {
                 }
             }
         });
-
-
         view.getRoll2().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -199,7 +196,6 @@ public class GamePresenter {
                 }
             }
         });
-
         view.getFinish1().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -218,7 +214,6 @@ public class GamePresenter {
                 }
             }
         });
-
         view.getFinish2().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -237,7 +232,6 @@ public class GamePresenter {
                 }
             }
         });
-
         view.getFinish3().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -256,7 +250,6 @@ public class GamePresenter {
                 }
             }
         });
-
         view.getFinish4().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -275,27 +268,33 @@ public class GamePresenter {
                 }
             }
         });
-
         view.getNestGlow().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getNestGlow().getImage().equals(view.getGlowNestYellow())){
                     gameSession.yellowLeaveNest();
+                    view.getYp_1().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
+                    view.getYp_1().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
                     view.getFinish1().setVisible(true);
                 } else if (view.getNestGlow().getImage().equals(view.getGlowNestBlue())){
                     gameSession.blueLeaveNest();
+                    view.getBp_1().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
+                    view.getBp_1().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
                     view.getFinish2().setVisible(true);
                 } else if (view.getNestGlow().getImage().equals(view.getGlowNestRed())){
                     gameSession.redLeaveNest();
+                    view.getRp_1().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
+                    view.getRp_1().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
                     view.getFinish3().setVisible(true);
                 } else if (view.getNestGlow().getImage().equals(view.getGlowNestGreen())){
                     gameSession.greenLeaveNest();
+                    view.getGp_1().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
+                    view.getGp_1().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
                     view.getFinish4().setVisible(true);
                 }
                 view.getNestGlow().setVisible(false);
             }
         });
-
 
     }
 

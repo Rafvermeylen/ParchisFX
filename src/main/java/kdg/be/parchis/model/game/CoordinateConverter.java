@@ -1,18 +1,56 @@
 package kdg.be.parchis.model.game;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class CoordinateConverter {
-    private static Map<Integer, Position> positionMap;
+    private Map<Integer, Position> positionMap = new HashMap<>();
 
     public CoordinateConverter() {
+        //NESTS
+        //yellow nest
+        positionMap.put(6901, new Position(160, -150));
+        positionMap.put(6902, new Position(185, -150));
+        positionMap.put(6903, new Position(210, -150));
+        positionMap.put(6904, new Position(235, -150));
+        //blue nest
+        positionMap.put(7001, new Position(-160, -150));
+        positionMap.put(7002, new Position(-185, -150));
+        positionMap.put(7003, new Position(-210, -150));
+        positionMap.put(7004, new Position(-235, -150));
+        //red nest
+        positionMap.put(7101, new Position(-160, 180));
+        positionMap.put(7102, new Position(-185, 180));
+        positionMap.put(7103, new Position(-210, 180));
+        positionMap.put(7104, new Position(-235, 180));
+        //green nest
+        positionMap.put(7201, new Position(160, 180));
+        positionMap.put(7202, new Position(185, 180));
+        positionMap.put(7203, new Position(210, 180));
+        positionMap.put(7204, new Position(235, 180));
+
+        //yellow start position
+        positionMap.put(5, new Position(170, -40));
+
+        //blue start position
+        positionMap.put(22, new Position(-50, -160));
+
+        //red start position
+        positionMap.put(39, new Position(-173, 60));
+
+        //green start position
+        positionMap.put(56, new Position(45, 185));
+
+
+
+
+
         /*
         // Positions on board.
         positionMap.put(1, new Position());
         positionMap.put(2, new Position());
         positionMap.put(3, new Position());
         positionMap.put(4, new Position());
-        positionMap.put(5, new Position());
         positionMap.put(6, new Position());
         positionMap.put(7, new Position());
         positionMap.put(8, new Position());
@@ -29,7 +67,6 @@ public class CoordinateConverter {
         positionMap.put(19, new Position());
         positionMap.put(20, new Position());
         positionMap.put(21, new Position());
-        positionMap.put(22, new Position());
         positionMap.put(23, new Position());
         positionMap.put(24, new Position());
         positionMap.put(25, new Position());
@@ -45,7 +82,6 @@ public class CoordinateConverter {
         positionMap.put(35, new Position());
         positionMap.put(36, new Position());
         positionMap.put(38, new Position());
-        positionMap.put(39, new Position());
         positionMap.put(40, new Position());
         positionMap.put(41, new Position());
         positionMap.put(42, new Position());
@@ -62,7 +98,6 @@ public class CoordinateConverter {
         positionMap.put(53, new Position());
         positionMap.put(54, new Position());
         positionMap.put(55, new Position());
-        positionMap.put(56, new Position());
         positionMap.put(57, new Position());
         positionMap.put(58, new Position());
         positionMap.put(59, new Position());
@@ -75,10 +110,7 @@ public class CoordinateConverter {
         positionMap.put(66, new Position());
         positionMap.put(67, new Position());
         positionMap.put(68, new Position(585, 65));
-        positionMap.put(69, new Position());
-        positionMap.put(70, new Position());
-        positionMap.put(71, new Position());
-        positionMap.put(72, new Position());
+
         positionMap.put(73, new Position());
         positionMap.put(74, new Position());
         positionMap.put(75, new Position());
@@ -140,4 +172,13 @@ public class CoordinateConverter {
         positionMap.put(128, new Position());
         */
     }
+
+    public int getX(int tileNr){
+        return positionMap.get(tileNr).getX();
+    }
+
+    public int getY(int tileNr){
+        return positionMap.get(tileNr).getY();
+    }
+
 }
