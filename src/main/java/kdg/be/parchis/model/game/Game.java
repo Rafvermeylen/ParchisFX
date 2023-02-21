@@ -400,17 +400,22 @@ public class Game {
         System.out.println("green pawn left nest");
     }
 
-    public void movePawn(Player player){
-        for (Pawn p : player.getPawns()){
-            if (p.isCanMove(board, Die.getThrown()) && p.isInGame()){
-                p.move(board.board.get(p.getPosition().getNr() + Die.getThrown()));
-                return;
-            }
-        }
+    public void movePawn(Pawn pawn){
+        pawn.move(board.board.get(pawn.getPosition().getNr()+Die.getThrown()));
     }
 
     public boolean isStartOK(Player p){
         return !board.board.get(p.getStartPosition()).IsBarrier();
+    }
+
+    public List<Pawn> getMoveablePawns(Player p){
+        List<Pawn> pawns = new ArrayList<>();
+        for (Pawn pwn : p.pawns){
+            if (pwn.isCanMove(board, Die.getThrown())){
+                pawns.add(pwn);
+            }
+        }
+        return pawns;
     }
 
 }

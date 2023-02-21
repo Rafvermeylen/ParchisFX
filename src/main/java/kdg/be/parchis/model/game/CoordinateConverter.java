@@ -41,7 +41,17 @@ public class CoordinateConverter {
         //green start position
         positionMap.put(56, new Position(45, 185));
 
-
+        positionMap.put(6, new Position(142, -40));
+        positionMap.put(7, new Position(112, -40));
+        positionMap.put(8, new Position(82, -40));
+        positionMap.put(9, new Position(48, -70));
+        positionMap.put(10, new Position(48, -105));
+        positionMap.put(11, new Position(48, -130));
+        positionMap.put(12, new Position(48, -160));
+        positionMap.put(13, new Position(48, -188));
+        positionMap.put(14, new Position(48, -220));
+        positionMap.put(15, new Position(48, -250));
+        positionMap.put(16, new Position(48, -277));
 
 
 
@@ -51,17 +61,6 @@ public class CoordinateConverter {
         positionMap.put(2, new Position());
         positionMap.put(3, new Position());
         positionMap.put(4, new Position());
-        positionMap.put(6, new Position());
-        positionMap.put(7, new Position());
-        positionMap.put(8, new Position());
-        positionMap.put(9, new Position());
-        positionMap.put(10, new Position());
-        positionMap.put(11, new Position());
-        positionMap.put(12, new Position());
-        positionMap.put(13, new Position());
-        positionMap.put(14, new Position());
-        positionMap.put(15, new Position());
-        positionMap.put(16, new Position());
         positionMap.put(17, new Position());
         positionMap.put(18, new Position());
         positionMap.put(19, new Position());

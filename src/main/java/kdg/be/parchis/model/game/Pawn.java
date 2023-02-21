@@ -71,7 +71,7 @@ public class Pawn {
 
 
     public boolean isCanMove(Board board, int thrown) {
-        return !isFinished && isInGame(); //&& checkNoBarrier(thrown, board);
+        return !isFinished && isInGame() && checkNoBarrier(thrown, board);
     }
 
 

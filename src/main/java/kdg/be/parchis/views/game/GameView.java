@@ -151,8 +151,12 @@ public class GameView extends StackPane {
         finish1.setTranslateY(-210);
 
         //yellow pawns
-        yp_1.setTranslateX(160);
-        yp_1.setTranslateY(-150);
+        //yp_1.setTranslateX(160);
+        //yp_1.setTranslateY(-150);
+
+        yp_1.setTranslateX(48);
+        yp_1.setTranslateY(-277);
+
         yp_2.setTranslateX(185);
         yp_2.setTranslateY(-150);
         yp_3.setTranslateX(210);
