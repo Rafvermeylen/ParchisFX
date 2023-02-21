@@ -86,8 +86,6 @@ public class GamePresenter {
                         } else if (p.getPawnNumber() == 4) {
                             view.getYp_4().setImage(view.getYellowPawnGlow());
                         }
-
-                        view.getFinish1().setVisible(true);
                     }
                     if (Die.getThrown() == 6) {
                         view.getRoll1().setVisible(true);
@@ -328,6 +326,7 @@ public class GamePresenter {
                         view.getRoll1().setVisible(true);
                     }
                     view.getYp_1().setImage(view.getYellowPawn());
+                    view.getNestGlow().setVisible(false);
                 }
             }
         });

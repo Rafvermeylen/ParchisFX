@@ -154,8 +154,8 @@ public class GameView extends StackPane {
         //yp_1.setTranslateX(160);
         //yp_1.setTranslateY(-150);
 
-        yp_1.setTranslateX(48);
-        yp_1.setTranslateY(-277);
+        yp_1.setTranslateX(45);
+        yp_1.setTranslateY(100);
 
         yp_2.setTranslateX(185);
         yp_2.setTranslateY(-150);
