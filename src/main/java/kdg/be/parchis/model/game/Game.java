@@ -314,8 +314,8 @@ public class Game {
         amountThrows = 0;
         lastMovedPawn = null;
         killedPawn = null;
-        if (players.get(indexTurn).getIsFinished()){
-            endTurn();
+        while (players.get(indexTurn).getIsFinished()){
+            indexTurn++;
         }
     }
 
@@ -385,13 +385,19 @@ public class Game {
         return left;
     }
     public Pawn blueLeaveNest(){
-        return getBluePlayer().firstLeavesNest(board.board.get(getBluePlayer().getStartPosition()));
+        Pawn left = getBluePlayer().firstLeavesNest(board.board.get(getBluePlayer().getStartPosition()));
+        checkNestKill(left);
+        return left;
     }
     public Pawn redLeaveNest(){
-        return getRedPlayer().firstLeavesNest(board.board.get(getRedPlayer().getStartPosition()));
+        Pawn left = getRedPlayer().firstLeavesNest(board.board.get(getRedPlayer().getStartPosition()));
+        checkNestKill(left);
+        return left;
     }
     public Pawn greenLeaveNest(){
-        return getGreenPlayer().firstLeavesNest(board.board.get(getGreenPlayer().getStartPosition()));
+        Pawn left = getGreenPlayer().firstLeavesNest(board.board.get(getGreenPlayer().getStartPosition()));
+        checkNestKill(left);
+        return left;
     }
     public void movePawn(Player p, Pawn pawn){
         int value = p.moveByTile(pawn, board.board.get(pawn.getPosition().getNr() + Die.getThrown()));
