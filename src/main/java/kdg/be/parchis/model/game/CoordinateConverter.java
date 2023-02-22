@@ -9,10 +9,14 @@ public class CoordinateConverter {
     public CoordinateConverter() {
         //NESTS
         //yellow nest
+        positionMap.put(69, new Position(160, -150));
+        /*
         positionMap.put(6901, new Position(160, -150));
         positionMap.put(6902, new Position(185, -150));
         positionMap.put(6903, new Position(210, -150));
         positionMap.put(6904, new Position(235, -150));
+
+         */
         //blue nest
         positionMap.put(7001, new Position(-160, -150));
         positionMap.put(7002, new Position(-185, -150));
@@ -116,11 +120,13 @@ public class CoordinateConverter {
         positionMap.put(79, new Position(82, 10));
         positionMap.put(80, new Position(50, 10));
 
+        //blue landingstrip
+        positionMap.put(81, new Position(0, -250));
+        positionMap.put(82, new Position(0, -220));
+
 
         /*
         // Positions on board.
-        positionMap.put(81, new Position());
-        positionMap.put(82, new Position());
         positionMap.put(83, new Position());
         positionMap.put(84, new Position());
         positionMap.put(85, new Position());
