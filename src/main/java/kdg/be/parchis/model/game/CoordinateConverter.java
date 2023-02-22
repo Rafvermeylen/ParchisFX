@@ -123,34 +123,35 @@ public class CoordinateConverter {
         //blue landingstrip
         positionMap.put(81, new Position(0, -250));
         positionMap.put(82, new Position(0, -220));
+        positionMap.put(83, new Position(0, -190));
+        positionMap.put(84, new Position(0, -160));
+        positionMap.put(85, new Position(0, -130));
+        positionMap.put(86, new Position(0, -100));
+        positionMap.put(87, new Position(0, -70));
+        positionMap.put(88, new Position(0, -40));
+
+        // red landingstrip
+        positionMap.put(89, new Position(-260, 10));
+        positionMap.put(90, new Position(-230, 10));
+        positionMap.put(91, new Position(-200, 10));
+        positionMap.put(92, new Position(-170, 10));
+        positionMap.put(93, new Position(-145, 10));
+        positionMap.put(94, new Position(-115, 10));
+        positionMap.put(95, new Position(-85, 10));
+        positionMap.put(96, new Position(-45, 10));
+
+        // Green landingstrip
+        positionMap.put(97, new Position(0, 270));
+        positionMap.put(98, new Position(0, 240));
+        positionMap.put(99, new Position(0, 210));
+        positionMap.put(100, new Position(0, 180));
+        positionMap.put(101, new Position(0, 150));
+        positionMap.put(102, new Position(0, 120));
+        positionMap.put(103, new Position(0, 90));
+        positionMap.put(104, new Position(0, 55));
 
 
         /*
-        // Positions on board.
-        positionMap.put(83, new Position());
-        positionMap.put(84, new Position());
-        positionMap.put(85, new Position());
-        positionMap.put(86, new Position());
-        positionMap.put(87, new Position());
-        positionMap.put(88, new Position());
-        positionMap.put(89, new Position());
-        positionMap.put(90, new Position());
-        positionMap.put(91, new Position());
-        positionMap.put(92, new Position());
-        positionMap.put(93, new Position());
-        positionMap.put(94, new Position());
-        positionMap.put(95, new Position());
-        positionMap.put(96, new Position());
-        positionMap.put(97, new Position());
-        positionMap.put(98, new Position());
-        positionMap.put(99, new Position());
-        positionMap.put(100, new Position());
-        positionMap.put(101, new Position());
-        positionMap.put(102, new Position());
-        positionMap.put(103, new Position());
-        positionMap.put(104, new Position());
-        // Positions on board.
-
         // Doubles
         positionMap.put(105, new Position());
         positionMap.put(106, new Position());
