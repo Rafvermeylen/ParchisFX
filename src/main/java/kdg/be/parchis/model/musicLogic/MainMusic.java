@@ -35,6 +35,10 @@ public class MainMusic {
         mediaPlayer.play();
     }
 
+    private static void songsAdded() {
+
+    }
+
     public static void playGameMusic() {
         // https://techwithmaddy.com/java-8-lambda-expression
         // https://techwithmaddy.com/java-method-reference
@@ -52,10 +56,15 @@ public class MainMusic {
         songs.add(new Media(new File("resources\\audio\\music\\Temptation.mp3").toURI().toString()));
 
         Collections.shuffle(songs);
-
         // Create a MediaPlayer with the first song
         mediaPlayer = new MediaPlayer(songs.get(0));
         mediaPlayer.play();
+        mediaPlayer.setOnEndOfMedia(() -> {
+            mediaPlayer.dispose();
+            playGameMusic();
+        });
+        /*
+
         // Set up the onEndOfMedia event to play the next song when the current one finishes
         mediaPlayer.setOnEndOfMedia(() -> {
             // Get the index of the current song
@@ -63,7 +72,6 @@ public class MainMusic {
 
             // If there's another song in the list, play it
             if (currentIndex < songs.size() - 1) {
-                mediaPlayer.dispose();
                 mediaPlayer = new MediaPlayer(songs.get(currentIndex + 1));
                 mediaPlayer.play();
             }
@@ -93,16 +101,19 @@ public class MainMusic {
         });
     }
 
-
-        public static void stopMusic () {
-            mediaPlayer.stop();
-        }
-
-        public static void muteMenuMusic () {
-            mediaPlayer.setMute(!mediaPlayer.isMute());
-        }
-
-        public static MediaPlayer getMediaPlayer () {
-            return mediaPlayer;
-        }
+         */
     }
+
+    public static void stopMusic() {
+        mediaPlayer.stop();
+    }
+
+    public static void muteMenuMusic() {
+        mediaPlayer.setMute(!mediaPlayer.isMute());
+    }
+
+    public static MediaPlayer getMediaPlayer() {
+        return mediaPlayer;
+    }
+
+}
