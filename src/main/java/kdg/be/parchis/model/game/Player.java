@@ -66,15 +66,16 @@ public class Player {
     }
 
 
-    public void firstLeavesNest(Tile startTile) {
+    public Pawn firstLeavesNest(Tile startTile) {
         for (Pawn p : pawns) {
             if (!p.isInGame()) {
                 p.leaveNest(startTile);
                 System.out.println("really did leave nest");
                 System.out.println("move pawn " + p.getPawnNumber());
-                break;
+                return p;
             }
         }
+        return null;
     }
 
 
@@ -101,8 +102,6 @@ public class Player {
 
 
     public int moveByTile(Pawn p, Tile t) {
-        Tile oldLocation = p.getPosition();
-
         p.move(t);
 
         //yellow pawn staying on landingstip and finishing

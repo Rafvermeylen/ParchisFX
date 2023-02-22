@@ -11,6 +11,7 @@ public class Game {
     private Score winner;
     private int indexTurn;
     private int amountThrows;
+    private Pawn lastMovedPawn;
 
 
     public Game(List<Player> players) {
@@ -380,28 +381,47 @@ public class Game {
         return p.canMove(board, Die.getThrown());
     }
 
-    public void yellowLeaveNest(){
-        getYellowPlayer().firstLeavesNest(board.board.get(getYellowPlayer().getStartPosition()));
+    public Pawn yellowLeaveNest(){
+        Pawn left = getYellowPlayer().firstLeavesNest(board.board.get(getYellowPlayer().getStartPosition()));
         System.out.println("Yellow pawn left nest");
+        return left;
     }
 
-    public void blueLeaveNest(){
-        getBluePlayer().firstLeavesNest(board.board.get(getBluePlayer().getStartPosition()));
+    public Pawn blueLeaveNest(){
+        Pawn left = getBluePlayer().firstLeavesNest(board.board.get(getBluePlayer().getStartPosition()));
         System.out.println("blue pawn left nest");
+        return left;
     }
 
-    public void redLeaveNest(){
-        getRedPlayer().firstLeavesNest(board.board.get(getRedPlayer().getStartPosition()));
+    public Pawn redLeaveNest(){
+        Pawn left = getRedPlayer().firstLeavesNest(board.board.get(getRedPlayer().getStartPosition()));
         System.out.println("red pawn left nest");
+        return left;
     }
 
-    public void greenLeaveNest(){
-        getGreenPlayer().firstLeavesNest(board.board.get(getGreenPlayer().getStartPosition()));
+    public Pawn greenLeaveNest(){
+        Pawn left = getGreenPlayer().firstLeavesNest(board.board.get(getGreenPlayer().getStartPosition()));
         System.out.println("green pawn left nest");
+        return left;
     }
 
-    public void movePawn(Pawn pawn){
-        pawn.move(board.board.get(pawn.getPosition().getNr()+Die.getThrown()));
+    public void movePawn(Player p, Pawn pawn){
+        /*
+        if (amountThrows == 2) {
+            Pawn lastMoved = toMove;
+        }
+
+         */
+        int value = p.moveByTile(pawn, board.board.get(pawn.getPosition().getNr() + Die.getThrown()));
+        if (value > 0) {
+            pawn.move(board.board.get(value));
+        } else if (value < 0) {
+            pawn.move(board.board.get(pawn.getPosition().getNr() + value + value));
+        }
+
+        if (amountThrows == 2){
+            lastMovedPawn = pawn;
+        }
     }
 
     public boolean isStartOK(Player p){
@@ -418,4 +438,8 @@ public class Game {
         return pawns;
     }
 
+    public Pawn lastBackToNest(){
+        lastMovedPawn.toNest(board.board.get(lastMovedPawn.owner.getNestPosition()));
+        return lastMovedPawn;
+    }
 }

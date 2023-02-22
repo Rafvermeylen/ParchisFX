@@ -41,6 +41,10 @@ public class CoordinateConverter {
         //green start position
         positionMap.put(56, new Position(45, 185));
 
+        positionMap.put(1, new Position(287, -40));
+        positionMap.put(2, new Position(258, -40));
+        positionMap.put(3, new Position(230, -40));
+        positionMap.put(4, new Position(200, -40));
         positionMap.put(6, new Position(142, -40));
         positionMap.put(7, new Position(112, -40));
         positionMap.put(8, new Position(82, -40));
@@ -92,33 +96,30 @@ public class CoordinateConverter {
         positionMap.put(57, new Position(45, 155));
         positionMap.put(58, new Position(45, 125));
         positionMap.put(59, new Position(45, 100));
+        positionMap.put(60, new Position(82, 60));
+        positionMap.put(61, new Position(112, 60));
+        positionMap.put(62, new Position(142, 60));
+        positionMap.put(63, new Position(170, 60));
+        positionMap.put(64, new Position(200, 60));
+        positionMap.put(65, new Position(230, 60));
+        positionMap.put(66, new Position(258, 60));
+        positionMap.put(67, new Position(287, 60));
+        positionMap.put(68, new Position(287, 10));
 
+        //yellow landingstrip
+        positionMap.put(73, new Position(258, 10));
+        positionMap.put(74, new Position(230, 10));
+        positionMap.put(75, new Position(200, 10));
+        positionMap.put(76, new Position(170, 10));
+        positionMap.put(77, new Position(142, 10));
+        positionMap.put(78, new Position(112, 10));
+        positionMap.put(79, new Position(82, 10));
+        positionMap.put(80, new Position(50, 10));
 
 
         /*
         // Positions on board.
-        positionMap.put(1, new Position());
-        positionMap.put(2, new Position());
-        positionMap.put(3, new Position());
-        positionMap.put(4, new Position());
-        positionMap.put(60, new Position());
-        positionMap.put(61, new Position());
-        positionMap.put(62, new Position());
-        positionMap.put(63, new Position());
-        positionMap.put(64, new Position());
-        positionMap.put(65, new Position());
-        positionMap.put(66, new Position());
-        positionMap.put(67, new Position());
-        positionMap.put(68, new Position(585, 65));
 
-        positionMap.put(73, new Position());
-        positionMap.put(74, new Position());
-        positionMap.put(75, new Position());
-        positionMap.put(76, new Position());
-        positionMap.put(77, new Position());
-        positionMap.put(78, new Position());
-        positionMap.put(79, new Position());
-        positionMap.put(80, new Position());
         positionMap.put(81, new Position());
         positionMap.put(82, new Position());
         positionMap.put(83, new Position());
