@@ -119,7 +119,6 @@ public class CoordinateConverter {
 
         /*
         // Positions on board.
-
         positionMap.put(81, new Position());
         positionMap.put(82, new Position());
         positionMap.put(83, new Position());
