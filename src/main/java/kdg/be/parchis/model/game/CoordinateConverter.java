@@ -10,13 +10,12 @@ public class CoordinateConverter {
         //NESTS
         //yellow nest
         positionMap.put(69, new Position(160, -150));
-        /*
+
         positionMap.put(6901, new Position(160, -150));
         positionMap.put(6902, new Position(185, -150));
         positionMap.put(6903, new Position(210, -150));
         positionMap.put(6904, new Position(235, -150));
 
-         */
         //blue nest
         positionMap.put(7001, new Position(-160, -150));
         positionMap.put(7002, new Position(-185, -150));

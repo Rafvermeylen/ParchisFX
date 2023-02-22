@@ -145,7 +145,7 @@ public class Player {
         if (p.getPosition().getNr() > 68 && color.equals(Colors.YELLOW) && p.HasMoved() && !p.getOnLandingstrip()) {
             p.isOnLandingstrip();
             //p.ui.printMove(p.getPawnNumber(), oldLocation, p.getPosition());
-            return (p.getPosition().getNr() + 3);
+            return (p.getPosition().getNr() + 4);
             //If pawn is not yellow, go around the board.
         } else if (p.getPosition().getNr() > 68 && !color.equals(Colors.YELLOW)) {
             //p.ui.printMove(p.getPawnNumber(), oldLocation, p.getPosition());

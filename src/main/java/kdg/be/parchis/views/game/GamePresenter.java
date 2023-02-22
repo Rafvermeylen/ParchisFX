@@ -41,21 +41,23 @@ public class GamePresenter {
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
                     //return last pawn...
                     Pawn back = gameSession.lastBackToNest();
-                    if (back.getPawnNumber() == 1){
-                        view.getYp_1().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
-                        view.getYp_1().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 2) {
-                        view.getYp_2().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
-                        view.getYp_2().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 3) {
-                        view.getYp_3().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
-                        view.getYp_3().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 4) {
-                        view.getYp_4().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
-                        view.getYp_4().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
+                    if (back != null){
+                        if (back.getPawnNumber() == 1){
+                            view.getYp_1().setTranslateX(converter.getX(6901));
+                            view.getYp_1().setTranslateY(converter.getY(6901));
+                        } else if (back.getPawnNumber() == 2) {
+                            view.getYp_2().setTranslateX(converter.getX(6902));
+                            view.getYp_2().setTranslateY(converter.getY(6902));
+                        } else if (back.getPawnNumber() == 3) {
+                            view.getYp_3().setTranslateX(converter.getX(6903));
+                            view.getYp_3().setTranslateY(converter.getY(6903));
+                        } else if (back.getPawnNumber() == 4) {
+                            view.getYp_4().setTranslateX(converter.getX(6904));
+                            view.getYp_4().setTranslateY(converter.getY(6904));
+                        }
+                        view.getFinish1().setVisible(true);
+                        return;
                     }
-                    view.getFinish1().setVisible(true);
-                    return;
                 }
 
                 view.getDie1().setVisible(true);
@@ -120,21 +122,23 @@ public class GamePresenter {
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
                     Pawn back = gameSession.lastBackToNest();
-                    if (back.getPawnNumber() == 1){
-                        view.getBp_1().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
-                        view.getBp_1().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 2) {
-                        view.getBp_2().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
-                        view.getBp_2().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 3) {
-                        view.getBp_3().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
-                        view.getBp_3().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 4) {
-                        view.getBp_4().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
-                        view.getBp_4().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
+                    if (back != null){
+                        if (back.getPawnNumber() == 1){
+                            view.getBp_1().setTranslateX(converter.getX(7001));
+                            view.getBp_1().setTranslateY(converter.getY(7001));
+                        } else if (back.getPawnNumber() == 2) {
+                            view.getBp_2().setTranslateX(converter.getX(7002));
+                            view.getBp_2().setTranslateY(converter.getY(7002));
+                        } else if (back.getPawnNumber() == 3) {
+                            view.getBp_3().setTranslateX(converter.getX(7003));
+                            view.getBp_3().setTranslateY(converter.getY(7003));
+                        } else if (back.getPawnNumber() == 4) {
+                            view.getBp_4().setTranslateX(converter.getX(7004));
+                            view.getBp_4().setTranslateY(converter.getY(7004));
+                        }
+                        view.getFinish2().setVisible(true);
+                        return;
                     }
-                    view.getFinish2().setVisible(true);
-                    return;
                 }
 
                 view.getDie2().setVisible(true);
@@ -191,22 +195,24 @@ public class GamePresenter {
                 gameSession.roll();
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
+                    if (gameSession.getKilledPawn() != null){
                     Pawn back = gameSession.lastBackToNest();
-                    if (back.getPawnNumber() == 1){
-                        view.getRp_1().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
-                        view.getRp_1().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 2) {
-                        view.getRp_2().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
-                        view.getRp_2().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 3) {
-                        view.getRp_3().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
-                        view.getRp_3().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 4) {
-                        view.getRp_4().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
-                        view.getRp_4().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
+                        if (back.getPawnNumber() == 1){
+                            view.getRp_1().setTranslateX(converter.getX(7101));
+                            view.getRp_1().setTranslateY(converter.getY(7101));
+                        } else if (back.getPawnNumber() == 2) {
+                            view.getRp_2().setTranslateX(converter.getX(7102));
+                            view.getRp_2().setTranslateY(converter.getY(7102));
+                        } else if (back.getPawnNumber() == 3) {
+                            view.getRp_3().setTranslateX(converter.getX(7103));
+                            view.getRp_3().setTranslateY(converter.getY(7103));
+                        } else if (back.getPawnNumber() == 4) {
+                            view.getRp_4().setTranslateX(converter.getX(7104));
+                            view.getRp_4().setTranslateY(converter.getY(7104));
+                        }
+                        view.getFinish3().setVisible(true);
+                        return;
                     }
-                    view.getFinish3().setVisible(true);
-                    return;
                 }
 
                 view.getDie3().setVisible(true);
@@ -264,21 +270,23 @@ public class GamePresenter {
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
                     Pawn back = gameSession.lastBackToNest();
-                    if (back.getPawnNumber() == 1){
-                        view.getGp_1().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
-                        view.getGp_1().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 2) {
-                        view.getGp_2().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
-                        view.getGp_2().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 3) {
-                        view.getGp_3().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
-                        view.getGp_3().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
-                    } else if (back.getPawnNumber() == 4) {
-                        view.getGp_4().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
-                        view.getGp_4().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
+                    if (back != null){
+                        if (back.getPawnNumber() == 1){
+                            view.getGp_1().setTranslateX(converter.getX(7201));
+                            view.getGp_1().setTranslateY(converter.getY(7201));
+                        } else if (back.getPawnNumber() == 2) {
+                            view.getGp_2().setTranslateX(converter.getX(7202));
+                            view.getGp_2().setTranslateY(converter.getY(7202));
+                        } else if (back.getPawnNumber() == 3) {
+                            view.getGp_3().setTranslateX(converter.getX(7203));
+                            view.getGp_3().setTranslateY(converter.getY(7203));
+                        } else if (back.getPawnNumber() == 4) {
+                            view.getGp_4().setTranslateX(converter.getX(7204));
+                            view.getGp_4().setTranslateY(converter.getY(7204));
+                        }
+                        view.getFinish4().setVisible(true);
+                        return;
                     }
-                    view.getFinish4().setVisible(true);
-                    return;
                 }
                 view.getDie4().setVisible(true);
                 view.getDie4().setImage(Die.getDiceFoto().getImage());
@@ -505,6 +513,68 @@ public class GamePresenter {
                 view.getGp_2().setImage(view.getGreenPawn());
                 view.getGp_3().setImage(view.getGreenPawn());
                 view.getGp_4().setImage(view.getGreenPawn());
+
+                //check killed pawn
+                if (gameSession.getKilledPawn() != null){
+                    if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                        if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                            view.getBp_1().setTranslateX(converter.getX(7001));
+                            view.getBp_1().setTranslateY(converter.getY(7001));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                            view.getBp_2().setTranslateX(converter.getX(7002));
+                            view.getBp_2().setTranslateY(converter.getY(7002));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                            view.getBp_3().setTranslateX(converter.getX(7003));
+                            view.getBp_3().setTranslateY(converter.getY(7003));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                            view.getBp_4().setTranslateX(converter.getX(7004));
+                            view.getBp_4().setTranslateY(converter.getY(7004));
+                        }
+                    } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                        if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                            view.getRp_1().setTranslateX(converter.getX(7101));
+                            view.getRp_1().setTranslateY(converter.getY(7101));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                            view.getRp_2().setTranslateX(converter.getX(7102));
+                            view.getRp_2().setTranslateY(converter.getY(7102));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                            view.getRp_3().setTranslateX(converter.getX(7103));
+                            view.getRp_3().setTranslateY(converter.getY(7103));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                            view.getRp_4().setTranslateX(converter.getX(7104));
+                            view.getRp_4().setTranslateY(converter.getY(7104));
+                        }
+                    } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                        if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                            view.getGp_1().setTranslateX(converter.getX(7201));
+                            view.getGp_1().setTranslateY(converter.getY(7201));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                            view.getGp_2().setTranslateX(converter.getX(7202));
+                            view.getGp_2().setTranslateY(converter.getY(7202));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                            view.getGp_3().setTranslateX(converter.getX(7203));
+                            view.getGp_3().setTranslateY(converter.getY(7203));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                            view.getGp_4().setTranslateX(converter.getX(7204));
+                            view.getGp_4().setTranslateY(converter.getY(7204));
+                        }
+                    } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                        if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                            view.getYp_1().setTranslateX(converter.getX(6901));
+                            view.getYp_1().setTranslateY(converter.getY(6901));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                            view.getYp_2().setTranslateX(converter.getX(6902));
+                            view.getYp_2().setTranslateY(converter.getY(6902));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                            view.getYp_3().setTranslateX(converter.getX(6903));
+                            view.getYp_3().setTranslateY(converter.getY(6903));
+                        } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                            view.getYp_4().setTranslateX(converter.getX(6904));
+                            view.getYp_4().setTranslateY(converter.getY(6904));
+                        }
+                    }
+                }
+
             }
         });
         view.getYp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -514,6 +584,53 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(0));
                     view.getYp_1().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
                     view.getYp_1().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
+
                     if (Die.getThrown() != 6) {
                         view.getFinish1().setVisible(true);
                     } else {
@@ -534,6 +651,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(1));
                     view.getYp_2().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
                     view.getYp_2().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish1().setVisible(true);
                     } else {
@@ -554,6 +717,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(2));
                     view.getYp_3().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
                     view.getYp_3().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish1().setVisible(true);
                     } else {
@@ -574,6 +783,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(3));
                     view.getYp_4().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
                     view.getYp_4().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish1().setVisible(true);
                     } else {
@@ -594,6 +849,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(0));
                     view.getBp_1().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
                     view.getBp_1().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish2().setVisible(true);
                     } else {
@@ -614,6 +915,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(1));
                     view.getBp_2().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
                     view.getBp_2().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish2().setVisible(true);
                     } else {
@@ -634,6 +981,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(2));
                     view.getBp_3().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
                     view.getBp_3().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish2().setVisible(true);
                     } else {
@@ -654,6 +1047,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(3));
                     view.getBp_4().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
                     view.getBp_4().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish2().setVisible(true);
                     } else {
@@ -674,6 +1113,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(0));
                     view.getRp_1().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
                     view.getRp_1().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish3().setVisible(true);
                     } else {
@@ -694,6 +1179,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(1));
                     view.getRp_2().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
                     view.getRp_2().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish3().setVisible(true);
                     } else {
@@ -714,6 +1245,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(2));
                     view.getRp_3().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
                     view.getRp_3().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish3().setVisible(true);
                     } else {
@@ -734,6 +1311,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(3));
                     view.getRp_4().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
                     view.getRp_4().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.GREEN)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish3().setVisible(true);
                     } else {
@@ -754,6 +1377,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(0));
                     view.getGp_1().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
                     view.getGp_1().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish4().setVisible(true);
                     } else {
@@ -774,6 +1443,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(1));
                     view.getGp_2().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
                     view.getGp_2().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish4().setVisible(true);
                     } else {
@@ -794,6 +1509,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(2));
                     view.getGp_3().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
                     view.getGp_3().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish4().setVisible(true);
                     } else {
@@ -814,6 +1575,52 @@ public class GamePresenter {
                     gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(3));
                     view.getGp_4().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
                     view.getGp_4().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
+                    //check for kill
+                    if (gameSession.getKilledPawn() != null){
+                        if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else if (gameSession.getKilledPawn().owner.getColor().equals(Colors.RED)){
+                            if (gameSession.getKilledPawn().getPawnNumber() == 1) {
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (gameSession.getKilledPawn().getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        }
+                    }
                     if (Die.getThrown() != 6) {
                         view.getFinish4().setVisible(true);
                     } else {

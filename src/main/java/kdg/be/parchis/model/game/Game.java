@@ -12,6 +12,7 @@ public class Game {
     private int indexTurn;
     private int amountThrows;
     private Pawn lastMovedPawn;
+    private Pawn killedPawn;
 
 
     public Game(List<Player> players) {
@@ -244,6 +245,7 @@ public class Game {
             for (Pawn p : moved.getPosition().getStandingPawns()) {
                 if (p.owner != moved.owner) {
                     p.toNest(board.board.get(p.owner.getNestPosition()));
+                    killedPawn = p;
                     break;
                 }
             }
@@ -297,7 +299,7 @@ public class Game {
             for (Pawn p : outNest.getPosition().getStandingPawns()) {
                 if (p.owner != outNest.owner) {
                     p.toNest(board.board.get(p.owner.getNestPosition()));
-                    //ui.killMessage(p);
+                    killedPawn = p;
                 }
             }
         }
@@ -310,6 +312,11 @@ public class Game {
             turn++;
         }
         amountThrows = 0;
+        lastMovedPawn = null;
+        killedPawn = null;
+        if (players.get(indexTurn).getIsFinished()){
+            endTurn();
+        }
     }
 
     public void movePawn(){
@@ -373,7 +380,9 @@ public class Game {
         return p.canMove(board, Die.getThrown());
     }
     public Pawn yellowLeaveNest(){
-        return getYellowPlayer().firstLeavesNest(board.board.get(getYellowPlayer().getStartPosition()));
+        Pawn left = getYellowPlayer().firstLeavesNest(board.board.get(getYellowPlayer().getStartPosition()));
+        checkNestKill(left);
+        return left;
     }
     public Pawn blueLeaveNest(){
         return getBluePlayer().firstLeavesNest(board.board.get(getBluePlayer().getStartPosition()));
@@ -416,5 +425,9 @@ public class Game {
     public Pawn lastBackToNest(){
         lastMovedPawn.toNest(board.board.get(lastMovedPawn.owner.getNestPosition()));
         return lastMovedPawn;
+    }
+
+    public Pawn getKilledPawn() {
+        return killedPawn;
     }
 }
