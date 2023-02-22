@@ -416,6 +416,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getNestGlow().getImage().equals(view.getGlowNestYellow())) {
+                    SoundClass.playPawnMove();
                     Pawn left = gameSession.yellowLeaveNest();
                     if (left.getPawnNumber() == 1){
                         view.getYp_1().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
@@ -581,6 +582,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_1().getImage().equals(view.getYellowPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(0));
                     view.getYp_1().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
                     view.getYp_1().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
@@ -648,6 +650,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_2().getImage().equals(view.getYellowPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(1));
                     view.getYp_2().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
                     view.getYp_2().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
@@ -714,6 +717,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_3().getImage().equals(view.getYellowPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(2));
                     view.getYp_3().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
                     view.getYp_3().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
@@ -780,6 +784,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_4().getImage().equals(view.getYellowPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(3));
                     view.getYp_4().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
                     view.getYp_4().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
@@ -846,6 +851,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_1().getImage().equals(view.getBluePawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(0));
                     view.getBp_1().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
                     view.getBp_1().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
@@ -912,6 +918,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_2().getImage().equals(view.getBluePawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(1));
                     view.getBp_2().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
                     view.getBp_2().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
@@ -978,6 +985,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_3().getImage().equals(view.getBluePawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(2));
                     view.getBp_3().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
                     view.getBp_3().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
@@ -1044,6 +1052,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_4().getImage().equals(view.getBluePawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(3));
                     view.getBp_4().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
                     view.getBp_4().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
@@ -1110,6 +1119,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_1().getImage().equals(view.getRedPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(0));
                     view.getRp_1().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
                     view.getRp_1().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
@@ -1176,6 +1186,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_2().getImage().equals(view.getRedPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(1));
                     view.getRp_2().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
                     view.getRp_2().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
@@ -1242,6 +1253,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_3().getImage().equals(view.getRedPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(2));
                     view.getRp_3().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
                     view.getRp_3().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
@@ -1308,6 +1320,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_4().getImage().equals(view.getRedPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(3));
                     view.getRp_4().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
                     view.getRp_4().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
@@ -1374,6 +1387,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_1().getImage().equals(view.getGreenPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(0));
                     view.getGp_1().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
                     view.getGp_1().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
@@ -1440,6 +1454,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_2().getImage().equals(view.getGreenPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(1));
                     view.getGp_2().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
                     view.getGp_2().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
@@ -1506,6 +1521,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_3().getImage().equals(view.getGreenPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(2));
                     view.getGp_3().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
                     view.getGp_3().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
@@ -1572,6 +1588,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_4().getImage().equals(view.getGreenPawnGlow())) {
+                    SoundClass.playPawnMove();
                     gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(3));
                     view.getGp_4().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
                     view.getGp_4().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));

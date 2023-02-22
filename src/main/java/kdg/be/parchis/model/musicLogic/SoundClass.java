@@ -24,6 +24,10 @@ public class SoundClass {
         initSound(path, "click.mp3");
     }
 
+    public static void playPawnMove(){
+        initSound(path, "pawn_move.mp3");
+    }
+
     public static void playRoll(){
         initSound(path, "roll.wav");
         try {
