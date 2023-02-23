@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import kdg.be.parchis.model.menu.Cheats;
 import kdg.be.parchis.model.musicLogic.MainMusic;
 import kdg.be.parchis.model.musicLogic.SoundClass;
+import kdg.be.parchis.views.credits.CreditsPresenter;
+import kdg.be.parchis.views.credits.CreditsView;
 import kdg.be.parchis.views.leaderboards.LeaderboardPresenter;
 import kdg.be.parchis.views.leaderboards.LeaderboardView;
 import kdg.be.parchis.views.playerselect.PlayerSelectPresenter;
@@ -106,6 +108,21 @@ public class MainMenuPresenter {
                 PlayerSelectPresenter psPresenter = new PlayerSelectPresenter(psView, view);
                 SoundClass.playClick();
                 view.getScene().setRoot(psView);
+            }
+        });
+
+        view.getCredits().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                CreditsView creditsView = null;
+                try {
+                    creditsView = new CreditsView();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                CreditsPresenter creditsPresenter = new CreditsPresenter(creditsView, view);
+                SoundClass.playClick();
+                view.getScene().setRoot(creditsView);
             }
         });
     }

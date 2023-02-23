@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 public class MainMenuView extends BorderPane {
     private Button startButton;
     private Button leaderboards;
+    private Button credits;
     private Button cheat;
     private Button exit;
     private Button soundButton;
@@ -64,6 +65,7 @@ public class MainMenuView extends BorderPane {
 
         startButton = new Button("Start game");
         leaderboards = new Button("Leaderboards");
+        credits = new Button("Credits");
         cheat = new Button("Cheats: OFF");
         exit = new Button("Exit");
     }
@@ -71,6 +73,7 @@ public class MainMenuView extends BorderPane {
     private void layoutNodes() {
         startButton.setMaxWidth(150);
         leaderboards.setMaxWidth(150);
+        credits.setMaxWidth(150);
         cheat.setMaxWidth(150);
 
         HBox buttonsTop = new HBox(15);
@@ -78,7 +81,7 @@ public class MainMenuView extends BorderPane {
         buttonsTop.setAlignment(Pos.TOP_RIGHT);
 
         VBox buttonsmiddle = new VBox(15);
-        buttonsmiddle.getChildren().addAll(im, startButton, leaderboards, cheat);
+        buttonsmiddle.getChildren().addAll(im, startButton, leaderboards, credits, cheat);
         buttonsmiddle.setAlignment(Pos.TOP_CENTER);
 
         this.setCenter(buttonsmiddle);
@@ -101,6 +104,10 @@ public class MainMenuView extends BorderPane {
 
     public Button getLeaderboards() {
         return leaderboards;
+    }
+
+    public Button getCredits() {
+        return credits;
     }
 
     public Button getCheat() {
