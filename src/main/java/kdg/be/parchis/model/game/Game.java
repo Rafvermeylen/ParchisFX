@@ -2,7 +2,8 @@ package kdg.be.parchis.model.game;
 
 import kdg.be.parchis.model.menu.Score;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private int turn;
@@ -17,7 +18,7 @@ public class Game {
 
     public Game(List<Player> players) {
         turn = 1;
-        this.players =players;
+        this.players = players;
         board = new Board();
         winner = null;
         indexTurn = 0;
@@ -45,9 +46,9 @@ public class Game {
             boolean endTurn = false;
             Pawn lastMoved = null;
 
-            if (s.getIsFinished()){
+            if (s.getIsFinished()) {
                 continue;
-            } else{
+            } else {
                 //s.ui.printTurn(s.getName());
                 amountOfThrows = 0;
             }
@@ -57,7 +58,7 @@ public class Game {
                 if (!s.getIsFinished()) {
 
                     // Die is thrown and 1 is added to variable 'amountOfThrows'.
-                    if (s instanceof ai_Player){
+                    if (s instanceof ai_Player) {
                         thrown = ((ai_Player) s).throwDie();
                     } else {
                         Die.throwDie();
@@ -199,7 +200,7 @@ public class Game {
                     s.printLocationPawns();
 
                     if (thrown == 6 || thrown == 7) {
-                        if (!(s instanceof ai_Player)){
+                        if (!(s instanceof ai_Player)) {
                             //ui.throwAgain();
                         }
                     } else {
@@ -214,10 +215,10 @@ public class Game {
             if (s.getIsFinished() && winner == null && !(s instanceof ai_Player)) {
                 winner = new Score(s.getName(), turn);
                 //ui.printPlayerWon(s);
-            } else if (s.getIsFinished() && winner != null){
+            } else if (s.getIsFinished() && winner != null) {
                 //ui.printPlayerFinished(s);
             }
-            if (!(s instanceof ai_Player)){
+            if (!(s instanceof ai_Player)) {
                 //ui.endTurn();
             }
         }
@@ -241,7 +242,7 @@ public class Game {
     public void checkKill(Pawn moved) {
         if (moved.getPosition().getStandingPawns().size() >= 2
                 && !moved.getPosition().getIsSafe()
-                && moved.getPosition().getNr()!= 52) {
+                && moved.getPosition().getNr() != 52) {
             for (Pawn p : moved.getPosition().getStandingPawns()) {
                 if (p.owner != moved.owner) {
                     p.toNest(board.board.get(p.owner.getNestPosition()));
@@ -258,34 +259,98 @@ public class Game {
                     } else if (value < 0) {
                         moved.move(board.board.get(moved.getPosition().getNr() + value + value));
                     }
-                    //Make sure that if pawn goes on the landingstrip and off again, it won't go on another landingstrip
-                    if (moved.owner.getColor().equals(Colors.BLUE) && moved.getPosition().getNr() < 81 && moved.getPosition().getNr() > 17) {
+
+                    // Goes to right position if blue gets a higher position than 88 (landingstrip ends at 88)
+                    if (moved.owner.getColor().equals(Colors.BLUE) && moved.getPosition().getNr() > 88) {
                         switch (moved.getPosition().getNr()) {
-                            case 80 -> moved.owner.moveByTile(moved, board.board.get(17));
-                            case 79 -> moved.owner.moveByTile(moved, board.board.get(16));
-                            case 78 -> moved.owner.moveByTile(moved, board.board.get(15));
-                            case 77 -> moved.owner.moveByTile(moved, board.board.get(14));
+                            case 89 -> moved.owner.moveByTile(moved, board.board.get(87));
+                            case 90 -> moved.owner.moveByTile(moved, board.board.get(86));
+                            case 91 -> moved.owner.moveByTile(moved, board.board.get(85));
+                            case 92 -> moved.owner.moveByTile(moved, board.board.get(84));
+                            case 93 -> moved.owner.moveByTile(moved, board.board.get(83));
+                            case 94 -> moved.owner.moveByTile(moved, board.board.get(82));
+                            case 95 -> moved.owner.moveByTile(moved, board.board.get(81));
+                            case 96 -> moved.owner.moveByTile(moved, board.board.get(17));
+                            case 97 -> moved.owner.moveByTile(moved, board.board.get(16));
+                            case 98 -> moved.owner.moveByTile(moved, board.board.get(15));
+                            case 99 -> moved.owner.moveByTile(moved, board.board.get(14));
                         }
-                    } else if (moved.owner.getColor().equals(Colors.RED) && moved.getPosition().getNr() < 89 && moved.getPosition().getNr() > 34) {
-                        switch (moved.getPosition().getNr()) {
-                            case 88 -> moved.owner.moveByTile(moved, board.board.get(34));
-                            case 87 -> moved.owner.moveByTile(moved, board.board.get(33));
-                            case 86 -> moved.owner.moveByTile(moved, board.board.get(32));
-                            case 85 -> moved.owner.moveByTile(moved, board.board.get(31));
+                        //Make sure that if pawn goes on the landingstrip and off again, it won't go on another landingstrip
+                        if (moved.owner.getColor().equals(Colors.BLUE) && moved.getPosition().getNr() < 81 && moved.getPosition().getNr() > 17) {
+                            switch (moved.getPosition().getNr()) {
+                                case 80 -> moved.owner.moveByTile(moved, board.board.get(17));
+                                case 79 -> moved.owner.moveByTile(moved, board.board.get(16));
+                                case 78 -> moved.owner.moveByTile(moved, board.board.get(15));
+                                case 77 -> moved.owner.moveByTile(moved, board.board.get(14));
+                            }
                         }
-                    } else if (moved.owner.getColor().equals(Colors.GREEN) && moved.getPosition().getNr() < 97 && moved.getPosition().getNr() > 51) {
+                    } else if (moved.owner.getColor().equals(Colors.RED) && moved.getPosition().getNr() > 96) {
                         switch (moved.getPosition().getNr()) {
-                            case 96 -> moved.owner.moveByTile(moved, board.board.get(51));
-                            case 95 -> moved.owner.moveByTile(moved, board.board.get(50));
-                            case 94 -> moved.owner.moveByTile(moved, board.board.get(49));
-                            case 93 -> moved.owner.moveByTile(moved, board.board.get(48));
+                            case 97 -> moved.owner.moveByTile(moved, board.board.get(95));
+                            case 98 -> moved.owner.moveByTile(moved, board.board.get(94));
+                            case 99 -> moved.owner.moveByTile(moved, board.board.get(93));
+                            case 100 -> moved.owner.moveByTile(moved, board.board.get(92));
+                            case 101 -> moved.owner.moveByTile(moved, board.board.get(91));
+                            case 102 -> moved.owner.moveByTile(moved, board.board.get(90));
+                            case 103 -> moved.owner.moveByTile(moved, board.board.get(89));
+                            case 104 -> moved.owner.moveByTile(moved, board.board.get(34));
+                            case 105 -> moved.owner.moveByTile(moved, board.board.get(33));
+                            case 106 -> moved.owner.moveByTile(moved, board.board.get(32));
+                            case 107 -> moved.owner.moveByTile(moved, board.board.get(31));
                         }
-                    } else if (moved.owner.getColor().equals(Colors.YELLOW) && moved.getPosition().getNr() < 73 && moved.getPosition().getNr() > 68) {
+                        if (moved.owner.getColor().equals(Colors.RED) && moved.getPosition().getNr() < 89 && moved.getPosition().getNr() > 34) {
+                            switch (moved.getPosition().getNr()) {
+                                case 88 -> moved.owner.moveByTile(moved, board.board.get(34));
+                                case 87 -> moved.owner.moveByTile(moved, board.board.get(33));
+                                case 86 -> moved.owner.moveByTile(moved, board.board.get(32));
+                                case 85 -> moved.owner.moveByTile(moved, board.board.get(31));
+                            }
+                        }
+
+                    } else if (moved.owner.getColor().equals(Colors.GREEN) && moved.getPosition().getNr() > 104) {
                         switch (moved.getPosition().getNr()) {
-                            case 72 -> moved.owner.moveByTile(moved, board.board.get(68));
-                            case 71 -> moved.owner.moveByTile(moved, board.board.get(67));
-                            case 70 -> moved.owner.moveByTile(moved, board.board.get(66));
-                            case 69 -> moved.owner.moveByTile(moved, board.board.get(65));
+                            case 105 -> moved.owner.moveByTile(moved, board.board.get(103));
+                            case 106 -> moved.owner.moveByTile(moved, board.board.get(102));
+                            case 107 -> moved.owner.moveByTile(moved, board.board.get(101));
+                            case 108 -> moved.owner.moveByTile(moved, board.board.get(100));
+                            case 109 -> moved.owner.moveByTile(moved, board.board.get(99));
+                            case 110 -> moved.owner.moveByTile(moved, board.board.get(98));
+                            case 111 -> moved.owner.moveByTile(moved, board.board.get(97));
+                            case 112 -> moved.owner.moveByTile(moved, board.board.get(51));
+                            case 113 -> moved.owner.moveByTile(moved, board.board.get(50));
+                            case 114 -> moved.owner.moveByTile(moved, board.board.get(49));
+                            case 115 -> moved.owner.moveByTile(moved, board.board.get(48));
+                        }
+                        if (moved.owner.getColor().equals(Colors.GREEN) && moved.getPosition().getNr() < 97 && moved.getPosition().getNr() > 51) {
+                            switch (moved.getPosition().getNr()) {
+                                case 96 -> moved.owner.moveByTile(moved, board.board.get(51));
+                                case 95 -> moved.owner.moveByTile(moved, board.board.get(50));
+                                case 94 -> moved.owner.moveByTile(moved, board.board.get(49));
+                                case 93 -> moved.owner.moveByTile(moved, board.board.get(48));
+                            }
+                        }
+
+                    } else if (moved.owner.getColor().equals(Colors.YELLOW) && moved.getPosition().getNr() > 80) {
+                        switch (moved.getPosition().getNr()) {
+                            case 81 -> moved.owner.moveByTile(moved, board.board.get(79));
+                            case 82 -> moved.owner.moveByTile(moved, board.board.get(78));
+                            case 83 -> moved.owner.moveByTile(moved, board.board.get(77));
+                            case 84 -> moved.owner.moveByTile(moved, board.board.get(76));
+                            case 85 -> moved.owner.moveByTile(moved, board.board.get(75));
+                            case 86 -> moved.owner.moveByTile(moved, board.board.get(74));
+                            case 87 -> moved.owner.moveByTile(moved, board.board.get(73));
+                            case 88 -> moved.owner.moveByTile(moved, board.board.get(68));
+                            case 89 -> moved.owner.moveByTile(moved, board.board.get(67));
+                            case 90 -> moved.owner.moveByTile(moved, board.board.get(66));
+                            case 91 -> moved.owner.moveByTile(moved, board.board.get(65));
+                        }
+                        if (moved.owner.getColor().equals(Colors.YELLOW) && moved.getPosition().getNr() < 73 && moved.getPosition().getNr() > 68) {
+                            switch (moved.getPosition().getNr()) {
+                                case 72 -> moved.owner.moveByTile(moved, board.board.get(68));
+                                case 71 -> moved.owner.moveByTile(moved, board.board.get(67));
+                                case 70 -> moved.owner.moveByTile(moved, board.board.get(66));
+                                case 69 -> moved.owner.moveByTile(moved, board.board.get(65));
+                            }
                         }
                     }
                     checkKill(moved);
@@ -305,21 +370,21 @@ public class Game {
         }
     }
 
-    public void endTurn(){
+    public void endTurn() {
         indexTurn++;
-        if (indexTurn == 4){
-            indexTurn=0;
+        if (indexTurn == 4) {
+            indexTurn = 0;
             turn++;
         }
         amountThrows = 0;
         lastMovedPawn = null;
         killedPawn = null;
-        while (players.get(indexTurn).getIsFinished()){
+        while (players.get(indexTurn).getIsFinished()) {
             indexTurn++;
         }
     }
 
-    public void movePawn(){
+    public void movePawn() {
 
     }
 
@@ -331,75 +396,88 @@ public class Game {
         return players;
     }
 
-    public void roll(){
+    public void roll() {
         Die.throwDie();
         amountThrows++;
     }
+
     public int getIndexTurn() {
         return indexTurn;
     }
+
     public int getAmountThrows() {
         return amountThrows;
     }
-    public Player getYellowPlayer(){
-        for (Player p : players){
-            if (p.getColor().equals(Colors.YELLOW)){
+
+    public Player getYellowPlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Colors.YELLOW)) {
                 return p;
             }
         }
         return null;
     }
-    public Player getBluePlayer(){
-        for (Player p : players){
-            if (p.getColor().equals(Colors.BLUE)){
+
+    public Player getBluePlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Colors.BLUE)) {
                 return p;
             }
         }
         return null;
     }
-    public Player getRedPlayer(){
-        for (Player p : players){
-            if (p.getColor().equals(Colors.RED)){
+
+    public Player getRedPlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Colors.RED)) {
                 return p;
             }
         }
         return null;
     }
-    public Player getGreenPlayer(){
-        for (Player p : players){
-            if (p.getColor().equals(Colors.GREEN)){
+
+    public Player getGreenPlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Colors.GREEN)) {
                 return p;
             }
         }
         return null;
     }
+
     public int getTurn() {
         return turn;
     }
-    public boolean canPlayerMove(Player p){
+
+    public boolean canPlayerMove(Player p) {
         return p.canMove(board, Die.getThrown());
     }
-    public Pawn yellowLeaveNest(){
+
+    public Pawn yellowLeaveNest() {
         Pawn left = getYellowPlayer().firstLeavesNest(board.board.get(getYellowPlayer().getStartPosition()));
         checkNestKill(left);
         return left;
     }
-    public Pawn blueLeaveNest(){
+
+    public Pawn blueLeaveNest() {
         Pawn left = getBluePlayer().firstLeavesNest(board.board.get(getBluePlayer().getStartPosition()));
         checkNestKill(left);
         return left;
     }
-    public Pawn redLeaveNest(){
+
+    public Pawn redLeaveNest() {
         Pawn left = getRedPlayer().firstLeavesNest(board.board.get(getRedPlayer().getStartPosition()));
         checkNestKill(left);
         return left;
     }
-    public Pawn greenLeaveNest(){
+
+    public Pawn greenLeaveNest() {
         Pawn left = getGreenPlayer().firstLeavesNest(board.board.get(getGreenPlayer().getStartPosition()));
         checkNestKill(left);
         return left;
     }
-    public void movePawn(Player p, Pawn pawn){
+
+    public void movePawn(Player p, Pawn pawn) {
         int value = p.moveByTile(pawn, board.board.get(pawn.getPosition().getNr() + Die.getThrown()));
         if (value > 0) {
             pawn.move(board.board.get(value));
@@ -409,26 +487,26 @@ public class Game {
         System.out.println("pawn " + pawn.getPawnNumber() + "moved to tile " + pawn.getPosition().getNr());
         checkKill(pawn);
 
-        if (amountThrows == 2){
+        if (amountThrows == 2) {
             lastMovedPawn = pawn;
         }
     }
 
-    public boolean isStartOK(Player p){
+    public boolean isStartOK(Player p) {
         return !board.board.get(p.getStartPosition()).IsBarrier();
     }
 
-    public List<Pawn> getMoveablePawns(Player p){
+    public List<Pawn> getMoveablePawns(Player p) {
         List<Pawn> pawns = new ArrayList<>();
-        for (Pawn pwn : p.pawns){
-            if (pwn.isCanMove(board, Die.getThrown())){
+        for (Pawn pwn : p.pawns) {
+            if (pwn.isCanMove(board, Die.getThrown())) {
                 pawns.add(pwn);
             }
         }
         return pawns;
     }
 
-    public Pawn lastBackToNest(){
+    public Pawn lastBackToNest() {
         lastMovedPawn.toNest(board.board.get(lastMovedPawn.owner.getNestPosition()));
         return lastMovedPawn;
     }

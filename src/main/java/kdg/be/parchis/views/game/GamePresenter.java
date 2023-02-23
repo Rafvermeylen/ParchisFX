@@ -2,7 +2,6 @@ package kdg.be.parchis.views.game;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
@@ -12,7 +11,6 @@ import kdg.be.parchis.model.musicLogic.SoundClass;
 
 import java.util.List;
 
-import static java.lang.Thread.sleep;
 
 public class GamePresenter {
     private Game gameSession;
