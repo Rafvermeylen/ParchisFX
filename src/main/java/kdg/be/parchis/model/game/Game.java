@@ -498,6 +498,7 @@ public class Game {
         if (amountThrows == 2){
             lastMovedPawn = pawn;
         }
+        checkIfPlayerFinished(p);
     }
 
     public boolean isStartOK(Player p){
@@ -521,5 +522,17 @@ public class Game {
 
     public Pawn getKilledPawn() {
         return killedPawn;
+    }
+
+    public void checkIfPlayerFinished(Player p){
+        int amountFinished=0;
+        for (Pawn pwn : p.pawns){
+            if (pwn.isFinished()){
+                amountFinished++;
+            }
+        }
+        if (amountFinished ==4 ){
+            p.finish();
+        }
     }
 }

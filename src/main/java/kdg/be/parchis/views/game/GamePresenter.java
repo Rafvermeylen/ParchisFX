@@ -57,12 +57,16 @@ public class GamePresenter {
                         return;
                     }
                 }
+                //if nest is empty, move seven spaces instead of six
+                if (Die.getThrown()==6 && gameSession.getYellowPlayer().isNestEmpty()){
+                    Die.setSeven();
+                }
 
                 view.getDie1().setVisible(true);
                 view.getDie1().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
-                    if (Die.getThrown() == 6) {
+                    if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll1().setVisible(true);
                     } else {
                         view.getFinish1().setVisible(true);
@@ -104,7 +108,7 @@ public class GamePresenter {
                             view.getYp_4().setImage(view.getYellowPawnGlow());
                         }
                     }
-                    if (Die.getThrown() == 6) {
+                    if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll1().setVisible(true);
                         view.getFinish1().setVisible(false);
                     }
@@ -138,12 +142,15 @@ public class GamePresenter {
                         return;
                     }
                 }
-
+                //if nest is empty, move seven spaces instead of six
+                if (Die.getThrown()==6 && gameSession.getBluePlayer().isNestEmpty()){
+                    Die.setSeven();
+                }
                 view.getDie2().setVisible(true);
                 view.getDie2().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
-                    if (Die.getThrown() == 6) {
+                    if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll2().setVisible(true);
                     } else {
                         view.getFinish2().setVisible(true);
@@ -212,12 +219,15 @@ public class GamePresenter {
                         return;
                     }
                 }
-
+                //if nest is empty, move seven spaces instead of six
+                if (Die.getThrown()==6 && gameSession.getRedPlayer().isNestEmpty()){
+                    Die.setSeven();
+                }
                 view.getDie3().setVisible(true);
                 view.getDie3().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
-                    if (Die.getThrown() == 6) {
+                    if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll3().setVisible(true);
                     } else {
                         view.getFinish3().setVisible(true);
@@ -286,11 +296,15 @@ public class GamePresenter {
                         return;
                     }
                 }
+                //if nest is empty, move seven spaces instead of six
+                if (Die.getThrown()==6 && gameSession.getGreenPlayer().isNestEmpty()){
+                    Die.setSeven();
+                }
                 view.getDie4().setVisible(true);
                 view.getDie4().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getGreenPlayer()) && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
-                    if (Die.getThrown() == 6) {
+                    if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll4().setVisible(true);
                     } else {
                         view.getFinish4().setVisible(true);
@@ -417,19 +431,19 @@ public class GamePresenter {
                     SoundClass.playPawnMove();
                     Pawn left = gameSession.yellowLeaveNest();
                     if (left.getPawnNumber() == 1){
-                        view.getYp_1().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
-                        view.getYp_1().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
+                        view.getYp_1().setTranslateX(converter.getX(5));
+                        view.getYp_1().setTranslateY(converter.getY(5));
                     } else if (left.getPawnNumber() == 2) {
-                        view.getYp_2().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
-                        view.getYp_2().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
+                        view.getYp_2().setTranslateX(converter.getX(5));
+                        view.getYp_2().setTranslateY(converter.getY(5));
                     } else if (left.getPawnNumber() == 3) {
-                        view.getYp_3().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
-                        view.getYp_3().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
+                        view.getYp_3().setTranslateX(converter.getX(5));
+                        view.getYp_3().setTranslateY(converter.getY(5));
                     } else if (left.getPawnNumber() == 4) {
-                        view.getYp_4().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
-                        view.getYp_4().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
+                        view.getYp_4().setTranslateX(converter.getX(5));
+                        view.getYp_4().setTranslateY(converter.getY(5));
                     }
-                    if (Die.getThrown() == 6) {
+                    if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll1().setVisible(true);
                     } else {
                         view.getFinish1().setVisible(true);
@@ -449,7 +463,7 @@ public class GamePresenter {
                         view.getBp_4().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
                         view.getBp_4().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
                     }
-                    if (Die.getThrown() == 6) {
+                    if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll2().setVisible(true);
                     } else {
                         view.getFinish2().setVisible(true);
@@ -469,7 +483,7 @@ public class GamePresenter {
                         view.getRp_4().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
                         view.getRp_4().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
                     }
-                    if (Die.getThrown() == 6) {
+                    if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll3().setVisible(true);
                     } else {
                         view.getFinish3().setVisible(true);
@@ -489,7 +503,7 @@ public class GamePresenter {
                         view.getGp_4().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
                         view.getGp_4().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
                     }
-                    if (Die.getThrown() == 6) {
+                    if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll4().setVisible(true);
                     } else {
                         view.getFinish4().setVisible(true);
@@ -631,7 +645,7 @@ public class GamePresenter {
                         }
                     }
 
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish1().setVisible(true);
                     } else {
                         view.getRoll1().setVisible(true);
@@ -698,7 +712,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish1().setVisible(true);
                     } else {
                         view.getRoll1().setVisible(true);
@@ -765,7 +779,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish1().setVisible(true);
                     } else {
                         view.getRoll1().setVisible(true);
@@ -832,7 +846,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish1().setVisible(true);
                     } else {
                         view.getRoll1().setVisible(true);
@@ -899,7 +913,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish2().setVisible(true);
                     } else {
                         view.getRoll2().setVisible(true);
@@ -966,7 +980,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish2().setVisible(true);
                     } else {
                         view.getRoll2().setVisible(true);
@@ -1033,7 +1047,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish2().setVisible(true);
                     } else {
                         view.getRoll2().setVisible(true);
@@ -1100,7 +1114,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish2().setVisible(true);
                     } else {
                         view.getRoll2().setVisible(true);
@@ -1167,7 +1181,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish3().setVisible(true);
                     } else {
                         view.getRoll3().setVisible(true);
@@ -1234,7 +1248,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish3().setVisible(true);
                     } else {
                         view.getRoll3().setVisible(true);
@@ -1301,7 +1315,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish3().setVisible(true);
                     } else {
                         view.getRoll3().setVisible(true);
@@ -1368,7 +1382,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish3().setVisible(true);
                     } else {
                         view.getRoll3().setVisible(true);
@@ -1435,7 +1449,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish4().setVisible(true);
                     } else {
                         view.getRoll4().setVisible(true);
@@ -1502,7 +1516,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish4().setVisible(true);
                     } else {
                         view.getRoll4().setVisible(true);
@@ -1569,7 +1583,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish4().setVisible(true);
                     } else {
                         view.getRoll4().setVisible(true);
@@ -1636,7 +1650,7 @@ public class GamePresenter {
                             }
                         }
                     }
-                    if (Die.getThrown() != 6) {
+                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish4().setVisible(true);
                     } else {
                         view.getRoll4().setVisible(true);

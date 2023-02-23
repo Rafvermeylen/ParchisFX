@@ -92,14 +92,20 @@ public class Pawn {
 
     public void Finished() {
         isFinished = true;
-        //ui.printIsFinished(pawnNumber);
     }
 
     public boolean checkNoBarrier(int thrown, Board board) {
         for (int i = 1; i < thrown+1; i++) {
-            if (board.board.get(position.getNr() + i).IsBarrier()) {
-                return false;
+            if (position.getNr()+i > 68){
+                if (board.board.get(position.getNr() + i -68).IsBarrier()) {
+                    return false;
+                }
+            } else {
+                if (board.board.get(position.getNr() + i).IsBarrier()) {
+                    return false;
+                }
             }
+
         }
         return true;
     }
