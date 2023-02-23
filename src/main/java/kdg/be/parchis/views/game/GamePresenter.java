@@ -68,7 +68,7 @@ public class GamePresenter {
                         view.getFinish1().setVisible(true);
                     }
                 } else if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() == 5
-                        && gameSession.isStartOK(gameSession.getYellowPlayer())) {
+                        && gameSession.isStartOK(gameSession.getYellowPlayer()) && !gameSession.getYellowPlayer().isNestEmpty()) {
                     view.getNestGlow().setImage(view.getGlowNestYellow());
                     view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() != 5) {
@@ -149,7 +149,7 @@ public class GamePresenter {
                         view.getFinish2().setVisible(true);
                     }
                 } else if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() == 5
-                        && gameSession.isStartOK(gameSession.getBluePlayer())) {
+                        && gameSession.isStartOK(gameSession.getBluePlayer()) && !gameSession.getYellowPlayer().isNestEmpty()) {
                     view.getNestGlow().setImage(view.getGlowNestBlue());
                     view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() != 5) {
@@ -223,7 +223,7 @@ public class GamePresenter {
                         view.getFinish3().setVisible(true);
                     }
                 } else if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() == 5
-                        && gameSession.isStartOK(gameSession.getRedPlayer())) {
+                        && gameSession.isStartOK(gameSession.getRedPlayer()) && !gameSession.getYellowPlayer().isNestEmpty()) {
                     view.getNestGlow().setImage(view.getGlowNestRed());
                     view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() != 5) {

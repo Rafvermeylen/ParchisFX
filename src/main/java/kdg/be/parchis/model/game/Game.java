@@ -251,9 +251,9 @@ public class Game {
                 if (moved.checkNoBarrier(20, board)) {
                     int value = moved.owner.moveByTile(moved, board.board.get(moved.getPosition().getNr() + 20));
                     if (value > 0) {
-                        moved.move(board.board.get(value));
+                        moved.owner.moveByTile(moved, board.board.get(value));
                     } else if (value < 0) {
-                        moved.move(board.board.get(moved.getPosition().getNr() + value + value));
+                        moved.owner.moveByTile(moved, board.board.get(moved.getPosition().getNr() + value + value));
                     }
 
                     //Make sure that if pawn goes on the landingstrip and off again, it won't go on another landingstri
@@ -491,7 +491,7 @@ public class Game {
         if (value > 0) {
             p.moveByTile(pawn, board.board.get(value));
         } else if (value < 0) {
-            pawn.move(board.board.get(pawn.getPosition().getNr() + value + value));
+            p.moveByTile(pawn, board.board.get(pawn.getPosition().getNr() + value + value));
         }
         System.out.println("pawn " + pawn.getPawnNumber() + "moved to tile " + pawn.getPosition().getNr());
         checkKill(pawn);
