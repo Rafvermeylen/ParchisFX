@@ -10,7 +10,7 @@ public class Tile {
     private boolean hasPawn;
     private boolean isBarrier;
     private Colors barrierColor;
-    private boolean isSafe;
+    private boolean safe;
 
     public Tile(TileKind kind, int id) {
         this.kind = kind;
@@ -18,7 +18,7 @@ public class Tile {
         standingPawns = new ArrayList<>(2);
         hasPawn = false;
         isBarrier = false;
-        isSafe = kind.equals(TileKind.SAFESPACE);
+        safe = kind.equals(TileKind.SAFESPACE);
     }
 
     public TileKind getKind() {
@@ -30,14 +30,14 @@ public class Tile {
     }
 
     public void pawnLands(Pawn landedPawn){
-        if (hasPawn && isSafe){
+        if (hasPawn && safe){
             for (Pawn p : standingPawns){
                 if (landedPawn.getPawnNumber() != p.getPawnNumber() &&
                         landedPawn.owner.equals(p.owner)){
                     isBarrier = true;
                     barrierColor = landedPawn.owner.getColor();
                     landedPawn.owner.setBarrier();
-                    //ui.printBarrierMade();
+                    System.out.println("Barrier made on tile " + nr);
                     break;
                 }
             }
@@ -50,7 +50,6 @@ public class Tile {
         if (isBarrier && leavingPawn.owner.getColor().equals(barrierColor)){
             isBarrier = false;
             leavingPawn.owner.setBarrier();
-            //ui.printBarrierdead();
         } else {
             hasPawn = false;
         }
@@ -83,7 +82,7 @@ public class Tile {
         return null;
     }
 
-    public boolean getIsSafe(){
-        return isSafe;
+    public boolean getSafe(){
+        return safe;
     }
 }

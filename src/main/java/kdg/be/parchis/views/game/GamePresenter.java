@@ -38,8 +38,8 @@ public class GamePresenter {
                 gameSession.roll();
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
                     //return last pawn...
-                    Pawn back = gameSession.lastBackToNest();
-                    if (back != null){
+                    if (gameSession.getKilledPawn() != null){
+                        Pawn back = gameSession.lastBackToNest();
                         if (back.getPawnNumber() == 1){
                             view.getYp_1().setTranslateX(converter.getX(6901));
                             view.getYp_1().setTranslateY(converter.getY(6901));
@@ -119,8 +119,8 @@ public class GamePresenter {
                 gameSession.roll();
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
-                    Pawn back = gameSession.lastBackToNest();
-                    if (back != null){
+                    if (gameSession.getKilledPawn() != null){
+                        Pawn back = gameSession.lastBackToNest();
                         if (back.getPawnNumber() == 1){
                             view.getBp_1().setTranslateX(converter.getX(7001));
                             view.getBp_1().setTranslateY(converter.getY(7001));
@@ -267,8 +267,8 @@ public class GamePresenter {
                 gameSession.roll();
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
-                    Pawn back = gameSession.lastBackToNest();
-                    if (back != null){
+                    if (gameSession.getKilledPawn() != null){
+                        Pawn back = gameSession.lastBackToNest();
                         if (back.getPawnNumber() == 1){
                             view.getGp_1().setTranslateX(converter.getX(7201));
                             view.getGp_1().setTranslateY(converter.getY(7201));

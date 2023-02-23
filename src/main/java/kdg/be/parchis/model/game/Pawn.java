@@ -96,7 +96,7 @@ public class Pawn {
     }
 
     public boolean checkNoBarrier(int thrown, Board board) {
-        for (int i = 1; i < thrown; i++) {
+        for (int i = 1; i < thrown+1; i++) {
             if (board.board.get(position.getNr() + i).IsBarrier()) {
                 return false;
             }

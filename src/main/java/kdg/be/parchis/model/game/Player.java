@@ -2,6 +2,7 @@ package kdg.be.parchis.model.game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Player {
     private final String name;
@@ -82,21 +83,10 @@ public class Player {
     public Pawn choosePawn(Board board, int thrown) {
         List<Integer> moveAblePawns = new ArrayList<>(4);
         for (Pawn p : pawns) {
-
             if (p.isCanMove(board, thrown) && p.checkNoBarrier(thrown, board)) {
-                //p.ui.printLocation(p.getPawnNumber(), p.getPosition(), p.isInGame(), p.isFinished());
                 moveAblePawns.add(p.getPawnNumber());
             }
         }
-        /*
-        int choice = ui.makeChoiceMove(moveAblePawns);
-        for (Pawn p : pawns) {
-            if (p.getPawnNumber() == choice) {
-                return p;
-            }
-        }
-
-         */
         return pawns.get(0);
     }
 
@@ -197,23 +187,6 @@ public class Player {
     }
 
 
-    public void printLocationPawns() {
-        int totalNest = 0;
-        for (Pawn p : pawns) {
-            //p.ui.printLocation(p.getPawnNumber(), p.getPosition(), p.isInGame(), p.isFinished());
-
-            if (!p.isInGame()) {
-                totalNest++;
-            }
-
-        }
-
-        if (totalNest > 0) {
-            //ui.showAmountInNest(totalNest);
-        }
-
-    }
-
     public void setPawns() {
         pawns.add(new Pawn(1, this));
         pawns.add(new Pawn(2, this));
@@ -239,6 +212,19 @@ public class Player {
 
     public List<Pawn> getPawns() {
         return pawns;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return color == player.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color);
     }
 
     @Override
