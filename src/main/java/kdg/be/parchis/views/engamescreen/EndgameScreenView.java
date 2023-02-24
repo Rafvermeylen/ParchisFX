@@ -1,5 +1,7 @@
 package kdg.be.parchis.views.engamescreen;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +22,9 @@ public class EndgameScreenView extends BorderPane {
     private void layoutNodes() {
         this.setCenter(scoreWinner);
         this.setBottom(backToMenu);
+
+        BorderPane.setAlignment(backToMenu, Pos.BOTTOM_CENTER);
+        BorderPane.setMargin(backToMenu, new Insets(30));
     }
 
     public Label getScoreWinner() {

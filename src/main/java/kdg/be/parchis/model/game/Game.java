@@ -601,4 +601,8 @@ public class Game {
     public Pawn getLastMovedPawn() {
         return lastMovedPawn;
     }
+
+    public Board getBoard() {
+        return board;
+    }
 }

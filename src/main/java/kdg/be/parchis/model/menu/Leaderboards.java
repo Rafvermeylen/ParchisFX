@@ -33,7 +33,7 @@ public class Leaderboards {
         while (fileScanner.hasNext()) {
             line = fileScanner.nextLine();
             String[] parts = line.split(", ");
-            String name = parts[0].substring(1, parts[0].length() - 2);
+            String name = parts[0].substring(1, parts[0].length() - 1);
             int score = Integer.parseInt(parts[1]);
             newList.add(new Score(name,score));
         }
@@ -49,7 +49,7 @@ public class Leaderboards {
 
             for (Score s : scores) {
                 //Write in file
-                writer.printf("\"%s\", %d", s.getName(), s.getScore());
+                writer.printf("\"%s\", %d\n", s.getName(), s.getScore());
             }
             writer.close();
         } catch (IOException e) {

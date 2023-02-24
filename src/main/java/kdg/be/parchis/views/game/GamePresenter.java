@@ -812,7 +812,7 @@ public class GamePresenter {
                     view.getYp_4().setImage(view.getYellowPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getYellowPlayer().pawns.get(0).isFinished()){
+                    if (gameSession.getYellowPlayer().pawns.get(0).isFinished() && gameSession.getYellowPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish1().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
@@ -907,7 +907,7 @@ public class GamePresenter {
                     view.getYp_4().setImage(view.getYellowPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getYellowPlayer().pawns.get(1).isFinished()){
+                    if (gameSession.getYellowPlayer().pawns.get(1).isFinished() && gameSession.getYellowPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish1().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
@@ -1002,7 +1002,7 @@ public class GamePresenter {
                     view.getYp_4().setImage(view.getYellowPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getYellowPlayer().pawns.get(2).isFinished()){
+                    if (gameSession.getYellowPlayer().pawns.get(2).isFinished() && gameSession.getYellowPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish1().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
@@ -1097,7 +1097,7 @@ public class GamePresenter {
                     view.getYp_4().setImage(view.getYellowPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getYellowPlayer().pawns.get(3).isFinished()){
+                    if (gameSession.getYellowPlayer().pawns.get(3).isFinished() && gameSession.getYellowPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish1().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
@@ -1192,7 +1192,7 @@ public class GamePresenter {
                     view.getBp_4().setImage(view.getBluePawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getBluePlayer().pawns.get(0).isFinished()){
+                    if (gameSession.getBluePlayer().pawns.get(0).isFinished() && gameSession.getBluePlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish2().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
@@ -1287,7 +1287,7 @@ public class GamePresenter {
                     view.getBp_4().setImage(view.getBluePawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getBluePlayer().pawns.get(1).isFinished()){
+                    if (gameSession.getBluePlayer().pawns.get(1).isFinished() && gameSession.getBluePlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish2().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
@@ -1382,7 +1382,7 @@ public class GamePresenter {
                     view.getBp_4().setImage(view.getBluePawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getBluePlayer().pawns.get(2).isFinished()){
+                    if (gameSession.getBluePlayer().pawns.get(2).isFinished() && gameSession.getBluePlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish2().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
@@ -1477,7 +1477,7 @@ public class GamePresenter {
                     view.getBp_4().setImage(view.getBluePawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getBluePlayer().pawns.get(3).isFinished()){
+                    if (gameSession.getBluePlayer().pawns.get(3).isFinished() && gameSession.getBluePlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish2().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
@@ -1572,7 +1572,7 @@ public class GamePresenter {
                     view.getRp_4().setImage(view.getRedPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getRedPlayer().pawns.get(0).isFinished()){
+                    if (gameSession.getRedPlayer().pawns.get(0).isFinished() && gameSession.getRedPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish3().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
@@ -1666,7 +1666,7 @@ public class GamePresenter {
                     view.getRp_4().setImage(view.getRedPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getRedPlayer().pawns.get(1).isFinished()){
+                    if (gameSession.getRedPlayer().pawns.get(1).isFinished() && gameSession.getRedPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish3().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
@@ -1760,7 +1760,7 @@ public class GamePresenter {
                     view.getRp_3().setImage(view.getRedPawn());
                     view.getRp_4().setImage(view.getRedPawn());
                     view.getNestGlow().setVisible(false);
-                    if (gameSession.getRedPlayer().pawns.get(2).isFinished()){
+                    if (gameSession.getRedPlayer().pawns.get(2).isFinished() && gameSession.getRedPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish3().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
@@ -1854,7 +1854,7 @@ public class GamePresenter {
                     view.getRp_4().setImage(view.getRedPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getRedPlayer().pawns.get(3).isFinished()){
+                    if (gameSession.getRedPlayer().pawns.get(3).isFinished() && gameSession.getRedPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish3().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
@@ -1948,7 +1948,7 @@ public class GamePresenter {
                     view.getGp_4().setImage(view.getGreenPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getGreenPlayer().pawns.get(0).isFinished()){
+                    if (gameSession.getGreenPlayer().pawns.get(0).isFinished() && gameSession.getGreenPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish4().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
@@ -2043,7 +2043,7 @@ public class GamePresenter {
                     view.getGp_4().setImage(view.getGreenPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getGreenPlayer().pawns.get(1).isFinished()){
+                    if (gameSession.getGreenPlayer().pawns.get(1).isFinished() && gameSession.getGreenPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish4().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
@@ -2138,7 +2138,7 @@ public class GamePresenter {
                     view.getGp_4().setImage(view.getGreenPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getGreenPlayer().pawns.get(2).isFinished()){
+                    if (gameSession.getGreenPlayer().pawns.get(2).isFinished() && gameSession.getGreenPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish4().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
@@ -2232,7 +2232,7 @@ public class GamePresenter {
                     view.getGp_4().setImage(view.getGreenPawn());
                     view.getNestGlow().setVisible(false);
 
-                    if (gameSession.getGreenPlayer().pawns.get(3).isFinished()){
+                    if (gameSession.getGreenPlayer().pawns.get(3).isFinished() && gameSession.getGreenPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish4().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
