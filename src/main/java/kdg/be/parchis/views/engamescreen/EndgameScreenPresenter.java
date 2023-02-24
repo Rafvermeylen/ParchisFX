@@ -3,6 +3,7 @@ package kdg.be.parchis.views.engamescreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import kdg.be.parchis.model.game.Game;
+import kdg.be.parchis.model.musicLogic.MainMusic;
 import kdg.be.parchis.views.mainmenu.MainMenuPresenter;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
@@ -26,16 +27,11 @@ public class EndgameScreenPresenter {
                 try {
                     MainMenuView menuView = new MainMenuView();
                     MainMenuPresenter presenter = new MainMenuPresenter(menuView);
+                    MainMusic.stopMusic();
                     view.getScene().setRoot(menuView);
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-                try {
-                    MainMenuPresenter presenter = new MainMenuPresenter(new MainMenuView());
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-
             }
         });
     }
