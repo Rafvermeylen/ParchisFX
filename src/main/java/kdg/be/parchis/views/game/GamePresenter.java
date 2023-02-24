@@ -827,6 +827,9 @@ public class GamePresenter {
                                 view.getYp_4().setImage(view.getYellowPawnGlow());
                             }
                         }
+                        if (moveable.size()==0){
+                            view.getFinish1().setVisible(true);
+                        }
                     }
                 }
             }
@@ -914,6 +917,9 @@ public class GamePresenter {
                             } else if (p.getPawnNumber() == 4) {
                                 view.getYp_4().setImage(view.getYellowPawnGlow());
                             }
+                        }
+                        if (moveable.size()==0){
+                            view.getFinish1().setVisible(true);
                         }
                     }
                 }
@@ -1003,6 +1009,9 @@ public class GamePresenter {
                                 view.getYp_4().setImage(view.getYellowPawnGlow());
                             }
                         }
+                        if (moveable.size()==0){
+                            view.getFinish1().setVisible(true);
+                        }
                     }
                 }
             }
@@ -1090,6 +1099,9 @@ public class GamePresenter {
                             } else if (p.getPawnNumber() == 4) {
                                 view.getYp_4().setImage(view.getYellowPawnGlow());
                             }
+                        }
+                        if (moveable.size()==0){
+                            view.getFinish1().setVisible(true);
                         }
                     }
                 }
@@ -1179,6 +1191,9 @@ public class GamePresenter {
                                 view.getBp_4().setImage(view.getBluePawnGlow());
                             }
                         }
+                        if (moveable.size()==0){
+                            view.getFinish2().setVisible(true);
+                        }
                     }
                 }
             }
@@ -1266,6 +1281,9 @@ public class GamePresenter {
                             } else if (p.getPawnNumber() == 4) {
                                 view.getBp_4().setImage(view.getBluePawnGlow());
                             }
+                        }
+                        if (moveable.size()==0){
+                            view.getFinish2().setVisible(true);
                         }
                     }
                 }
@@ -1355,6 +1373,9 @@ public class GamePresenter {
                                 view.getBp_4().setImage(view.getBluePawnGlow());
                             }
                         }
+                        if (moveable.size()==0){
+                            view.getFinish2().setVisible(true);
+                        }
                     }
                 }
             }
@@ -1442,6 +1463,9 @@ public class GamePresenter {
                             } else if (p.getPawnNumber() == 4) {
                                 view.getBp_4().setImage(view.getBluePawnGlow());
                             }
+                        }
+                        if (moveable.size()==0){
+                            view.getFinish2().setVisible(true);
                         }
                     }
                 }
@@ -1531,6 +1555,9 @@ public class GamePresenter {
                                 view.getRp_4().setImage(view.getRedPawnGlow());
                             }
                         }
+                        if (moveable.size()==0){
+                            view.getFinish3().setVisible(true);
+                        }
                     }
                 }
             }
@@ -1619,6 +1646,9 @@ public class GamePresenter {
                                 view.getRp_4().setImage(view.getRedPawnGlow());
                             }
                         }
+                        if (moveable.size()==0){
+                            view.getFinish3().setVisible(true);
+                        }
                     }
                 }
             }
@@ -1705,6 +1735,9 @@ public class GamePresenter {
                             } else if (p.getPawnNumber() == 4) {
                                 view.getRp_4().setImage(view.getRedPawnGlow());
                             }
+                        }
+                        if (moveable.size()==0){
+                            view.getFinish3().setVisible(true);
                         }
                     }
                 }
@@ -1794,6 +1827,9 @@ public class GamePresenter {
                                 view.getRp_4().setImage(view.getRedPawnGlow());
                             }
                         }
+                        if (moveable.size()==0){
+                            view.getFinish3().setVisible(true);
+                        }
                     }
                 }
             }
@@ -1881,6 +1917,9 @@ public class GamePresenter {
                             } else if (p.getPawnNumber() == 4) {
                                 view.getGp_4().setImage(view.getGreenPawnGlow());
                             }
+                        }
+                        if (moveable.size()==0){
+                            view.getFinish4().setVisible(true);
                         }
                     }
                 }
@@ -1970,6 +2009,9 @@ public class GamePresenter {
                                 view.getGp_4().setImage(view.getGreenPawnGlow());
                             }
                         }
+                        if (moveable.size()==0){
+                            view.getFinish4().setVisible(true);
+                        }
                     }
                 }
             }
@@ -2058,6 +2100,9 @@ public class GamePresenter {
                                 view.getGp_4().setImage(view.getGreenPawnGlow());
                             }
                         }
+                        if (moveable.size()==0){
+                            view.getFinish4().setVisible(true);
+                        }
                     }
                 }
             }
@@ -2145,6 +2190,9 @@ public class GamePresenter {
                             } else if (p.getPawnNumber() == 4) {
                                 view.getGp_4().setImage(view.getGreenPawnGlow());
                             }
+                        }
+                        if (moveable.size()==0){
+                            view.getFinish4().setVisible(true);
                         }
                     }
                 }
