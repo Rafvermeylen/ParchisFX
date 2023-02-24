@@ -82,6 +82,10 @@ public class Tile {
         return null;
     }
 
+    public Colors getBarrierColor() {
+        return barrierColor;
+    }
+
     public boolean getSafe(){
         return safe;
     }

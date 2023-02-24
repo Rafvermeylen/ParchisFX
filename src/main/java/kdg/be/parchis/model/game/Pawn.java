@@ -95,7 +95,12 @@ public class Pawn {
     }
 
     public boolean checkNoBarrier(int thrown, Board board) {
-        for (int i = 0; i < thrown+1; i++) {
+        for (int i = 1; i < thrown+1; i++) {
+            //first check if current position has barrier of another color
+            if (board.board.get(position.getNr()).IsBarrier() && !board.board.get(position.getNr()).getBarrierColor().equals(owner.getColor())){
+                return false;
+            }
+
             if (position.getNr()+i > 68 && !owner.getColor().equals(Colors.YELLOW)){
                 if (board.board.get(position.getNr() + i -68).IsBarrier()) {
                     return false;

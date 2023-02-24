@@ -828,7 +828,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish1().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish1().setVisible(true);
+                            } else {
+                                view.getRoll1().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -919,7 +923,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish1().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish1().setVisible(true);
+                            } else {
+                                view.getRoll1().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -1010,7 +1018,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish1().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish1().setVisible(true);
+                            } else {
+                                view.getRoll1().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -1101,7 +1113,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish1().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish1().setVisible(true);
+                            } else {
+                                view.getRoll1().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -1192,7 +1208,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish2().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish2().setVisible(true);
+                            } else {
+                                view.getRoll2().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -1283,7 +1303,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish2().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish2().setVisible(true);
+                            } else {
+                                view.getRoll2().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -1374,7 +1398,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish2().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish2().setVisible(true);
+                            } else {
+                                view.getRoll2().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -1465,7 +1493,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish2().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish2().setVisible(true);
+                            } else {
+                                view.getRoll2().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -1556,8 +1588,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish3().setVisible(true);
-                        }
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish3().setVisible(true);
+                            } else {
+                                view.getRoll3().setVisible(true);
+                            }                        }
                     }
                 }
             }
@@ -1647,7 +1682,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish3().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish3().setVisible(true);
+                            } else {
+                                view.getRoll3().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -1737,8 +1776,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish3().setVisible(true);
-                        }
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish3().setVisible(true);
+                            } else {
+                                view.getRoll3().setVisible(true);
+                            }                        }
                     }
                 }
             }
@@ -1828,8 +1870,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish3().setVisible(true);
-                        }
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish3().setVisible(true);
+                            } else {
+                                view.getRoll3().setVisible(true);
+                            }                        }
                     }
                 }
             }
@@ -1919,7 +1964,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish4().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish4().setVisible(true);
+                            } else {
+                                view.getRoll4().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -2010,7 +2059,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish4().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish4().setVisible(true);
+                            } else {
+                                view.getRoll4().setVisible(true);
+                            }
                         }
                     }
                 }
@@ -2101,8 +2154,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish4().setVisible(true);
-                        }
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish4().setVisible(true);
+                            } else {
+                                view.getRoll4().setVisible(true);
+                            }                        }
                     }
                 }
             }
@@ -2192,7 +2248,11 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            view.getFinish4().setVisible(true);
+                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                                view.getFinish4().setVisible(true);
+                            } else {
+                                view.getRoll4().setVisible(true);
+                            }
                         }
                     }
                 }
