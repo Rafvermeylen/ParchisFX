@@ -40,22 +40,39 @@ public class GamePresenter {
                 SoundClass.playRoll();
                 gameSession.roll();
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
-                    //return last pawn...
-                    if (gameSession.getKilledPawn() != null){
+                    //return last pawn when you throw six, 3x
+                    if (gameSession.getLastMovedPawn() != null){
                         Pawn back = gameSession.lastBackToNest();
-                        if (back.getPawnNumber() == 1){
-                            view.getYp_1().setTranslateX(converter.getX(6901));
-                            view.getYp_1().setTranslateY(converter.getY(6901));
-                        } else if (back.getPawnNumber() == 2) {
-                            view.getYp_2().setTranslateX(converter.getX(6902));
-                            view.getYp_2().setTranslateY(converter.getY(6902));
-                        } else if (back.getPawnNumber() == 3) {
-                            view.getYp_3().setTranslateX(converter.getX(6903));
-                            view.getYp_3().setTranslateY(converter.getY(6903));
-                        } else if (back.getPawnNumber() == 4) {
-                            view.getYp_4().setTranslateX(converter.getX(6904));
-                            view.getYp_4().setTranslateY(converter.getY(6904));
+                        if (!back.getOnLandingstrip()){
+                            if (back.getPawnNumber() == 1){
+                                view.getYp_1().setTranslateX(converter.getX(6901));
+                                view.getYp_1().setTranslateY(converter.getY(6901));
+                            } else if (back.getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(6902));
+                                view.getYp_2().setTranslateY(converter.getY(6902));
+                            } else if (back.getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(6903));
+                                view.getYp_3().setTranslateY(converter.getY(6903));
+                            } else if (back.getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(6904));
+                                view.getYp_4().setTranslateY(converter.getY(6904));
+                            }
+                        } else {
+                            if (back.getPawnNumber() == 1){
+                                view.getYp_1().setTranslateX(converter.getX(73));
+                                view.getYp_1().setTranslateY(converter.getY(73));
+                            } else if (back.getPawnNumber() == 2) {
+                                view.getYp_2().setTranslateX(converter.getX(73));
+                                view.getYp_2().setTranslateY(converter.getY(73));
+                            } else if (back.getPawnNumber() == 3) {
+                                view.getYp_3().setTranslateX(converter.getX(73));
+                                view.getYp_3().setTranslateY(converter.getY(73));
+                            } else if (back.getPawnNumber() == 4) {
+                                view.getYp_4().setTranslateX(converter.getX(73));
+                                view.getYp_4().setTranslateY(converter.getY(73));
+                            }
                         }
+
                         view.getFinish1().setVisible(true);
                         return;
                     }
@@ -136,21 +153,38 @@ public class GamePresenter {
                 gameSession.roll();
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
-                    if (gameSession.getKilledPawn() != null){
+                    if (gameSession.getLastMovedPawn() != null){
                         Pawn back = gameSession.lastBackToNest();
-                        if (back.getPawnNumber() == 1){
-                            view.getBp_1().setTranslateX(converter.getX(7001));
-                            view.getBp_1().setTranslateY(converter.getY(7001));
-                        } else if (back.getPawnNumber() == 2) {
-                            view.getBp_2().setTranslateX(converter.getX(7002));
-                            view.getBp_2().setTranslateY(converter.getY(7002));
-                        } else if (back.getPawnNumber() == 3) {
-                            view.getBp_3().setTranslateX(converter.getX(7003));
-                            view.getBp_3().setTranslateY(converter.getY(7003));
-                        } else if (back.getPawnNumber() == 4) {
-                            view.getBp_4().setTranslateX(converter.getX(7004));
-                            view.getBp_4().setTranslateY(converter.getY(7004));
+                        if (!back.getOnLandingstrip()){
+                            if (back.getPawnNumber() == 1){
+                                view.getBp_1().setTranslateX(converter.getX(7001));
+                                view.getBp_1().setTranslateY(converter.getY(7001));
+                            } else if (back.getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(7002));
+                                view.getBp_2().setTranslateY(converter.getY(7002));
+                            } else if (back.getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(7003));
+                                view.getBp_3().setTranslateY(converter.getY(7003));
+                            } else if (back.getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(7004));
+                                view.getBp_4().setTranslateY(converter.getY(7004));
+                            }
+                        } else {
+                            if (back.getPawnNumber() == 1){
+                                view.getBp_1().setTranslateX(converter.getX(81));
+                                view.getBp_1().setTranslateY(converter.getY(81));
+                            } else if (back.getPawnNumber() == 2) {
+                                view.getBp_2().setTranslateX(converter.getX(81));
+                                view.getBp_2().setTranslateY(converter.getY(81));
+                            } else if (back.getPawnNumber() == 3) {
+                                view.getBp_3().setTranslateX(converter.getX(81));
+                                view.getBp_3().setTranslateY(converter.getY(81));
+                            } else if (back.getPawnNumber() == 4) {
+                                view.getBp_4().setTranslateX(converter.getX(81));
+                                view.getBp_4().setTranslateY(converter.getY(81));
+                            }
                         }
+
                         view.getFinish2().setVisible(true);
                         return;
                     }
@@ -226,21 +260,38 @@ public class GamePresenter {
                 gameSession.roll();
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
-                    if (gameSession.getKilledPawn() != null){
+                    if (gameSession.getLastMovedPawn() != null){
                     Pawn back = gameSession.lastBackToNest();
-                        if (back.getPawnNumber() == 1){
-                            view.getRp_1().setTranslateX(converter.getX(7101));
-                            view.getRp_1().setTranslateY(converter.getY(7101));
-                        } else if (back.getPawnNumber() == 2) {
-                            view.getRp_2().setTranslateX(converter.getX(7102));
-                            view.getRp_2().setTranslateY(converter.getY(7102));
-                        } else if (back.getPawnNumber() == 3) {
-                            view.getRp_3().setTranslateX(converter.getX(7103));
-                            view.getRp_3().setTranslateY(converter.getY(7103));
-                        } else if (back.getPawnNumber() == 4) {
-                            view.getRp_4().setTranslateX(converter.getX(7104));
-                            view.getRp_4().setTranslateY(converter.getY(7104));
+                        if (!back.getOnLandingstrip()){
+                            if (back.getPawnNumber() == 1){
+                                view.getRp_1().setTranslateX(converter.getX(7101));
+                                view.getRp_1().setTranslateY(converter.getY(7101));
+                            } else if (back.getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(7102));
+                                view.getRp_2().setTranslateY(converter.getY(7102));
+                            } else if (back.getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(7103));
+                                view.getRp_3().setTranslateY(converter.getY(7103));
+                            } else if (back.getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(7104));
+                                view.getRp_4().setTranslateY(converter.getY(7104));
+                            }
+                        } else {
+                            if (back.getPawnNumber() == 1){
+                                view.getRp_1().setTranslateX(converter.getX(89));
+                                view.getRp_1().setTranslateY(converter.getY(89));
+                            } else if (back.getPawnNumber() == 2) {
+                                view.getRp_2().setTranslateX(converter.getX(89));
+                                view.getRp_2().setTranslateY(converter.getY(89));
+                            } else if (back.getPawnNumber() == 3) {
+                                view.getRp_3().setTranslateX(converter.getX(89));
+                                view.getRp_3().setTranslateY(converter.getY(89));
+                            } else if (back.getPawnNumber() == 4) {
+                                view.getRp_4().setTranslateX(converter.getX(89));
+                                view.getRp_4().setTranslateY(converter.getY(89));
+                            }
                         }
+
                         view.getFinish3().setVisible(true);
                         return;
                     }
@@ -316,20 +367,36 @@ public class GamePresenter {
                 gameSession.roll();
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
-                    if (gameSession.getKilledPawn() != null){
+                    if (gameSession.getLastMovedPawn() != null){
                         Pawn back = gameSession.lastBackToNest();
-                        if (back.getPawnNumber() == 1){
-                            view.getGp_1().setTranslateX(converter.getX(7201));
-                            view.getGp_1().setTranslateY(converter.getY(7201));
-                        } else if (back.getPawnNumber() == 2) {
-                            view.getGp_2().setTranslateX(converter.getX(7202));
-                            view.getGp_2().setTranslateY(converter.getY(7202));
-                        } else if (back.getPawnNumber() == 3) {
-                            view.getGp_3().setTranslateX(converter.getX(7203));
-                            view.getGp_3().setTranslateY(converter.getY(7203));
-                        } else if (back.getPawnNumber() == 4) {
-                            view.getGp_4().setTranslateX(converter.getX(7204));
-                            view.getGp_4().setTranslateY(converter.getY(7204));
+                        if (!back.getOnLandingstrip()){
+                            if (back.getPawnNumber() == 1){
+                                view.getGp_1().setTranslateX(converter.getX(7201));
+                                view.getGp_1().setTranslateY(converter.getY(7201));
+                            } else if (back.getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(7202));
+                                view.getGp_2().setTranslateY(converter.getY(7202));
+                            } else if (back.getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(7203));
+                                view.getGp_3().setTranslateY(converter.getY(7203));
+                            } else if (back.getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(7204));
+                                view.getGp_4().setTranslateY(converter.getY(7204));
+                            }
+                        } else {
+                            if (back.getPawnNumber() == 1){
+                                view.getGp_1().setTranslateX(converter.getX(97));
+                                view.getGp_1().setTranslateY(converter.getY(97));
+                            } else if (back.getPawnNumber() == 2) {
+                                view.getGp_2().setTranslateX(converter.getX(97));
+                                view.getGp_2().setTranslateY(converter.getY(97));
+                            } else if (back.getPawnNumber() == 3) {
+                                view.getGp_3().setTranslateX(converter.getX(97));
+                                view.getGp_3().setTranslateY(converter.getY(97));
+                            } else if (back.getPawnNumber() == 4) {
+                                view.getGp_4().setTranslateX(converter.getX(97));
+                                view.getGp_4().setTranslateY(converter.getY(97));
+                            }
                         }
                         view.getFinish4().setVisible(true);
                         return;

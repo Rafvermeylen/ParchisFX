@@ -578,7 +578,19 @@ public class Game {
         return pawns;
     }
     public Pawn lastBackToNest() {
-        lastMovedPawn.toNest(board.board.get(lastMovedPawn.owner.getNestPosition()));
+        if (!lastMovedPawn.getOnLandingstrip()){
+            lastMovedPawn.toNest(board.board.get(lastMovedPawn.owner.getNestPosition()));
+        } else {
+            if (lastMovedPawn.owner.getColor().equals(Colors.YELLOW)){
+                lastMovedPawn.owner.moveByTile(lastMovedPawn, board.board.get(73));
+            } else if (lastMovedPawn.owner.getColor().equals(Colors.BLUE)){
+                lastMovedPawn.owner.moveByTile(lastMovedPawn, board.board.get(81));
+            }else if (lastMovedPawn.owner.getColor().equals(Colors.RED)){
+                lastMovedPawn.owner.moveByTile(lastMovedPawn, board.board.get(89));
+            }else if (lastMovedPawn.owner.getColor().equals(Colors.GREEN)){
+                lastMovedPawn.owner.moveByTile(lastMovedPawn, board.board.get(97));
+            }
+        }
         return lastMovedPawn;
     }
 
@@ -586,4 +598,7 @@ public class Game {
         return killedPawn;
     }
 
+    public Pawn getLastMovedPawn() {
+        return lastMovedPawn;
+    }
 }
