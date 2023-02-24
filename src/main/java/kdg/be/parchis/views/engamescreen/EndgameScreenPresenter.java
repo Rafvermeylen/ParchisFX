@@ -39,10 +39,12 @@ public class EndgameScreenPresenter {
         });
     }
     private void updateView() {
-        view.getScoreWinner().setText("Well played, " + gameSession.getWinner().getName() + "!\nYour score was: " + gameSession.getWinner().getScore());
+        if (gameSession.getWinner() == null){
+            view.getScoreWinner().setText("Aww, you didn't win. Better luck next time!");
+        } else {
+            view.getScoreWinner().setText("Well played, " + gameSession.getWinner().getName() + "!\nYour score was: " + gameSession.getWinner().getScore());
+        }
     }
     public void addWindowEventHandlers () {
-// Window event handlers (anon. inner klassen)
-// Koppeling via view.getScene().getWindow()
     }
 }
