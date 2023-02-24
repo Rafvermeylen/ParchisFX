@@ -25,6 +25,7 @@ public class EndgameScreenPresenter {
             public void handle(ActionEvent event) {
                 try {
                     MainMenuView menuView = new MainMenuView();
+                    MainMenuPresenter presenter = new MainMenuPresenter(menuView);
                     view.getScene().setRoot(menuView);
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
