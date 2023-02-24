@@ -13,7 +13,11 @@ public class Leaderboards {
     private static List<Score> scores;
 
     public static void addScore(Score score){
+        if (scores == null){
+            read();
+        }
         scores.add(score);
+        store();
     }
 
     public static void read(){
@@ -39,7 +43,7 @@ public class Leaderboards {
 
     public static void store(){
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(Paths.get("src\\be\\kdg\\Parchis\\Data\\scores.csv").toFile()))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(Paths.get("src\\main\\java\\kdg\\be\\parchis\\data\\scores.csv").toFile()))) {
 
             writer.println("\"naam\", \"score\"");
 

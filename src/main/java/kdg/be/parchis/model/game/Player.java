@@ -71,8 +71,6 @@ public class Player {
         for (Pawn p : pawns) {
             if (!p.isInGame()) {
                 p.leaveNest(startTile);
-                System.out.println("really did leave nest");
-                System.out.println("move pawn " + p.getPawnNumber());
                 return p;
             }
         }

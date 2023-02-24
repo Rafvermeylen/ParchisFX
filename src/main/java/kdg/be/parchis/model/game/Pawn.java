@@ -110,6 +110,10 @@ public class Pawn {
         return true;
     }
 
+    public void setOnLandingstrip(boolean onLandingstrip) {
+        this.onLandingstrip = onLandingstrip;
+    }
+
     @Override
     public String toString() {
         return "Pawn is on tile " + position;

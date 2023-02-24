@@ -17,7 +17,7 @@ public class Game {
 
     public Game(List<Player> players) {
         turn = 1;
-        this.players =players;
+        this.players = players;
         board = new Board();
         winner = null;
         indexTurn = 0;
@@ -27,7 +27,6 @@ public class Game {
 
     // Check where players will start
     public void startSetup() {
-        //ui.nameSetup(players);
         players.get(0).setPawns();
         players.get(1).setPawns();
         players.get(2).setPawns();
@@ -45,9 +44,9 @@ public class Game {
             boolean endTurn = false;
             Pawn lastMoved = null;
 
-            if (s.getIsFinished()){
+            if (s.getIsFinished()) {
                 continue;
-            } else{
+            } else {
                 //s.ui.printTurn(s.getName());
                 amountOfThrows = 0;
             }
@@ -57,7 +56,7 @@ public class Game {
                 if (!s.getIsFinished()) {
 
                     // Die is thrown and 1 is added to variable 'amountOfThrows'.
-                    if (s instanceof ai_Player){
+                    if (s instanceof ai_Player) {
                         thrown = ((ai_Player) s).throwDie();
                     } else {
                         Die.throwDie();
@@ -196,7 +195,7 @@ public class Game {
                     }
 
                     if (thrown == 6 || thrown == 7) {
-                        if (!(s instanceof ai_Player)){
+                        if (!(s instanceof ai_Player)) {
                             //ui.throwAgain();
                         }
                     } else {
@@ -211,10 +210,10 @@ public class Game {
             if (s.getIsFinished() && winner == null && !(s instanceof ai_Player)) {
                 winner = new Score(s.getName(), turn);
                 //ui.printPlayerWon(s);
-            } else if (s.getIsFinished() && winner != null){
+            } else if (s.getIsFinished() && winner != null) {
                 //ui.printPlayerFinished(s);
             }
-            if (!(s instanceof ai_Player)){
+            if (!(s instanceof ai_Player)) {
                 //ui.endTurn();
             }
         }
@@ -225,15 +224,54 @@ public class Game {
 
     public boolean hasGameEnded() {
         for (Player s : players) {
-
-            if (!s.getIsFinished() && !(s instanceof ai_Player)) {
-                return false;
+            s.checkIfFinished();
+            if (s.getIsFinished()) {
+                if (!(s instanceof ai_Player)) {
+                    winner = new Score(s.getName(), turn);
+                }
+                return true;
             }
-
         }
-        //ui.printEndGame(turn, winner);
-        return true;
+        return false;
     }
+
+    public void jump10(Pawn chosenPawn) {
+        int value = chosenPawn.owner.moveByTile(chosenPawn, board.board.get(chosenPawn.getPosition().getNr() + 10));
+        if (value > 0) {
+            chosenPawn.move(board.board.get(value));
+        } else if (value < 0) {
+            chosenPawn.move(board.board.get(chosenPawn.getPosition().getNr() + value + value));
+        }
+        if (chosenPawn.owner.getColor().equals(Colors.BLUE) && chosenPawn.getPosition().getNr() < 81 && chosenPawn.getPosition().getNr() > 17) {
+            switch (chosenPawn.getPosition().getNr()) {
+                case 80 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(17));
+                case 79 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(16));
+            }
+        } else if (chosenPawn.owner.getColor().equals(Colors.RED) && chosenPawn.getPosition().getNr() < 89 && chosenPawn.getPosition().getNr() > 34) {
+            switch (chosenPawn.getPosition().getNr()) {
+                case 88 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(34));
+                case 87 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(33));
+            }
+        } else if (chosenPawn.owner.getColor().equals(Colors.GREEN) && chosenPawn.getPosition().getNr() < 97 && chosenPawn.getPosition().getNr() > 51) {
+            switch (chosenPawn.getPosition().getNr()) {
+                case 96 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(51));
+                case 95 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(50));
+            }
+        } else if (chosenPawn.owner.getColor().equals(Colors.YELLOW) && chosenPawn.getPosition().getNr() < 73 && chosenPawn.getPosition().getNr() > 68) {
+            switch (chosenPawn.getPosition().getNr()) {
+                case 72 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(68));
+                case 71 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(67));
+            }
+        }
+        if (chosenPawn.getPosition().getNr() < 69){
+            chosenPawn.setOnLandingstrip(false);
+        }
+        checkKill(chosenPawn);
+        if (amountThrows == 2) {
+            lastMovedPawn = chosenPawn;
+        }
+    }
+
 
     public void checkKill(Pawn moved) {
         boolean isKilled = false;
@@ -256,9 +294,13 @@ public class Game {
                         moved.owner.moveByTile(moved, board.board.get(moved.getPosition().getNr() + value + value));
                     }
 
+                    System.out.println("Pawn is on : " + moved.getPosition().getNr() + " before correction.");
+
                     //Make sure that if pawn goes on the landingstrip and off again, it won't go on another landingstri
                     if (moved.owner.getColor().equals(Colors.BLUE) && moved.getPosition().getNr() < 81 && moved.getPosition().getNr() > 17) {
                         switch (moved.getPosition().getNr()) {
+                            case 18 -> moved.owner.moveByTile(moved, board.board.get(81));
+                            case 19 -> moved.owner.moveByTile(moved, board.board.get(82));
                             case 80 -> moved.owner.moveByTile(moved, board.board.get(17));
                             case 79 -> moved.owner.moveByTile(moved, board.board.get(16));
                             case 78 -> moved.owner.moveByTile(moved, board.board.get(15));
@@ -376,6 +418,10 @@ public class Game {
                         }
                     }
                 }
+                System.out.println("Pawn is on : " + moved.getPosition().getNr() + " after correction.");
+                if (moved.getPosition().getNr() < 69) {
+                    moved.setOnLandingstrip(false);
+                }
                 checkKill(moved);
             }
         }
@@ -392,22 +438,18 @@ public class Game {
         }
     }
 
-    public void endTurn(){
+    public void endTurn() {
         indexTurn++;
-        if (indexTurn == 4){
-            indexTurn=0;
+        if (indexTurn == 4) {
+            indexTurn = 0;
             turn++;
         }
         amountThrows = 0;
         lastMovedPawn = null;
         killedPawn = null;
-        while (players.get(indexTurn).getIsFinished()){
+        while (players.get(indexTurn).getIsFinished()) {
             indexTurn++;
         }
-    }
-
-    public void movePawn(){
-
     }
 
     public Score getWinner() {
@@ -418,104 +460,124 @@ public class Game {
         return players;
     }
 
-    public void roll(){
+    public void roll() {
         Die.throwDie();
         amountThrows++;
     }
+
     public int getIndexTurn() {
         return indexTurn;
     }
+
     public int getAmountThrows() {
         return amountThrows;
     }
-    public Player getYellowPlayer(){
-        for (Player p : players){
-            if (p.getColor().equals(Colors.YELLOW)){
+
+    public Player getYellowPlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Colors.YELLOW)) {
                 return p;
             }
         }
         return null;
     }
-    public Player getBluePlayer(){
-        for (Player p : players){
-            if (p.getColor().equals(Colors.BLUE)){
+
+    public Player getBluePlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Colors.BLUE)) {
                 return p;
             }
         }
         return null;
     }
-    public Player getRedPlayer(){
-        for (Player p : players){
-            if (p.getColor().equals(Colors.RED)){
+
+    public Player getRedPlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Colors.RED)) {
                 return p;
             }
         }
         return null;
     }
-    public Player getGreenPlayer(){
-        for (Player p : players){
-            if (p.getColor().equals(Colors.GREEN)){
+
+    public Player getGreenPlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Colors.GREEN)) {
                 return p;
             }
         }
         return null;
     }
+
     public int getTurn() {
         return turn;
     }
-    public boolean canPlayerMove(Player p){
+
+    public boolean canPlayerMove(Player p) {
         return p.canMove(board, Die.getThrown());
     }
-    public Pawn yellowLeaveNest(){
+
+    public Pawn yellowLeaveNest() {
         Pawn left = getYellowPlayer().firstLeavesNest(board.board.get(getYellowPlayer().getStartPosition()));
         checkNestKill(left);
         return left;
     }
-    public Pawn blueLeaveNest(){
+
+    public Pawn blueLeaveNest() {
         Pawn left = getBluePlayer().firstLeavesNest(board.board.get(getBluePlayer().getStartPosition()));
         checkNestKill(left);
         return left;
     }
-    public Pawn redLeaveNest(){
+
+    public Pawn redLeaveNest() {
         Pawn left = getRedPlayer().firstLeavesNest(board.board.get(getRedPlayer().getStartPosition()));
         checkNestKill(left);
         return left;
     }
-    public Pawn greenLeaveNest(){
+
+    public Pawn greenLeaveNest() {
         Pawn left = getGreenPlayer().firstLeavesNest(board.board.get(getGreenPlayer().getStartPosition()));
         checkNestKill(left);
         return left;
     }
-    public void movePawn(Player p, Pawn pawn){
+
+    public void movePawn(Player p, Pawn pawn) {
         int value = p.moveByTile(pawn, board.board.get(pawn.getPosition().getNr() + Die.getThrown()));
         if (value > 0) {
             p.moveByTile(pawn, board.board.get(value));
         } else if (value < 0) {
             p.moveByTile(pawn, board.board.get(pawn.getPosition().getNr() + value + value));
         }
-        System.out.println("pawn " + pawn.getPawnNumber() + "moved to tile " + pawn.getPosition().getNr());
         checkKill(pawn);
-        if (amountThrows == 2){
+        if (amountThrows == 2) {
             lastMovedPawn = pawn;
         }
-        checkIfPlayerFinished(p);
     }
 
-    public boolean isStartOK(Player p){
+    public boolean isStartOK(Player p) {
         return !board.board.get(p.getStartPosition()).IsBarrier();
     }
 
-    public List<Pawn> getMoveablePawns(Player p){
+    public List<Pawn> getMoveablePawns(Player p) {
         List<Pawn> pawns = new ArrayList<>();
-        for (Pawn pwn : p.pawns){
-            if (pwn.isCanMove(board, Die.getThrown())){
+        for (Pawn pwn : p.pawns) {
+            if (pwn.isCanMove(board, Die.getThrown())) {
                 pawns.add(pwn);
             }
         }
         return pawns;
     }
 
-    public Pawn lastBackToNest(){
+    public List<Pawn> getBarrierPawns(Player p){
+        List<Pawn> pawns = new ArrayList<>();
+        for (Pawn pwn : p.pawns) {
+            if (pwn.getPosition().IsBarrier()) {
+                pawns.add(pwn);
+            }
+        }
+        return pawns;
+    }
+    public Pawn lastBackToNest() {
         lastMovedPawn.toNest(board.board.get(lastMovedPawn.owner.getNestPosition()));
         return lastMovedPawn;
     }
@@ -524,15 +586,4 @@ public class Game {
         return killedPawn;
     }
 
-    public void checkIfPlayerFinished(Player p){
-        int amountFinished=0;
-        for (Pawn pwn : p.pawns){
-            if (pwn.isFinished()){
-                amountFinished++;
-            }
-        }
-        if (amountFinished ==4 ){
-            p.finish();
-        }
-    }
 }

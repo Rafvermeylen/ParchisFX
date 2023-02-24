@@ -7,7 +7,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import kdg.be.parchis.model.game.*;
+import kdg.be.parchis.model.menu.Leaderboards;
 import kdg.be.parchis.model.musicLogic.SoundClass;
+import kdg.be.parchis.views.engamescreen.EndgameScreenPresenter;
+import kdg.be.parchis.views.engamescreen.EndgameScreenView;
 
 import java.util.List;
 
@@ -64,7 +67,7 @@ public class GamePresenter {
 
                 view.getDie1().setVisible(true);
                 view.getDie1().setImage(Die.getDiceFoto().getImage());
-                if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() != 5) {
+                if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && !gameSession.getYellowPlayer().getHasBarrier() && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
                     if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll1().setVisible(true);
@@ -75,10 +78,7 @@ public class GamePresenter {
                         && gameSession.isStartOK(gameSession.getYellowPlayer()) && !gameSession.getYellowPlayer().isNestEmpty()) {
                     view.getNestGlow().setImage(view.getGlowNestYellow());
                     view.getNestGlow().setVisible(true);
-                } else if (gameSession.canPlayerMove(gameSession.getYellowPlayer()) && Die.getThrown() != 5) {
-                    //move pawn automatically if you didn't throw a 5
-                    //still needs selection incase you can choose which pawn to move.
-                    //...
+                } else if (gameSession.canPlayerMove(gameSession.getYellowPlayer()) && !gameSession.getYellowPlayer().getHasBarrier() && Die.getThrown() != 5) {
                     List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
                     for (Pawn p : moveable) {
                         if (p.getPawnNumber() == 1) {
@@ -91,7 +91,20 @@ public class GamePresenter {
                             view.getYp_4().setImage(view.getYellowPawnGlow());
                         }
                     }
-                } else {
+                } else if (gameSession.getYellowPlayer().getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)){
+                    List<Pawn> moveable = gameSession.getBarrierPawns(gameSession.getYellowPlayer());
+                    for (Pawn p : moveable) {
+                        if (p.getPawnNumber() == 1) {
+                            view.getYp_1().setImage(view.getYellowPawnGlow());
+                        } else if (p.getPawnNumber() == 2) {
+                            view.getYp_2().setImage(view.getYellowPawnGlow());
+                        } else if (p.getPawnNumber() == 3) {
+                            view.getYp_3().setImage(view.getYellowPawnGlow());
+                        } else if (p.getPawnNumber() == 4) {
+                            view.getYp_4().setImage(view.getYellowPawnGlow());
+                        }
+                    }
+                }else {
                     if (!gameSession.getYellowPlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getYellowPlayer())) {
                         view.getNestGlow().setImage(view.getGlowNestYellow());
                         view.getNestGlow().setVisible(true);
@@ -148,7 +161,7 @@ public class GamePresenter {
                 }
                 view.getDie2().setVisible(true);
                 view.getDie2().setImage(Die.getDiceFoto().getImage());
-                if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() != 5) {
+                if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && !gameSession.getBluePlayer().getHasBarrier() && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
                     if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll2().setVisible(true);
@@ -156,11 +169,24 @@ public class GamePresenter {
                         view.getFinish2().setVisible(true);
                     }
                 } else if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() == 5
-                        && gameSession.isStartOK(gameSession.getBluePlayer()) && !gameSession.getYellowPlayer().isNestEmpty()) {
+                        && gameSession.isStartOK(gameSession.getBluePlayer()) && !gameSession.getBluePlayer().isNestEmpty()) {
                     view.getNestGlow().setImage(view.getGlowNestBlue());
                     view.getNestGlow().setVisible(true);
-                } else if (gameSession.canPlayerMove(gameSession.getBluePlayer()) && Die.getThrown() != 5) {
+                } else if (gameSession.canPlayerMove(gameSession.getBluePlayer()) && !gameSession.getBluePlayer().getHasBarrier() && Die.getThrown() != 5) {
                     List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
+                    for (Pawn p : moveable) {
+                        if (p.getPawnNumber() == 1) {
+                            view.getBp_1().setImage(view.getBluePawnGlow());
+                        } else if (p.getPawnNumber() == 2) {
+                            view.getBp_2().setImage(view.getBluePawnGlow());
+                        } else if (p.getPawnNumber() == 3) {
+                            view.getBp_3().setImage(view.getBluePawnGlow());
+                        } else if (p.getPawnNumber() == 4) {
+                            view.getBp_4().setImage(view.getBluePawnGlow());
+                        }
+                    }
+                } else if (gameSession.getBluePlayer().getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)){
+                    List<Pawn> moveable = gameSession.getBarrierPawns(gameSession.getBluePlayer());
                     for (Pawn p : moveable) {
                         if (p.getPawnNumber() == 1) {
                             view.getBp_1().setImage(view.getBluePawnGlow());
@@ -225,7 +251,7 @@ public class GamePresenter {
                 }
                 view.getDie3().setVisible(true);
                 view.getDie3().setImage(Die.getDiceFoto().getImage());
-                if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() != 5) {
+                if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && !gameSession.getRedPlayer().getHasBarrier() && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
                     if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll3().setVisible(true);
@@ -233,11 +259,24 @@ public class GamePresenter {
                         view.getFinish3().setVisible(true);
                     }
                 } else if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() == 5
-                        && gameSession.isStartOK(gameSession.getRedPlayer()) && !gameSession.getYellowPlayer().isNestEmpty()) {
+                        && gameSession.isStartOK(gameSession.getRedPlayer()) && !gameSession.getRedPlayer().isNestEmpty()) {
                     view.getNestGlow().setImage(view.getGlowNestRed());
                     view.getNestGlow().setVisible(true);
-                } else if (gameSession.canPlayerMove(gameSession.getRedPlayer()) && Die.getThrown() != 5) {
+                } else if (gameSession.canPlayerMove(gameSession.getRedPlayer()) && !gameSession.getRedPlayer().getHasBarrier() && Die.getThrown() != 5) {
                     List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
+                    for (Pawn p : moveable) {
+                        if (p.getPawnNumber() == 1) {
+                            view.getRp_1().setImage(view.getRedPawnGlow());
+                        } else if (p.getPawnNumber() == 2) {
+                            view.getRp_2().setImage(view.getRedPawnGlow());
+                        } else if (p.getPawnNumber() == 3) {
+                            view.getRp_3().setImage(view.getRedPawnGlow());
+                        } else if (p.getPawnNumber() == 4) {
+                            view.getRp_4().setImage(view.getRedPawnGlow());
+                        }
+                    }
+                } else if (gameSession.getRedPlayer().getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)){
+                    List<Pawn> moveable = gameSession.getBarrierPawns(gameSession.getRedPlayer());
                     for (Pawn p : moveable) {
                         if (p.getPawnNumber() == 1) {
                             view.getRp_1().setImage(view.getRedPawnGlow());
@@ -302,7 +341,7 @@ public class GamePresenter {
                 }
                 view.getDie4().setVisible(true);
                 view.getDie4().setImage(Die.getDiceFoto().getImage());
-                if (!gameSession.canPlayerMove(gameSession.getGreenPlayer()) && Die.getThrown() != 5) {
+                if (!gameSession.canPlayerMove(gameSession.getGreenPlayer()) && !gameSession.getGreenPlayer().getHasBarrier() && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
                     if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll4().setVisible(true);
@@ -314,8 +353,21 @@ public class GamePresenter {
                         && !gameSession.getGreenPlayer().isNestEmpty()) {
                     view.getNestGlow().setImage(view.getGlowNestGreen());
                     view.getNestGlow().setVisible(true);
-                } else if (gameSession.canPlayerMove(gameSession.getGreenPlayer()) && Die.getThrown() != 5) {
+                } else if (gameSession.canPlayerMove(gameSession.getGreenPlayer()) && !gameSession.getGreenPlayer().getHasBarrier() && Die.getThrown() != 5) {
                     List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
+                    for (Pawn p : moveable) {
+                        if (p.getPawnNumber() == 1) {
+                            view.getGp_1().setImage(view.getGreenPawnGlow());
+                        } else if (p.getPawnNumber() == 2) {
+                            view.getGp_2().setImage(view.getGreenPawnGlow());
+                        } else if (p.getPawnNumber() == 3) {
+                            view.getGp_3().setImage(view.getGreenPawnGlow());
+                        } else if (p.getPawnNumber() == 4) {
+                            view.getGp_4().setImage(view.getGreenPawnGlow());
+                        }
+                    }
+                } else if (gameSession.getGreenPlayer().getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)){
+                    List<Pawn> moveable = gameSession.getBarrierPawns(gameSession.getGreenPlayer());
                     for (Pawn p : moveable) {
                         if (p.getPawnNumber() == 1) {
                             view.getGp_1().setImage(view.getGreenPawnGlow());
@@ -365,6 +417,15 @@ public class GamePresenter {
                 } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.GREEN)) {
                     view.getRoll4().setVisible(true);
                 }
+
+                if (gameSession.hasGameEnded()){
+                    if (gameSession.getWinner() != null){
+                        Leaderboards.addScore(gameSession.getWinner());
+                    }
+                    EndgameScreenView endgameScreenView = new EndgameScreenView();
+                    EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
+                    view.getScene().setRoot(endgameScreenView);
+                }
             }
         });
         view.getFinish2().setOnAction(new EventHandler<ActionEvent>() {
@@ -383,6 +444,14 @@ public class GamePresenter {
                     view.getRoll3().setVisible(true);
                 } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.GREEN)) {
                     view.getRoll4().setVisible(true);
+                }
+                if (gameSession.hasGameEnded()){
+                    if (gameSession.getWinner() != null){
+                        Leaderboards.addScore(gameSession.getWinner());
+                    }
+                    EndgameScreenView endgameScreenView = new EndgameScreenView();
+                    EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
+                    view.getScene().setRoot(endgameScreenView);
                 }
             }
         });
@@ -403,6 +472,14 @@ public class GamePresenter {
                 } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.GREEN)) {
                     view.getRoll4().setVisible(true);
                 }
+                if (gameSession.hasGameEnded()){
+                    if (gameSession.getWinner() != null){
+                        Leaderboards.addScore(gameSession.getWinner());
+                    }
+                    EndgameScreenView endgameScreenView = new EndgameScreenView();
+                    EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
+                    view.getScene().setRoot(endgameScreenView);
+                }
             }
         });
         view.getFinish4().setOnAction(new EventHandler<ActionEvent>() {
@@ -421,6 +498,14 @@ public class GamePresenter {
                     view.getRoll2().setVisible(true);
                 } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.RED)) {
                     view.getRoll3().setVisible(true);
+                }
+                if (gameSession.hasGameEnded()){
+                    if (gameSession.getWinner() != null){
+                        Leaderboards.addScore(gameSession.getWinner());
+                    }
+                    EndgameScreenView endgameScreenView = new EndgameScreenView();
+                    EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
+                    view.getScene().setRoot(endgameScreenView);
                 }
             }
         });
@@ -595,10 +680,14 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_1().getImage().equals(view.getYellowPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(0));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(0));
+                    } else {
+                        gameSession.jump10(gameSession.getYellowPlayer().pawns.get(0));
+                    }
                     view.getYp_1().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
                     view.getYp_1().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
-                    //check for kill
+                    //check for kill and visualize
                     if (gameSession.getKilledPawn() != null){
                         if (gameSession.getKilledPawn().owner.getColor().equals(Colors.BLUE)){
                             if (gameSession.getKilledPawn().getPawnNumber() == 1) {
@@ -655,6 +744,23 @@ public class GamePresenter {
                     view.getYp_3().setImage(view.getYellowPawn());
                     view.getYp_4().setImage(view.getYellowPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getYellowPlayer().pawns.get(0).isFinished()){
+                        view.getFinish1().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getYp_1().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getYp_2().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getYp_3().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getYp_4().setImage(view.getYellowPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -663,7 +769,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_2().getImage().equals(view.getYellowPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(1));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(1));
+                    } else {
+                        gameSession.jump10(gameSession.getYellowPlayer().pawns.get(1));
+                    }
                     view.getYp_2().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
                     view.getYp_2().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
                     //check for kill
@@ -722,6 +832,23 @@ public class GamePresenter {
                     view.getYp_3().setImage(view.getYellowPawn());
                     view.getYp_4().setImage(view.getYellowPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getYellowPlayer().pawns.get(1).isFinished()){
+                        view.getFinish1().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getYp_1().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getYp_2().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getYp_3().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getYp_4().setImage(view.getYellowPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -730,7 +857,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_3().getImage().equals(view.getYellowPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(2));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(2));
+                    } else {
+                        gameSession.jump10(gameSession.getYellowPlayer().pawns.get(2));
+                    }
                     view.getYp_3().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
                     view.getYp_3().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
                     //check for kill
@@ -789,6 +920,23 @@ public class GamePresenter {
                     view.getYp_3().setImage(view.getYellowPawn());
                     view.getYp_4().setImage(view.getYellowPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getYellowPlayer().pawns.get(2).isFinished()){
+                        view.getFinish1().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getYp_1().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getYp_2().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getYp_3().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getYp_4().setImage(view.getYellowPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -797,7 +945,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_4().getImage().equals(view.getYellowPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(3));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(3));
+                    } else {
+                        gameSession.jump10(gameSession.getYellowPlayer().pawns.get(3));
+                    }
                     view.getYp_4().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
                     view.getYp_4().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
                     //check for kill
@@ -856,6 +1008,23 @@ public class GamePresenter {
                     view.getYp_3().setImage(view.getYellowPawn());
                     view.getYp_4().setImage(view.getYellowPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getYellowPlayer().pawns.get(3).isFinished()){
+                        view.getFinish1().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getYp_1().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getYp_2().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getYp_3().setImage(view.getYellowPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getYp_4().setImage(view.getYellowPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -864,7 +1033,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_1().getImage().equals(view.getBluePawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(0));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(0));
+                    } else {
+                        gameSession.jump10(gameSession.getBluePlayer().pawns.get(0));
+                    }
                     view.getBp_1().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
                     view.getBp_1().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
                     //check for kill
@@ -923,6 +1096,23 @@ public class GamePresenter {
                     view.getBp_3().setImage(view.getBluePawn());
                     view.getBp_4().setImage(view.getBluePawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getBluePlayer().pawns.get(0).isFinished()){
+                        view.getFinish2().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getBp_1().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getBp_2().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getBp_3().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getBp_4().setImage(view.getBluePawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -931,7 +1121,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_2().getImage().equals(view.getBluePawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(1));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(1));
+                    } else {
+                        gameSession.jump10(gameSession.getBluePlayer().pawns.get(1));
+                    }
                     view.getBp_2().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
                     view.getBp_2().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
                     //check for kill
@@ -990,6 +1184,23 @@ public class GamePresenter {
                     view.getBp_3().setImage(view.getBluePawn());
                     view.getBp_4().setImage(view.getBluePawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getBluePlayer().pawns.get(1).isFinished()){
+                        view.getFinish2().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getBp_1().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getBp_2().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getBp_3().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getBp_4().setImage(view.getBluePawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -998,7 +1209,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_3().getImage().equals(view.getBluePawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(2));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(2));
+                    } else {
+                        gameSession.jump10(gameSession.getBluePlayer().pawns.get(2));
+                    }
                     view.getBp_3().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
                     view.getBp_3().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
                     //check for kill
@@ -1057,6 +1272,23 @@ public class GamePresenter {
                     view.getBp_3().setImage(view.getBluePawn());
                     view.getBp_4().setImage(view.getBluePawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getBluePlayer().pawns.get(2).isFinished()){
+                        view.getFinish2().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getBp_1().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getBp_2().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getBp_3().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getBp_4().setImage(view.getBluePawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -1065,7 +1297,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_4().getImage().equals(view.getBluePawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(3));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(3));
+                    } else {
+                        gameSession.jump10(gameSession.getBluePlayer().pawns.get(3));
+                    }
                     view.getBp_4().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
                     view.getBp_4().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
                     //check for kill
@@ -1124,6 +1360,23 @@ public class GamePresenter {
                     view.getBp_3().setImage(view.getBluePawn());
                     view.getBp_4().setImage(view.getBluePawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getBluePlayer().pawns.get(3).isFinished()){
+                        view.getFinish2().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getBp_1().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getBp_2().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getBp_3().setImage(view.getBluePawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getBp_4().setImage(view.getBluePawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -1132,7 +1385,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_1().getImage().equals(view.getRedPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(0));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(0));
+                    } else {
+                        gameSession.jump10(gameSession.getRedPlayer().pawns.get(0));
+                    }
                     view.getRp_1().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
                     view.getRp_1().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
                     //check for kill
@@ -1191,6 +1448,23 @@ public class GamePresenter {
                     view.getRp_3().setImage(view.getRedPawn());
                     view.getRp_4().setImage(view.getRedPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getRedPlayer().pawns.get(0).isFinished()){
+                        view.getFinish3().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getRp_1().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getRp_2().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getRp_3().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getRp_4().setImage(view.getRedPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -1199,7 +1473,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_2().getImage().equals(view.getRedPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(1));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(1));
+                    } else {
+                        gameSession.jump10(gameSession.getRedPlayer().pawns.get(1));
+                    }
                     view.getRp_2().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
                     view.getRp_2().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
                     //check for kill
@@ -1258,6 +1536,23 @@ public class GamePresenter {
                     view.getRp_3().setImage(view.getRedPawn());
                     view.getRp_4().setImage(view.getRedPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getRedPlayer().pawns.get(1).isFinished()){
+                        view.getFinish3().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getRp_1().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getRp_2().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getRp_3().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getRp_4().setImage(view.getRedPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -1266,7 +1561,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_3().getImage().equals(view.getRedPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(2));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(2));
+                    } else {
+                        gameSession.jump10(gameSession.getRedPlayer().pawns.get(2));
+                    }
                     view.getRp_3().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
                     view.getRp_3().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
                     //check for kill
@@ -1325,6 +1624,22 @@ public class GamePresenter {
                     view.getRp_3().setImage(view.getRedPawn());
                     view.getRp_4().setImage(view.getRedPawn());
                     view.getNestGlow().setVisible(false);
+                    if (gameSession.getRedPlayer().pawns.get(2).isFinished()){
+                        view.getFinish3().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getRp_1().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getRp_2().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getRp_3().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getRp_4().setImage(view.getRedPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -1333,7 +1648,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_4().getImage().equals(view.getRedPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(3));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(3));
+                    } else {
+                        gameSession.jump10(gameSession.getRedPlayer().pawns.get(3));
+                    }
                     view.getRp_4().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
                     view.getRp_4().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
                     //check for kill
@@ -1392,6 +1711,23 @@ public class GamePresenter {
                     view.getRp_3().setImage(view.getRedPawn());
                     view.getRp_4().setImage(view.getRedPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getRedPlayer().pawns.get(3).isFinished()){
+                        view.getFinish3().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getRp_1().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getRp_2().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getRp_3().setImage(view.getRedPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getRp_4().setImage(view.getRedPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -1400,7 +1736,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_1().getImage().equals(view.getGreenPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(0));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(0));
+                    } else {
+                        gameSession.jump10(gameSession.getGreenPlayer().pawns.get(0));
+                    }
                     view.getGp_1().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
                     view.getGp_1().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
                     //check for kill
@@ -1459,6 +1799,23 @@ public class GamePresenter {
                     view.getGp_3().setImage(view.getGreenPawn());
                     view.getGp_4().setImage(view.getGreenPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getGreenPlayer().pawns.get(0).isFinished()){
+                        view.getFinish4().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getGp_1().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getGp_2().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getGp_3().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getGp_4().setImage(view.getGreenPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -1467,7 +1824,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_2().getImage().equals(view.getGreenPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(1));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(1));
+                    } else {
+                        gameSession.jump10(gameSession.getGreenPlayer().pawns.get(1));
+                    }
                     view.getGp_2().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
                     view.getGp_2().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
                     //check for kill
@@ -1526,6 +1887,23 @@ public class GamePresenter {
                     view.getGp_3().setImage(view.getGreenPawn());
                     view.getGp_4().setImage(view.getGreenPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getGreenPlayer().pawns.get(1).isFinished()){
+                        view.getFinish4().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getGp_1().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getGp_2().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getGp_3().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getGp_4().setImage(view.getGreenPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -1534,7 +1912,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_3().getImage().equals(view.getGreenPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(2));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(2));
+                    } else {
+                        gameSession.jump10(gameSession.getGreenPlayer().pawns.get(2));
+                    }
                     view.getGp_3().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
                     view.getGp_3().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
                     //check for kill
@@ -1593,6 +1975,23 @@ public class GamePresenter {
                     view.getGp_3().setImage(view.getGreenPawn());
                     view.getGp_4().setImage(view.getGreenPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getGreenPlayer().pawns.get(2).isFinished()){
+                        view.getFinish4().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getGp_1().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getGp_2().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getGp_3().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getGp_4().setImage(view.getGreenPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -1601,7 +2000,11 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_4().getImage().equals(view.getGreenPawnGlow())) {
                     SoundClass.playPawnMove();
-                    gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(3));
+                    if (Die.getThrown() != 10){
+                        gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(3));
+                    } else {
+                        gameSession.jump10(gameSession.getGreenPlayer().pawns.get(3));
+                    }
                     view.getGp_4().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
                     view.getGp_4().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
                     //check for kill
@@ -1660,6 +2063,23 @@ public class GamePresenter {
                     view.getGp_3().setImage(view.getGreenPawn());
                     view.getGp_4().setImage(view.getGreenPawn());
                     view.getNestGlow().setVisible(false);
+
+                    if (gameSession.getGreenPlayer().pawns.get(3).isFinished()){
+                        view.getFinish4().setVisible(false);
+                        Die.setTen();
+                        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
+                        for (Pawn p : moveable) {
+                            if (p.getPawnNumber() == 1) {
+                                view.getGp_1().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 2) {
+                                view.getGp_2().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 3) {
+                                view.getGp_3().setImage(view.getGreenPawnGlow());
+                            } else if (p.getPawnNumber() == 4) {
+                                view.getGp_4().setImage(view.getGreenPawnGlow());
+                            }
+                        }
+                    }
                 }
             }
         });

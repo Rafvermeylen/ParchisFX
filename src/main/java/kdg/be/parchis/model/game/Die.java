@@ -89,6 +89,10 @@ public class Die {
         thrown = 7;
     }
 
+    public static void setTen(){
+        thrown = 10;
+    }
+
     public static int getThrown() {
         return thrown;
     }
