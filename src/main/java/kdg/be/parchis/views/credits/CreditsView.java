@@ -35,19 +35,25 @@ public class CreditsView extends BorderPane {
     private void layoutNodes() {
         credits.setText("""
                 Creators:
-                - Rui Daniel Gomes Vieirra
+                - Rui Daniel Gomes Vieira
                 - Raf Vermeylen
                 Game Testers: 
                 - Andreas Baelus
                 - Akino Verschueren
-                - Wietse de Winter"""
+                - Wietse de Winter
+                - Pieter Corstens
+                - Robby Crijns
+                - Jorne Liekens
+                - Niels Haegemans
+                - Joel Chapon
+                - Georgia Spencer"""
         );
-        credits.setFont(Font.font(MONOSPACED, 25));
+        credits.setFont(Font.font(MONOSPACED, 20));
         title.setScaleX(3);
         title.setScaleY(3);
 
 
-        VBox vBox = new VBox(100);
+        VBox vBox = new VBox(50);
         vBox.getChildren().addAll(title, credits, back);
         vBox.setAlignment(Pos.CENTER);
 
