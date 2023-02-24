@@ -122,7 +122,7 @@ public class GamePresenter {
                         }
                     }
                 }else {
-                    if (!gameSession.getYellowPlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getYellowPlayer())) {
+                    if (!gameSession.getYellowPlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getYellowPlayer()) && Die.getThrown() == 5) {
                         view.getNestGlow().setImage(view.getGlowNestYellow());
                         view.getNestGlow().setVisible(true);
                     }
@@ -233,7 +233,7 @@ public class GamePresenter {
                         }
                     }
                 } else {
-                    if (!gameSession.getBluePlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getBluePlayer())) {
+                    if (!gameSession.getBluePlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getBluePlayer()) && Die.getThrown() == 5) {
                         view.getNestGlow().setImage(view.getGlowNestBlue());
                         view.getNestGlow().setVisible(true);
                     }
@@ -340,7 +340,7 @@ public class GamePresenter {
                         }
                     }
                 } else {
-                    if (!gameSession.getRedPlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getRedPlayer())) {
+                    if (!gameSession.getRedPlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getRedPlayer()) && Die.getThrown() == 5) {
                         view.getNestGlow().setImage(view.getGlowNestRed());
                         view.getNestGlow().setVisible(true);
                     }
@@ -447,7 +447,7 @@ public class GamePresenter {
                         }
                     }
                 } else {
-                    if (!gameSession.getGreenPlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getGreenPlayer())) {
+                    if (!gameSession.getGreenPlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getGreenPlayer()) && Die.getThrown() == 5) {
                         view.getNestGlow().setImage(view.getGlowNestGreen());
                         view.getNestGlow().setVisible(true);
                     }

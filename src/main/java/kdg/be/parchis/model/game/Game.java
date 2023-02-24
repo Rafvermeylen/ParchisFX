@@ -571,7 +571,7 @@ public class Game {
     public List<Pawn> getBarrierPawns(Player p){
         List<Pawn> pawns = new ArrayList<>();
         for (Pawn pwn : p.pawns) {
-            if (pwn.getPosition().IsBarrier()) {
+            if (pwn.getPosition() != null && pwn.getPosition().IsBarrier() && pwn.isInGame()) {
                 pawns.add(pwn);
             }
         }
