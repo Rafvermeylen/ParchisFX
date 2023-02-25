@@ -12,7 +12,6 @@ public class Game {
     private int indexTurn;
     private int amountThrows;
     private Pawn lastMovedPawn;
-    private Pawn killedPawn;
 
     public Game(List<Player> players) {
         turn = 0;
@@ -87,13 +86,11 @@ public class Game {
 
     public void checkKill(Pawn moved) {
         boolean isKilled = false;
-        if (!moved.getPosition().getSafe() && moved.getPosition().getStandingPawns().size() >= 2) {
+        if (!moved.getPosition().getSafe() && moved.getPosition().getStandingPawns().size() > 1) {
             for (Pawn p : moved.getPosition().getStandingPawns()) {
                 if (!p.owner.equals(moved.owner)) {
                     p.toNest(board.board.get(p.owner.getNestPosition()));
-                    killedPawn = p;
                     isKilled = true;
-                    break;
                 }
             }
             //Move killer pawn 20 tiles (if possible)
@@ -244,7 +241,6 @@ public class Game {
             for (Pawn p : outNest.getPosition().getStandingPawns()) {
                 if (p.owner != outNest.owner) {
                     p.toNest(board.board.get(p.owner.getNestPosition()));
-                    killedPawn = p;
                 }
             }
         }
@@ -263,7 +259,6 @@ public class Game {
             botActivity = true;
             amountThrows = 0;
             lastMovedPawn = null;
-            killedPawn = null;
             playAiTurn();
             indexTurn++;
             if (indexTurn == 4) {
@@ -273,7 +268,6 @@ public class Game {
         }
         amountThrows = 0;
         lastMovedPawn = null;
-        killedPawn = null;
         return botActivity;
     }
 
@@ -418,10 +412,6 @@ public class Game {
             }
         }
         return lastMovedPawn;
-    }
-
-    public Pawn getKilledPawn() {
-        return killedPawn;
     }
 
     public Pawn getLastMovedPawn() {
