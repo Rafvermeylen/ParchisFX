@@ -167,7 +167,5 @@ public class OrderPresenter {
                 }
             }
         });
-// Window event handlers (anon. inner klassen)
-// Koppeling via view.getScene().getWindow()
     }
 }

@@ -14,7 +14,6 @@ public class Game {
     private Pawn lastMovedPawn;
     private Pawn killedPawn;
 
-
     public Game(List<Player> players) {
         turn = 1;
         this.players = players;
@@ -25,202 +24,12 @@ public class Game {
         startSetup();
     }
 
-    // Check where players will start
     public void startSetup() {
         players.get(0).setPawns();
         players.get(1).setPawns();
         players.get(2).setPawns();
         players.get(3).setPawns();
     }
-
-
-    public void startRound() {
-        //ui.printTurn(turn);
-        int amountOfThrows;
-        int thrown = 0;
-
-        // Check if every player has played.
-        for (Player s : players) {
-            boolean endTurn = false;
-            Pawn lastMoved = null;
-
-            if (s.getIsFinished()) {
-                continue;
-            } else {
-                //s.ui.printTurn(s.getName());
-                amountOfThrows = 0;
-            }
-
-            while (!endTurn) {
-
-                if (!s.getIsFinished()) {
-
-                    // Die is thrown and 1 is added to variable 'amountOfThrows'.
-                    if (s instanceof ai_Player) {
-                        thrown = ((ai_Player) s).throwDie();
-                    } else {
-                        Die.throwDie();
-                        thrown = Die.getThrown();
-                    }
-                    amountOfThrows++;
-
-                    //ui.printThrow(thrown);
-
-                    //If you throw a six 3x in a row
-                    if (amountOfThrows == 3 && thrown == 6 && lastMoved != null && !lastMoved.getOnLandingstrip()) {
-                        lastMoved.toNest(board.board.get(s.getNestPosition()));
-                        //ui.backNestTripleSix(lastMoved);
-                        break;
-                    } else if (amountOfThrows == 3 && thrown == 6 && lastMoved != null) {
-                        if (lastMoved.owner.getColor().equals(Colors.YELLOW)) {
-                            lastMoved.move(board.board.get(73));
-                        } else if (lastMoved.owner.getColor().equals(Colors.BLUE)) {
-                            lastMoved.move(board.board.get(81));
-                        } else if (lastMoved.owner.getColor().equals(Colors.RED)) {
-                            lastMoved.move(board.board.get(89));
-                        } else if (lastMoved.owner.getColor().equals(Colors.GREEN)) {
-                            lastMoved.move(board.board.get(97));
-                        }
-                        //ui.backToStartLandingStrip(lastMoved);
-                        break;
-                    } else if (amountOfThrows == 3 && thrown == 6) {
-                        //ui.tripleSixThrow();
-                        break;
-                    }
-
-                    //Check if we can move a pawn out of the nest
-                    if (thrown == 5 && !s.canMove(board, thrown) && !s.isNestEmpty()) {
-                        s.firstLeavesNest(board.board.get(s.getStartPosition()));
-                        checkNestKill(board.board.get(s.getStartPosition()).getPawnOfPlayer(s));
-                        break;
-                    } else if (thrown == 5 && !s.isNestEmpty() && !(s instanceof ai_Player)) {
-                        /*
-                        if (ui.printChoiceExitNest()) {
-                            s.firstLeavesNest(board.board.get(s.getStartPosition()));
-                            s.printLocationPawns();
-                            checkNestKill(board.board.get(s.getStartPosition()).getPawnOfPlayer(s));
-                            break;
-                        }
-
-                         */
-                    }
-
-                    //move 7 tiles in case you throw a six and there are no pawns in your nest
-                    if (thrown == 6 && s.isNestEmpty()) {
-                        thrown = 7;
-                        //ui.moveSeven();
-                    }
-
-                    //Break barrier, in case there is one, when you throw a six (or seven)
-                    if (s.getHasBarrier()) {
-                        if (thrown == 6) {
-                            for (Pawn p : s.pawns) {
-                                if (p.getPosition().IsBarrier()) {
-                                    p.move(board.board.get(p.getPosition().getNr() + 6));
-                                    break;
-                                }
-                            }
-                        } else if (thrown == 7) {
-                            for (Pawn p : s.pawns) {
-                                if (p.getPosition().IsBarrier()) {
-                                    p.move(board.board.get(p.getPosition().getNr() + 7));
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-
-                    //Move pawn
-                    if (s.canMove(board, thrown)) {
-                        Pawn toMove = s.choosePawn(board, thrown);
-                        if (amountOfThrows == 2) {
-                            lastMoved = toMove;
-                        }
-                        int value = s.moveByTile(toMove, board.board.get(toMove.getPosition().getNr() + thrown));
-                        if (value > 0) {
-                            toMove.move(board.board.get(value));
-                        } else if (value < 0) {
-                            toMove.move(board.board.get(toMove.getPosition().getNr() + value + value));
-                        }
-
-                        //check if moved pawn kills
-                        checkKill(toMove);
-
-
-                        //Choose pawn to move 10 tiles after landing in center with another if possible.
-                        if (toMove.isFinished() && s.canMove(board, thrown)) {
-
-                            Pawn chosenPawn = s.choosePawn(board, thrown);
-                            if (chosenPawn == null) {
-                                //ui.printNoJumpAferWin();
-                            } else {
-                                //ui.printJumpAferWin();
-                                value = s.moveByTile(chosenPawn, board.board.get(chosenPawn.getPosition().getNr() + 10));
-                                if (value > 0) {
-                                    chosenPawn.move(board.board.get(value));
-                                } else if (value < 0) {
-                                    chosenPawn.move(board.board.get(chosenPawn.getPosition().getNr() + value + value));
-                                }
-                                if (chosenPawn.owner.getColor().equals(Colors.BLUE) && chosenPawn.getPosition().getNr() < 81 && chosenPawn.getPosition().getNr() > 17) {
-                                    switch (chosenPawn.getPosition().getNr()) {
-                                        case 80 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(17));
-                                        case 79 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(16));
-                                    }
-                                } else if (chosenPawn.owner.getColor().equals(Colors.RED) && chosenPawn.getPosition().getNr() < 89 && chosenPawn.getPosition().getNr() > 34) {
-                                    switch (chosenPawn.getPosition().getNr()) {
-                                        case 88 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(34));
-                                        case 87 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(33));
-                                    }
-                                } else if (chosenPawn.owner.getColor().equals(Colors.GREEN) && chosenPawn.getPosition().getNr() < 97 && chosenPawn.getPosition().getNr() > 51) {
-                                    switch (chosenPawn.getPosition().getNr()) {
-                                        case 96 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(51));
-                                        case 95 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(50));
-                                    }
-                                } else if (chosenPawn.owner.getColor().equals(Colors.YELLOW) && chosenPawn.getPosition().getNr() < 73 && chosenPawn.getPosition().getNr() > 68) {
-                                    switch (chosenPawn.getPosition().getNr()) {
-                                        case 72 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(68));
-                                        case 71 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(67));
-                                    }
-                                }
-                                checkKill(chosenPawn);
-                            }
-                            if (amountOfThrows == 2) {
-                                lastMoved = chosenPawn;
-                            }
-                        }
-
-                    } else {
-                        //s.ui.printCantMove();
-                    }
-
-                    if (thrown == 6 || thrown == 7) {
-                        if (!(s instanceof ai_Player)) {
-                            //ui.throwAgain();
-                        }
-                    } else {
-                        endTurn = true;
-                        amountOfThrows = 0;
-                    }
-
-                }
-
-            }
-            s.checkIfFinished();
-            if (s.getIsFinished() && winner == null && !(s instanceof ai_Player)) {
-                winner = new Score(s.getName(), turn);
-                //ui.printPlayerWon(s);
-            } else if (s.getIsFinished() && winner != null) {
-                //ui.printPlayerFinished(s);
-            }
-            if (!(s instanceof ai_Player)) {
-                //ui.endTurn();
-            }
-        }
-
-        turn++;
-    }
-
 
     public boolean hasGameEnded() {
         for (Player s : players) {
@@ -271,7 +80,6 @@ public class Game {
             lastMovedPawn = chosenPawn;
         }
     }
-
 
     public void checkKill(Pawn moved) {
         boolean isKilled = false;
@@ -444,12 +252,17 @@ public class Game {
             indexTurn = 0;
             turn++;
         }
+        while (players.get(indexTurn) instanceof ai_Player){
+            playAiTurn();
+            indexTurn++;
+            if (indexTurn == 4) {
+                indexTurn = 0;
+                turn++;
+            }
+        }
         amountThrows = 0;
         lastMovedPawn = null;
         killedPawn = null;
-        while (players.get(indexTurn).getIsFinished()) {
-            indexTurn++;
-        }
     }
 
     public Score getWinner() {
@@ -577,6 +390,7 @@ public class Game {
         }
         return pawns;
     }
+
     public Pawn lastBackToNest() {
         if (!lastMovedPawn.getOnLandingstrip()){
             lastMovedPawn.toNest(board.board.get(lastMovedPawn.owner.getNestPosition()));
@@ -605,4 +419,10 @@ public class Game {
     public Board getBoard() {
         return board;
     }
+
+    public void playAiTurn(){
+        System.out.println(players.get(indexTurn).getName() + " does shit.");
+        //turn logic
+    }
+
 }
