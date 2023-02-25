@@ -337,28 +337,24 @@ public class Game {
         return p.canMove(board, Die.getThrown());
     }
 
-    public Pawn yellowLeaveNest() {
+    public void yellowLeaveNest() {
         Pawn left = getYellowPlayer().firstLeavesNest(board.board.get(getYellowPlayer().getStartPosition()));
         checkNestKill(left);
-        return left;
     }
 
-    public Pawn blueLeaveNest() {
+    public void blueLeaveNest() {
         Pawn left = getBluePlayer().firstLeavesNest(board.board.get(getBluePlayer().getStartPosition()));
         checkNestKill(left);
-        return left;
     }
 
-    public Pawn redLeaveNest() {
+    public void redLeaveNest() {
         Pawn left = getRedPlayer().firstLeavesNest(board.board.get(getRedPlayer().getStartPosition()));
         checkNestKill(left);
-        return left;
     }
 
-    public Pawn greenLeaveNest() {
+    public void greenLeaveNest() {
         Pawn left = getGreenPlayer().firstLeavesNest(board.board.get(getGreenPlayer().getStartPosition()));
         checkNestKill(left);
-        return left;
     }
 
     public void movePawn(Player p, Pawn pawn) {
@@ -427,10 +423,17 @@ public class Game {
         boolean turnEnded = false;
         do {
             roll();
-            if (Die.getThrown() == 6) {
-                System.out.println(players.get(indexTurn) + " threw a six");
+            if (Die.getThrown() == 6 && amountThrows == 3) {
+                if (lastMovedPawn != null){
+                    lastMovedPawn.toNest(board.board.get(players.get(indexTurn).getNestPosition()));
+                } else {
+                    return;
+                }
             }
-            if (Die.getThrown() == 6 && players.get(indexTurn).getHasBarrier()) {
+            if (Die.getThrown() == 6 && players.get(indexTurn).isNestEmpty()){
+                Die.setSeven();
+            }
+            if (players.get(indexTurn).getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)) {
                 movePawn(players.get(indexTurn), players.get(indexTurn).firstBarrierPawn());
             } else if (Die.getThrown() == 5 && !players.get(indexTurn).isNestEmpty() && isStartOK(players.get(indexTurn))) {
                 if (players.get(indexTurn).getColor().equals(Colors.BLUE)) {
@@ -443,10 +446,14 @@ public class Game {
             } else if (Die.getThrown() != 5 && players.get(indexTurn).canMove(board, Die.getThrown())) {
                 movePawn(players.get(indexTurn), players.get(indexTurn).firstMoveablePawn(board));
             }
-            if (Die.getThrown() != 6) {
+            if (lastMovedPawn != null &&lastMovedPawn.isFinished() && players.get(indexTurn).canMove(board, 10)){
+                Die.setTen();
+                jump10(players.get(indexTurn).firstMoveablePawn(board));
+            }
+
+            if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                 turnEnded = true;
             }
         } while (!turnEnded);
-
     }
 }
