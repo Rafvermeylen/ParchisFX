@@ -19,9 +19,10 @@ public class Game {
         this.players = players;
         board = new Board();
         winner = null;
-        indexTurn = 0;
+        indexTurn = 3;
         amountThrows = 0;
         startSetup();
+        endTurn();
     }
 
     public void startSetup() {

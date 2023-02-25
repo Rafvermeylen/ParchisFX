@@ -483,6 +483,8 @@ public class GamePresenter {
                     view.getRoll3().setVisible(true);
                 } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.GREEN)) {
                     view.getRoll4().setVisible(true);
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.YELLOW)) {
+                    view.getRoll1().setVisible(true);
                 }
 
                 if (gameSession.hasGameEnded()){
