@@ -211,6 +211,24 @@ public class Player {
         return pawns;
     }
 
+    public Pawn getKillPawn(Board board){
+        for(Pawn p : pawns){
+            if (p.canKill(board)){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public boolean canKill(Board board){
+        for (Pawn p : pawns){
+            if (p.canKill(board)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

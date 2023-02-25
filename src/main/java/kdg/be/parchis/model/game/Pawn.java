@@ -90,6 +90,20 @@ public class Pawn {
         return onLandingstrip;
     }
 
+    public boolean canKill(Board board){
+        int tileToCheck = position.getNr() + Die.getThrown();
+        if (tileToCheck > 68){
+            tileToCheck-=68;
+        }
+        if (!board.board.get(tileToCheck).isFree() && !board.board.get(tileToCheck).IsBarrier() && !board.board.get(tileToCheck).getSafe()){
+            for (Pawn p : board.board.get(position.getNr() + Die.getThrown()).getStandingPawns()){
+                if (!p.owner.getColor().equals(owner.getColor())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public void Finished() {
         isFinished = true;
