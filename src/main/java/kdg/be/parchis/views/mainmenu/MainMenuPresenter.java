@@ -37,10 +37,6 @@ public class MainMenuPresenter {
     }
 
     private void addEventHandlers() {
-// Koppelt event handlers (anon. inner klassen)
-// aan de controls uit de view.
-// Event handlers: roepen methodes aan uit het
-// model en zorgen voor een update van de view.
         view.getExit().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -133,6 +129,11 @@ public class MainMenuPresenter {
             view.getCheat().setText("Cheats: ON");
         } else {
             view.getCheat().setText("Cheats: OFF");
+        }
+        if (MainMusic.getMediaPlayer().isMute()){
+            view.getMusicPic().setImage(view.getMusicMute());
+        } else {
+            view.getMusicPic().setImage(view.getMusicLoud());
         }
     }
 

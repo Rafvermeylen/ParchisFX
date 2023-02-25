@@ -120,9 +120,10 @@ public class OrderView extends StackPane {
 
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
-        MainMusic.stopMusic();
-        MainMusic.playGameMusic();
-
+        if(!MainMusic.getMediaPlayer().isMute()){
+            MainMusic.stopMusic();
+            MainMusic.playGameMusic();
+        }
     }
 
     public Button getBack() {

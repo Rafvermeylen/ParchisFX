@@ -69,7 +69,11 @@ public class LeaderboardPresenter {
         });
     }
     private void updateView() {
-// Vult de view met data uit model
+        if (MainMusic.getMediaPlayer().isMute()){
+            view.getMusicPic().setImage(view.getMusicMute());
+        } else {
+            view.getMusicPic().setImage(view.getMusicLoud());
+        }
     }
     public void addWindowEventHandlers () {
         view.getScene().setOnKeyPressed(e -> {

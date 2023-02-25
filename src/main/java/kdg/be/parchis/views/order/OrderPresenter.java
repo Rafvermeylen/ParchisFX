@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
 import javafx.stage.Stage;
 import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.game.Game;
@@ -16,10 +14,7 @@ import kdg.be.parchis.views.game.GamePresenter;
 import kdg.be.parchis.views.game.GameView;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-
-import static java.lang.Thread.sleep;
 
 public class OrderPresenter {
     private PlayerSetup setup;
@@ -44,8 +39,10 @@ public class OrderPresenter {
             public void handle(ActionEvent actionEvent) {
                 SoundClass.playClick();
                 view.getScene().setRoot(backView);
-                MainMusic.stopMusic();
-                MainMusic.playMenuMusic();
+                if(!MainMusic.getMediaPlayer().isMute()){
+                    MainMusic.stopMusic();
+                    MainMusic.playMenuMusic();
+                }
             }
         });
         view.getRoll1().setOnAction(new EventHandler<ActionEvent>() {
@@ -61,7 +58,6 @@ public class OrderPresenter {
                 view.getBack().setVisible(false);
                 if (setup.didPlayersRoll()){
                     setup.order();
-                    setup.showOrder();
                     view.getStart().setVisible(true);
                 }
             }
@@ -79,7 +75,6 @@ public class OrderPresenter {
                 view.getBack().setVisible(false);
                 if (setup.didPlayersRoll()){
                     setup.order();
-                    setup.showOrder();
                     view.getStart().setVisible(true);
                 }
             }
@@ -97,7 +92,6 @@ public class OrderPresenter {
                 view.getBack().setVisible(false);
                 if (setup.didPlayersRoll()){
                     setup.order();
-                    setup.showOrder();
                     view.getStart().setVisible(true);
                 }
             }
@@ -115,7 +109,6 @@ public class OrderPresenter {
                 view.getBack().setVisible(false);
                 if (setup.didPlayersRoll()){
                     setup.order();
-                    setup.showOrder();
                     view.getStart().setVisible(true);
                 }
             }

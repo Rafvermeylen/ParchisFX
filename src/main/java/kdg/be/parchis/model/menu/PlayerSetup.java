@@ -31,13 +31,10 @@ public class PlayerSetup {
         int roll;
         for (Player player : players) {
             if (!(player instanceof ai_Player)){
-                //ui.throwForOrder(player);
                 Die.throwDie();
                 roll = Die.getThrown();
-                //ui.printThrow(roll);
             } else {
                 roll = ((ai_Player) player).throwDie();
-                //ui.printThrowBot(roll, player);
             }
 
             playerRolls.put(player, roll);
@@ -59,13 +56,10 @@ public class PlayerSetup {
             } else {
                 for (kdg.be.parchis.model.game.Player player : maxPlayers) {
                     if (!(player instanceof ai_Player)){
-                        //ui.throwForOrder(player);
                         Die.throwDie();
                         roll = Die.getThrown();
-                        //ui.printThrow(roll);
                     } else {
                         roll = ((ai_Player) player).throwDie();
-                        //ui.printThrowBot(roll, player);
                     }
                     playerRolls.put(player, roll);
                 }
@@ -73,7 +67,6 @@ public class PlayerSetup {
         }
         players.clear();
         players.addAll(result);
-        //ui.displayOrder(result);
     }
 
     public void setPlayers(String naam1){
@@ -144,14 +137,4 @@ public class PlayerSetup {
         rolls[index] = rolled;
     }
 
-    public String showOrder(){
-        StringBuilder sb = new StringBuilder();
-
-        for (Player p : players){
-            System.out.println(p);
-            sb.append(p).append("\n");
-        }
-
-        return sb.toString();
-    }
 }
