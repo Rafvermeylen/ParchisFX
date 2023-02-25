@@ -51,7 +51,6 @@ public class GamePresenter {
                 if (Die.getThrown()==6 && gameSession.getYellowPlayer().isNestEmpty()){
                     Die.setSeven();
                 }
-
                 view.getDie1().setVisible(true);
                 view.getDie1().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && !gameSession.getYellowPlayer().getHasBarrier() && Die.getThrown() != 5) {
@@ -597,6 +596,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getYellowPlayer().pawns.get(0).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getYp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -645,6 +647,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getYellowPlayer().pawns.get(1).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getYp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -693,6 +698,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getYellowPlayer().pawns.get(2).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getYp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -741,6 +749,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getYellowPlayer().pawns.get(3).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getBp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -789,6 +800,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getBluePlayer().pawns.get(0).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getBp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -837,6 +851,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getBluePlayer().pawns.get(1).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getBp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -885,6 +902,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getBluePlayer().pawns.get(2).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getBp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -933,6 +953,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getBluePlayer().pawns.get(3).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getRp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -981,6 +1004,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getRedPlayer().pawns.get(0).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getRp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1029,6 +1055,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getRedPlayer().pawns.get(1).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getRp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1075,6 +1104,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getRedPlayer().pawns.get(2).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getRp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1122,6 +1154,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getRedPlayer().pawns.get(3).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getGp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1170,6 +1205,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getGreenPlayer().pawns.get(0).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getGp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1218,6 +1256,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getGreenPlayer().pawns.get(1).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getGp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1265,6 +1306,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getGreenPlayer().pawns.get(2).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
         view.getGp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1313,6 +1357,9 @@ public class GamePresenter {
                     }
                 }
                 updateAllPawnPositions();
+                if (gameSession.getGreenPlayer().pawns.get(3).isFinished()){
+                    SoundClass.playVictory();
+                }
             }
         });
     }

@@ -37,6 +37,10 @@ public class SoundClass {
         }
     }
 
+    public static void playVictory(){
+        initSound(path, "win.mp3");
+    }
+
     public static void clickMute() {
         muted = !muted;
     }
