@@ -104,7 +104,7 @@ public class Game {
 
                     System.out.println("Pawn is on : " + moved.getPosition().getNr() + " before correction.");
 
-                    //Make sure that if pawn goes on the landingstrip and off again, it won't go on another landingstri
+                    //Make sure that if pawn goes on the landingstrip and off again, it won't go on another landingstrip
                     if (moved.owner.getColor().equals(Colors.BLUE) && moved.getPosition().getNr() < 81 && moved.getPosition().getNr() > 17) {
                         switch (moved.getPosition().getNr()) {
                             case 18 -> moved.owner.moveByTile(moved, board.board.get(81));
@@ -252,7 +252,12 @@ public class Game {
             indexTurn = 0;
             turn++;
         }
+
+        //if next player is AI, play AI turn and end turn.
         while (players.get(indexTurn) instanceof ai_Player){
+            amountThrows = 0;
+            lastMovedPawn = null;
+            killedPawn = null;
             playAiTurn();
             indexTurn++;
             if (indexTurn == 4) {
