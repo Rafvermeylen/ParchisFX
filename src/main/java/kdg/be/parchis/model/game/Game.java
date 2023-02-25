@@ -91,6 +91,7 @@ public class Game {
                 if (!p.owner.equals(moved.owner)) {
                     p.toNest(board.board.get(p.owner.getNestPosition()));
                     isKilled = true;
+                    break;
                 }
             }
             //Move killer pawn 20 tiles (if possible)

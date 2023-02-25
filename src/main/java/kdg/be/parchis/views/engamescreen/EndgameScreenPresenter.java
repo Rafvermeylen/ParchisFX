@@ -27,7 +27,10 @@ public class EndgameScreenPresenter {
                 try {
                     MainMenuView menuView = new MainMenuView();
                     MainMenuPresenter presenter = new MainMenuPresenter(menuView);
-                    MainMusic.stopMusic();
+                    if (!MainMusic.getMediaPlayer().isMute()){
+                        MainMusic.stopMusic();
+                        MainMusic.muteMenuMusic();
+                    }
                     view.getScene().setRoot(menuView);
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
