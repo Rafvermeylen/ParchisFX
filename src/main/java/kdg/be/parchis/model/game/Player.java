@@ -199,6 +199,24 @@ public class Player {
         return true;
     }
 
+    public Pawn firstMoveablePawn(Board board) {
+        for (Pawn p : pawns) {
+            if (p.isCanMove(board, Die.getThrown())) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Pawn firstBarrierPawn() {
+        for (Pawn p : pawns) {
+            if (p.getPosition().IsBarrier()) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     public void setBarrier(){
         hasBarrier= !hasBarrier;
     }

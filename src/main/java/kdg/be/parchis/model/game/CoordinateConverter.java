@@ -17,16 +17,22 @@ public class CoordinateConverter {
         positionMap.put(6904, new Position(235, -150));
 
         //blue nest
+        positionMap.put(70, new Position(-160, -150));
+
         positionMap.put(7001, new Position(-160, -150));
         positionMap.put(7002, new Position(-185, -150));
         positionMap.put(7003, new Position(-210, -150));
         positionMap.put(7004, new Position(-235, -150));
         //red nest
+        positionMap.put(71, new Position(-160, 180));
+
         positionMap.put(7101, new Position(-160, 180));
         positionMap.put(7102, new Position(-185, 180));
         positionMap.put(7103, new Position(-210, 180));
         positionMap.put(7104, new Position(-235, 180));
         //green nest
+        positionMap.put(72, new Position(160, 180));
+
         positionMap.put(7201, new Position(160, 180));
         positionMap.put(7202, new Position(185, 180));
         positionMap.put(7203, new Position(210, 180));
