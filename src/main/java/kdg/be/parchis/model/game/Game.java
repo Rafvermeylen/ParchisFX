@@ -29,10 +29,10 @@ public class Game {
     }
 
     public void startSetup() {
-        players.get(0).setPawns();
-        players.get(1).setPawns();
-        players.get(2).setPawns();
-        players.get(3).setPawns();
+        players.get(0).setPawns(board);
+        players.get(1).setPawns(board);
+        players.get(2).setPawns(board);
+        players.get(3).setPawns(board);
     }
 
     public boolean hasGameEnded() {

@@ -10,13 +10,14 @@ public class Pawn {
     private boolean onLandingstrip;
 
 
-    public Pawn(int pawnNumber, Player owner) {
+    public Pawn(int pawnNumber, Player owner, Tile nest) {
         this.pawnNumber = pawnNumber;
         inGame = false;
         isFinished = false;
         hasMoved = false;
         onLandingstrip = false;
         this.owner = owner;
+        position = nest;
     }
 
 

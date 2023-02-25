@@ -557,6 +557,7 @@ public class GamePresenter {
                     EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
                     view.getScene().setRoot(endgameScreenView);
                 }
+                updateView();
             }
         });
         view.getFinish2().setOnAction(new EventHandler<ActionEvent>() {
@@ -645,6 +646,7 @@ public class GamePresenter {
                     EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
                     view.getScene().setRoot(endgameScreenView);
                 }
+                updateView();
             }
         });
         view.getFinish3().setOnAction(new EventHandler<ActionEvent>() {
@@ -733,6 +735,7 @@ public class GamePresenter {
                     EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
                     view.getScene().setRoot(endgameScreenView);
                 }
+                updateView();
             }
         });
         view.getFinish4().setOnAction(new EventHandler<ActionEvent>() {
@@ -758,6 +761,7 @@ public class GamePresenter {
                     EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
                     view.getScene().setRoot(endgameScreenView);
                 }
+                updateView();
             }
         });
         view.getNestGlow().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -2360,6 +2364,8 @@ public class GamePresenter {
                     view.getGp_4().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
                     view.getGp_4().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
                     //check for kill
+                    updateAllPawnPositions();
+                    /*
                     if (gameSession.getKilledPawn() != null){
                         if (gameSession.getKilledPawn().owner.getColor().equals(Colors.YELLOW)){
                             if (gameSession.getKilledPawn().getPawnNumber() == 1) {
@@ -2404,7 +2410,10 @@ public class GamePresenter {
                                 view.getRp_4().setTranslateY(converter.getY(7104));
                             }
                         }
+
+
                     }
+                    */
                     if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                         view.getFinish4().setVisible(true);
                     } else {
@@ -2468,43 +2477,103 @@ public class GamePresenter {
             view.getRoll4().setVisible(true);
         }
 
-        /*
+        //update all pawn positions
         view.getYp_1().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
         view.getYp_1().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
+
         view.getYp_2().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
         view.getYp_2().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
+        if (gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr() == 69){
+            view.getYp_2().setTranslateX(converter.getX(6902));
+            view.getYp_2().setTranslateY(converter.getY(6902));
+        }
+
         view.getYp_3().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
         view.getYp_3().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
+        if (gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr() == 69){
+            view.getYp_3().setTranslateX(converter.getX(6903));
+            view.getYp_3().setTranslateY(converter.getY(6903));
+        }
+
         view.getYp_4().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
         view.getYp_4().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
+        if (gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr() == 69){
+            view.getYp_4().setTranslateX(converter.getX(6904));
+            view.getYp_4().setTranslateY(converter.getY(6904));
+        }
 
         view.getBp_1().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
         view.getBp_1().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
+
         view.getBp_2().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
         view.getBp_2().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
+        if (gameSession.getBluePlayer().pawns.get(1).getPosition().getNr() == 70){
+            view.getBp_2().setTranslateX(converter.getX(7002));
+            view.getBp_2().setTranslateY(converter.getY(7002));
+        }
+
         view.getBp_3().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
         view.getBp_3().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
+        if (gameSession.getBluePlayer().pawns.get(2).getPosition().getNr() == 70){
+            view.getBp_3().setTranslateX(converter.getX(7003));
+            view.getBp_3().setTranslateY(converter.getY(7003));
+        }
+
         view.getBp_4().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
         view.getBp_4().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
+        if (gameSession.getBluePlayer().pawns.get(3).getPosition().getNr() == 70){
+            view.getBp_4().setTranslateX(converter.getX(7004));
+            view.getBp_4().setTranslateY(converter.getY(7004));
+        }
 
         view.getRp_1().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
         view.getRp_1().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
+
         view.getRp_2().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
         view.getRp_2().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
+        if (gameSession.getRedPlayer().pawns.get(1).getPosition().getNr() == 71){
+            view.getRp_2().setTranslateX(converter.getX(7102));
+            view.getRp_2().setTranslateY(converter.getY(7102));
+        }
+
         view.getRp_3().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
         view.getRp_3().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
+        if (gameSession.getRedPlayer().pawns.get(2).getPosition().getNr() == 71){
+            view.getRp_3().setTranslateX(converter.getX(7103));
+            view.getRp_3().setTranslateY(converter.getY(7103));
+        }
+
         view.getRp_4().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
         view.getRp_4().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
+        if (gameSession.getRedPlayer().pawns.get(3).getPosition().getNr() == 71){
+            view.getRp_4().setTranslateX(converter.getX(7104));
+            view.getRp_4().setTranslateY(converter.getY(7104));
+        }
 
         view.getGp_1().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
         view.getGp_1().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
+
         view.getGp_2().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
         view.getGp_2().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
+        if (gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr() == 72){
+            view.getGp_2().setTranslateX(converter.getX(7202));
+            view.getGp_2().setTranslateY(converter.getY(7202));
+        }
+
         view.getGp_3().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
         view.getGp_3().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
+        if (gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr() == 72){
+            view.getGp_3().setTranslateX(converter.getX(7203));
+            view.getGp_3().setTranslateY(converter.getY(7203));
+        }
+
         view.getGp_4().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
         view.getGp_4().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
-        */
+        if (gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr() == 72){
+            view.getGp_4().setTranslateX(converter.getX(7204));
+            view.getGp_4().setTranslateY(converter.getY(7204));
+        }
+
     }
     public void addWindowEventHandlers() {
         view.getScene().setOnKeyPressed(e -> {
@@ -2519,4 +2588,104 @@ public class GamePresenter {
 // Window event handlers (anon. inner klassen)
 // Koppeling via view.getScene().getWindow()
     }
+
+    public void updateAllPawnPositions(){
+        view.getYp_1().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
+        view.getYp_1().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(0).getPosition().getNr()));
+
+        view.getYp_2().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
+        view.getYp_2().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr()));
+        if (gameSession.getYellowPlayer().pawns.get(1).getPosition().getNr() == 69){
+            view.getYp_2().setTranslateX(converter.getX(6902));
+            view.getYp_2().setTranslateY(converter.getY(6902));
+        }
+
+        view.getYp_3().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
+        view.getYp_3().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr()));
+        if (gameSession.getYellowPlayer().pawns.get(2).getPosition().getNr() == 69){
+            view.getYp_3().setTranslateX(converter.getX(6903));
+            view.getYp_3().setTranslateY(converter.getY(6903));
+        }
+
+        view.getYp_4().setTranslateX(converter.getX(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
+        view.getYp_4().setTranslateY(converter.getY(gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr()));
+        if (gameSession.getYellowPlayer().pawns.get(3).getPosition().getNr() == 69){
+            view.getYp_4().setTranslateX(converter.getX(6904));
+            view.getYp_4().setTranslateY(converter.getY(6904));
+        }
+
+        view.getBp_1().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
+        view.getBp_1().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(0).getPosition().getNr()));
+
+        view.getBp_2().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
+        view.getBp_2().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(1).getPosition().getNr()));
+        if (gameSession.getBluePlayer().pawns.get(1).getPosition().getNr() == 70){
+            view.getBp_2().setTranslateX(converter.getX(7002));
+            view.getBp_2().setTranslateY(converter.getY(7002));
+        }
+
+        view.getBp_3().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
+        view.getBp_3().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(2).getPosition().getNr()));
+        if (gameSession.getBluePlayer().pawns.get(2).getPosition().getNr() == 70){
+            view.getBp_3().setTranslateX(converter.getX(7003));
+            view.getBp_3().setTranslateY(converter.getY(7003));
+        }
+
+        view.getBp_4().setTranslateX(converter.getX(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
+        view.getBp_4().setTranslateY(converter.getY(gameSession.getBluePlayer().pawns.get(3).getPosition().getNr()));
+        if (gameSession.getBluePlayer().pawns.get(3).getPosition().getNr() == 70){
+            view.getBp_4().setTranslateX(converter.getX(7004));
+            view.getBp_4().setTranslateY(converter.getY(7004));
+        }
+
+        view.getRp_1().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
+        view.getRp_1().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(0).getPosition().getNr()));
+
+        view.getRp_2().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
+        view.getRp_2().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(1).getPosition().getNr()));
+        if (gameSession.getRedPlayer().pawns.get(1).getPosition().getNr() == 71){
+            view.getRp_2().setTranslateX(converter.getX(7102));
+            view.getRp_2().setTranslateY(converter.getY(7102));
+        }
+
+        view.getRp_3().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
+        view.getRp_3().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(2).getPosition().getNr()));
+        if (gameSession.getRedPlayer().pawns.get(2).getPosition().getNr() == 71){
+            view.getRp_3().setTranslateX(converter.getX(7103));
+            view.getRp_3().setTranslateY(converter.getY(7103));
+        }
+
+        view.getRp_4().setTranslateX(converter.getX(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
+        view.getRp_4().setTranslateY(converter.getY(gameSession.getRedPlayer().pawns.get(3).getPosition().getNr()));
+        if (gameSession.getRedPlayer().pawns.get(3).getPosition().getNr() == 71){
+            view.getRp_4().setTranslateX(converter.getX(7104));
+            view.getRp_4().setTranslateY(converter.getY(7104));
+        }
+
+        view.getGp_1().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
+        view.getGp_1().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(0).getPosition().getNr()));
+
+        view.getGp_2().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
+        view.getGp_2().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr()));
+        if (gameSession.getGreenPlayer().pawns.get(1).getPosition().getNr() == 72){
+            view.getGp_2().setTranslateX(converter.getX(7202));
+            view.getGp_2().setTranslateY(converter.getY(7202));
+        }
+
+        view.getGp_3().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
+        view.getGp_3().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr()));
+        if (gameSession.getGreenPlayer().pawns.get(2).getPosition().getNr() == 72){
+            view.getGp_3().setTranslateX(converter.getX(7203));
+            view.getGp_3().setTranslateY(converter.getY(7203));
+        }
+
+        view.getGp_4().setTranslateX(converter.getX(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
+        view.getGp_4().setTranslateY(converter.getY(gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr()));
+        if (gameSession.getGreenPlayer().pawns.get(3).getPosition().getNr() == 72){
+            view.getGp_4().setTranslateX(converter.getX(7204));
+            view.getGp_4().setTranslateY(converter.getY(7204));
+        }
+
+    }
+
 }

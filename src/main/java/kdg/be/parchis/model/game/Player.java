@@ -36,7 +36,6 @@ public class Player {
         hasBarrier=false;
     }
 
-
     public String getName() {
         return name;
     }
@@ -56,7 +55,6 @@ public class Player {
         return nestPosition;
     }
 
-
     public boolean canMove(Board board, int thrown) {
         for (Pawn p : pawns) {
             if (p.isCanMove(board, thrown)) {
@@ -65,7 +63,6 @@ public class Player {
         }
         return false;
     }
-
 
     public Pawn firstLeavesNest(Tile startTile) {
         for (Pawn p : pawns) {
@@ -76,18 +73,6 @@ public class Player {
         }
         return null;
     }
-
-
-    public Pawn choosePawn(Board board, int thrown) {
-        List<Integer> moveAblePawns = new ArrayList<>(4);
-        for (Pawn p : pawns) {
-            if (p.isCanMove(board, thrown) && p.checkNoBarrier(thrown, board)) {
-                moveAblePawns.add(p.getPawnNumber());
-            }
-        }
-        return pawns.get(0);
-    }
-
 
     public int moveByTile(Pawn p, Tile t) {
         p.move(t);
@@ -164,7 +149,6 @@ public class Player {
         return 0;
     }
 
-
     public void checkIfFinished(){
         for (Pawn p : pawns){
             if (!p.isFinished()){
@@ -182,12 +166,11 @@ public class Player {
         return isFinished;
     }
 
-
-    public void setPawns() {
-        pawns.add(new Pawn(1, this));
-        pawns.add(new Pawn(2, this));
-        pawns.add(new Pawn(3, this));
-        pawns.add(new Pawn(4, this));
+    public void setPawns(Board board) {
+        pawns.add(new Pawn(1, this, board.board.get(nestPosition)));
+        pawns.add(new Pawn(2, this, board.board.get(nestPosition)));
+        pawns.add(new Pawn(3, this, board.board.get(nestPosition)));
+        pawns.add(new Pawn(4, this, board.board.get(nestPosition)));
     }
 
     public boolean isNestEmpty(){
