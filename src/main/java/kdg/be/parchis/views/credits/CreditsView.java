@@ -47,9 +47,10 @@ public class CreditsView extends BorderPane {
                 - Niels Haegemans
                 - Joel Chapon
                 - Georgia Spencer
-                - tbd"""
+                - Ben Jacobs
+                - Arne van Craen"""
         );
-        credits.setFont(Font.font(MONOSPACED, 20));
+        credits.setFont(Font.font(MONOSPACED, 18));
         title.setScaleX(3);
         title.setScaleY(3);
 
