@@ -448,7 +448,8 @@ public class Game {
             } else if (Die.getThrown() != 5 && players.get(indexTurn).canMove(board, Die.getThrown())) {
                 movePawn(players.get(indexTurn), players.get(indexTurn).firstMoveablePawn(board));
             }
-            if (lastMovedPawn != null &&lastMovedPawn.isFinished() && players.get(indexTurn).canMove(board, 10)){
+
+            if (lastMovedPawn != null && lastMovedPawn.isFinished() && players.get(indexTurn).canMove(board, 10)){
                 Die.setTen();
                 jump10(players.get(indexTurn).firstMoveablePawn(board));
             }
@@ -456,6 +457,16 @@ public class Game {
             if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                 turnEnded = true;
             }
+
+            //DEBUGGING SOUT ABOUT BOTS
+            System.out.println("Turn " + turn);
+            System.out.println(players.get(indexTurn).getName() + " rolled a " + Die.getThrown());
+            System.out.println("Location of pawns:");
+            for(Pawn p : players.get(indexTurn).pawns){
+                System.out.println("Pawn " + p.getPawnNumber() + " on tile " + p.getPosition().getNr());
+            }
+            System.out.println();
+
         } while (!turnEnded);
     }
 

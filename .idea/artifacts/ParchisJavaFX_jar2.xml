@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="ParchisJavaFX:jar">
-    <output-path>$PROJECT_DIR$/../../../../Games/artifacts/ParchisJavaFX_jar</output-path>
+  <artifact type="jar" name="ParchisJavaFX:jar2">
+    <output-path>$PROJECT_DIR$/../../../../Games/artifacts/ParchisJavaFX_jar2</output-path>
     <root id="archive" name="ParchisJavaFX.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
