@@ -57,7 +57,7 @@ public class Player {
 
     public boolean canMove(Board board, int thrown) {
         for (Pawn p : pawns) {
-            if (p.isCanMove(board, thrown)) {
+            if (p.isCanMove(board, thrown) && !p.isFinished()) {
                 return true;
             }
         }

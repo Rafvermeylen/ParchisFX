@@ -358,6 +358,7 @@ public class Game {
     }
 
     public void movePawn(Player p, Pawn pawn) {
+        lastMovedPawn = pawn;
         int value = p.moveByTile(pawn, board.board.get(pawn.getPosition().getNr() + Die.getThrown()));
         if (value > 0) {
             p.moveByTile(pawn, board.board.get(value));
@@ -365,9 +366,6 @@ public class Game {
             p.moveByTile(pawn, board.board.get(pawn.getPosition().getNr() + value + value));
         }
         checkKill(pawn);
-        if (amountThrows == 2) {
-            lastMovedPawn = pawn;
-        }
     }
 
     public boolean isStartOK(Player p) {
@@ -445,7 +443,7 @@ public class Game {
                 } else if (players.get(indexTurn).getColor().equals(Colors.GREEN)) {
                     greenLeaveNest();
                 }
-            } else if (Die.getThrown() != 5 && players.get(indexTurn).canMove(board, Die.getThrown())) {
+            } else if (players.get(indexTurn).canMove(board, Die.getThrown())) {
                 movePawn(players.get(indexTurn), players.get(indexTurn).firstMoveablePawn(board));
             }
 
