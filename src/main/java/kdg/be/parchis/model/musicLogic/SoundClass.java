@@ -28,6 +28,10 @@ public class SoundClass {
         initSound(path, "pawn_move.mp3");
     }
 
+    public static void playKill() {
+        initSound(path, "kill.mp3");
+    }
+
     public static void playRoll(){
         initSound(path, "roll.wav");
         try {

@@ -104,8 +104,6 @@ public class Game {
                         moved.owner.moveByTile(moved, board.board.get(moved.getPosition().getNr() + value + value));
                     }
 
-                    System.out.println("Pawn is on : " + moved.getPosition().getNr() + " before correction.");
-
                     //Make sure that if pawn goes on the landingstrip and off again, it won't go on another landingstrip
                     if (moved.owner.getColor().equals(Colors.BLUE) && moved.getPosition().getNr() < 81 && moved.getPosition().getNr() > 17) {
                         switch (moved.getPosition().getNr()) {
@@ -228,7 +226,6 @@ public class Game {
                         }
                     }
                 }
-                System.out.println("Pawn is on : " + moved.getPosition().getNr() + " after correction.");
                 if (moved.getPosition().getNr() < 69) {
                     moved.setOnLandingstrip(false);
                 }
@@ -261,11 +258,7 @@ public class Game {
             amountThrows = 0;
             lastMovedPawn = null;
             playAiTurn();
-            indexTurn++;
-            if (indexTurn == 4) {
-                indexTurn = 0;
-                turn++;
-            }
+            endTurn();
         }
         amountThrows = 0;
         lastMovedPawn = null;
@@ -292,6 +285,17 @@ public class Game {
     public int getAmountThrows() {
         return amountThrows;
     }
+
+    /*
+    public Player getPlayer(Colors colors) {
+        for (Player p : players) {
+            if (p.getColor().equals(colors)) {
+                return p;
+            }
+        }
+        return null;
+    }
+    */
 
     public Player getYellowPlayer() {
         for (Player p : players) {
