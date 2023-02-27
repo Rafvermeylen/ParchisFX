@@ -1,7 +1,6 @@
 package kdg.be.parchis.model.menu;
 
 import kdg.be.parchis.model.game.Colors;
-import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.game.Player;
 import kdg.be.parchis.model.game.ai_Player;
 
@@ -11,7 +10,6 @@ public class PlayerSetup {
     private List<Player> players = new ArrayList<>(4);
     private final int amountPlayers;
     private int[] rolls;
-    private List<Integer> aiRolls = new ArrayList<>(3);
 
     public PlayerSetup(int amountPlayers){
         this.amountPlayers = amountPlayers;
@@ -24,49 +22,6 @@ public class PlayerSetup {
 
     public int getAmountPlayers() {
         return amountPlayers;
-    }
-
-    public void determineOrder(List<Player> players) {
-        Map<Player, Integer> playerRolls = new HashMap<>();
-        int roll;
-        for (Player player : players) {
-            if (!(player instanceof ai_Player)){
-                Die.throwDie();
-                roll = Die.getThrown();
-            } else {
-                roll = ((ai_Player) player).throwDie();
-            }
-
-            playerRolls.put(player, roll);
-        }
-
-        List<kdg.be.parchis.model.game.Player> result = new ArrayList<>();
-        while (result.size() < 4) {
-            int maxRoll = Collections.max(playerRolls.values());
-            List<kdg.be.parchis.model.game.Player> maxPlayers = new ArrayList<>();
-            for (Map.Entry<kdg.be.parchis.model.game.Player, Integer> entry : playerRolls.entrySet()) {
-                if (entry.getValue() == maxRoll) {
-                    maxPlayers.add(entry.getKey());
-                }
-            }
-
-            if (maxPlayers.size() == 1) {
-                result.add(maxPlayers.get(0));
-                playerRolls.remove(maxPlayers.get(0));
-            } else {
-                for (kdg.be.parchis.model.game.Player player : maxPlayers) {
-                    if (!(player instanceof ai_Player)){
-                        Die.throwDie();
-                        roll = Die.getThrown();
-                    } else {
-                        roll = ((ai_Player) player).throwDie();
-                    }
-                    playerRolls.put(player, roll);
-                }
-            }
-        }
-        players.clear();
-        players.addAll(result);
     }
 
     public void setPlayers(String naam1){

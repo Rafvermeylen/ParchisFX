@@ -56,5 +56,4 @@ public class MainMusic {
     public static MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
-
 }
