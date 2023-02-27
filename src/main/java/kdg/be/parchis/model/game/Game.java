@@ -392,7 +392,7 @@ public class Game {
         return pawns;
     }
 
-    public Pawn lastBackToNest() {
+    public void lastBackToNest() {
         if (!lastMovedPawn.getOnLandingstrip()){
             lastMovedPawn.toNest(board.board.get(lastMovedPawn.owner.getNestPosition()));
         } else {
@@ -406,7 +406,6 @@ public class Game {
                 lastMovedPawn.owner.moveByTile(lastMovedPawn, board.board.get(97));
             }
         }
-        return lastMovedPawn;
     }
 
     public Pawn getLastMovedPawn() {
