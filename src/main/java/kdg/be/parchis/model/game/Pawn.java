@@ -1,5 +1,7 @@
 package kdg.be.parchis.model.game;
 
+import java.util.ArrayList;
+
 public class Pawn {
     public Player owner;
     private int pawnNumber;
@@ -103,6 +105,15 @@ public class Pawn {
             }
         }
         return false;
+    }
+
+    public boolean canFinish(Board board){
+        ArrayList<Integer> centrumTiles = new ArrayList<>();
+        centrumTiles.add(80);
+        centrumTiles.add(88);
+        centrumTiles.add(96);
+        centrumTiles.add(104);
+        return getOnLandingstrip() && centrumTiles.contains(position.getNr() + Die.getThrown()) && !isFinished;
     }
 
     public void Finished() {

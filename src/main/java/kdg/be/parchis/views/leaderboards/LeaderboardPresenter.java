@@ -31,10 +31,6 @@ public class LeaderboardPresenter {
         this.updateView();
     }
     private void addEventHandlers() {
-// Koppelt event handlers (anon. inner klassen)
-// aan de controls uit de view.
-// Event handlers: roepen methodes aan uit het
-// model en zorgen voor een update van de view.
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -46,7 +42,6 @@ public class LeaderboardPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 MainMusic.muteMenuMusic();
-
                 if (MainMusic.getMediaPlayer().isMute()) {
                     view.getMusicPic().setImage(view.getMusicMute());
                 } else {
@@ -74,6 +69,11 @@ public class LeaderboardPresenter {
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());
         }
+        if (SoundClass.isMuted()){
+            view.getSoundPic().setImage(view.getSfxMute());
+        } else {
+            view.getSoundPic().setImage(view.getSfxLoud());
+        }
     }
     public void addWindowEventHandlers () {
         view.getScene().setOnKeyPressed(e -> {
@@ -85,7 +85,5 @@ public class LeaderboardPresenter {
                 }
             }
         });
-// Window event handlers (anon. inner klassen)
-// Koppeling via view.getScene().getWindow()
     }
 }

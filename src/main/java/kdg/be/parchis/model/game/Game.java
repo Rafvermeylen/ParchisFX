@@ -430,11 +430,14 @@ public class Game {
             if (Die.getThrown() == 6 && players.get(indexTurn).isNestEmpty()){
                 Die.setSeven();
             }
+
             if (players.get(indexTurn).getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)) {
                 movePawn(players.get(indexTurn), players.get(indexTurn).firstBarrierPawn());
             } else if (players.get(indexTurn).canKill(board)){
                 movePawn(players.get(indexTurn), players.get(indexTurn).getKillPawn(board));
-            }else if (Die.getThrown() == 5 && !players.get(indexTurn).isNestEmpty() && isStartOK(players.get(indexTurn))) {
+            } else if (players.get(indexTurn).canFinish(board)){
+                movePawn(players.get(indexTurn), players.get(indexTurn).getFinisherPawn(board));
+            } else if (Die.getThrown() == 5 && !players.get(indexTurn).isNestEmpty() && isStartOK(players.get(indexTurn))) {
                 if (players.get(indexTurn).getColor().equals(Colors.BLUE)) {
                     blueLeaveNest();
                 } else if (players.get(indexTurn).getColor().equals(Colors.RED)) {

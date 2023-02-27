@@ -200,9 +200,28 @@ public class Player {
         return null;
     }
 
+    public boolean canFinish(Board board){
+        for (Pawn p : pawns){
+            if (p.canFinish(board)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Pawn getFinisherPawn(Board board){
+        for (Pawn p : pawns){
+            if (p.canFinish(board)){
+                return p;
+            }
+        }
+        return null;
+    }
+
     public void setBarrier(){
         hasBarrier= !hasBarrier;
     }
+
     public boolean getHasBarrier(){
         return hasBarrier;
     }

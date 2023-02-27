@@ -124,17 +124,12 @@ public class MainMenuPresenter {
     }
 
     private void updateView() {
-// Vult de view met data uit model
         if (Cheats.getActivated()) {
             view.getCheat().setText("Cheats: ON");
         } else {
             view.getCheat().setText("Cheats: OFF");
         }
-        if (MainMusic.getMediaPlayer().isMute()){
-            view.getMusicPic().setImage(view.getMusicMute());
-        } else {
-            view.getMusicPic().setImage(view.getMusicLoud());
-        }
+        updateIcons();
     }
 
     public void addWindowEventHandlers() {
@@ -171,4 +166,18 @@ public class MainMenuPresenter {
 
  */
     }
+
+    public void updateIcons(){
+        if (MainMusic.getMediaPlayer().isMute()){
+            view.getMusicPic().setImage(view.getMusicMute());
+        } else {
+            view.getMusicPic().setImage(view.getMusicLoud());
+        }
+        if (SoundClass.isMuted()){
+            view.getSoundPic().setImage(view.getSfxMute());
+        } else {
+            view.getSoundPic().setImage(view.getSfxLoud());
+        }
+    }
+
 }
