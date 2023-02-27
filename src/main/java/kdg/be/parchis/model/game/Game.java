@@ -14,11 +14,11 @@ public class Game {
     private Pawn lastMovedPawn;
 
     public Game(List<Player> players) {
-        turn = 0;
+        turn = 1;
         this.players = players;
         board = new Board();
         winner = null;
-        indexTurn = 3;
+        indexTurn = 0;
         amountThrows = 0;
         startSetup();
         if (players.get(0) instanceof ai_Player) {
