@@ -549,6 +549,10 @@ public class GamePresenter {
 
                     if (gameSession.getYellowPlayer().pawns.get(0).isFinished() && gameSession.getYellowPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish1().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
                         for (Pawn p : moveable) {
@@ -568,6 +572,12 @@ public class GamePresenter {
                             } else {
                                 view.getRoll1().setVisible(true);
                             }
+                        }
+                        if (moveAgain){
+                            view.getRoll1().setVisible(true);
+                            view.getFinish1().setVisible(false);
+                        } else {
+                            view.getFinish1().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -600,6 +610,10 @@ public class GamePresenter {
 
                     if (gameSession.getYellowPlayer().pawns.get(1).isFinished() && gameSession.getYellowPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish1().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
                         for (Pawn p : moveable) {
@@ -619,6 +633,12 @@ public class GamePresenter {
                             } else {
                                 view.getRoll1().setVisible(true);
                             }
+                        }
+                        if (moveAgain){
+                            view.getRoll1().setVisible(true);
+                            view.getFinish1().setVisible(false);
+                        } else {
+                            view.getFinish1().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -651,6 +671,10 @@ public class GamePresenter {
 
                     if (gameSession.getYellowPlayer().pawns.get(2).isFinished() && gameSession.getYellowPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish1().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
                         for (Pawn p : moveable) {
@@ -670,6 +694,12 @@ public class GamePresenter {
                             } else {
                                 view.getRoll1().setVisible(true);
                             }
+                        }
+                        if (moveAgain){
+                            view.getRoll1().setVisible(true);
+                            view.getFinish1().setVisible(false);
+                        } else {
+                            view.getFinish1().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -702,6 +732,10 @@ public class GamePresenter {
 
                     if (gameSession.getYellowPlayer().pawns.get(3).isFinished() && gameSession.getYellowPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish1().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getYellowPlayer());
                         for (Pawn p : moveable) {
@@ -721,6 +755,12 @@ public class GamePresenter {
                             } else {
                                 view.getRoll1().setVisible(true);
                             }
+                        }
+                        if (moveAgain){
+                            view.getRoll1().setVisible(true);
+                            view.getFinish1().setVisible(false);
+                        } else {
+                            view.getFinish1().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -753,6 +793,10 @@ public class GamePresenter {
 
                     if (gameSession.getBluePlayer().pawns.get(0).isFinished() && gameSession.getBluePlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish2().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
                         for (Pawn p : moveable) {
@@ -772,6 +816,12 @@ public class GamePresenter {
                             } else {
                                 view.getRoll2().setVisible(true);
                             }
+                        }
+                        if (moveAgain){
+                            view.getRoll2().setVisible(true);
+                            view.getFinish2().setVisible(false);
+                        } else {
+                            view.getFinish2().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -804,6 +854,10 @@ public class GamePresenter {
 
                     if (gameSession.getBluePlayer().pawns.get(1).isFinished() && gameSession.getBluePlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish2().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
                         for (Pawn p : moveable) {
@@ -823,6 +877,12 @@ public class GamePresenter {
                             } else {
                                 view.getRoll2().setVisible(true);
                             }
+                        }
+                        if (moveAgain){
+                            view.getRoll2().setVisible(true);
+                            view.getFinish2().setVisible(false);
+                        } else {
+                            view.getFinish2().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -855,6 +915,10 @@ public class GamePresenter {
 
                     if (gameSession.getBluePlayer().pawns.get(2).isFinished() && gameSession.getBluePlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish2().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
                         for (Pawn p : moveable) {
@@ -874,6 +938,12 @@ public class GamePresenter {
                             } else {
                                 view.getRoll2().setVisible(true);
                             }
+                        }
+                        if (moveAgain){
+                            view.getRoll2().setVisible(true);
+                            view.getFinish2().setVisible(false);
+                        } else {
+                            view.getFinish2().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -906,6 +976,10 @@ public class GamePresenter {
 
                     if (gameSession.getBluePlayer().pawns.get(3).isFinished() && gameSession.getBluePlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish2().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
                         for (Pawn p : moveable) {
@@ -925,6 +999,12 @@ public class GamePresenter {
                             } else {
                                 view.getRoll2().setVisible(true);
                             }
+                        }
+                        if (moveAgain){
+                            view.getRoll2().setVisible(true);
+                            view.getFinish2().setVisible(false);
+                        } else {
+                            view.getFinish2().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -957,6 +1037,10 @@ public class GamePresenter {
 
                     if (gameSession.getRedPlayer().pawns.get(0).isFinished() && gameSession.getRedPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish3().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
                         for (Pawn p : moveable) {
@@ -976,6 +1060,12 @@ public class GamePresenter {
                             } else {
                                 view.getRoll3().setVisible(true);
                             }
+                        }
+                        if (moveAgain){
+                            view.getRoll3().setVisible(true);
+                            view.getFinish3().setVisible(false);
+                        } else {
+                            view.getFinish3().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -1008,6 +1098,10 @@ public class GamePresenter {
 
                     if (gameSession.getRedPlayer().pawns.get(1).isFinished() && gameSession.getRedPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish3().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
                         for (Pawn p : moveable) {
@@ -1027,6 +1121,12 @@ public class GamePresenter {
                             } else {
                                 view.getRoll3().setVisible(true);
                             }
+                        }
+                        if (moveAgain){
+                            view.getRoll3().setVisible(true);
+                            view.getFinish3().setVisible(false);
+                        } else {
+                            view.getFinish3().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -1058,6 +1158,10 @@ public class GamePresenter {
                     view.getNestGlow().setVisible(false);
                     if (gameSession.getRedPlayer().pawns.get(2).isFinished() && gameSession.getRedPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish3().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
                         for (Pawn p : moveable) {
@@ -1076,7 +1180,14 @@ public class GamePresenter {
                                 view.getFinish3().setVisible(true);
                             } else {
                                 view.getRoll3().setVisible(true);
-                            }                        }
+                            }
+                        }
+                        if (moveAgain){
+                            view.getRoll3().setVisible(true);
+                            view.getFinish3().setVisible(false);
+                        } else {
+                            view.getFinish3().setVisible(true);
+                        }
                     }
                     updateAllPawnPositions();
                     if (gameSession.getRedPlayer().pawns.get(2).isFinished()){
@@ -1108,6 +1219,10 @@ public class GamePresenter {
 
                     if (gameSession.getRedPlayer().pawns.get(3).isFinished() && gameSession.getRedPlayer().canMove(gameSession.getBoard(), Die.getThrown())){
                         view.getFinish3().setVisible(false);
+                        boolean moveAgain = false;
+                        if (Die.getThrown() == 6 || Die.getThrown() == 7){
+                            moveAgain = true;
+                        }
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
                         for (Pawn p : moveable) {
@@ -1126,7 +1241,14 @@ public class GamePresenter {
                                 view.getFinish3().setVisible(true);
                             } else {
                                 view.getRoll3().setVisible(true);
-                            }                        }
+                            }
+                        }
+                        if (moveAgain){
+                            view.getRoll3().setVisible(true);
+                            view.getFinish3().setVisible(false);
+                        } else {
+                            view.getFinish3().setVisible(true);
+                        }
                     }
                     updateAllPawnPositions();
                     if (gameSession.getRedPlayer().pawns.get(3).isFinished()){
