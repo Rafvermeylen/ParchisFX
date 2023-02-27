@@ -11,7 +11,6 @@ import kdg.be.parchis.views.mainmenu.MainMenuView;
 import kdg.be.parchis.views.playersetup.PlayerSetupPresenter;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 public class PlayerSelectPresenter {

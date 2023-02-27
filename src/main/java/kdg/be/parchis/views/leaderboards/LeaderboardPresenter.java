@@ -18,8 +18,6 @@ import java.io.File;
 public class LeaderboardPresenter {
     private LeaderboardView view;
     private MainMenuView backView;
-    private Image musicMute;
-    private Button soundButton;
 
     private final KeyCode fullscreenKey = KeyCode.F;
 

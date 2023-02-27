@@ -3,11 +3,8 @@ package kdg.be.parchis.views.playersetup;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
 import javafx.stage.Stage;
 import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.model.musicLogic.SoundClass;
@@ -15,7 +12,6 @@ import kdg.be.parchis.views.order.OrderPresenter;
 import kdg.be.parchis.views.order.OrderView;
 import kdg.be.parchis.views.playerselect.PlayerSelectView;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 public class PlayerSetupPresenter extends BorderPane {
