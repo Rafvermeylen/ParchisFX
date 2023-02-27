@@ -1,4 +1,4 @@
-package kdg.be.parchis.views.engamescreen;
+package kdg.be.parchis.views.endgamescreen;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

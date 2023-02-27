@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 import kdg.be.parchis.model.game.*;
 import kdg.be.parchis.model.menu.Leaderboards;
 import kdg.be.parchis.model.musicLogic.SoundClass;
-import kdg.be.parchis.views.engamescreen.EndgameScreenPresenter;
-import kdg.be.parchis.views.engamescreen.EndgameScreenView;
+import kdg.be.parchis.views.endgamescreen.EndgameScreenPresenter;
+import kdg.be.parchis.views.endgamescreen.EndgameScreenView;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package kdg.be.parchis.views.engamescreen;
+package kdg.be.parchis.views.endgamescreen;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
