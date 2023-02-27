@@ -4,9 +4,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import kdg.be.parchis.model.menu.Cheats;
@@ -23,12 +20,7 @@ import java.io.FileNotFoundException;
 
 public class MainMenuPresenter {
     private MainMenuView view;
-    private Image musicMute;
-    private ImageView imageView;
-    private Button soundButton;
-
     private final KeyCode fullscreenKey = KeyCode.F;
-    private final KeyCode cheatKey = KeyCode.C;
 
     public MainMenuPresenter(MainMenuView view) {
         this.view = view;
@@ -143,28 +135,6 @@ public class MainMenuPresenter {
                 }
             }
         });
-        //confirm window alert
-/*
-        Window window = view.getScene().getWindow();
-        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Exit program");
-                alert.setHeaderText("Quiting already?");
-                alert.setContentText("Are you sure you want to quit?");
-
-                Optional<ButtonType> choice = alert.showAndWait();
-
-                if (choice.isPresent() && choice.get() == ButtonType.OK) {
-                    Platform.exit();
-                } else {
-                    event.consume();
-                }
-            }
-        });
-
- */
     }
 
     public void updateIcons(){

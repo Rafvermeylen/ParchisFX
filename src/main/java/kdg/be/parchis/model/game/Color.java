@@ -1,5 +1,5 @@
 package kdg.be.parchis.model.game;
 
-public enum Colors {
+public enum Color {
     YELLOW, RED, BLUE, GREEN
 }

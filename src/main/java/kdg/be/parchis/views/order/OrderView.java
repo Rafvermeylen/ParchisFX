@@ -32,12 +32,6 @@ public class OrderView extends StackPane {
     private ImageView diceFoto3;
     private ImageView diceFoto4;
 
-    private int aiRoll2;
-
-    private int aiRoll3;
-
-    private int aiRoll4;
-
     public OrderView () throws FileNotFoundException, InterruptedException {
         this.initialiseNodes();
         this.layoutNodes();
@@ -180,18 +174,6 @@ public class OrderView extends StackPane {
 
     public ImageView getDiceFoto4() {
         return diceFoto4;
-    }
-
-    public int getAiRoll2() {
-        return aiRoll2;
-    }
-
-    public int getAiRoll3() {
-        return aiRoll3;
-    }
-
-    public int getAiRoll4() {
-        return aiRoll4;
     }
 
     public Button getStart() {

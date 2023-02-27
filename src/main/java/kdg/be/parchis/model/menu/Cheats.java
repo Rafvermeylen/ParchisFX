@@ -9,8 +9,4 @@ public class Cheats {
     public static boolean getActivated(){
         return activated;
     }
-
-    public static int chooseThrow(){
-        return 1;
-    }
 }

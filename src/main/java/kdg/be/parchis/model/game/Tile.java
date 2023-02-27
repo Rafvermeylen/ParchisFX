@@ -9,7 +9,7 @@ public class Tile {
     private List<Pawn> standingPawns;
     private boolean hasPawn;
     private boolean isBarrier;
-    private Colors barrierColor;
+    private Color barrierColor;
     private boolean safe;
 
     public Tile(TileKind kind, int id) {
@@ -19,10 +19,6 @@ public class Tile {
         hasPawn = false;
         isBarrier = false;
         safe = kind.equals(TileKind.SAFESPACE);
-    }
-
-    public TileKind getKind() {
-        return kind;
     }
 
     public int getNr() {
@@ -73,16 +69,7 @@ public class Tile {
         return standingPawns;
     }
 
-    public Pawn getPawnOfPlayer(Player p){
-        for (Pawn pawn : standingPawns){
-            if (pawn.owner == p){
-                return pawn;
-            }
-        }
-        return null;
-    }
-
-    public Colors getBarrierColor() {
+    public Color getBarrierColor() {
         return barrierColor;
     }
 

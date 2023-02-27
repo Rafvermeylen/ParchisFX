@@ -18,10 +18,6 @@ public class CreditsPresenter {
     }
 
     private void addEventHandlers() {
-// Koppelt event handlers (anon. inner klassen)
-// aan de controls uit de view.
-// Event handlers: roepen methodes aan uit het
-// model en zorgen voor een update van de view.
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -32,12 +28,11 @@ public class CreditsPresenter {
     }
 
     private void updateView() {
-// Vult de view met data uit model
+
     }
 
     public void addWindowEventHandlers() {
-// Window event handlers (anon. inner klassen)
-// Koppeling via view.getScene().getWindow()
+
     }
 }
 

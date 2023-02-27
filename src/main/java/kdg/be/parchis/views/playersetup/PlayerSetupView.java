@@ -3,12 +3,9 @@ package kdg.be.parchis.views.playersetup;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import kdg.be.parchis.model.menu.PlayerSetup;
-import kdg.be.parchis.model.musicLogic.MainMusic;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -41,9 +38,6 @@ public class PlayerSetupView extends BorderPane {
         play = new Button("Play!");
     }
     private void layoutNodes() {
-// Layout van de Nodes
-// add... methodes (of set...)
-// Insets, padding, alignment, ...
         player1NameArea.setPrefSize(200,10);
         player2NameArea.setPrefSize(200,10);
         player3NameArea.setPrefSize(200,10);
@@ -63,8 +57,6 @@ public class PlayerSetupView extends BorderPane {
         BorderPane.setAlignment(back, Pos.CENTER_LEFT);
         BorderPane.setMargin(back, new Insets(20));
     }
-// implementatie van de nodige
-// package-private Getters
 
     public Button getBack() {
         return back;

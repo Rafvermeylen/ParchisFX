@@ -84,7 +84,7 @@ public class PlayerSetupPresenter extends BorderPane {
             view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(),view.getPlayer2NameArea(),view.getPlayer3NameArea(),view.getPlayer4NameArea());
         }
     }
-    public void addWindowEventHandlers () {
+    public void addWindowEventHandlers() {
         view.getScene().setOnKeyPressed(e -> {
             if (e.getCode() == fullscreenKey) {
                 Scene scene = view.getScene();

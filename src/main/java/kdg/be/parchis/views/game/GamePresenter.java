@@ -390,13 +390,13 @@ public class GamePresenter {
                 view.getDie1().setVisible(false);
                 gameSession.endTurn();
                 view.getTurns().setText("turn: " + gameSession.getTurn());
-                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.BLUE)) {
+                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
                     view.getRoll2().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.RED)) {
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
                     view.getRoll3().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.GREEN)) {
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
                     view.getRoll4().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.YELLOW)) {
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
                     view.getRoll1().setVisible(true);
                 }
                 if (gameSession.hasGameEnded()){
@@ -418,11 +418,11 @@ public class GamePresenter {
                 view.getDie2().setVisible(false);
                 gameSession.endTurn();
                 view.getTurns().setText("turn: " + gameSession.getTurn());
-                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.YELLOW)) {
+                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
                     view.getRoll1().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.RED)) {
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
                     view.getRoll3().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.GREEN)) {
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
                     view.getRoll4().setVisible(true);
                 }
                 if (gameSession.hasGameEnded()){
@@ -444,11 +444,11 @@ public class GamePresenter {
                 view.getDie3().setVisible(false);
                 gameSession.endTurn();
                 view.getTurns().setText("turn: " + gameSession.getTurn());
-                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.YELLOW)) {
+                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
                     view.getRoll1().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.BLUE)) {
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
                     view.getRoll2().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.GREEN)) {
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
                     view.getRoll4().setVisible(true);
                 }
                 if (gameSession.hasGameEnded()){
@@ -470,11 +470,11 @@ public class GamePresenter {
                 view.getDie4().setVisible(false);
                 gameSession.endTurn();
                 view.getTurns().setText("turn: " + gameSession.getTurn());
-                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.YELLOW)) {
+                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
                     view.getRoll1().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.BLUE)) {
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
                     view.getRoll2().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.RED)) {
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
                     view.getRoll3().setVisible(true);
                 }
                 if (gameSession.hasGameEnded()){
@@ -1465,24 +1465,24 @@ public class GamePresenter {
         view.getTurns().setText("turn: " + gameSession.getTurn());
         //set names
         for (Player p : gameSession.getPlayers()) {
-            if (p.getColor().equals(Colors.YELLOW)) {
+            if (p.getColor().equals(Color.YELLOW)) {
                 view.getYellowPlayer().setText(p.getName());
-            } else if (p.getColor().equals(Colors.BLUE)) {
+            } else if (p.getColor().equals(Color.BLUE)) {
                 view.getBluePlayer().setText(p.getName());
-            } else if (p.getColor().equals(Colors.RED)) {
+            } else if (p.getColor().equals(Color.RED)) {
                 view.getRedPlayer().setText(p.getName());
-            } else if (p.getColor().equals(Colors.GREEN)) {
+            } else if (p.getColor().equals(Color.GREEN)) {
                 view.getGreenPlayer().setText(p.getName());
             }
         }
         //View controlls for first rolling player
-        if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.YELLOW)) {
+        if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
             view.getRoll1().setVisible(true);
-        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.BLUE)) {
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
             view.getRoll2().setVisible(true);
-        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.RED)) {
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
             view.getRoll3().setVisible(true);
-        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Colors.GREEN)) {
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
             view.getRoll4().setVisible(true);
         }
 

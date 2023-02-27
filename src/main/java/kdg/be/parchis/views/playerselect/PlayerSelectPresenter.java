@@ -63,7 +63,7 @@ public class PlayerSelectPresenter {
         });
     }
     private void updateView() {
-// Vult de view met data uit model
+
     }
     public void addWindowEventHandlers () {
         view.getScene().setOnKeyPressed(e -> {
@@ -75,8 +75,6 @@ public class PlayerSelectPresenter {
                 }
             }
         });
-// Window event handlers (anon. inner klassen)
-// Koppeling via view.getScene().getWindow()
     }
 
     public void selectedPlayers(PlayerSetup playerSetup) {

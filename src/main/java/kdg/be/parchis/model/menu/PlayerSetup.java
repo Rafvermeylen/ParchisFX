@@ -1,6 +1,6 @@
 package kdg.be.parchis.model.menu;
 
-import kdg.be.parchis.model.game.Colors;
+import kdg.be.parchis.model.game.Color;
 import kdg.be.parchis.model.game.Player;
 import kdg.be.parchis.model.game.ai_Player;
 
@@ -25,34 +25,34 @@ public class PlayerSetup {
     }
 
     public void setPlayers(String naam1){
-        players.add(new Player(naam1, Colors.YELLOW));
-        players.add(new ai_Player("Bot_Blue", Colors.BLUE));
-        players.add(new ai_Player("Bot_Red", Colors.RED));
-        players.add(new ai_Player("Bot_Green", Colors.GREEN));
+        players.add(new Player(naam1, Color.YELLOW));
+        players.add(new ai_Player("Bot_Blue", Color.BLUE));
+        players.add(new ai_Player("Bot_Red", Color.RED));
+        players.add(new ai_Player("Bot_Green", Color.GREEN));
 
     }
 
     public void setPlayers(String naam1, String naam2){
-        players.add(new Player(naam1, Colors.YELLOW));
-        players.add(new Player(naam2, Colors.BLUE));
-        players.add(new ai_Player("Bot_Red", Colors.RED));
-        players.add(new ai_Player("Bot_Green", Colors.GREEN));
+        players.add(new Player(naam1, Color.YELLOW));
+        players.add(new Player(naam2, Color.BLUE));
+        players.add(new ai_Player("Bot_Red", Color.RED));
+        players.add(new ai_Player("Bot_Green", Color.GREEN));
 
     }
 
     public void setPlayers(String naam1, String naam2, String naam3){
-        players.add(new Player(naam1, Colors.YELLOW));
-        players.add(new Player(naam2, Colors.BLUE));
-        players.add(new Player(naam3, Colors.RED));
-        players.add(new ai_Player("Bot_Green", Colors.GREEN));
+        players.add(new Player(naam1, Color.YELLOW));
+        players.add(new Player(naam2, Color.BLUE));
+        players.add(new Player(naam3, Color.RED));
+        players.add(new ai_Player("Bot_Green", Color.GREEN));
 
     }
 
     public void setPlayers(String naam1, String naam2, String naam3, String naam4){
-        players.add(new Player(naam1, Colors.YELLOW));
-        players.add(new Player(naam2, Colors.BLUE));
-        players.add(new Player(naam3, Colors.RED));
-        players.add(new Player(naam4, Colors.GREEN));
+        players.add(new Player(naam1, Color.YELLOW));
+        players.add(new Player(naam2, Color.BLUE));
+        players.add(new Player(naam3, Color.RED));
+        players.add(new Player(naam4, Color.GREEN));
 
     }
 

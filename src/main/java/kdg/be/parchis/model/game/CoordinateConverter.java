@@ -154,35 +154,6 @@ public class CoordinateConverter {
         positionMap.put(102, new Position(0, 120));
         positionMap.put(103, new Position(0, 90));
         positionMap.put(104, new Position(0, 55));
-
-
-        /*
-        // Doubles
-        positionMap.put(105, new Position());
-        positionMap.put(106, new Position());
-        positionMap.put(107, new Position());
-        positionMap.put(108, new Position());
-        positionMap.put(109, new Position());
-        positionMap.put(110, new Position());
-        positionMap.put(111, new Position());
-        positionMap.put(112, new Position());
-        positionMap.put(113, new Position());
-        positionMap.put(114, new Position());
-        positionMap.put(115, new Position());
-        positionMap.put(116, new Position());
-        positionMap.put(117, new Position());
-        positionMap.put(118, new Position());
-        positionMap.put(119, new Position());
-        positionMap.put(120, new Position());
-        positionMap.put(121, new Position());
-        positionMap.put(122, new Position());
-        positionMap.put(123, new Position());
-        positionMap.put(124, new Position());
-        positionMap.put(125, new Position());
-        positionMap.put(126, new Position());
-        positionMap.put(127, new Position());
-        positionMap.put(128, new Position());
-        */
     }
 
     public int getX(int tileNr){
