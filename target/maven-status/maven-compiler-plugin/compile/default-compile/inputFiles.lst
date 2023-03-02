@@ -10,6 +10,7 @@ C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\model\game\Board.
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\model\game\Game.java
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\views\playerselect\PlayerSelectPresenter.java
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\views\order\OrderView.java
+C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\views\rules\RulePresenter.java
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\model\menu\Leaderboards.java
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\views\leaderboards\LeaderboardView.java
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\views\game\GameView.java
@@ -28,6 +29,7 @@ C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\views\credits\Cre
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\views\credits\CreditsPresenter.java
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\model\musicLogic\MainMusic.java
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\Main.java
+C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\views\rules\RuleView.java
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\model\game\Die.java
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\model\menu\PlayerSetup.java
 C:\Users\rafve\Projects\ParchisFX\src\main\java\kdg\be\parchis\model\menu\Score.java

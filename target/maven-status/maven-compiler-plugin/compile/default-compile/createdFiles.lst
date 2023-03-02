@@ -2,10 +2,13 @@ kdg\be\parchis\views\game\GamePresenter$15.class
 kdg\be\parchis\views\game\GamePresenter$25.class
 kdg\be\parchis\views\order\OrderPresenter$5.class
 kdg\be\parchis\views\order\OrderPresenter.class
+kdg\be\parchis\views\rules\RuleView.class
 kdg\be\parchis\model\menu\PlayerSetup.class
 kdg\be\parchis\views\playerselect\PlayerSelectPresenter$3.class
+kdg\be\parchis\views\rules\RulePresenter$1.class
 kdg\be\parchis\views\credits\CreditsPresenter.class
 kdg\be\parchis\views\mainmenu\MainMenuPresenter$6.class
+kdg\be\parchis\views\rules\RulePresenter.class
 kdg\be\parchis\model\game\Game.class
 kdg\be\parchis\model\menu\Leaderboards.class
 kdg\be\parchis\views\game\GamePresenter$4.class
@@ -56,6 +59,7 @@ kdg\be\parchis\views\game\GamePresenter$9.class
 kdg\be\parchis\views\playerselect\PlayerSelectPresenter$5.class
 kdg\be\parchis\views\game\GamePresenter$14.class
 kdg\be\parchis\model\menu\Score.class
+kdg\be\parchis\views\mainmenu\MainMenuPresenter$8.class
 kdg\be\parchis\views\game\GamePresenter$6.class
 kdg\be\parchis\views\mainmenu\MainMenuPresenter.class
 kdg\be\parchis\views\game\GamePresenter$24.class

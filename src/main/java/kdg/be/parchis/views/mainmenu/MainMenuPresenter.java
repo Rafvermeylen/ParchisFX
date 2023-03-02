@@ -15,6 +15,8 @@ import kdg.be.parchis.views.leaderboards.LeaderboardPresenter;
 import kdg.be.parchis.views.leaderboards.LeaderboardView;
 import kdg.be.parchis.views.playerselect.PlayerSelectPresenter;
 import kdg.be.parchis.views.playerselect.PlayerSelectView;
+import kdg.be.parchis.views.rules.RulePresenter;
+import kdg.be.parchis.views.rules.RuleView;
 
 import java.io.FileNotFoundException;
 
@@ -70,6 +72,22 @@ public class MainMenuPresenter {
                 updateView();
             }
         });
+
+        view.getRules().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                RuleView ruleView = null;
+                try {
+                    ruleView = new RuleView();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+                RulePresenter rulePresenter = new RulePresenter(ruleView, view);
+                SoundClass.playClick();
+                view.getScene().setRoot(ruleView);
+            }
+        });
+
         view.getLeaderboards().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
