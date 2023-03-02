@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Circle;
 import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.musicLogic.MainMusic;
 
@@ -31,6 +32,15 @@ public class OrderView extends StackPane {
     private ImageView diceFoto2;
     private ImageView diceFoto3;
     private ImageView diceFoto4;
+    private Button soundButton;
+    private Button fxButton;
+    private Image musicLoud;
+    private Image musicMute;
+    private Image sfxLoud;
+    private Image sfxMute;
+    private ImageView musicPic;
+    private ImageView soundPic;
+
 
     public OrderView () throws FileNotFoundException, InterruptedException {
         this.initialiseNodes();
@@ -55,6 +65,31 @@ public class OrderView extends StackPane {
         diceFoto2 = new ImageView(Die.getEmpty());
         diceFoto3 = new ImageView(Die.getEmpty());
         diceFoto4 = new ImageView(Die.getEmpty());
+
+        /*
+        musicLoud = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_loud.png"));
+        musicMute = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_muted.png"));
+
+        sfxLoud = new Image(new FileInputStream("resources/graphics/buttons/mute/SFX_loud.png"));
+        sfxMute = new Image(new FileInputStream("resources/graphics/buttons/mute/SFX_muted.png"));
+
+        musicPic = new ImageView(musicLoud);
+        soundPic = new ImageView(sfxLoud);
+
+        double r = 1.5;
+        soundButton = new Button("", musicPic);
+        fxButton = new Button("", soundPic);
+
+        soundButton.setShape(new Circle(r));
+        fxButton.setShape(new Circle(r));
+
+        soundButton.setMinSize(50, 50);
+        soundButton.setMaxSize(50, 50);
+
+        fxButton.setMinSize(50, 50);
+        fxButton.setMaxSize(50, 50);
+        */
+
     }
     private void layoutNodes() throws InterruptedException {
         this.getChildren().add(boardView);
@@ -104,10 +139,17 @@ public class OrderView extends StackPane {
         controls4.setTranslateX(500);
         controls4.setTranslateY(270);
 
-        this.getChildren().add(back);
-        this.getChildren().add(start);
+        /*
+        HBox buttonsTop = new HBox(15);
+        buttonsTop.getChildren().addAll(soundButton, fxButton);
+        buttonsTop.setAlignment(Pos.TOP_RIGHT);
+        */
+
+        this.getChildren().addAll(back, start);
+        //this.getChildren().add(buttonsTop);
         start.setPrefSize(150,150);
         start.setVisible(false);
+        //StackPane.setAlignment(buttonsTop, Pos.TOP_RIGHT);
         StackPane.setAlignment(back, Pos.BOTTOM_LEFT);
         StackPane.setMargin(back, new Insets(20));
         StackPane.setAlignment(start, Pos.CENTER);
@@ -179,4 +221,38 @@ public class OrderView extends StackPane {
     public Button getStart() {
         return start;
     }
+/*
+    public Button getSoundButton() {
+        return soundButton;
+    }
+
+    public Button getFxButton() {
+        return fxButton;
+    }
+
+    public Image getMusicLoud() {
+        return musicLoud;
+    }
+
+    public Image getSfxLoud() {
+        return sfxLoud;
+    }
+
+    public ImageView getMusicPic() {
+        return musicPic;
+    }
+
+    public ImageView getSoundPic() {
+        return soundPic;
+    }
+
+    public Image getMusicMute() {
+        return musicMute;
+    }
+
+    public Image getSfxMute() {
+        return sfxMute;
+    }
+*/
+
 }

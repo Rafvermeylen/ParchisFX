@@ -118,6 +118,7 @@ public class PlayerSelectView extends BorderPane {
     public Button getBack() {
         return back;
     }
+
     public Button getSoundButton() {
         return soundButton;
     }
