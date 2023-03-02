@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import kdg.be.parchis.model.menu.PlayerSetup;
+import kdg.be.parchis.model.musicLogic.MainMusic;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 import kdg.be.parchis.views.playersetup.PlayerSetupPresenter;
@@ -61,9 +62,44 @@ public class PlayerSelectPresenter {
                 view.getScene().setRoot(backView);
             }
         });
+
+        view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                MainMusic.muteMenuMusic();
+                if (MainMusic.getMediaPlayer().isMute()) {
+                    view.getMusicPic().setImage(view.getMusicMute());
+                } else {
+                    view.getMusicPic().setImage(view.getMusicLoud());
+                }
+            }
+        });
+
+        view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                SoundClass.clickMute();
+
+                if (SoundClass.isMuted()) {
+                    view.getSoundPic().setImage(view.getSfxMute());
+                } else {
+                    view.getSoundPic().setImage(view.getSfxLoud());
+                }
+            }
+        });
+
     }
     private void updateView() {
-
+        if (MainMusic.getMediaPlayer().isMute()){
+            view.getMusicPic().setImage(view.getMusicMute());
+        } else {
+            view.getMusicPic().setImage(view.getMusicLoud());
+        }
+        if (SoundClass.isMuted()){
+            view.getSoundPic().setImage(view.getSfxMute());
+        } else {
+            view.getSoundPic().setImage(view.getSfxLoud());
+        }
     }
     public void addWindowEventHandlers () {
         view.getScene().setOnKeyPressed(e -> {
