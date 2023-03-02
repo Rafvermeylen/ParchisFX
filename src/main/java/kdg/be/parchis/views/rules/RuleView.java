@@ -32,39 +32,38 @@ public class RuleView extends BorderPane{
     private void layoutNodes() {
         rules.setText("""
                 \n\n\n\n\n\n
-                1. When a five is thrown, you can 
-                   get out of nest (starting place).
+                1. When a five is thrown, you can get out of 
+                   nest (starting place).
                    
-                2. When a six is thrown, you can 
-                   throw again (max. 3 times).
+                2. When a six is thrown, you can throw again 
+                   (max. 3 times).
                    
-                3. When all your pawns are out of 
-                   nest, a six becomes a seven.
+                3. When all your pawns are out of nest, a six 
+                   becomes a seven.
                    
-                4. When you 'eat' a pawn from another 
-                   player, you move 20 spaces (if possible).
+                4. When you 'eat' a pawn from another player, 
+                   you move 20 spaces (if possible).
                    
-                5. When a pawn finishes, a pawn of 
-                   your choosing can move 10 
-                   spaces (if possible).
+                5. When a pawn finishes, a pawn of your choosing 
+                   can move 10 spaces (if possible).
                    
                 6. Tiles with a circle are safe spaces. 
                    Multiple pawns can land on them. If 2 pawns
-                   of the same colour are on said tile, 
-                   they create a barrier. It is impossible for
-                   anybody to move further. If the owner 
-                   of the barrier has thrown a 6 or 7, the 
-                   barrier must be broken.
+                   of the same colour are on said tile, they 
+                   create a barrier. It is impossible for 
+                   anybody to move further. If the owner of the 
+                   barrier has thrown a 6 or 7, the barrier must 
+                   be broken.
                    
-                7. You have to throw the right 
-                   amount of eyes to get to the finish.
+                7. You have to throw the right amount of eyes to 
+                   get to the finish.
                 """
 
         );
         rules.setFont(Font.font(MONOSPACED, 15));
 
 
-        VBox vBox = new VBox(50);
+        VBox vBox = new VBox(30);
         vBox.getChildren().addAll(rules, back);
         vBox.setAlignment(Pos.CENTER);
 
@@ -72,7 +71,7 @@ public class RuleView extends BorderPane{
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
         BorderPane.setAlignment(vBox, Pos.CENTER);
-        BorderPane.setMargin(back, new Insets(20));
+        BorderPane.setMargin(back, new Insets(90));
     }
 
     public Button getBack() {
