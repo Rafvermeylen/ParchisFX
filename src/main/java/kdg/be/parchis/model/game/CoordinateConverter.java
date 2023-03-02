@@ -40,6 +40,7 @@ public class CoordinateConverter {
 
         //yellow start position
         positionMap.put(5, new Position(170, -40));
+        positionMap.put(502, new Position(170, -85));
 
         //blue start position
         positionMap.put(22, new Position(-50, -160));
