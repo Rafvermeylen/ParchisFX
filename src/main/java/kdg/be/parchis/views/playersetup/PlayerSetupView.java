@@ -4,11 +4,15 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.util.StringConverter;
+import javafx.util.converter.DefaultStringConverter;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.function.UnaryOperator;
 
 public class PlayerSetupView extends BorderPane {
     private Image background;
@@ -42,6 +46,26 @@ public class PlayerSetupView extends BorderPane {
         player2NameArea.setPrefSize(200,10);
         player3NameArea.setPrefSize(200,10);
         player4NameArea.setPrefSize(200,10);
+
+        // Set character limit to 14
+        UnaryOperator<TextFormatter.Change> lengthFilter = change -> {
+            int newLength = change.getControlNewText().length();
+            if (newLength <= 10) {
+                return change;
+            } else {
+                return null;
+            }
+        };
+        StringConverter<String> converter = new DefaultStringConverter();
+        TextFormatter<String> textFormatter1 = new TextFormatter<>(converter, "", lengthFilter);
+        TextFormatter<String> textFormatter2 = new TextFormatter<>(converter, "", lengthFilter);
+        TextFormatter<String> textFormatter3 = new TextFormatter<>(converter, "", lengthFilter);
+        TextFormatter<String> textFormatter4 = new TextFormatter<>(converter, "", lengthFilter);
+
+        player1NameArea.setTextFormatter(textFormatter1);
+        player2NameArea.setTextFormatter(textFormatter2);
+        player3NameArea.setTextFormatter(textFormatter3);
+        player4NameArea.setTextFormatter(textFormatter4);
 
         setupNames.setAlignment(Pos.CENTER);
 
