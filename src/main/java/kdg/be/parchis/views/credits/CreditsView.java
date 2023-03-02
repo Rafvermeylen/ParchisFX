@@ -12,9 +12,11 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import static com.sun.javafx.font.LogicalFont.MONOSPACED;
 
 public class CreditsView extends BorderPane {
+
+    public static final String MONOSPACED = "Monospaced";
+
     private Button back;
     private Image background;
     private Text credits;

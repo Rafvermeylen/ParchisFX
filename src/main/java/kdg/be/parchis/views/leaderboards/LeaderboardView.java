@@ -15,9 +15,10 @@ import kdg.be.parchis.model.menu.Leaderboards;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import static com.sun.javafx.font.LogicalFont.MONOSPACED;
 
 public class LeaderboardView extends BorderPane {
+    public static final String MONOSPACED = "Monospaced";
+
     private Button back;
     private Button soundButton;
     private Button fxButton;
