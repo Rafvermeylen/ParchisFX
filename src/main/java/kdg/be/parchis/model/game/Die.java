@@ -10,6 +10,7 @@ import java.util.Random;
 public class Die {
     private static int thrown=0;
     private static Image empty;
+    private static boolean rollAgain = false;
     static {
         try {
             empty = new Image(new FileInputStream("resources\\graphics\\die\\empty.png"));
@@ -83,6 +84,7 @@ public class Die {
         } else if (thrown == 6){
             getDiceFoto().setImage(die6);
         }
+        rollAgain = thrown == 6;
     }
 
     public static void setSeven(){
@@ -95,6 +97,10 @@ public class Die {
 
     public static int getThrown() {
         return thrown;
+    }
+
+    public static boolean isRollAgain() {
+        return rollAgain;
     }
 
     public static ImageView getDiceFoto() {

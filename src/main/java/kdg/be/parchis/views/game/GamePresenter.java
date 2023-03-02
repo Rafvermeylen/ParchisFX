@@ -534,13 +534,13 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(0));
                     } else {
                         gameSession.jump10(gameSession.getYellowPlayer().pawns.get(0));
+                        if (!Die.isRollAgain()) {
+                            view.getFinish1().setVisible(true);
+                        } else {
+                            view.getRoll1().setVisible(true);
+                        }
                     }
 
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish1().setVisible(true);
-                    } else {
-                        view.getRoll1().setVisible(true);
-                    }
                     view.getYp_1().setImage(view.getYellowPawn());
                     view.getYp_2().setImage(view.getYellowPawn());
                     view.getYp_3().setImage(view.getYellowPawn());
@@ -566,8 +566,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish1().setVisible(true);
                             } else {
-                                view.getRoll1().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll1().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish1().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll1().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -586,11 +595,11 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(1));
                     } else {
                         gameSession.jump10(gameSession.getYellowPlayer().pawns.get(1));
-                    }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish1().setVisible(true);
-                    } else {
-                        view.getRoll1().setVisible(true);
+                        if (!Die.isRollAgain()) {
+                            view.getFinish1().setVisible(true);
+                        } else {
+                            view.getRoll1().setVisible(true);
+                        }
                     }
                     view.getYp_1().setImage(view.getYellowPawn());
                     view.getYp_2().setImage(view.getYellowPawn());
@@ -617,8 +626,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish1().setVisible(true);
                             } else {
-                                view.getRoll1().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll1().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish1().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll1().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -637,12 +655,13 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(2));
                     } else {
                         gameSession.jump10(gameSession.getYellowPlayer().pawns.get(2));
+                        if (!Die.isRollAgain()) {
+                            view.getFinish1().setVisible(true);
+                        } else {
+                            view.getRoll1().setVisible(true);
+                        }
                     }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish1().setVisible(true);
-                    } else {
-                        view.getRoll1().setVisible(true);
-                    }
+
                     view.getYp_1().setImage(view.getYellowPawn());
                     view.getYp_2().setImage(view.getYellowPawn());
                     view.getYp_3().setImage(view.getYellowPawn());
@@ -668,8 +687,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish1().setVisible(true);
                             } else {
-                                view.getRoll1().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll1().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish1().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll1().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -688,11 +716,11 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getYellowPlayer() ,gameSession.getYellowPlayer().pawns.get(3));
                     } else {
                         gameSession.jump10(gameSession.getYellowPlayer().pawns.get(3));
-                    }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish1().setVisible(true);
-                    } else {
-                        view.getRoll1().setVisible(true);
+                        if (!Die.isRollAgain()) {
+                            view.getFinish1().setVisible(true);
+                        } else {
+                            view.getRoll1().setVisible(true);
+                        }
                     }
                     view.getYp_1().setImage(view.getYellowPawn());
                     view.getYp_2().setImage(view.getYellowPawn());
@@ -719,8 +747,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish1().setVisible(true);
                             } else {
-                                view.getRoll1().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll1().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish1().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll1().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -739,11 +776,11 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(0));
                     } else {
                         gameSession.jump10(gameSession.getBluePlayer().pawns.get(0));
-                    }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish2().setVisible(true);
-                    } else {
-                        view.getRoll2().setVisible(true);
+                        if (!Die.isRollAgain()) {
+                            view.getFinish2().setVisible(true);
+                        } else {
+                            view.getRoll2().setVisible(true);
+                        }
                     }
                     view.getBp_1().setImage(view.getBluePawn());
                     view.getBp_2().setImage(view.getBluePawn());
@@ -770,8 +807,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish2().setVisible(true);
                             } else {
-                                view.getRoll2().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll2().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish2().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll2().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -790,11 +836,11 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(1));
                     } else {
                         gameSession.jump10(gameSession.getBluePlayer().pawns.get(1));
-                    }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish2().setVisible(true);
-                    } else {
-                        view.getRoll2().setVisible(true);
+                        if (!Die.isRollAgain()) {
+                            view.getFinish2().setVisible(true);
+                        } else {
+                            view.getRoll2().setVisible(true);
+                        }
                     }
                     view.getBp_1().setImage(view.getBluePawn());
                     view.getBp_2().setImage(view.getBluePawn());
@@ -821,8 +867,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish2().setVisible(true);
                             } else {
-                                view.getRoll2().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll2().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish2().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll2().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -841,11 +896,11 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(2));
                     } else {
                         gameSession.jump10(gameSession.getBluePlayer().pawns.get(2));
-                    }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish2().setVisible(true);
-                    } else {
-                        view.getRoll2().setVisible(true);
+                        if (!Die.isRollAgain()) {
+                            view.getFinish2().setVisible(true);
+                        } else {
+                            view.getRoll2().setVisible(true);
+                        }
                     }
                     view.getBp_1().setImage(view.getBluePawn());
                     view.getBp_2().setImage(view.getBluePawn());
@@ -872,8 +927,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish2().setVisible(true);
                             } else {
-                                view.getRoll2().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll2().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish2().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll2().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -892,11 +956,11 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getBluePlayer() ,gameSession.getBluePlayer().pawns.get(3));
                     } else {
                         gameSession.jump10(gameSession.getBluePlayer().pawns.get(3));
-                    }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish2().setVisible(true);
-                    } else {
-                        view.getRoll2().setVisible(true);
+                        if (!Die.isRollAgain()) {
+                            view.getFinish2().setVisible(true);
+                        } else {
+                            view.getRoll2().setVisible(true);
+                        }
                     }
                     view.getBp_1().setImage(view.getBluePawn());
                     view.getBp_2().setImage(view.getBluePawn());
@@ -923,8 +987,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish2().setVisible(true);
                             } else {
-                                view.getRoll2().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll2().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish2().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll2().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -943,12 +1016,13 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(0));
                     } else {
                         gameSession.jump10(gameSession.getRedPlayer().pawns.get(0));
+                        if (!Die.isRollAgain()) {
+                            view.getFinish3().setVisible(true);
+                        } else {
+                            view.getRoll3().setVisible(true);
+                        }
                     }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish3().setVisible(true);
-                    } else {
-                        view.getRoll3().setVisible(true);
-                    }
+
                     view.getRp_1().setImage(view.getRedPawn());
                     view.getRp_2().setImage(view.getRedPawn());
                     view.getRp_3().setImage(view.getRedPawn());
@@ -974,8 +1048,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish3().setVisible(true);
                             } else {
-                                view.getRoll3().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll3().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish3().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll3().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -994,12 +1077,13 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(1));
                     } else {
                         gameSession.jump10(gameSession.getRedPlayer().pawns.get(1));
+                        if (!Die.isRollAgain()) {
+                            view.getFinish3().setVisible(true);
+                        } else {
+                            view.getRoll3().setVisible(true);
+                        }
                     }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish3().setVisible(true);
-                    } else {
-                        view.getRoll3().setVisible(true);
-                    }
+
                     view.getRp_1().setImage(view.getRedPawn());
                     view.getRp_2().setImage(view.getRedPawn());
                     view.getRp_3().setImage(view.getRedPawn());
@@ -1025,8 +1109,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish3().setVisible(true);
                             } else {
-                                view.getRoll3().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll3().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish3().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll3().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -1045,12 +1138,13 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(2));
                     } else {
                         gameSession.jump10(gameSession.getRedPlayer().pawns.get(2));
+                        if (!Die.isRollAgain()) {
+                            view.getFinish3().setVisible(true);
+                        } else {
+                            view.getRoll3().setVisible(true);
+                        }
                     }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish3().setVisible(true);
-                    } else {
-                        view.getRoll3().setVisible(true);
-                    }
+
                     view.getRp_1().setImage(view.getRedPawn());
                     view.getRp_2().setImage(view.getRedPawn());
                     view.getRp_3().setImage(view.getRedPawn());
@@ -1075,8 +1169,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish3().setVisible(true);
                             } else {
-                                view.getRoll3().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll3().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish3().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll3().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -1095,11 +1198,13 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getRedPlayer() ,gameSession.getRedPlayer().pawns.get(3));
                     } else {
                         gameSession.jump10(gameSession.getRedPlayer().pawns.get(3));
-                    }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish3().setVisible(true);
-                    } else {
-                        view.getRoll3().setVisible(true);
+                        if (!Die.isRollAgain()) {
+                            view.getFinish3().setVisible(true);
+                        } else {
+                            if (Die.getThrown() != 10){
+                                view.getRoll3().setVisible(true);
+                            }
+                        }
                     }
                     view.getRp_1().setImage(view.getRedPawn());
                     view.getRp_2().setImage(view.getRedPawn());
@@ -1126,9 +1231,16 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish3().setVisible(true);
                             } else {
-                                view.getRoll3().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll3().setVisible(true);
+                                }
                             }
                         }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish3().setVisible(true);
+                    } else {
+                        view.getRoll3().setVisible(true);
                     }
                     updateAllPawnPositions();
                     if (gameSession.getRedPlayer().pawns.get(3).isFinished()){
@@ -1146,12 +1258,13 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(0));
                     } else {
                         gameSession.jump10(gameSession.getGreenPlayer().pawns.get(0));
+                        if (!Die.isRollAgain()) {
+                            view.getFinish4().setVisible(true);
+                        } else {
+                            view.getRoll4().setVisible(true);
+                        }
                     }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish4().setVisible(true);
-                    } else {
-                        view.getRoll4().setVisible(true);
-                    }
+
                     view.getGp_1().setImage(view.getGreenPawn());
                     view.getGp_2().setImage(view.getGreenPawn());
                     view.getGp_3().setImage(view.getGreenPawn());
@@ -1177,8 +1290,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish4().setVisible(true);
                             } else {
-                                view.getRoll4().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll4().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish4().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll4().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -1197,12 +1319,13 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(1));
                     } else {
                         gameSession.jump10(gameSession.getGreenPlayer().pawns.get(1));
+                        if (!Die.isRollAgain()) {
+                            view.getFinish4().setVisible(true);
+                        } else {
+                            view.getRoll4().setVisible(true);
+                        }
                     }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish4().setVisible(true);
-                    } else {
-                        view.getRoll4().setVisible(true);
-                    }
+
                     view.getGp_1().setImage(view.getGreenPawn());
                     view.getGp_2().setImage(view.getGreenPawn());
                     view.getGp_3().setImage(view.getGreenPawn());
@@ -1228,8 +1351,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish4().setVisible(true);
                             } else {
-                                view.getRoll4().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll4().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish4().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll4().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -1248,12 +1380,13 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(2));
                     } else {
                         gameSession.jump10(gameSession.getGreenPlayer().pawns.get(2));
+                        if (!Die.isRollAgain()) {
+                            view.getFinish4().setVisible(true);
+                        } else {
+                            view.getRoll4().setVisible(true);
+                        }
                     }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish4().setVisible(true);
-                    } else {
-                        view.getRoll4().setVisible(true);
-                    }
+
                     view.getGp_1().setImage(view.getGreenPawn());
                     view.getGp_2().setImage(view.getGreenPawn());
                     view.getGp_3().setImage(view.getGreenPawn());
@@ -1279,8 +1412,17 @@ public class GamePresenter {
                             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                                 view.getFinish4().setVisible(true);
                             } else {
-                                view.getRoll4().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll4().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish4().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll4().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
@@ -1299,12 +1441,13 @@ public class GamePresenter {
                         gameSession.movePawn(gameSession.getGreenPlayer() ,gameSession.getGreenPlayer().pawns.get(3));
                     } else {
                         gameSession.jump10(gameSession.getGreenPlayer().pawns.get(3));
+                        if (!Die.isRollAgain()) {
+                            view.getFinish4().setVisible(true);
+                        } else {
+                            view.getRoll4().setVisible(true);
+                        }
                     }
-                    if (Die.getThrown() != 6 && Die.getThrown() != 7) {
-                        view.getFinish4().setVisible(true);
-                    } else {
-                        view.getRoll4().setVisible(true);
-                    }
+
                     view.getGp_1().setImage(view.getGreenPawn());
                     view.getGp_2().setImage(view.getGreenPawn());
                     view.getGp_3().setImage(view.getGreenPawn());
@@ -1327,11 +1470,20 @@ public class GamePresenter {
                             }
                         }
                         if (moveable.size()==0){
-                            if (Die.getThrown() != 6 && Die.getThrown() != 7){
+                            if (!Die.isRollAgain()){
                                 view.getFinish4().setVisible(true);
                             } else {
-                                view.getRoll4().setVisible(true);
+                                if (!Die.isRollAgain()){
+                                    view.getRoll4().setVisible(true);
+                                }
                             }
+                        }
+                    }
+                    if (!Die.isRollAgain()) {
+                        view.getFinish4().setVisible(true);
+                    } else {
+                        if (Die.getThrown() != 10){
+                            view.getRoll4().setVisible(true);
                         }
                     }
                     updateAllPawnPositions();
