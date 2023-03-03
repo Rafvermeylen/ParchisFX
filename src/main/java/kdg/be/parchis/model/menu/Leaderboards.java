@@ -24,7 +24,7 @@ public class Leaderboards {
         ArrayList<Score> newList = new ArrayList<>();
         Scanner fileScanner = null;
         try {
-            fileScanner = new Scanner(Paths.get("src\\main\\java\\kdg\\be\\parchis\\data\\scores.csv"));
+            fileScanner = new Scanner(Paths.get("resources/data/scores.csv"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
