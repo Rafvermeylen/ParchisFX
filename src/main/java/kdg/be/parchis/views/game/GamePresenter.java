@@ -69,7 +69,7 @@ public class GamePresenter {
                     view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getYellowPlayer()) && !gameSession.getYellowPlayer().getHasBarrier() && Die.getThrown() != 5) {
                     glowMoveableYellowPawn();
-                } else if (gameSession.getYellowPlayer().getHasBarrier() && Die.getThrown() == 6){
+                } else if (gameSession.getYellowPlayer().getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)){
                     List<Pawn> moveable = gameSession.getBarrierPawns(gameSession.getYellowPlayer());
                     yellowMovablePawns(moveable);
                 }else {
@@ -283,6 +283,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getFinish1().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {

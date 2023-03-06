@@ -23,11 +23,6 @@ public class Pawn {
     }
 
 
-    public Tile getLocation() {
-        return position;
-    }
-
-
     public int getPawnNumber() {
         return pawnNumber;
     }
@@ -127,8 +122,8 @@ public class Pawn {
                 return false;
             }
 
-            if (position.getNr()+i > 68 && !owner.getColor().equals(Color.YELLOW)){
-                if (board.board.get(position.getNr() + i -68).IsBarrier()) {
+            if (position.getNr()+ i > 68 && !owner.getColor().equals(Color.YELLOW)){
+                if (board.board.get(position.getNr() + i - 68).IsBarrier()) {
                     return false;
                 }
             } else {

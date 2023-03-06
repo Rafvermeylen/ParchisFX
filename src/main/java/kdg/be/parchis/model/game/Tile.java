@@ -26,7 +26,7 @@ public class Tile {
     }
 
     public void pawnLands(Pawn landedPawn){
-        if (hasPawn && safe){
+        if (hasPawn && safe && !isBarrier){
             for (Pawn p : standingPawns){
                 if (landedPawn.getPawnNumber() != p.getPawnNumber() &&
                         landedPawn.owner.equals(p.owner)){
@@ -46,7 +46,7 @@ public class Tile {
         if (isBarrier && leavingPawn.owner.getColor().equals(barrierColor)){
             isBarrier = false;
             leavingPawn.owner.setBarrier();
-        } else {
+        } else if (standingPawns.size() == 1){
             hasPawn = false;
         }
         standingPawns.remove(leavingPawn);
