@@ -43,7 +43,7 @@ public class Leaderboards {
 
     public static void store(){
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(Paths.get("src\\main\\java\\kdg\\be\\parchis\\data\\scores.csv").toFile()))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(Paths.get("resources/data/scores.csv").toFile()))) {
 
             writer.println("\"naam\", \"score\"");
 
