@@ -2,10 +2,8 @@ package kdg.be.parchis.views.game;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import kdg.be.parchis.model.game.*;
 import kdg.be.parchis.model.menu.Leaderboards;
 import kdg.be.parchis.model.musicLogic.SoundClass;
@@ -49,10 +47,6 @@ public class GamePresenter {
                         view.getFinish1().setVisible(true);
                     }
                     return;
-                }
-                //if nest is empty, move seven spaces instead of six
-                if (Die.getThrown()==6 && gameSession.getYellowPlayer().isNestEmpty()){
-                    Die.setSeven();
                 }
                 view.getDie1().setVisible(true);
                 view.getDie1().setImage(Die.getDiceFoto().getImage());
@@ -104,10 +98,6 @@ public class GamePresenter {
                     }
                     return;
                 }
-                //if nest is empty, move seven spaces instead of six
-                if (Die.getThrown()==6 && gameSession.getBluePlayer().isNestEmpty()){
-                    Die.setSeven();
-                }
                 view.getDie2().setVisible(true);
                 view.getDie2().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && !gameSession.getBluePlayer().getHasBarrier() && Die.getThrown() != 5) {
@@ -122,10 +112,10 @@ public class GamePresenter {
                     view.getNestGlow().setImage(view.getGlowNestBlue());
                     view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getBluePlayer()) && !gameSession.getBluePlayer().getHasBarrier() && Die.getThrown() != 5) {
-                    glowMoveableBluePawn();
+                    blueMovablePawns();
                 } else if (gameSession.getBluePlayer().getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)){
                     List<Pawn> moveable = gameSession.getBarrierPawns(gameSession.getBluePlayer());
-                    glowMoveableBluePawn(moveable);
+                    blueMovablePawns(moveable);
                 } else {
                     if (!gameSession.getBluePlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getBluePlayer()) && Die.getThrown() == 5) {
                         view.getNestGlow().setImage(view.getGlowNestBlue());
@@ -133,7 +123,7 @@ public class GamePresenter {
                     } else if (!gameSession.getBluePlayer().canMove(gameSession.getBoard(), Die.getThrown()) && Die.getThrown() == 5){
                         view.getFinish2().setVisible(true);
                     }
-                    glowMoveableBluePawn();
+                    blueMovablePawns();
                     if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll2().setVisible(true);
                         view.getFinish2().setVisible(false);
@@ -158,10 +148,6 @@ public class GamePresenter {
                     }
                     return;
                 }
-                //if nest is empty, move seven spaces instead of six
-                if (Die.getThrown()==6 && gameSession.getRedPlayer().isNestEmpty()){
-                    Die.setSeven();
-                }
                 view.getDie3().setVisible(true);
                 view.getDie3().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && !gameSession.getRedPlayer().getHasBarrier() && Die.getThrown() != 5) {
@@ -176,10 +162,10 @@ public class GamePresenter {
                     view.getNestGlow().setImage(view.getGlowNestRed());
                     view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getRedPlayer()) && !gameSession.getRedPlayer().getHasBarrier() && Die.getThrown() != 5) {
-                    glowMoveableRedPawn();
+                    redMovablePawns();
                 } else if (gameSession.getRedPlayer().getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)){
                     List<Pawn> moveable = gameSession.getBarrierPawns(gameSession.getRedPlayer());
-                    glowMoveableRedPawn(moveable);
+                    redMovablePawns(moveable);
                 } else {
                     if (!gameSession.getRedPlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getRedPlayer()) && Die.getThrown() == 5) {
                         view.getNestGlow().setImage(view.getGlowNestRed());
@@ -187,7 +173,7 @@ public class GamePresenter {
                     } else if (!gameSession.getRedPlayer().canMove(gameSession.getBoard(), Die.getThrown()) && Die.getThrown() == 5){
                         view.getFinish3().setVisible(true);
                     }
-                    glowMoveableRedPawn();
+                    redMovablePawns();
                     if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll3().setVisible(true);
                         view.getFinish3().setVisible(false);
@@ -212,10 +198,6 @@ public class GamePresenter {
                     }
                     return;
                 }
-                //if nest is empty, move seven spaces instead of six
-                if (Die.getThrown()==6 && gameSession.getGreenPlayer().isNestEmpty()){
-                    Die.setSeven();
-                }
                 view.getDie4().setVisible(true);
                 view.getDie4().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getGreenPlayer()) && !gameSession.getGreenPlayer().getHasBarrier() && Die.getThrown() != 5) {
@@ -231,10 +213,10 @@ public class GamePresenter {
                     view.getNestGlow().setImage(view.getGlowNestGreen());
                     view.getNestGlow().setVisible(true);
                 } else if (gameSession.canPlayerMove(gameSession.getGreenPlayer()) && !gameSession.getGreenPlayer().getHasBarrier() && Die.getThrown() != 5) {
-                    glowMoveableGreenPawn();
+                    greenMovablePawns();
                 } else if (gameSession.getGreenPlayer().getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)){
                     List<Pawn> moveable = gameSession.getBarrierPawns(gameSession.getGreenPlayer());
-                    glowMoveableGreenPawn(moveable);
+                    greenMovablePawns(moveable);
                 } else {
                     if (!gameSession.getGreenPlayer().isNestEmpty() && gameSession.isStartOK(gameSession.getGreenPlayer()) && Die.getThrown() == 5) {
                         view.getNestGlow().setImage(view.getGlowNestGreen());
@@ -242,7 +224,7 @@ public class GamePresenter {
                     } else if (!gameSession.getGreenPlayer().canMove(gameSession.getBoard(), Die.getThrown()) && Die.getThrown() == 5){
                         view.getFinish4().setVisible(true);
                     }
-                    glowMoveableGreenPawn();
+                    greenMovablePawns();
                     if (Die.getThrown() == 6 || Die.getThrown() == 7) {
                         view.getRoll4().setVisible(true);
                         view.getFinish4().setVisible(false);
@@ -965,7 +947,7 @@ public class GamePresenter {
                         view.getFinish4().setVisible(false);
                         Die.setTen();
                         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
-                        glowMoveableGreenPawn(moveable);
+                        greenMovablePawns(moveable);
                         if (moveable.size()==0){
                             if (!Die.isRollAgain()){
                                 view.getFinish4().setVisible(true);
@@ -992,7 +974,7 @@ public class GamePresenter {
         view.getFinish4().setVisible(false);
         Die.setTen();
         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
-        glowMoveableGreenPawn(moveable);
+        greenMovablePawns(moveable);
         if (moveable.size()==0){
             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                 view.getFinish4().setVisible(true);
@@ -1008,7 +990,7 @@ public class GamePresenter {
         view.getFinish3().setVisible(false);
         Die.setTen();
         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
-        glowMoveableRedPawn(moveable);
+        redMovablePawns(moveable);
         if (moveable.size()==0){
             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                 view.getFinish3().setVisible(true);
@@ -1024,7 +1006,7 @@ public class GamePresenter {
         view.getFinish2().setVisible(false);
         Die.setTen();
         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
-        glowMoveableBluePawn(moveable);
+        blueMovablePawns(moveable);
         if (moveable.size()==0){
             if (Die.getThrown() != 6 && Die.getThrown() != 7){
                 view.getFinish2().setVisible(true);
@@ -1052,7 +1034,7 @@ public class GamePresenter {
         }
     }
 
-    private void glowMoveableGreenPawn(List<Pawn> moveable) {
+    private void greenMovablePawns(List<Pawn> moveable) {
         for (Pawn p : moveable) {
             if (p.getPawnNumber() == 1) {
                 view.getGp_1().setImage(view.getGreenPawnGlow());
@@ -1066,7 +1048,7 @@ public class GamePresenter {
         }
     }
 
-    private void glowMoveableRedPawn(List<Pawn> moveable) {
+    private void redMovablePawns(List<Pawn> moveable) {
         for (Pawn p : moveable) {
             if (p.getPawnNumber() == 1) {
                 view.getRp_1().setImage(view.getRedPawnGlow());
@@ -1080,7 +1062,7 @@ public class GamePresenter {
         }
     }
 
-    private void glowMoveableBluePawn(List<Pawn> moveable) {
+    private void blueMovablePawns(List<Pawn> moveable) {
         for (Pawn p : moveable) {
             if (p.getPawnNumber() == 1) {
                 view.getBp_1().setImage(view.getBluePawnGlow());
@@ -1113,19 +1095,19 @@ public class GamePresenter {
         yellowMovablePawns(moveable);
     }
 
-    private void glowMoveableBluePawn() {
+    private void blueMovablePawns() {
         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getBluePlayer());
-        glowMoveableBluePawn(moveable);
+        blueMovablePawns(moveable);
     }
 
-    private void glowMoveableRedPawn() {
+    private void redMovablePawns() {
         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getRedPlayer());
-        glowMoveableRedPawn(moveable);
+        redMovablePawns(moveable);
     }
 
-    private void glowMoveableGreenPawn() {
+    private void greenMovablePawns() {
         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getGreenPlayer());
-        glowMoveableGreenPawn(moveable);
+        greenMovablePawns(moveable);
     }
 
     private void checkIfEnded() {

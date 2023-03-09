@@ -76,7 +76,7 @@ public class Game {
                 case 71 -> chosenPawn.owner.moveByTile(chosenPawn, board.board.get(67));
             }
         }
-        if (chosenPawn.getPosition().getNr() < 69){
+        if (chosenPawn.getPosition().getNr() < 69) {
             chosenPawn.setOnLandingstrip(false);
         }
         checkKill(chosenPawn);
@@ -254,7 +254,7 @@ public class Game {
         }
 
         //if next player is AI, play AI turn and end turn.
-        while (players.get(indexTurn) instanceof ai_Player){
+        while (players.get(indexTurn) instanceof ai_Player) {
             botActivity = true;
             amountThrows = 0;
             lastMovedPawn = null;
@@ -277,6 +277,9 @@ public class Game {
     public void roll() {
         Die.throwDie();
         amountThrows++;
+        if (players.get(indexTurn).isNestEmpty()) {
+            Die.setSeven();
+        }
     }
 
     public int getIndexTurn() {
@@ -387,7 +390,7 @@ public class Game {
         return pawns;
     }
 
-    public List<Pawn> getBarrierPawns(Player p){
+    public List<Pawn> getBarrierPawns(Player p) {
         List<Pawn> pawns = new ArrayList<>();
         for (Pawn pwn : p.pawns) {
             if (pwn.getPosition() != null && pwn.getPosition().IsBarrier() && pwn.isInGame()) {
@@ -398,16 +401,16 @@ public class Game {
     }
 
     public void lastBackToNest() {
-        if (!lastMovedPawn.getOnLandingstrip()){
+        if (!lastMovedPawn.getOnLandingstrip()) {
             lastMovedPawn.toNest(board.board.get(lastMovedPawn.owner.getNestPosition()));
         } else {
-            if (lastMovedPawn.owner.getColor().equals(Color.YELLOW)){
+            if (lastMovedPawn.owner.getColor().equals(Color.YELLOW)) {
                 lastMovedPawn.owner.moveByTile(lastMovedPawn, board.board.get(73));
-            } else if (lastMovedPawn.owner.getColor().equals(Color.BLUE)){
+            } else if (lastMovedPawn.owner.getColor().equals(Color.BLUE)) {
                 lastMovedPawn.owner.moveByTile(lastMovedPawn, board.board.get(81));
-            }else if (lastMovedPawn.owner.getColor().equals(Color.RED)){
+            } else if (lastMovedPawn.owner.getColor().equals(Color.RED)) {
                 lastMovedPawn.owner.moveByTile(lastMovedPawn, board.board.get(89));
-            }else if (lastMovedPawn.owner.getColor().equals(Color.GREEN)){
+            } else if (lastMovedPawn.owner.getColor().equals(Color.GREEN)) {
                 lastMovedPawn.owner.moveByTile(lastMovedPawn, board.board.get(97));
             }
         }
@@ -425,49 +428,45 @@ public class Game {
         boolean turnEnded = false;
         do {
             roll();
-            if (Die.getThrown() == 6 && amountThrows == 3) {
-                if (lastMovedPawn != null){
+            if ((Die.getThrown() == 6 || Die.getThrown() == 7) && amountThrows == 3) {
+                if (lastMovedPawn != null) {
                     lastMovedPawn.toNest(board.board.get(players.get(indexTurn).getNestPosition()));
-                } else {
-                    return;
                 }
-            }
-            if (Die.getThrown() == 6 && players.get(indexTurn).isNestEmpty()){
-                Die.setSeven();
-            }
-
-            if (players.get(indexTurn).getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)) {
-                movePawn(players.get(indexTurn), players.get(indexTurn).firstBarrierPawn());
-            } else if (players.get(indexTurn).canKill(board)){
-                movePawn(players.get(indexTurn), players.get(indexTurn).getKillPawn(board));
-            } else if (players.get(indexTurn).canFinish(board)){
-                movePawn(players.get(indexTurn), players.get(indexTurn).getFinisherPawn(board));
-            } else if (Die.getThrown() == 5 && !players.get(indexTurn).isNestEmpty() && isStartOK(players.get(indexTurn))) {
-                if (players.get(indexTurn).getColor().equals(Color.BLUE)) {
-                    blueLeaveNest();
-                } else if (players.get(indexTurn).getColor().equals(Color.RED)) {
-                    redLeaveNest();
-                } else if (players.get(indexTurn).getColor().equals(Color.GREEN)) {
-                    greenLeaveNest();
-                }
-            } else if (players.get(indexTurn).canMove(board, Die.getThrown())) {
-                movePawn(players.get(indexTurn), players.get(indexTurn).firstMoveablePawn(board));
-            }
-
-            if (lastMovedPawn != null && lastMovedPawn.isFinished() && players.get(indexTurn).canMove(board, 10)){
-                Die.setTen();
-                jump10(players.get(indexTurn).firstMoveablePawn(board));
-            }
-
-            if (Die.getThrown() != 6 && Die.getThrown() != 7) {
                 turnEnded = true;
+            } else {
+                if (players.get(indexTurn).getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)) {
+                    movePawn(players.get(indexTurn), players.get(indexTurn).firstBarrierPawn());
+                } else if (players.get(indexTurn).canKill(board)) {
+                    movePawn(players.get(indexTurn), players.get(indexTurn).getKillPawn(board));
+                } else if (players.get(indexTurn).canFinish(board)) {
+                    movePawn(players.get(indexTurn), players.get(indexTurn).getFinisherPawn(board));
+                } else if (Die.getThrown() == 5 && !players.get(indexTurn).isNestEmpty() && isStartOK(players.get(indexTurn))) {
+                    if (players.get(indexTurn).getColor().equals(Color.BLUE)) {
+                        blueLeaveNest();
+                    } else if (players.get(indexTurn).getColor().equals(Color.RED)) {
+                        redLeaveNest();
+                    } else if (players.get(indexTurn).getColor().equals(Color.GREEN)) {
+                        greenLeaveNest();
+                    }
+                } else if (players.get(indexTurn).canMove(board, Die.getThrown())) {
+                    movePawn(players.get(indexTurn), players.get(indexTurn).firstMoveablePawn(board));
+                }
+
+                if (lastMovedPawn != null && lastMovedPawn.isFinished() && players.get(indexTurn).canMove(board, 10)) {
+                    Die.setTen();
+                    jump10(players.get(indexTurn).firstMoveablePawn(board));
+                }
+
+                if (Die.getThrown() != 6 && Die.getThrown() != 7) {
+                    turnEnded = true;
+                }
             }
 
             //DEBUGGING SOUT ABOUT BOTS
             System.out.println("Turn " + turn);
             System.out.println(players.get(indexTurn).getName() + " rolled a : " + Die.getThrown());
             System.out.println("Location of pawns:");
-            for(Pawn p : players.get(indexTurn).pawns){
+            for (Pawn p : players.get(indexTurn).pawns) {
                 System.out.println("Pawn " + p.getPawnNumber() + " on tile " + p.getPosition().getNr());
             }
             System.out.println();
