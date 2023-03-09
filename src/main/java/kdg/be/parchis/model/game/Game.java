@@ -1,6 +1,7 @@
 package kdg.be.parchis.model.game;
 
 import kdg.be.parchis.model.menu.Score;
+import kdg.be.parchis.model.musicLogic.SoundClass;
 
 import java.util.*;
 
@@ -95,6 +96,7 @@ public class Game {
             }
             //Move killer pawn 20 tiles (if possible)
             if (!moved.isFinished() && isKilled) {
+                SoundClass.playKill();
                 if (moved.checkNoBarrier(20, board)) {
                     int value = moved.owner.moveByTile(moved, board.board.get(moved.getPosition().getNr() + 20));
                     if (value > 0) {
