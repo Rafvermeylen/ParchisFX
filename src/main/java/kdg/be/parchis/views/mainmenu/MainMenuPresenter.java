@@ -6,11 +6,17 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import kdg.be.parchis.model.game.Color;
+import kdg.be.parchis.model.game.Game;
+import kdg.be.parchis.model.game.Player;
+import kdg.be.parchis.model.game.ai_Player;
 import kdg.be.parchis.model.menu.Cheats;
 import kdg.be.parchis.model.musicLogic.MainMusic;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.credits.CreditsPresenter;
 import kdg.be.parchis.views.credits.CreditsView;
+import kdg.be.parchis.views.game.GamePresenter;
+import kdg.be.parchis.views.game.GameView;
 import kdg.be.parchis.views.leaderboards.LeaderboardPresenter;
 import kdg.be.parchis.views.leaderboards.LeaderboardView;
 import kdg.be.parchis.views.playerselect.PlayerSelectPresenter;
@@ -19,6 +25,7 @@ import kdg.be.parchis.views.rules.RulePresenter;
 import kdg.be.parchis.views.rules.RuleView;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class MainMenuPresenter {
     private MainMenuView view;
@@ -105,15 +112,32 @@ public class MainMenuPresenter {
         view.getStartButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                PlayerSelectView psView = null;
-                try {
-                    psView = new PlayerSelectView();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
+                if (!Cheats.getActivated()){
+                    PlayerSelectView psView = null;
+                    try {
+                        psView = new PlayerSelectView();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    PlayerSelectPresenter psPresenter = new PlayerSelectPresenter(psView, view);
+                    SoundClass.playClick();
+                    view.getScene().setRoot(psView);
+                } else {
+                    ArrayList<Player> players = new ArrayList<>();
+                    players.add(new ai_Player("Bot_Yellow", Color.YELLOW));
+                    players.add(new ai_Player("Bot_Blue", Color.BLUE));
+                    players.add(new ai_Player("Bot_Red", Color.RED));
+                    players.add(new ai_Player("Bot_Green", Color.GREEN));
+                    Game gameSession = new Game(players);
+                    GameView gameView = null;
+                    try {
+                        gameView = new GameView();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
+                    view.getScene().setRoot(gameView);
                 }
-                PlayerSelectPresenter psPresenter = new PlayerSelectPresenter(psView, view);
-                SoundClass.playClick();
-                view.getScene().setRoot(psView);
             }
         });
 

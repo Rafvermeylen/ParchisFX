@@ -124,7 +124,8 @@ public class OrderPresenter {
                     gameView = new GameView();
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
-                }                GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
+                }
+                GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
                 view.getScene().setRoot(gameView);
             }
         });

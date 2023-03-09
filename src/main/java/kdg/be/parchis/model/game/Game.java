@@ -22,10 +22,12 @@ public class Game {
         indexTurn = 0;
         amountThrows = 0;
         startSetup();
+        /*
         if (players.get(0) instanceof ai_Player) {
             playAiTurn();
             endTurn();
         }
+         */
     }
 
     public void startSetup() {
@@ -254,6 +256,7 @@ public class Game {
         }
 
         //if next player is AI, play AI turn and end turn.
+        /*
         while (players.get(indexTurn) instanceof ai_Player) {
             botActivity = true;
             amountThrows = 0;
@@ -261,6 +264,8 @@ public class Game {
             playAiTurn();
             endTurn();
         }
+
+         */
         amountThrows = 0;
         lastMovedPawn = null;
         return botActivity;
@@ -428,6 +433,7 @@ public class Game {
         boolean turnEnded = false;
         do {
             roll();
+            SoundClass.playRoll();
             if ((Die.getThrown() == 6 || Die.getThrown() == 7) && amountThrows == 3) {
                 if (lastMovedPawn != null) {
                     lastMovedPawn.toNest(board.board.get(players.get(indexTurn).getNestPosition()));
