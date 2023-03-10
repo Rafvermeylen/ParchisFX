@@ -243,6 +243,7 @@ public class GamePresenter {
                 Sound.playClick();
                 view.getFinish1().setVisible(false);
                 view.getDie1().setVisible(false);
+                gameSession.endTurn();
                 playAI();
             }
         });
@@ -252,6 +253,7 @@ public class GamePresenter {
                 Sound.playClick();
                 view.getFinish2().setVisible(false);
                 view.getDie2().setVisible(false);
+                gameSession.endTurn();
                 playAI();
             }
         });
@@ -261,6 +263,7 @@ public class GamePresenter {
                 Sound.playClick();
                 view.getFinish3().setVisible(false);
                 view.getDie3().setVisible(false);
+                gameSession.endTurn();
                 playAI();
             }
         });
@@ -271,7 +274,6 @@ public class GamePresenter {
                 view.getFinish4().setVisible(false);
                 view.getDie4().setVisible(false);
                 gameSession.endTurn();
-                aiPlays();
                 view.getTurns().setText("turn: " + gameSession.getTurn());
                 if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
                     view.getRoll1().setVisible(true);
@@ -357,6 +359,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getYp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -395,6 +398,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getYp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -434,6 +438,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getYp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -472,6 +477,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getBp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -510,6 +516,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getBp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -548,6 +555,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getBp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -586,6 +594,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getBp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -624,6 +633,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getRp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -663,6 +673,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getRp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -702,6 +713,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getRp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -740,6 +752,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getRp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -778,6 +791,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getGp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -817,6 +831,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getGp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -856,6 +871,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getGp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -895,6 +911,7 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
         view.getGp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -942,15 +959,9 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
+                checkIfEnded();
             }
         });
-
-    }
-
-    public void aiPlays() {
-        gameSession.playAiTurn();
-        updateAllPawnPositions();
-        gameSession.endTurn();
     }
 
     private void glowJumpKillGreen() {
@@ -1240,42 +1251,39 @@ public class GamePresenter {
             view.getGp_4().setTranslateX(converter.getX(7204));
             view.getGp_4().setTranslateY(converter.getY(7204));
         }
-    }
-
-    private void aiTurn() {
-        new Thread(() -> {
-            while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
-                aiPlays();
-                Platform.runLater(this::updateAllPawnPositions);
-            }
-            Platform.runLater(() -> {
-                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
-                    view.getRoll2().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
-                    view.getRoll3().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
-                    view.getRoll4().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
-                    view.getRoll1().setVisible(true);
-                }
-
-                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
-                    view.getDie1().setImage(Die.getDiceFoto().getImage());
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
-                    view.getDie2().setImage(Die.getDiceFoto().getImage());
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
-                    view.getDie3().setImage(Die.getDiceFoto().getImage());
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
-                    view.getDie4().setImage(Die.getDiceFoto().getImage());
-                }
-                checkIfEnded();
-            });
-        }).start();
+        updateDieFace();
     }
 
     private void playAI(){
-        //view.getTurns().setText("turn: " + gameSession.getTurn());
-        gameSession.endTurn();
-        aiTurn();
+        new Thread(() -> {
+            while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
+                gameSession.playAiTurn();
+                updateAllPawnPositions();
+                gameSession.endTurn();
+                checkIfEnded();
+                Platform.runLater(this::updateAllPawnPositions);
+                Platform.runLater(this::updateDieFace);
+            }
+            if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
+                view.getRoll1().setVisible(true);
+            } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
+                view.getRoll2().setVisible(true);
+            } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
+                view.getRoll3().setVisible(true);
+            }
+        }).start();
     }
+
+    private void updateDieFace(){
+        if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
+            view.getDie1().setImage(Die.getDiceFoto().getImage());
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
+            view.getDie2().setImage(Die.getDiceFoto().getImage());
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
+            view.getDie3().setImage(Die.getDiceFoto().getImage());
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
+            view.getDie4().setImage(Die.getDiceFoto().getImage());
+        }
+    }
+
 }
