@@ -244,35 +244,7 @@ public class GamePresenter {
                 SoundClass.playClick();
                 view.getFinish1().setVisible(false);
                 view.getDie1().setVisible(false);
-                gameSession.endTurn();
-                new Thread(() -> {
-                    while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
-                        aiPlays();
-                        Platform.runLater(() -> updateAllPawnPositions());
-                    }
-                    Platform.runLater(() -> {
-                        view.getTurns().setText("turn: " + gameSession.getTurn());
-                        if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
-                            view.getRoll2().setVisible(true);
-                        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
-                            view.getRoll3().setVisible(true);
-                        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
-                            view.getRoll4().setVisible(true);
-                        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
-                            view.getRoll1().setVisible(true);
-                        }
-                        if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
-                            view.getDie1().setImage(Die.getDiceFoto().getImage());
-                        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
-                            view.getDie2().setImage(Die.getDiceFoto().getImage());
-                        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
-                            view.getDie3().setImage(Die.getDiceFoto().getImage());
-                        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
-                            view.getDie4().setImage(Die.getDiceFoto().getImage());
-                        }
-                        checkIfEnded();
-                    });
-                }).start();
+                playAI();
             }
         });
         view.getFinish2().setOnAction(new EventHandler<ActionEvent>() {
@@ -281,17 +253,7 @@ public class GamePresenter {
                 SoundClass.playClick();
                 view.getFinish2().setVisible(false);
                 view.getDie2().setVisible(false);
-                gameSession.endTurn();
-                aiPlays();
-                view.getTurns().setText("turn: " + gameSession.getTurn());
-                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
-                    view.getRoll1().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
-                    view.getRoll3().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
-                    view.getRoll4().setVisible(true);
-                }
-                checkIfEnded();
+                playAI();
             }
         });
         view.getFinish3().setOnAction(new EventHandler<ActionEvent>() {
@@ -300,17 +262,7 @@ public class GamePresenter {
                 SoundClass.playClick();
                 view.getFinish3().setVisible(false);
                 view.getDie3().setVisible(false);
-                gameSession.endTurn();
-                aiPlays();
-                view.getTurns().setText("turn: " + gameSession.getTurn());
-                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
-                    view.getRoll1().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
-                    view.getRoll2().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
-                    view.getRoll4().setVisible(true);
-                }
-                checkIfEnded();
+                playAI();
             }
         });
         view.getFinish4().setOnAction(new EventHandler<ActionEvent>() {
@@ -1297,6 +1249,38 @@ public class GamePresenter {
             while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
                 aiPlays();
                 Platform.runLater(this::updateAllPawnPositions);
+            }
+            Platform.runLater(() -> {
+                view.getTurns().setText("turn: " + gameSession.getTurn());
+                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
+                    view.getRoll2().setVisible(true);
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
+                    view.getRoll3().setVisible(true);
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
+                    view.getRoll4().setVisible(true);
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
+                    view.getRoll1().setVisible(true);
+                }
+                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
+                    view.getDie1().setImage(Die.getDiceFoto().getImage());
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
+                    view.getDie2().setImage(Die.getDiceFoto().getImage());
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
+                    view.getDie3().setImage(Die.getDiceFoto().getImage());
+                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
+                    view.getDie4().setImage(Die.getDiceFoto().getImage());
+                }
+                checkIfEnded();
+            });
+        }).start();
+    }
+
+    private void playAI(){
+        gameSession.endTurn();
+        new Thread(() -> {
+            while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
+                aiPlays();
+                Platform.runLater(() -> updateAllPawnPositions());
             }
             Platform.runLater(() -> {
                 view.getTurns().setText("turn: " + gameSession.getTurn());
