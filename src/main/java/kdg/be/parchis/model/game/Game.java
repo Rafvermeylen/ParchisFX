@@ -1,7 +1,7 @@
 package kdg.be.parchis.model.game;
 
 import kdg.be.parchis.model.menu.Score;
-import kdg.be.parchis.model.musicLogic.SoundClass;
+import kdg.be.parchis.model.musicLogic.Sound;
 
 import java.util.*;
 
@@ -231,7 +231,7 @@ public class Game {
                 if (moved.getPosition().getNr() < 69) {
                     moved.setOnLandingstrip(false);
                 }
-                SoundClass.playKill();
+                Sound.playKill();
                 checkKill(moved);
             }
         }
@@ -433,15 +433,15 @@ public class Game {
         boolean turnEnded = false;
         do {
             roll();
-            SoundClass.playRoll();
-            if ((Die.getThrown() == 6 || Die.getThrown() == 7) && amountThrows == 3) {
+            Sound.playRoll();
+            if (Die.isRollAgain() && amountThrows == 3) {
                 if (lastMovedPawn != null) {
-                    SoundClass.playFail();
+                    Sound.playFail();
                     lastMovedPawn.toNest(board.board.get(players.get(indexTurn).getNestPosition()));
                 }
                 turnEnded = true;
             } else {
-                if (players.get(indexTurn).getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)) {
+                if (players.get(indexTurn).getHasBarrier() && (Die.isRollAgain())) {
                     movePawn(players.get(indexTurn), players.get(indexTurn).firstBarrierPawn());
                 } else if (players.get(indexTurn).canKill(board)) {
                     movePawn(players.get(indexTurn), players.get(indexTurn).getKillPawn(board));

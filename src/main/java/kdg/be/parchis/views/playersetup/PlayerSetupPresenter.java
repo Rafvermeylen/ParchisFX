@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.model.musicLogic.Music;
-import kdg.be.parchis.model.musicLogic.SoundClass;
+import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.order.OrderPresenter;
 import kdg.be.parchis.views.order.OrderView;
 import kdg.be.parchis.views.playerselect.PlayerSelectView;
@@ -33,13 +33,13 @@ public class PlayerSetupPresenter extends BorderPane {
     }
     private void addEventHandlers() {
         view.getBack().setOnAction(actionEvent -> {
-            SoundClass.playClick();
+            Sound.playClick();
             view.getScene().setRoot(backView);
         });
         view.getPlay().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                SoundClass.playClick();
+                Sound.playClick();
                 //Add players to playerlist
                 if (setup.getAmountPlayers() == 1) {
                     setup.setPlayers(
@@ -89,9 +89,9 @@ public class PlayerSetupPresenter extends BorderPane {
         view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SoundClass.clickMute();
+                Sound.clickMute();
 
-                if (SoundClass.isMuted()) {
+                if (Sound.isMuted()) {
                     view.getSoundPic().setImage(view.getSfxMute());
                 } else {
                     view.getSoundPic().setImage(view.getSfxLoud());
@@ -126,7 +126,7 @@ public class PlayerSetupPresenter extends BorderPane {
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());
         }
-        if (SoundClass.isMuted()){
+        if (Sound.isMuted()){
             view.getSoundPic().setImage(view.getSfxMute());
         } else {
             view.getSoundPic().setImage(view.getSfxLoud());

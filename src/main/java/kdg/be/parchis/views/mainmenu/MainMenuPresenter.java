@@ -12,7 +12,7 @@ import kdg.be.parchis.model.game.Player;
 import kdg.be.parchis.model.game.ai_Player;
 import kdg.be.parchis.model.menu.Cheats;
 import kdg.be.parchis.model.musicLogic.Music;
-import kdg.be.parchis.model.musicLogic.SoundClass;
+import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.credits.CreditsPresenter;
 import kdg.be.parchis.views.credits.CreditsView;
 import kdg.be.parchis.views.game.GamePresenter;
@@ -61,9 +61,9 @@ public class MainMenuPresenter {
         view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SoundClass.clickMute();
+                Sound.clickMute();
 
-                if (SoundClass.isMuted()) {
+                if (Sound.isMuted()) {
                     view.getSoundPic().setImage(view.getSfxMute());
                 } else {
                     view.getSoundPic().setImage(view.getSfxLoud());
@@ -74,7 +74,7 @@ public class MainMenuPresenter {
         view.getCheat().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SoundClass.playClick();
+                Sound.playClick();
                 Cheats.clickButton();
                 updateView();
             }
@@ -90,7 +90,7 @@ public class MainMenuPresenter {
                     throw new RuntimeException(e);
                 }
                 RulePresenter rulePresenter = new RulePresenter(ruleView, view);
-                SoundClass.playClick();
+                Sound.playClick();
                 view.getScene().setRoot(ruleView);
             }
         });
@@ -105,7 +105,7 @@ public class MainMenuPresenter {
                     throw new RuntimeException(e);
                 }
                 LeaderboardPresenter leadPres = new LeaderboardPresenter(leadView, view);
-                SoundClass.playClick();
+                Sound.playClick();
                 view.getScene().setRoot(leadView);
             }
         });
@@ -120,9 +120,11 @@ public class MainMenuPresenter {
                         throw new RuntimeException(e);
                     }
                     PlayerSelectPresenter psPresenter = new PlayerSelectPresenter(psView, view);
-                    SoundClass.playClick();
+                    Sound.playClick();
                     view.getScene().setRoot(psView);
                 } else {
+                    Music.stopMusic();
+                    Music.playGameMusic();
                     ArrayList<Player> players = new ArrayList<>();
                     players.add(new ai_Player("Bot_Yellow", Color.YELLOW));
                     players.add(new ai_Player("Bot_Blue", Color.BLUE));
@@ -151,7 +153,7 @@ public class MainMenuPresenter {
                     throw new RuntimeException(e);
                 }
                 CreditsPresenter creditsPresenter = new CreditsPresenter(creditsView, view);
-                SoundClass.playClick();
+                Sound.playClick();
                 view.getScene().setRoot(creditsView);
             }
         });
@@ -185,7 +187,7 @@ public class MainMenuPresenter {
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());
         }
-        if (SoundClass.isMuted()){
+        if (Sound.isMuted()){
             view.getSoundPic().setImage(view.getSfxMute());
         } else {
             view.getSoundPic().setImage(view.getSfxLoud());

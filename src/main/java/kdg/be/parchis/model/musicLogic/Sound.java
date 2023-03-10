@@ -7,7 +7,7 @@ import java.io.File;
 
 import static java.lang.Thread.sleep;
 
-public class SoundClass {
+public class Sound {
     private static String path = "resources\\audio\\sfx\\";
     private static boolean muted = false;
 

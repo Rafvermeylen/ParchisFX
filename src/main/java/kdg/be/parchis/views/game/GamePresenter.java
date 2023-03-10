@@ -6,8 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import kdg.be.parchis.model.game.*;
 import kdg.be.parchis.model.menu.Leaderboards;
-import kdg.be.parchis.model.musicLogic.Music;
-import kdg.be.parchis.model.musicLogic.SoundClass;
+import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.endgamescreen.EndgameScreenPresenter;
 import kdg.be.parchis.views.endgamescreen.EndgameScreenView;
 
@@ -26,9 +25,7 @@ public class GamePresenter {
         this.view = view;
         this.addEventHandlers();
         if (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player){
-            Music.muteMenuMusic();
-            Music.playGameMusic();
-            aiTurn();
+            playAI();
         }
         this.updateView();
     }
@@ -38,7 +35,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll1().setVisible(false);
-                SoundClass.playRoll();
+                Sound.playRoll();
                 gameSession.roll();
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
                     //return last pawn when you throw six, 3x
@@ -93,7 +90,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll2().setVisible(false);
-                SoundClass.playRoll();
+                Sound.playRoll();
                 gameSession.roll();
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
@@ -143,7 +140,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll3().setVisible(false);
-                SoundClass.playRoll();
+                Sound.playRoll();
                 gameSession.roll();
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
@@ -193,7 +190,7 @@ public class GamePresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll4().setVisible(false);
-                SoundClass.playRoll();
+                Sound.playRoll();
                 gameSession.roll();
                 //if three is thrown 3x, return last moved pawn
                 if (Die.getThrown() == 6 && gameSession.getAmountThrows() == 3) {
@@ -243,7 +240,7 @@ public class GamePresenter {
         view.getFinish1().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SoundClass.playClick();
+                Sound.playClick();
                 view.getFinish1().setVisible(false);
                 view.getDie1().setVisible(false);
                 playAI();
@@ -252,7 +249,7 @@ public class GamePresenter {
         view.getFinish2().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SoundClass.playClick();
+                Sound.playClick();
                 view.getFinish2().setVisible(false);
                 view.getDie2().setVisible(false);
                 playAI();
@@ -261,7 +258,7 @@ public class GamePresenter {
         view.getFinish3().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SoundClass.playClick();
+                Sound.playClick();
                 view.getFinish3().setVisible(false);
                 view.getDie3().setVisible(false);
                 playAI();
@@ -270,7 +267,7 @@ public class GamePresenter {
         view.getFinish4().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SoundClass.playClick();
+                Sound.playClick();
                 view.getFinish4().setVisible(false);
                 view.getDie4().setVisible(false);
                 gameSession.endTurn();
@@ -289,7 +286,7 @@ public class GamePresenter {
         view.getNestGlow().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                SoundClass.playPawnMove();
+                Sound.playPawnMove();
                 if (view.getNestGlow().getImage().equals(view.getGlowNestYellow())) {
                     gameSession.yellowLeaveNest();
                     view.getFinish1().setVisible(true);
@@ -327,7 +324,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_1().getImage().equals(view.getYellowPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getYellowPlayer(), gameSession.getYellowPlayer().pawns.get(0));
                     } else {
@@ -357,7 +354,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getYellowPlayer().pawns.get(0).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -366,7 +363,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_2().getImage().equals(view.getYellowPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getYellowPlayer(), gameSession.getYellowPlayer().pawns.get(1));
                     } else {
@@ -395,7 +392,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getYellowPlayer().pawns.get(1).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -404,7 +401,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_3().getImage().equals(view.getYellowPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getYellowPlayer(), gameSession.getYellowPlayer().pawns.get(2));
                     } else {
@@ -434,7 +431,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getYellowPlayer().pawns.get(2).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -443,7 +440,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getYp_4().getImage().equals(view.getYellowPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getYellowPlayer(), gameSession.getYellowPlayer().pawns.get(3));
                     } else {
@@ -472,7 +469,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getYellowPlayer().pawns.get(3).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -481,7 +478,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_1().getImage().equals(view.getBluePawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getBluePlayer(), gameSession.getBluePlayer().pawns.get(0));
                     } else {
@@ -510,7 +507,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getBluePlayer().pawns.get(0).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -519,7 +516,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_2().getImage().equals(view.getBluePawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getBluePlayer(), gameSession.getBluePlayer().pawns.get(1));
                     } else {
@@ -548,7 +545,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getBluePlayer().pawns.get(1).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -557,7 +554,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_3().getImage().equals(view.getBluePawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getBluePlayer(), gameSession.getBluePlayer().pawns.get(2));
                     } else {
@@ -586,7 +583,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getBluePlayer().pawns.get(2).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -595,7 +592,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getBp_4().getImage().equals(view.getBluePawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getBluePlayer(), gameSession.getBluePlayer().pawns.get(3));
                     } else {
@@ -624,7 +621,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getBluePlayer().pawns.get(3).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -633,7 +630,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_1().getImage().equals(view.getRedPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getRedPlayer(), gameSession.getRedPlayer().pawns.get(0));
                     } else {
@@ -663,7 +660,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getRedPlayer().pawns.get(0).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -672,7 +669,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_2().getImage().equals(view.getRedPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getRedPlayer(), gameSession.getRedPlayer().pawns.get(1));
                     } else {
@@ -702,7 +699,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getRedPlayer().pawns.get(1).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -711,7 +708,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_3().getImage().equals(view.getRedPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getRedPlayer(), gameSession.getRedPlayer().pawns.get(2));
                     } else {
@@ -740,7 +737,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getRedPlayer().pawns.get(2).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -749,7 +746,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getRp_4().getImage().equals(view.getRedPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getRedPlayer(), gameSession.getRedPlayer().pawns.get(3));
                     } else {
@@ -778,7 +775,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getRedPlayer().pawns.get(3).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -787,7 +784,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_1().getImage().equals(view.getGreenPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getGreenPlayer(), gameSession.getGreenPlayer().pawns.get(0));
                     } else {
@@ -817,7 +814,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getGreenPlayer().pawns.get(0).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -826,7 +823,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_2().getImage().equals(view.getGreenPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getGreenPlayer(), gameSession.getGreenPlayer().pawns.get(1));
                     } else {
@@ -856,7 +853,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getGreenPlayer().pawns.get(1).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -865,7 +862,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_3().getImage().equals(view.getGreenPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getGreenPlayer(), gameSession.getGreenPlayer().pawns.get(2));
                     } else {
@@ -895,7 +892,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getGreenPlayer().pawns.get(2).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -904,7 +901,7 @@ public class GamePresenter {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (view.getGp_4().getImage().equals(view.getGreenPawnGlow())) {
-                    SoundClass.playPawnMove();
+                    Sound.playPawnMove();
                     if (Die.getThrown() != 10) {
                         gameSession.movePawn(gameSession.getGreenPlayer(), gameSession.getGreenPlayer().pawns.get(3));
                     } else {
@@ -942,7 +939,7 @@ public class GamePresenter {
                     }
                     updateAllPawnPositions();
                     if (gameSession.getGreenPlayer().pawns.get(3).isFinished()) {
-                        SoundClass.playVictory();
+                        Sound.playVictory();
                     }
                 }
             }
@@ -1243,7 +1240,6 @@ public class GamePresenter {
             view.getGp_4().setTranslateX(converter.getX(7204));
             view.getGp_4().setTranslateY(converter.getY(7204));
         }
-        view.getTurns().setText("turn: " + gameSession.getTurn());
     }
 
     private void aiTurn() {
@@ -1253,7 +1249,6 @@ public class GamePresenter {
                 Platform.runLater(this::updateAllPawnPositions);
             }
             Platform.runLater(() -> {
-                view.getTurns().setText("turn: " + gameSession.getTurn());
                 if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
                     view.getRoll2().setVisible(true);
                 } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
@@ -1279,34 +1274,8 @@ public class GamePresenter {
     }
 
     private void playAI(){
+        //view.getTurns().setText("turn: " + gameSession.getTurn());
         gameSession.endTurn();
-        new Thread(() -> {
-            while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
-                aiPlays();
-                Platform.runLater(() -> updateAllPawnPositions());
-            }
-            Platform.runLater(() -> {
-                view.getTurns().setText("turn: " + gameSession.getTurn());
-                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
-                    view.getRoll2().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
-                    view.getRoll3().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
-                    view.getRoll4().setVisible(true);
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
-                    view.getRoll1().setVisible(true);
-                }
-                if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
-                    view.getDie1().setImage(Die.getDiceFoto().getImage());
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
-                    view.getDie2().setImage(Die.getDiceFoto().getImage());
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
-                    view.getDie3().setImage(Die.getDiceFoto().getImage());
-                } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
-                    view.getDie4().setImage(Die.getDiceFoto().getImage());
-                }
-                checkIfEnded();
-            });
-        }).start();
+        aiTurn();
     }
 }

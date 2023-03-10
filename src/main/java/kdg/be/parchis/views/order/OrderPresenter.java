@@ -9,7 +9,7 @@ import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.model.musicLogic.Music;
-import kdg.be.parchis.model.musicLogic.SoundClass;
+import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.game.GamePresenter;
 import kdg.be.parchis.views.game.GameView;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;
@@ -37,7 +37,7 @@ public class OrderPresenter {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SoundClass.playClick();
+                Sound.playClick();
                 view.getScene().setRoot(backView);
                 if(!Music.getMediaPlayer().isMute()){
                     Music.stopMusic();
@@ -49,7 +49,7 @@ public class OrderPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll1().setVisible(false);
-                SoundClass.playRoll();
+                Sound.playRoll();
                 view.getRoll1().setDisable(true);
                 view.getRoll1().setDisable(false);
                 Die.throwDie();
@@ -66,7 +66,7 @@ public class OrderPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll2().setVisible(false);
-                SoundClass.playRoll();
+                Sound.playRoll();
                 view.getRoll2().setDisable(true);
                 view.getRoll2().setDisable(false);
                 Die.throwDie();
@@ -83,7 +83,7 @@ public class OrderPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll3().setVisible(false);
-                SoundClass.playRoll();
+                Sound.playRoll();
                 view.getRoll3().setDisable(true);
                 view.getRoll3().setDisable(false);
                 Die.throwDie();
@@ -100,7 +100,7 @@ public class OrderPresenter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 view.getRoll4().setVisible(false);
-                SoundClass.playRoll();
+                Sound.playRoll();
                 view.getRoll4().setDisable(true);
                 view.getRoll4().setDisable(false);
                 Die.throwDie();
@@ -117,7 +117,7 @@ public class OrderPresenter {
         view.getStart().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                SoundClass.playClick();
+                Sound.playClick();
                 Game gameSession = new Game(setup.getPlayers());
                 GameView gameView = null;
                 try {
