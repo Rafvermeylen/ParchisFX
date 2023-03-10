@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
-import kdg.be.parchis.model.musicLogic.MainMusic;
+import kdg.be.parchis.model.musicLogic.Music;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -98,7 +98,7 @@ public class MainMenuView extends BorderPane {
 
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
-        MainMusic.playMenuMusic();
+        Music.playMenuMusic();
     }
 
     public Button getStartButton() {

@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import kdg.be.parchis.model.musicLogic.MainMusic;
+import kdg.be.parchis.model.musicLogic.Music;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
@@ -33,8 +33,8 @@ public class LeaderboardPresenter {
         view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                MainMusic.muteMenuMusic();
-                if (MainMusic.getMediaPlayer().isMute()) {
+                Music.muteMenuMusic();
+                if (Music.getMediaPlayer().isMute()) {
                     view.getMusicPic().setImage(view.getMusicMute());
                 } else {
                     view.getMusicPic().setImage(view.getMusicLoud());
@@ -56,7 +56,7 @@ public class LeaderboardPresenter {
         });
     }
     private void updateView() {
-        if (MainMusic.getMediaPlayer().isMute()){
+        if (Music.getMediaPlayer().isMute()){
             view.getMusicPic().setImage(view.getMusicMute());
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());

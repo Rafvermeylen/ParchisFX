@@ -11,7 +11,7 @@ import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.game.Player;
 import kdg.be.parchis.model.game.ai_Player;
 import kdg.be.parchis.model.menu.Cheats;
-import kdg.be.parchis.model.musicLogic.MainMusic;
+import kdg.be.parchis.model.musicLogic.Music;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.credits.CreditsPresenter;
 import kdg.be.parchis.views.credits.CreditsView;
@@ -48,9 +48,9 @@ public class MainMenuPresenter {
         view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                MainMusic.muteMenuMusic();
+                Music.muteMenuMusic();
 
-                if (MainMusic.getMediaPlayer().isMute()) {
+                if (Music.getMediaPlayer().isMute()) {
                     view.getMusicPic().setImage(view.getMusicMute());
                 } else {
                     view.getMusicPic().setImage(view.getMusicLoud());
@@ -180,7 +180,7 @@ public class MainMenuPresenter {
     }
 
     public void updateIcons(){
-        if (MainMusic.getMediaPlayer().isMute()){
+        if (Music.getMediaPlayer().isMute()){
             view.getMusicPic().setImage(view.getMusicMute());
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());

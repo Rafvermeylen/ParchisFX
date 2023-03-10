@@ -77,7 +77,7 @@ public class LeaderboardView extends BorderPane {
         buttonsTop.setAlignment(Pos.TOP_RIGHT);
 
         VBox vBox = new VBox(100);
-        vBox.getChildren().addAll(title ,scores, back);
+        vBox.getChildren().addAll(title, scores, back);
         vBox.setAlignment(Pos.CENTER);
 
         this.setCenter(vBox);

@@ -3,10 +3,10 @@ package kdg.be.parchis.views.game;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import kdg.be.parchis.model.game.*;
 import kdg.be.parchis.model.menu.Leaderboards;
+import kdg.be.parchis.model.musicLogic.Music;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.endgamescreen.EndgameScreenPresenter;
 import kdg.be.parchis.views.endgamescreen.EndgameScreenView;
@@ -26,6 +26,8 @@ public class GamePresenter {
         this.view = view;
         this.addEventHandlers();
         if (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player){
+            Music.muteMenuMusic();
+            Music.playGameMusic();
             aiTurn();
         }
         this.updateView();
@@ -1241,7 +1243,7 @@ public class GamePresenter {
             view.getGp_4().setTranslateX(converter.getX(7204));
             view.getGp_4().setTranslateY(converter.getY(7204));
         }
-
+        view.getTurns().setText("turn: " + gameSession.getTurn());
     }
 
     private void aiTurn() {
@@ -1261,6 +1263,7 @@ public class GamePresenter {
                 } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
                     view.getRoll1().setVisible(true);
                 }
+
                 if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
                     view.getDie1().setImage(Die.getDiceFoto().getImage());
                 } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {

@@ -2,7 +2,7 @@ package kdg.be.parchis.views.rules;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import kdg.be.parchis.model.musicLogic.MainMusic;
+import kdg.be.parchis.model.musicLogic.Music;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
@@ -33,8 +33,8 @@ public class RulePresenter {
         view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                MainMusic.muteMenuMusic();
-                if (MainMusic.getMediaPlayer().isMute()) {
+                Music.muteMenuMusic();
+                if (Music.getMediaPlayer().isMute()) {
                     view.getMusicPic().setImage(view.getMusicMute());
                 } else {
                     view.getMusicPic().setImage(view.getMusicLoud());
@@ -58,7 +58,7 @@ public class RulePresenter {
     }
 
     private void updateView() {
-        if (MainMusic.getMediaPlayer().isMute()){
+        if (Music.getMediaPlayer().isMute()){
             view.getMusicPic().setImage(view.getMusicMute());
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());

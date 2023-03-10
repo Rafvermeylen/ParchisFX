@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.menu.PlayerSetup;
-import kdg.be.parchis.model.musicLogic.MainMusic;
+import kdg.be.parchis.model.musicLogic.Music;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.game.GamePresenter;
 import kdg.be.parchis.views.game.GameView;
@@ -39,9 +39,9 @@ public class OrderPresenter {
             public void handle(ActionEvent actionEvent) {
                 SoundClass.playClick();
                 view.getScene().setRoot(backView);
-                if(!MainMusic.getMediaPlayer().isMute()){
-                    MainMusic.stopMusic();
-                    MainMusic.playMenuMusic();
+                if(!Music.getMediaPlayer().isMute()){
+                    Music.stopMusic();
+                    Music.playMenuMusic();
                 }
             }
         });

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MainMusic {
+public class Music {
     private static Media menu_music;
     private static MediaPlayer mediaPlayer;
     private static List<Media> songs = new ArrayList<>();

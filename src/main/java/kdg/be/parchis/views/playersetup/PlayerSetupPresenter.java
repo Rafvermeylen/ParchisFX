@@ -7,7 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import kdg.be.parchis.model.menu.PlayerSetup;
-import kdg.be.parchis.model.musicLogic.MainMusic;
+import kdg.be.parchis.model.musicLogic.Music;
 import kdg.be.parchis.model.musicLogic.SoundClass;
 import kdg.be.parchis.views.order.OrderPresenter;
 import kdg.be.parchis.views.order.OrderView;
@@ -77,8 +77,8 @@ public class PlayerSetupPresenter extends BorderPane {
         view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                MainMusic.muteMenuMusic();
-                if (MainMusic.getMediaPlayer().isMute()) {
+                Music.muteMenuMusic();
+                if (Music.getMediaPlayer().isMute()) {
                     view.getMusicPic().setImage(view.getMusicMute());
                 } else {
                     view.getMusicPic().setImage(view.getMusicLoud());
@@ -121,7 +121,7 @@ public class PlayerSetupPresenter extends BorderPane {
             }
         });
 
-        if (MainMusic.getMediaPlayer().isMute()){
+        if (Music.getMediaPlayer().isMute()){
             view.getMusicPic().setImage(view.getMusicMute());
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());

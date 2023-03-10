@@ -7,9 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Circle;
 import kdg.be.parchis.model.game.Die;
-import kdg.be.parchis.model.musicLogic.MainMusic;
+import kdg.be.parchis.model.musicLogic.Music;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -156,9 +155,9 @@ public class OrderView extends StackPane {
 
         this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
-        if(!MainMusic.getMediaPlayer().isMute()){
-            MainMusic.stopMusic();
-            MainMusic.playGameMusic();
+        if(!Music.getMediaPlayer().isMute()){
+            Music.stopMusic();
+            Music.playGameMusic();
         }
     }
 

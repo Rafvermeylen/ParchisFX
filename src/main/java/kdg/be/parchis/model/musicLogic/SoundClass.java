@@ -32,6 +32,10 @@ public class SoundClass {
         initSound(path, "kill.mp3");
     }
 
+    public static void playFail() {
+        initSound(path, "fail.mp3");
+    }
+
     public static void playRoll(){
         initSound(path, "roll.wav");
         try {

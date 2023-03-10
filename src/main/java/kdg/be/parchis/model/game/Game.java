@@ -98,7 +98,6 @@ public class Game {
             }
             //Move killer pawn 20 tiles (if possible)
             if (!moved.isFinished() && isKilled) {
-                SoundClass.playKill();
                 if (moved.checkNoBarrier(20, board)) {
                     int value = moved.owner.moveByTile(moved, board.board.get(moved.getPosition().getNr() + 20));
                     if (value > 0) {
@@ -232,6 +231,7 @@ public class Game {
                 if (moved.getPosition().getNr() < 69) {
                     moved.setOnLandingstrip(false);
                 }
+                SoundClass.playKill();
                 checkKill(moved);
             }
         }
@@ -436,6 +436,7 @@ public class Game {
             SoundClass.playRoll();
             if ((Die.getThrown() == 6 || Die.getThrown() == 7) && amountThrows == 3) {
                 if (lastMovedPawn != null) {
+                    SoundClass.playFail();
                     lastMovedPawn.toNest(board.board.get(players.get(indexTurn).getNestPosition()));
                 }
                 turnEnded = true;
