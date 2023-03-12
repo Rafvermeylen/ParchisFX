@@ -12,28 +12,43 @@ public class Music {
     private static Media menu_music;
     private static MediaPlayer mediaPlayer;
     private static List<Media> songs = new ArrayList<>();
+    private static String path = "resources\\audio\\music\\";
 
     public static void playMenuMusic() {
-        menu_music = new Media(new File("resources\\audio\\music\\menu_music.mp3").toURI().toString());
+        menu_music = new Media(new File(path + "menu_music.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(menu_music);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
 
-    public static void playGameMusic() {
-        // https://techwithmaddy.com/java-8-lambda-expression
+    private static void addMusic(String filepath, String name) {
+        songs.add(new Media(new File(filepath + name).toURI().toString()));
+    }
 
-        songs.add(new Media(new File("resources\\audio\\music\\Jazz_Soul.mp3").toURI().toString()));
-        songs.add(new Media(new File("resources\\audio\\music\\Hairy_Monkey_Balls.mp3").toURI().toString()));
-        songs.add(new Media(new File("resources\\audio\\music\\Guilty.mp3").toURI().toString()));
-        songs.add(new Media(new File("resources\\audio\\music\\Legend_of_Skullz.mp3").toURI().toString()));
-        songs.add(new Media(new File("resources\\audio\\music\\J.J..mp3").toURI().toString()));
-        songs.add(new Media(new File("resources\\audio\\music\\Jazz_Crossing.mp3").toURI().toString()));
-        songs.add(new Media(new File("resources\\audio\\music\\Jazz_In_Paris.mp3").toURI().toString()));
-        songs.add(new Media(new File("resources\\audio\\music\\Minor.mp3").toURI().toString()));
-        songs.add(new Media(new File("resources\\audio\\music\\Noire_Clarinet.mp3").toURI().toString()));
-        songs.add(new Media(new File("resources\\audio\\music\\Pleasure.mp3").toURI().toString()));
-        songs.add(new Media(new File("resources\\audio\\music\\Temptation.mp3").toURI().toString()));
+    public static void playGameMusic() {
+        addMusic(path, "Bag.mp3");
+        addMusic(path, "Bluebird.mp3");
+        addMusic(path, "Bluesy.mp3");
+        addMusic(path, "Bossa.mp3");
+        addMusic(path, "Bumper.mp3");
+        addMusic(path, "Called.mp3");
+        addMusic(path, "Chances.mp3");
+        addMusic(path, "Daydream.mp3");
+        addMusic(path, "Forget.mp3");
+        addMusic(path, "Groove.mp3");
+        addMusic(path, "Jazz.mp3");
+        addMusic(path, "Lounge.mp3");
+        addMusic(path, "Love.mp3");
+        addMusic(path, "Messenger.mp3");
+        addMusic(path, "Moon.mp3");
+        addMusic(path, "Moonlight.mp3");
+        addMusic(path, "Nighttime.mp3");
+        addMusic(path, "Old.mp3");
+        addMusic(path, "Silent.mp3");
+        addMusic(path, "Soul.mp3");
+        addMusic(path, "Together.mp3");
+        addMusic(path, "Watercolours.mp3");
+        addMusic(path, "You.mp3");
 
         Collections.shuffle(songs);
         // Create a MediaPlayer with the first song
