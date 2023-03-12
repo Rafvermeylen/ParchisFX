@@ -282,7 +282,7 @@ public class Game {
     public void roll() {
         Die.throwDie();
         amountThrows++;
-        if (players.get(indexTurn).isNestEmpty()) {
+        if (players.get(indexTurn).isNestEmpty() && Die.getThrown() == 6) {
             Die.setSeven();
         }
     }
@@ -437,7 +437,7 @@ public class Game {
             if (Die.isRollAgain() && amountThrows == 3) {
                 if (lastMovedPawn != null) {
                     Sound.playFail();
-                    lastMovedPawn.toNest(board.board.get(players.get(indexTurn).getNestPosition()));
+                    lastBackToNest();
                 }
                 turnEnded = true;
             } else {
@@ -454,7 +454,10 @@ public class Game {
                         redLeaveNest();
                     } else if (players.get(indexTurn).getColor().equals(Color.GREEN)) {
                         greenLeaveNest();
+                    } else if (players.get(indexTurn).getColor().equals(Color.YELLOW)) {
+                        yellowLeaveNest();
                     }
+
                 } else if (players.get(indexTurn).canMove(board, Die.getThrown())) {
                     movePawn(players.get(indexTurn), players.get(indexTurn).firstMoveablePawn(board));
                 }
@@ -464,7 +467,7 @@ public class Game {
                     jump10(players.get(indexTurn).firstMoveablePawn(board));
                 }
 
-                if (Die.getThrown() != 6 && Die.getThrown() != 7) {
+                if (!Die.isRollAgain()) {
                     turnEnded = true;
                 }
             }
