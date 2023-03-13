@@ -1,5 +1,7 @@
 package kdg.be.parchis.model.game;
 
+import kdg.be.parchis.model.musicLogic.Sound;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class Tile {
                 if (landedPawn.getPawnNumber() != p.getPawnNumber() &&
                         landedPawn.owner.equals(p.owner)){
                     isBarrier = true;
+                    Sound.barrierMade();
                     barrierColor = landedPawn.owner.getColor();
                     landedPawn.owner.setBarrier();
                     System.out.println("Barrier made on tile " + nr);

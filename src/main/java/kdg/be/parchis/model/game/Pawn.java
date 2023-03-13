@@ -1,5 +1,7 @@
 package kdg.be.parchis.model.game;
 
+import kdg.be.parchis.model.musicLogic.Sound;
+
 import java.util.ArrayList;
 
 public class Pawn {
@@ -113,6 +115,7 @@ public class Pawn {
 
     public void Finished() {
         isFinished = true;
+        Sound.playVictory();
     }
 
     public boolean checkNoBarrier(int thrown, Board board) {

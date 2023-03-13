@@ -36,6 +36,10 @@ public class Sound {
         initSound(path, "fail.mp3");
     }
 
+    public static void barrierMade() {
+        initSound(path, "Barrier.mp3");
+    }
+
     public static void playRoll(){
         initSound(path, "roll.wav");
         try {
