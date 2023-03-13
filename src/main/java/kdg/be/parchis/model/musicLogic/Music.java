@@ -53,7 +53,7 @@ public class Music {
         Collections.shuffle(songs);
         // Create a MediaPlayer with the first song
         mediaPlayer = new MediaPlayer(songs.get(0));
-        mediaPlayer.setVolume(50);
+        mediaPlayer.setVolume(40);
         mediaPlayer.play();
         mediaPlayer.setOnEndOfMedia(() -> {
             mediaPlayer.dispose();

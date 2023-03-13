@@ -16,6 +16,7 @@ public class Sound {
             Media media = new Media(new File(path + name).toURI().toString());
             // Just media doesn't work, x.getSource has to be added as well.
             AudioClip sound = new AudioClip(media.getSource());
+            sound.setVolume(100);
             sound.play();
         }
     }
