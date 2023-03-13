@@ -1245,24 +1245,45 @@ public class GamePresenter {
         new Thread(() -> {
             while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
                 gameSession.playAiTurn();
+                hideDieFaces();
+                Platform.runLater(this::updateDieFace);
+                Platform.runLater(this::updateAllPawnPositions);
                 gameSession.endTurn();
                 checkIfEnded();
-                Platform.runLater(this::updateAllPawnPositions);
             }
             displayControlsCurrentPlayer();
         }).start();
     }
 
     private void updateDieFace(){
-        if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
-            view.getDie1().setImage(Die.getDiceFoto().getImage());
-        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
-            view.getDie2().setImage(Die.getDiceFoto().getImage());
-        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
-            view.getDie3().setImage(Die.getDiceFoto().getImage());
-        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
-            view.getDie4().setImage(Die.getDiceFoto().getImage());
+        int index = gameSession.getIndexTurn();
+        /*
+        if (index == 0){
+            index = 4;
         }
+
+         */
+        if (gameSession.getPlayers().get(index).getColor().equals(Color.YELLOW)) {
+            view.getDie1().setImage(Die.getDiceFoto().getImage());
+            view.getDie1().setVisible(true);
+        } else if (gameSession.getPlayers().get(index).getColor().equals(Color.BLUE)) {
+            view.getDie2().setImage(Die.getDiceFoto().getImage());
+            view.getDie2().setVisible(true);
+        } else if (gameSession.getPlayers().get(index).getColor().equals(Color.RED)) {
+            view.getDie3().setImage(Die.getDiceFoto().getImage());
+            view.getDie3().setVisible(true);
+        } else if (gameSession.getPlayers().get(index).getColor().equals(Color.GREEN)) {
+            view.getDie4().setImage(Die.getDiceFoto().getImage());
+            view.getDie4().setVisible(true);
+        }
+    }
+
+    private void hideDieFaces(){
+        view.getDie1().setVisible(false);
+        view.getDie2().setVisible(false);
+        view.getDie3().setVisible(false);
+        view.getDie4().setVisible(false);
+
     }
 
     private void displayControlsCurrentPlayer(){
