@@ -244,6 +244,7 @@ public class GamePresenter {
                 view.getFinish1().setVisible(false);
                 view.getDie1().setVisible(false);
                 gameSession.endTurn();
+                updateTurn();
                 playAI();
             }
         });
@@ -254,6 +255,7 @@ public class GamePresenter {
                 view.getFinish2().setVisible(false);
                 view.getDie2().setVisible(false);
                 gameSession.endTurn();
+                updateTurn();
                 playAI();
             }
         });
@@ -264,6 +266,7 @@ public class GamePresenter {
                 view.getFinish3().setVisible(false);
                 view.getDie3().setVisible(false);
                 gameSession.endTurn();
+                updateTurn();
                 playAI();
             }
         });
@@ -274,7 +277,7 @@ public class GamePresenter {
                 view.getFinish4().setVisible(false);
                 view.getDie4().setVisible(false);
                 gameSession.endTurn();
-                view.getTurns().setText("turn: " + gameSession.getTurn());
+                updateTurn();
                 if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
                     view.getRoll1().setVisible(true);
                 } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
@@ -1117,7 +1120,6 @@ public class GamePresenter {
     }
 
     private void updateView() {
-        view.getTurns().setText("turn: " + gameSession.getTurn());
         //set names
         for (Player p : gameSession.getPlayers()) {
             if (p.getColor().equals(Color.YELLOW)) {
@@ -1236,6 +1238,7 @@ public class GamePresenter {
             view.getGp_4().setTranslateY(converter.getY(7204));
         }
         Platform.runLater(view::rearrangePawns);
+        Platform.runLater(this::updateTurn);
     }
 
     private void playAI(){
@@ -1245,7 +1248,6 @@ public class GamePresenter {
                 gameSession.endTurn();
                 checkIfEnded();
                 Platform.runLater(this::updateAllPawnPositions);
-                Platform.runLater(this::updateDieFace);
             }
             displayControlsCurrentPlayer();
         }).start();
@@ -1273,6 +1275,10 @@ public class GamePresenter {
         } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
             view.getRoll4().setVisible(true);
         }
+    }
+
+    private void updateTurn(){
+        view.getTurns().setText("turn: " + gameSession.getTurn());
     }
 
 }
