@@ -1130,24 +1130,8 @@ public class GamePresenter {
                 view.getGreenPlayer().setText(p.getName());
             }
         }
-        //View controlls for first rolling player
-        Player firstPlayer = null;
-        for (Player p : gameSession.getPlayers()){
-            if (!(p instanceof ai_Player)){
-                firstPlayer = p;
-                break;
-            }
-        }
-        if (firstPlayer != null){
-            if (firstPlayer.getColor().equals(Color.YELLOW)) {
-                view.getRoll1().setVisible(true);
-            } else if (firstPlayer.getColor().equals(Color.BLUE)) {
-                view.getRoll2().setVisible(true);
-            } else if (firstPlayer.getColor().equals(Color.RED)) {
-                view.getRoll3().setVisible(true);
-            } else if (firstPlayer.getColor().equals(Color.GREEN)) {
-                view.getRoll4().setVisible(true);
-            }
+        if (!(gameSession.getPlayers().get(0) instanceof ai_Player)){
+            displayControlsCurrentPlayer();
         }
         updateAllPawnPositions();
     }
@@ -1264,13 +1248,7 @@ public class GamePresenter {
                 Platform.runLater(this::updateAllPawnPositions);
                 Platform.runLater(this::updateDieFace);
             }
-            if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
-                view.getRoll1().setVisible(true);
-            } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
-                view.getRoll2().setVisible(true);
-            } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
-                view.getRoll3().setVisible(true);
-            }
+            displayControlsCurrentPlayer();
         }).start();
     }
 
@@ -1283,6 +1261,18 @@ public class GamePresenter {
             view.getDie3().setImage(Die.getDiceFoto().getImage());
         } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
             view.getDie4().setImage(Die.getDiceFoto().getImage());
+        }
+    }
+
+    private void displayControlsCurrentPlayer(){
+        if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
+            view.getRoll1().setVisible(true);
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
+            view.getRoll2().setVisible(true);
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
+            view.getRoll3().setVisible(true);
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
+            view.getRoll4().setVisible(true);
         }
     }
 
