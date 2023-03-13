@@ -1235,14 +1235,13 @@ public class GamePresenter {
             view.getGp_4().setTranslateX(converter.getX(7204));
             view.getGp_4().setTranslateY(converter.getY(7204));
         }
-        updateDieFace();
+        Platform.runLater(view::rearrangePawns);
     }
 
     private void playAI(){
         new Thread(() -> {
             while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
                 gameSession.playAiTurn();
-                updateAllPawnPositions();
                 gameSession.endTurn();
                 checkIfEnded();
                 Platform.runLater(this::updateAllPawnPositions);
