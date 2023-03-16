@@ -34,10 +34,11 @@ public class PlayerSetupView extends BorderPane {
     private TextField player4NameArea;
     private HBox setupNames;
 
-    public PlayerSetupView () throws FileNotFoundException {
+    public PlayerSetupView() throws FileNotFoundException {
         this.initialiseNodes();
         this.layoutNodes();
     }
+
     private void initialiseNodes() throws FileNotFoundException {
         back = new Button("Back");
         background = new Image(new FileInputStream("resources\\backgrounds\\Background.png"));
@@ -71,13 +72,13 @@ public class PlayerSetupView extends BorderPane {
 
         fxButton.setMinSize(50, 50);
         fxButton.setMaxSize(50, 50);
-
     }
+
     private void layoutNodes() {
-        player1NameArea.setPrefSize(200,10);
-        player2NameArea.setPrefSize(200,10);
-        player3NameArea.setPrefSize(200,10);
-        player4NameArea.setPrefSize(200,10);
+        player1NameArea.setPrefSize(200, 10);
+        player2NameArea.setPrefSize(200, 10);
+        player3NameArea.setPrefSize(200, 10);
+        player4NameArea.setPrefSize(200, 10);
 
         // Set character limit to 14
         UnaryOperator<TextFormatter.Change> lengthFilter = change -> {
@@ -88,6 +89,7 @@ public class PlayerSetupView extends BorderPane {
                 return null;
             }
         };
+
         StringConverter<String> converter = new DefaultStringConverter();
         TextFormatter<String> textFormatter1 = new TextFormatter<>(converter, "", lengthFilter);
         TextFormatter<String> textFormatter2 = new TextFormatter<>(converter, "", lengthFilter);
@@ -178,5 +180,4 @@ public class PlayerSetupView extends BorderPane {
     public Image getSfxMute() {
         return sfxMute;
     }
-
 }

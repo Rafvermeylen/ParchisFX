@@ -10,8 +10,9 @@ import kdg.be.parchis.views.mainmenu.MainMenuView;
 import java.io.FileNotFoundException;
 
 public class EndgameScreenPresenter {
-    private Game gameSession;
-    private EndgameScreenView view;
+    private final Game gameSession;
+    private final EndgameScreenView view;
+
     public EndgameScreenPresenter(
             Game model,
             EndgameScreenView view) {
@@ -20,6 +21,7 @@ public class EndgameScreenPresenter {
         this.addEventHandlers();
         this.updateView();
     }
+
     private void addEventHandlers() {
         view.getBackToMenu().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -27,7 +29,7 @@ public class EndgameScreenPresenter {
                 try {
                     MainMenuView menuView = new MainMenuView();
                     MainMenuPresenter presenter = new MainMenuPresenter(menuView);
-                    if (!Music.getMediaPlayer().isMute()){
+                    if (!Music.getMediaPlayer().isMute()) {
                         Music.stopMusic();
                         Music.muteMenuMusic();
                     }
@@ -38,13 +40,15 @@ public class EndgameScreenPresenter {
             }
         });
     }
+
     private void updateView() {
-        if (gameSession.getWinner() == null){
+        if (gameSession.getWinner() == null) {
             view.getScoreWinner().setText("Aww, you didn't win. Better luck next time!");
         } else {
             view.getScoreWinner().setText("Well played, " + gameSession.getWinner().getName() + "!\nYour score was: " + gameSession.getWinner().getScore());
         }
     }
-    public void addWindowEventHandlers () {
+
+    public void addWindowEventHandlers() {
     }
 }

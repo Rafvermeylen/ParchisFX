@@ -10,10 +10,9 @@ import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
 public class LeaderboardPresenter {
-    private LeaderboardView view;
-    private MainMenuView backView;
-
     private final KeyCode fullscreenKey = KeyCode.F;
+    private final LeaderboardView view;
+    private final MainMenuView backView;
 
 
     public LeaderboardPresenter(LeaderboardView view, MainMenuView backView) {
@@ -22,6 +21,7 @@ public class LeaderboardPresenter {
         this.addEventHandlers();
         this.updateView();
     }
+
     private void addEventHandlers() {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -55,19 +55,21 @@ public class LeaderboardPresenter {
             }
         });
     }
+
     private void updateView() {
-        if (Music.getMediaPlayer().isMute()){
+        if (Music.getMediaPlayer().isMute()) {
             view.getMusicPic().setImage(view.getMusicMute());
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());
         }
-        if (Sound.isMuted()){
+        if (Sound.isMuted()) {
             view.getSoundPic().setImage(view.getSfxMute());
         } else {
             view.getSoundPic().setImage(view.getSfxLoud());
         }
     }
-    public void addWindowEventHandlers () {
+
+    public void addWindowEventHandlers() {
         view.getScene().setOnKeyPressed(e -> {
             if (e.getCode() == fullscreenKey) {
                 Scene scene = view.getScene();

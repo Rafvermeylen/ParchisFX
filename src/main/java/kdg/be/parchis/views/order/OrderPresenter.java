@@ -17,12 +17,11 @@ import kdg.be.parchis.views.playersetup.PlayerSetupView;
 import java.io.FileNotFoundException;
 
 public class OrderPresenter {
-    private PlayerSetup setup;
-    private OrderView view;
-    private PlayerSetupView backView;
     private final KeyCode fullscreenKey = KeyCode.F;
+    private final PlayerSetup setup;
+    private final OrderView view;
+    private final PlayerSetupView backView;
 
-    private int roll;
     public OrderPresenter(
             PlayerSetup model,
             OrderView view,
@@ -33,18 +32,20 @@ public class OrderPresenter {
         this.addEventHandlers();
         this.updateView();
     }
+
     private void addEventHandlers() {
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Sound.playClick();
                 view.getScene().setRoot(backView);
-                if(!Music.getMediaPlayer().isMute()){
+                if (!Music.getMediaPlayer().isMute()) {
                     Music.stopMusic();
                     Music.playMenuMusic();
                 }
             }
         });
+
         view.getRoll1().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -56,12 +57,13 @@ public class OrderPresenter {
                 setup.addRoll(0, Die.getThrown());
                 view.getDiceFoto1().setImage(Die.getDiceFoto().getImage());
                 view.getBack().setVisible(false);
-                if (setup.didPlayersRoll()){
+                if (setup.didPlayersRoll()) {
                     setup.order();
                     view.getStart().setVisible(true);
                 }
             }
         });
+
         view.getRoll2().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -73,12 +75,13 @@ public class OrderPresenter {
                 setup.addRoll(1, Die.getThrown());
                 view.getDiceFoto2().setImage(Die.getDiceFoto().getImage());
                 view.getBack().setVisible(false);
-                if (setup.didPlayersRoll()){
+                if (setup.didPlayersRoll()) {
                     setup.order();
                     view.getStart().setVisible(true);
                 }
             }
         });
+
         view.getRoll3().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -90,12 +93,13 @@ public class OrderPresenter {
                 setup.addRoll(2, Die.getThrown());
                 view.getDiceFoto3().setImage(Die.getDiceFoto().getImage());
                 view.getBack().setVisible(false);
-                if (setup.didPlayersRoll()){
+                if (setup.didPlayersRoll()) {
                     setup.order();
                     view.getStart().setVisible(true);
                 }
             }
         });
+
         view.getRoll4().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -107,7 +111,7 @@ public class OrderPresenter {
                 setup.addRoll(3, Die.getThrown());
                 view.getDiceFoto4().setImage(Die.getDiceFoto().getImage());
                 view.getBack().setVisible(false);
-                if (setup.didPlayersRoll()){
+                if (setup.didPlayersRoll()) {
                     setup.order();
                     view.getStart().setVisible(true);
                 }
@@ -129,76 +133,38 @@ public class OrderPresenter {
                 view.getScene().setRoot(gameView);
             }
         });
-/*
-        view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                MainMusic.muteMenuMusic();
-                if (MainMusic.getMediaPlayer().isMute()) {
-                    view.getMusicPic().setImage(view.getMusicMute());
-                } else {
-                    view.getMusicPic().setImage(view.getMusicLoud());
-                }
-            }
-        });
-
-        view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                SoundClass.clickMute();
-
-                if (SoundClass.isMuted()) {
-                    view.getSoundPic().setImage(view.getSfxMute());
-                } else {
-                    view.getSoundPic().setImage(view.getSfxLoud());
-                }
-            }
-        });
-
- */
     }
+
     private void updateView() {
         view.getPlayer1Name().setText(setup.getPlayers().get(0).getName());
         view.getPlayer2Name().setText(setup.getPlayers().get(1).getName());
         view.getPlayer3Name().setText(setup.getPlayers().get(2).getName());
         view.getPlayer4Name().setText(setup.getPlayers().get(3).getName());
 
-        if(setup.getAmountPlayers()<2){
+        if (setup.getAmountPlayers() < 2) {
             view.getRoll2().setVisible(false);
             //roll as cpu
             Die.throwDie();
             view.getDiceFoto2().setImage(Die.getDiceFoto().getImage());
             setup.addRoll(1, Die.getThrown());
         }
-         if(setup.getAmountPlayers()<3){
+        if (setup.getAmountPlayers() < 3) {
             view.getRoll3().setVisible(false);
             //roll as cpu
             Die.throwDie();
             view.getDiceFoto3().setImage(Die.getDiceFoto().getImage());
             setup.addRoll(2, Die.getThrown());
         }
-        if(setup.getAmountPlayers()<4){
+        if (setup.getAmountPlayers() < 4) {
             view.getRoll4().setVisible(false);
             //roll as cpu
             Die.throwDie();
             view.getDiceFoto4().setImage(Die.getDiceFoto().getImage());
             setup.addRoll(3, Die.getThrown());
         }
-/*
-        if (MainMusic.getMediaPlayer().isMute()){
-            view.getMusicPic().setImage(view.getMusicMute());
-        } else {
-            view.getMusicPic().setImage(view.getMusicLoud());
-        }
-        if (SoundClass.isMuted()){
-            view.getSoundPic().setImage(view.getSfxMute());
-        } else {
-            view.getSoundPic().setImage(view.getSfxLoud());
-        }
-
- */
     }
-    public void addWindowEventHandlers () {
+
+    public void addWindowEventHandlers() {
         view.getScene().setOnKeyPressed(e -> {
             if (e.getCode() == fullscreenKey) {
                 Scene scene = view.getScene();

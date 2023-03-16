@@ -1,8 +1,6 @@
 package kdg.be.parchis.views.game;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,8 +11,6 @@ import kdg.be.parchis.model.game.Die;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -72,10 +68,11 @@ public class GameView extends StackPane {
     private ImageView statusBar;
     private Label turns;
 
-    public GameView () throws FileNotFoundException {
+    public GameView() throws FileNotFoundException {
         this.initialiseNodes();
         this.layoutNodes();
     }
+
     private void initialiseNodes() throws FileNotFoundException {
         boardImg = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
         background = new Image(new FileInputStream("resources\\backgrounds\\ingame_background.png"));
@@ -137,6 +134,7 @@ public class GameView extends StackPane {
         glowNestGreen = new Image(new FileInputStream("resources\\graphics\\game\\green_nest_glow.png"));
         nestGlow = new ImageView();
     }
+
     private void layoutNodes() {
         this.getChildren().add(board);
 

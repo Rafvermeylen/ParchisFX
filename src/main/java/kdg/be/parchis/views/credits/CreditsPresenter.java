@@ -7,8 +7,8 @@ import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
 public class CreditsPresenter {
-    private CreditsView view;
-    private MainMenuView backView;
+    private final CreditsView view;
+    private final MainMenuView backView;
 
 
     public CreditsPresenter(CreditsView view, MainMenuView backView) {
@@ -54,12 +54,12 @@ public class CreditsPresenter {
     }
 
     private void updateView() {
-        if (Music.getMediaPlayer().isMute()){
+        if (Music.getMediaPlayer().isMute()) {
             view.getMusicPic().setImage(view.getMusicMute());
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());
         }
-        if (Sound.isMuted()){
+        if (Sound.isMuted()) {
             view.getSoundPic().setImage(view.getSfxMute());
         } else {
             view.getSoundPic().setImage(view.getSfxLoud());
