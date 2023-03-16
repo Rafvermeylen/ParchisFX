@@ -255,68 +255,12 @@ public class Game {
         lastMovedPawn = null;
     }
 
-    public Score getWinner() {
-        return winner;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
     public void roll() {
         Die.throwDie();
         amountThrows++;
         if (players.get(indexTurn).isNestEmpty() && Die.getThrown() == 6) {
             Die.setSeven();
         }
-    }
-
-    public int getIndexTurn() {
-        return indexTurn;
-    }
-
-    public int getAmountThrows() {
-        return amountThrows;
-    }
-
-    public Player getYellowPlayer() {
-        for (Player p : players) {
-            if (p.getColor().equals(Color.YELLOW)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public Player getBluePlayer() {
-        for (Player p : players) {
-            if (p.getColor().equals(Color.BLUE)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public Player getRedPlayer() {
-        for (Player p : players) {
-            if (p.getColor().equals(Color.RED)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public Player getGreenPlayer() {
-        for (Player p : players) {
-            if (p.getColor().equals(Color.GREEN)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public int getTurn() {
-        return turn;
     }
 
     public boolean canPlayerMove(Player p) {
@@ -358,26 +302,6 @@ public class Game {
         return !board.board.get(p.getStartPosition()).IsBarrier();
     }
 
-    public List<Pawn> getMoveablePawns(Player p) {
-        List<Pawn> pawns = new ArrayList<>();
-        for (Pawn pwn : p.pawns) {
-            if (pwn.isCanMove(board, Die.getThrown())) {
-                pawns.add(pwn);
-            }
-        }
-        return pawns;
-    }
-
-    public List<Pawn> getBarrierPawns(Player p) {
-        List<Pawn> pawns = new ArrayList<>();
-        for (Pawn pwn : p.pawns) {
-            if (pwn.getPosition() != null && pwn.getPosition().IsBarrier() && pwn.isInGame()) {
-                pawns.add(pwn);
-            }
-        }
-        return pawns;
-    }
-
     public void lastBackToNest() {
         if (!lastMovedPawn.getOnLandingstrip()) {
             lastMovedPawn.toNest(board.board.get(lastMovedPawn.owner.getNestPosition()));
@@ -392,14 +316,6 @@ public class Game {
                 lastMovedPawn.owner.moveByTile(lastMovedPawn, board.board.get(97));
             }
         }
-    }
-
-    public Pawn getLastMovedPawn() {
-        return lastMovedPawn;
-    }
-
-    public Board getBoard() {
-        return board;
     }
 
     public void playAiTurn() {
@@ -451,6 +367,90 @@ public class Game {
             System.out.println("Pawn " + p.getPawnNumber() + " on tile " + p.getPosition().getNr());
         }
         System.out.println();
+    }
+
+    public Player getYellowPlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Color.YELLOW)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Player getBluePlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Color.BLUE)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Player getRedPlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Color.RED)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Player getGreenPlayer() {
+        for (Player p : players) {
+            if (p.getColor().equals(Color.GREEN)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public List<Pawn> getMoveablePawns(Player p) {
+        List<Pawn> pawns = new ArrayList<>();
+        for (Pawn pwn : p.pawns) {
+            if (pwn.isCanMove(board, Die.getThrown())) {
+                pawns.add(pwn);
+            }
+        }
+        return pawns;
+    }
+
+    public List<Pawn> getBarrierPawns(Player p) {
+        List<Pawn> pawns = new ArrayList<>();
+        for (Pawn pwn : p.pawns) {
+            if (pwn.getPosition() != null && pwn.getPosition().IsBarrier() && pwn.isInGame()) {
+                pawns.add(pwn);
+            }
+        }
+        return pawns;
+    }
+
+    public Score getWinner() {
+        return winner;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public int getIndexTurn() {
+        return indexTurn;
+    }
+
+    public int getAmountThrows() {
+        return amountThrows;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public Pawn getLastMovedPawn() {
+        return lastMovedPawn;
+    }
+
+    public Board getBoard() {
+        return board;
     }
 
     public boolean isEndAITurn() {
