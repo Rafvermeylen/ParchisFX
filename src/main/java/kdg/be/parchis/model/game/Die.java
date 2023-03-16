@@ -102,20 +102,12 @@ public class Die {
         rollAgain = thrown == 6;
     }
 
-    public static void setSeven() {
-        thrown = 7;
-    }
-
-    public static void setTen() {
-        thrown = 10;
+    public static boolean isRollAgain() {
+        return rollAgain;
     }
 
     public static int getThrown() {
         return thrown;
-    }
-
-    public static boolean isRollAgain() {
-        return rollAgain;
     }
 
     public static ImageView getDiceFoto() {
@@ -125,4 +117,13 @@ public class Die {
     public static Image getEmpty() {
         return empty;
     }
+
+    public static void setSeven() {
+        thrown = 7;
+    }
+
+    public static void setTen() {
+        thrown = 10;
+    }
+
 }

@@ -123,10 +123,6 @@ public class Pawn {
         return true;
     }
 
-    public void setOnLandingstrip(boolean onLandingstrip) {
-        this.onLandingstrip = onLandingstrip;
-    }
-
     public boolean getOnLandingstrip() {
         return onLandingstrip;
     }
@@ -139,5 +135,7 @@ public class Pawn {
         return position;
     }
 
-
+    public void setOnLandingstrip(boolean onLandingstrip) {
+        this.onLandingstrip = onLandingstrip;
+    }
 }

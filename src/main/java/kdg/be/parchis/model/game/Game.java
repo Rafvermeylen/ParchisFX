@@ -369,6 +369,11 @@ public class Game {
         System.out.println();
     }
 
+    public boolean isEndAITurn() {
+        return endAITurn;
+    }
+
+
     public Player getYellowPlayer() {
         for (Player p : players) {
             if (p.getColor().equals(Color.YELLOW)) {
@@ -451,9 +456,5 @@ public class Game {
 
     public Board getBoard() {
         return board;
-    }
-
-    public boolean isEndAITurn() {
-        return endAITurn;
     }
 }
