@@ -24,17 +24,6 @@ public class Pawn {
         position = nest;
     }
 
-
-    public int getPawnNumber() {
-        return pawnNumber;
-    }
-
-
-    public Tile getPosition() {
-        return position;
-    }
-
-
     public void leaveNest(Tile startTile) {
         position = startTile;
         inGame = true;
@@ -82,11 +71,6 @@ public class Pawn {
 
     public void isOnLandingstrip() {
         onLandingstrip = true;
-    }
-
-
-    public boolean getOnLandingstrip() {
-        return onLandingstrip;
     }
 
     public boolean canKill(Board board) {
@@ -142,4 +126,18 @@ public class Pawn {
     public void setOnLandingstrip(boolean onLandingstrip) {
         this.onLandingstrip = onLandingstrip;
     }
+
+    public boolean getOnLandingstrip() {
+        return onLandingstrip;
+    }
+
+    public int getPawnNumber() {
+        return pawnNumber;
+    }
+
+    public Tile getPosition() {
+        return position;
+    }
+
+
 }
