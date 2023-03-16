@@ -13,9 +13,6 @@ import kdg.be.parchis.views.endgamescreen.EndgameScreenView;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import static java.lang.Thread.sleep;
-
-
 public class GamePresenter {
     private final Game gameSession;
     private final CoordinateConverter converter;
@@ -53,10 +50,6 @@ public class GamePresenter {
                     return;
                 }
 
-
-                System.out.println(Die.getThrown());
-
-
                 view.getDie1().setVisible(true);
                 view.getDie1().setImage(Die.getDiceFoto().getImage());
                 if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && !gameSession.getYellowPlayer().getHasBarrier() && Die.getThrown() != 5) {
@@ -90,6 +83,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getRoll2().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -140,6 +134,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getRoll3().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -190,6 +185,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getRoll4().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -241,6 +237,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getFinish1().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -252,6 +249,7 @@ public class GamePresenter {
                 playAI();
             }
         });
+
         view.getFinish2().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -263,6 +261,7 @@ public class GamePresenter {
                 playAI();
             }
         });
+
         view.getFinish3().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -274,6 +273,7 @@ public class GamePresenter {
                 playAI();
             }
         });
+
         view.getFinish4().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -296,6 +296,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getNestGlow().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -333,6 +334,7 @@ public class GamePresenter {
                 updateAllPawnPositions();
             }
         });
+
         view.getYp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -377,6 +379,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getYp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -420,6 +423,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getYp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -464,6 +468,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getYp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -507,6 +512,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getBp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -550,6 +556,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getBp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -593,6 +600,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getBp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -636,6 +644,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getBp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -679,6 +688,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getRp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -723,6 +733,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getRp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -767,6 +778,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getRp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -810,6 +822,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getRp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -853,6 +866,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getGp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -897,6 +911,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getGp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -941,6 +956,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getGp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -985,6 +1001,7 @@ public class GamePresenter {
                 }
             }
         });
+
         view.getGp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
