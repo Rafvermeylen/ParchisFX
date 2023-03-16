@@ -49,9 +49,7 @@ public class GamePresenter {
                     }
                     return;
                 }
-
-                view.getDie1().setVisible(true);
-                view.getDie1().setImage(Die.getDiceFoto().getImage());
+                updateDieFace();
                 if (!gameSession.canPlayerMove(gameSession.getYellowPlayer()) && !gameSession.getYellowPlayer().getHasBarrier() && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
                     if (Die.isRollAgain()) {
@@ -101,8 +99,7 @@ public class GamePresenter {
                     }
                     return;
                 }
-                view.getDie2().setVisible(true);
-                view.getDie2().setImage(Die.getDiceFoto().getImage());
+                updateDieFace();
                 if (!gameSession.canPlayerMove(gameSession.getBluePlayer()) && !gameSession.getBluePlayer().getHasBarrier() && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
                     if (Die.isRollAgain()) {
@@ -152,8 +149,7 @@ public class GamePresenter {
                     }
                     return;
                 }
-                view.getDie3().setVisible(true);
-                view.getDie3().setImage(Die.getDiceFoto().getImage());
+                updateDieFace();
                 if (!gameSession.canPlayerMove(gameSession.getRedPlayer()) && !gameSession.getRedPlayer().getHasBarrier() && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
                     if (Die.getThrown() == 6 || Die.getThrown() == 7) {
@@ -203,8 +199,7 @@ public class GamePresenter {
                     }
                     return;
                 }
-                view.getDie4().setVisible(true);
-                view.getDie4().setImage(Die.getDiceFoto().getImage());
+                updateDieFace();
                 if (!gameSession.canPlayerMove(gameSession.getGreenPlayer()) && !gameSession.getGreenPlayer().getHasBarrier() && Die.getThrown() != 5) {
                     //do nothing when you cant do anything
                     if (Die.getThrown() == 6 || Die.getThrown() == 7) {
@@ -1335,13 +1330,10 @@ public class GamePresenter {
             while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
                 do {
                     gameSession.playAiTurn();
-                    //Platform.runLater(this::updateDieFace);
+                    updateDieFace();
                     Platform.runLater(this::updateAllPawnPositions);
                 } while (!gameSession.isEndAITurn());
-
-                updateDieFace();
                 gameSession.endTurn();
-
                 try {
                     checkIfEnded();
                 } catch (FileNotFoundException e) {
@@ -1354,17 +1346,16 @@ public class GamePresenter {
 
     private void updateDieFace() {
         hideDieFaces();
-        int index = gameSession.getIndexTurn();
-        if (gameSession.getPlayers().get(index).getColor().equals(Color.YELLOW)) {
+        if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
             view.getDie1().setImage(Die.getDiceFoto().getImage());
             view.getDie1().setVisible(true);
-        } else if (gameSession.getPlayers().get(index).getColor().equals(Color.BLUE)) {
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
             view.getDie2().setImage(Die.getDiceFoto().getImage());
             view.getDie2().setVisible(true);
-        } else if (gameSession.getPlayers().get(index).getColor().equals(Color.RED)) {
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
             view.getDie3().setImage(Die.getDiceFoto().getImage());
             view.getDie3().setVisible(true);
-        } else if (gameSession.getPlayers().get(index).getColor().equals(Color.GREEN)) {
+        } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.GREEN)) {
             view.getDie4().setImage(Die.getDiceFoto().getImage());
             view.getDie4().setVisible(true);
         }
