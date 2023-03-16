@@ -13,11 +13,14 @@ import kdg.be.parchis.views.endgamescreen.EndgameScreenView;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import static java.lang.Thread.sleep;
+
 
 public class GamePresenter {
     private final Game gameSession;
     private final CoordinateConverter converter;
     private final GameView view;
+
     public GamePresenter(
             Game model,
             GameView view) {
@@ -25,7 +28,7 @@ public class GamePresenter {
         this.gameSession = model;
         this.view = view;
         this.addEventHandlers();
-        if (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player){
+        if (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
             playAI();
         }
         this.updateView();
@@ -1201,7 +1204,7 @@ public class GamePresenter {
                 view.getGreenPlayer().setText(p.getName());
             }
         }
-        if (!(gameSession.getPlayers().get(0) instanceof ai_Player)){
+        if (!(gameSession.getPlayers().get(0) instanceof ai_Player)) {
             displayControlsCurrentPlayer();
         }
         updateAllPawnPositions();
@@ -1310,14 +1313,18 @@ public class GamePresenter {
         Platform.runLater(this::updateTurn);
     }
 
-    private void playAI(){
+    private void playAI() {
         new Thread(() -> {
             while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
-                Platform.runLater(this::updateDieFace);
-                gameSession.playAiTurn();
-                hideDieFaces();
-                Platform.runLater(this::updateAllPawnPositions);
+                do {
+                    gameSession.playAiTurn();
+                    //Platform.runLater(this::updateDieFace);
+                    Platform.runLater(this::updateAllPawnPositions);
+                } while (!gameSession.isEndAITurn());
+
+                updateDieFace();
                 gameSession.endTurn();
+
                 try {
                     checkIfEnded();
                 } catch (FileNotFoundException e) {
@@ -1328,14 +1335,9 @@ public class GamePresenter {
         }).start();
     }
 
-    private void updateDieFace(){
+    private void updateDieFace() {
+        hideDieFaces();
         int index = gameSession.getIndexTurn();
-        /*
-        if (index == 0){
-            index = 4;
-        }
-
-         */
         if (gameSession.getPlayers().get(index).getColor().equals(Color.YELLOW)) {
             view.getDie1().setImage(Die.getDiceFoto().getImage());
             view.getDie1().setVisible(true);
@@ -1351,7 +1353,7 @@ public class GamePresenter {
         }
     }
 
-    private void hideDieFaces(){
+    private void hideDieFaces() {
         view.getDie1().setVisible(false);
         view.getDie2().setVisible(false);
         view.getDie3().setVisible(false);
@@ -1359,7 +1361,7 @@ public class GamePresenter {
 
     }
 
-    private void displayControlsCurrentPlayer(){
+    private void displayControlsCurrentPlayer() {
         if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.YELLOW)) {
             view.getRoll1().setVisible(true);
         } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.BLUE)) {
@@ -1371,7 +1373,7 @@ public class GamePresenter {
         }
     }
 
-    private void updateTurn(){
+    private void updateTurn() {
         view.getTurns().setText("turn: " + gameSession.getTurn());
     }
 

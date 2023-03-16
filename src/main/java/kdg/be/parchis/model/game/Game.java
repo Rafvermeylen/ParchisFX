@@ -13,6 +13,7 @@ public class Game {
     private int indexTurn;
     private int amountThrows;
     private Pawn lastMovedPawn;
+    private boolean endAITurn;
 
     public Game(List<Player> players) {
         turn = 1;
@@ -22,12 +23,7 @@ public class Game {
         indexTurn = 0;
         amountThrows = 0;
         startSetup();
-        /*
-        if (players.get(0) instanceof ai_Player) {
-            playAiTurn();
-            endTurn();
-        }
-         */
+        endAITurn = false;
     }
 
     public void startSetup() {
@@ -247,28 +243,15 @@ public class Game {
         }
     }
 
-    public boolean endTurn() {
-        boolean botActivity = false;
+    public void endTurn() {
+        endAITurn = false;
         indexTurn++;
         if (indexTurn == 4) {
             indexTurn = 0;
             turn++;
         }
-
-        //if next player is AI, play AI turn and end turn.
-        /*
-        while (players.get(indexTurn) instanceof ai_Player) {
-            botActivity = true;
-            amountThrows = 0;
-            lastMovedPawn = null;
-            playAiTurn();
-            endTurn();
-        }
-
-         */
         amountThrows = 0;
         lastMovedPawn = null;
-        return botActivity;
     }
 
     public Score getWinner() {
@@ -294,17 +277,6 @@ public class Game {
     public int getAmountThrows() {
         return amountThrows;
     }
-
-    /*
-    public Player getPlayer(Colors colors) {
-        for (Player p : players) {
-            if (p.getColor().equals(colors)) {
-                return p;
-            }
-        }
-        return null;
-    }
-    */
 
     public Player getYellowPlayer() {
         for (Player p : players) {
@@ -430,8 +402,6 @@ public class Game {
     }
 
     public void playAiTurn() {
-        boolean turnEnded = false;
-        do {
             roll();
             Sound.playRoll();
             if (Die.isRollAgain() && amountThrows == 3) {
@@ -439,7 +409,7 @@ public class Game {
                     Sound.playFail();
                     lastBackToNest();
                 }
-                turnEnded = true;
+                endAITurn = true;
             } else {
                 if (players.get(indexTurn).getHasBarrier() && (Die.isRollAgain())) {
                     movePawn(players.get(indexTurn), players.get(indexTurn).firstBarrierPawn());
@@ -468,7 +438,7 @@ public class Game {
                 }
 
                 if (!Die.isRollAgain()) {
-                    turnEnded = true;
+                    endAITurn = true;
                 }
             }
 
@@ -480,8 +450,9 @@ public class Game {
                 System.out.println("Pawn " + p.getPawnNumber() + " on tile " + p.getPosition().getNr());
             }
             System.out.println();
-
-        } while (!turnEnded);
     }
 
+    public boolean isEndAITurn() {
+        return endAITurn;
+    }
 }
