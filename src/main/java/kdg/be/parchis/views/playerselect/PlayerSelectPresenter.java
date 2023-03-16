@@ -2,9 +2,6 @@ package kdg.be.parchis.views.playerselect;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
 import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.model.musicLogic.Music;
 import kdg.be.parchis.model.musicLogic.Sound;
@@ -15,7 +12,6 @@ import kdg.be.parchis.views.playersetup.PlayerSetupView;
 import java.io.FileNotFoundException;
 
 public class PlayerSelectPresenter {
-    private final KeyCode fullscreenKey = KeyCode.F;
     private final PlayerSelectView view;
     private final MainMenuView backView;
 
@@ -105,18 +101,6 @@ public class PlayerSelectPresenter {
         } else {
             view.getSoundPic().setImage(view.getSfxLoud());
         }
-    }
-
-    public void addWindowEventHandlers() {
-        view.getScene().setOnKeyPressed(e -> {
-            if (e.getCode() == fullscreenKey) {
-                Scene scene = view.getScene();
-                if (scene != null) {
-                    Stage stage = (Stage) scene.getWindow();
-                    stage.setFullScreen(!stage.isFullScreen());
-                }
-            }
-        });
     }
 
     public void selectedPlayers(PlayerSetup playerSetup) {

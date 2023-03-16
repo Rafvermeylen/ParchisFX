@@ -358,21 +358,11 @@ public class Game {
                 endAITurn = true;
             }
         }
-
-        //DEBUGGING SOUT ABOUT BOTS
-        System.out.println("Turn " + turn);
-        System.out.println(players.get(indexTurn).getName() + " rolled a : " + Die.getThrown());
-        System.out.println("Location of pawns:");
-        for (Pawn p : players.get(indexTurn).pawns) {
-            System.out.println("Pawn " + p.getPawnNumber() + " on tile " + p.getPosition().getNr());
-        }
-        System.out.println();
     }
 
     public boolean isEndAITurn() {
         return endAITurn;
     }
-
 
     public Player getYellowPlayer() {
         for (Player p : players) {

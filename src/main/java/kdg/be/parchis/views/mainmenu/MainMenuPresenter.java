@@ -38,11 +38,12 @@ public class MainMenuPresenter {
 
     class Cheats {
         public static boolean activated = false;
-        public static void clickButton(){
+
+        public static void clickButton() {
             activated = !activated;
         }
 
-        public static boolean getActivated(){
+        public static boolean getActivated() {
             return activated;
         }
     }

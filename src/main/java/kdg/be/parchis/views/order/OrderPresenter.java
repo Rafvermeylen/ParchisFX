@@ -2,9 +2,6 @@ package kdg.be.parchis.views.order;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
 import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.menu.PlayerSetup;
@@ -17,7 +14,6 @@ import kdg.be.parchis.views.playersetup.PlayerSetupView;
 import java.io.FileNotFoundException;
 
 public class OrderPresenter {
-    private final KeyCode fullscreenKey = KeyCode.F;
     private final PlayerSetup setup;
     private final OrderView view;
     private final PlayerSetupView backView;
@@ -162,17 +158,5 @@ public class OrderPresenter {
             view.getDiceFoto4().setImage(Die.getDiceFoto().getImage());
             setup.addRoll(3, Die.getThrown());
         }
-    }
-
-    public void addWindowEventHandlers() {
-        view.getScene().setOnKeyPressed(e -> {
-            if (e.getCode() == fullscreenKey) {
-                Scene scene = view.getScene();
-                if (scene != null) {
-                    Stage stage = (Stage) scene.getWindow();
-                    stage.setFullScreen(!stage.isFullScreen());
-                }
-            }
-        });
     }
 }

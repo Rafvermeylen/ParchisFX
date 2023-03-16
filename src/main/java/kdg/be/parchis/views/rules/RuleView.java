@@ -66,8 +66,7 @@ public class RuleView extends BorderPane {
                                 
                                 
                                 
-                                
-                                
+                                            
                 1. When a five is thrown, you can get out of 
                    nest (starting place).
                    

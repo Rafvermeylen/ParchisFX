@@ -20,18 +20,14 @@ public class PlayerSelectView extends BorderPane {
     private Image sfxMute;
     private ImageView musicPic;
     private ImageView soundPic;
-
     private Button onePlayer;
     private Image onePlayerPic;
     private Button twoPlayers;
     private Image twoPlayerPic;
-
     private Button threePlayers;
     private Image threePlayerPic;
-
     private Button fourPlayers;
     private Image fourPlayerPic;
-
     private Image background;
     private Button back;
 
@@ -73,7 +69,6 @@ public class PlayerSelectView extends BorderPane {
 
         fxButton.setMinSize(50, 50);
         fxButton.setMaxSize(50, 50);
-
     }
 
     private void layoutNodes() {
@@ -150,5 +145,4 @@ public class PlayerSelectView extends BorderPane {
     public Image getSfxMute() {
         return sfxMute;
     }
-
 }
