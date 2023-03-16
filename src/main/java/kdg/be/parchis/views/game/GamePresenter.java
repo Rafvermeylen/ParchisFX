@@ -10,6 +10,7 @@ import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.endgamescreen.EndgameScreenPresenter;
 import kdg.be.parchis.views.endgamescreen.EndgameScreenView;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 
@@ -285,7 +286,11 @@ public class GamePresenter {
                 } else if (gameSession.getPlayers().get(gameSession.getIndexTurn()).getColor().equals(Color.RED)) {
                     view.getRoll3().setVisible(true);
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getNestGlow().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -362,7 +367,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getYp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -401,7 +410,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getYp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -441,7 +454,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getYp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -480,7 +497,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getBp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -519,7 +540,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getBp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -558,7 +583,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getBp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -597,7 +626,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getBp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -636,7 +669,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getRp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -676,7 +713,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getRp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -716,7 +757,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getRp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -755,7 +800,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getRp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -794,7 +843,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getGp_1().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -834,7 +887,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getGp_2().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -874,7 +931,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getGp_3().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -914,7 +975,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         view.getGp_4().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -962,7 +1027,11 @@ public class GamePresenter {
                         Sound.playVictory();
                     }
                 }
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
@@ -1107,7 +1176,7 @@ public class GamePresenter {
         greenMovablePawns(moveable);
     }
 
-    private void checkIfEnded() {
+    private void checkIfEnded() throws FileNotFoundException {
         if (gameSession.hasGameEnded()) {
             if (gameSession.getWinner() != null) {
                 Leaderboards.addScore(gameSession.getWinner());
@@ -1244,12 +1313,16 @@ public class GamePresenter {
     private void playAI(){
         new Thread(() -> {
             while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
+                Platform.runLater(this::updateDieFace);
                 gameSession.playAiTurn();
                 hideDieFaces();
-                Platform.runLater(this::updateDieFace);
                 Platform.runLater(this::updateAllPawnPositions);
                 gameSession.endTurn();
-                checkIfEnded();
+                try {
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
             displayControlsCurrentPlayer();
         }).start();
