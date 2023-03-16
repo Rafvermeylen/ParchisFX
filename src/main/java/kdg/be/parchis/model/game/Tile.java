@@ -27,16 +27,15 @@ public class Tile {
         return nr;
     }
 
-    public void pawnLands(Pawn landedPawn){
-        if (hasPawn && safe && !isBarrier){
-            for (Pawn p : standingPawns){
+    public void pawnLands(Pawn landedPawn) {
+        if (hasPawn && safe && !isBarrier) {
+            for (Pawn p : standingPawns) {
                 if (landedPawn.getPawnNumber() != p.getPawnNumber() &&
-                        landedPawn.owner.equals(p.owner)){
+                        landedPawn.owner.equals(p.owner)) {
                     isBarrier = true;
                     Sound.barrierMade();
                     barrierColor = landedPawn.owner.getColor();
                     landedPawn.owner.setBarrier();
-                    System.out.println("Barrier made on tile " + nr);
                     break;
                 }
             }
@@ -45,30 +44,26 @@ public class Tile {
         }
         standingPawns.add(landedPawn);
     }
-    public void pawnLeaves(Pawn leavingPawn){
-        if (isBarrier && leavingPawn.owner.getColor().equals(barrierColor)){
+
+    public void pawnLeaves(Pawn leavingPawn) {
+        if (isBarrier && leavingPawn.owner.getColor().equals(barrierColor)) {
             isBarrier = false;
             leavingPawn.owner.setBarrier();
-        } else if (standingPawns.size() == 1){
+        } else if (standingPawns.size() == 1) {
             hasPawn = false;
         }
         standingPawns.remove(leavingPawn);
     }
 
-    public boolean IsBarrier(){
+    public boolean IsBarrier() {
         return isBarrier;
     }
 
-    public boolean isFree(){
+    public boolean isFree() {
         return !hasPawn;
     }
 
-    @Override
-    public String toString() {
-        return "Tile " + nr;
-    }
-
-    public List<Pawn> getStandingPawns(){
+    public List<Pawn> getStandingPawns() {
         return standingPawns;
     }
 
@@ -76,7 +71,7 @@ public class Tile {
         return barrierColor;
     }
 
-    public boolean getSafe(){
+    public boolean getSafe() {
         return safe;
     }
 }

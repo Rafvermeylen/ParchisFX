@@ -156,11 +156,11 @@ public class CoordinateConverter {
         positionMap.put(104, new Position(0, 55));
     }
 
-    public int getX(int tileNr){
+    public int getX(int tileNr) {
         return positionMap.get(tileNr).getX();
     }
 
-    public int getY(int tileNr){
+    public int getY(int tileNr) {
         return positionMap.get(tileNr).getY();
     }
 

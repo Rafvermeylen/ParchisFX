@@ -3,7 +3,8 @@ package kdg.be.parchis.model.game;
 import kdg.be.parchis.model.menu.Score;
 import kdg.be.parchis.model.musicLogic.Sound;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private int turn;
@@ -402,54 +403,54 @@ public class Game {
     }
 
     public void playAiTurn() {
-            roll();
-            Sound.playRoll();
-            if (Die.isRollAgain() && amountThrows == 3) {
-                if (lastMovedPawn != null) {
-                    Sound.playFail();
-                    lastBackToNest();
+        roll();
+        Sound.playRoll();
+        if (Die.isRollAgain() && amountThrows == 3) {
+            if (lastMovedPawn != null) {
+                Sound.playFail();
+                lastBackToNest();
+            }
+            endAITurn = true;
+        } else {
+            if (players.get(indexTurn).getHasBarrier() && (Die.isRollAgain())) {
+                movePawn(players.get(indexTurn), players.get(indexTurn).firstBarrierPawn());
+            } else if (players.get(indexTurn).canKill(board)) {
+                movePawn(players.get(indexTurn), players.get(indexTurn).getKillPawn(board));
+            } else if (players.get(indexTurn).canFinish(board)) {
+                movePawn(players.get(indexTurn), players.get(indexTurn).getFinisherPawn(board));
+            } else if (Die.getThrown() == 5 && !players.get(indexTurn).isNestEmpty() && isStartOK(players.get(indexTurn))) {
+                if (players.get(indexTurn).getColor().equals(Color.BLUE)) {
+                    blueLeaveNest();
+                } else if (players.get(indexTurn).getColor().equals(Color.RED)) {
+                    redLeaveNest();
+                } else if (players.get(indexTurn).getColor().equals(Color.GREEN)) {
+                    greenLeaveNest();
+                } else if (players.get(indexTurn).getColor().equals(Color.YELLOW)) {
+                    yellowLeaveNest();
                 }
+
+            } else if (players.get(indexTurn).canMove(board, Die.getThrown())) {
+                movePawn(players.get(indexTurn), players.get(indexTurn).firstMoveablePawn(board));
+            }
+
+            if (lastMovedPawn != null && lastMovedPawn.isFinished() && players.get(indexTurn).canMove(board, 10)) {
+                Die.setTen();
+                jump10(players.get(indexTurn).firstMoveablePawn(board));
+            }
+
+            if (!Die.isRollAgain()) {
                 endAITurn = true;
-            } else {
-                if (players.get(indexTurn).getHasBarrier() && (Die.isRollAgain())) {
-                    movePawn(players.get(indexTurn), players.get(indexTurn).firstBarrierPawn());
-                } else if (players.get(indexTurn).canKill(board)) {
-                    movePawn(players.get(indexTurn), players.get(indexTurn).getKillPawn(board));
-                } else if (players.get(indexTurn).canFinish(board)) {
-                    movePawn(players.get(indexTurn), players.get(indexTurn).getFinisherPawn(board));
-                } else if (Die.getThrown() == 5 && !players.get(indexTurn).isNestEmpty() && isStartOK(players.get(indexTurn))) {
-                    if (players.get(indexTurn).getColor().equals(Color.BLUE)) {
-                        blueLeaveNest();
-                    } else if (players.get(indexTurn).getColor().equals(Color.RED)) {
-                        redLeaveNest();
-                    } else if (players.get(indexTurn).getColor().equals(Color.GREEN)) {
-                        greenLeaveNest();
-                    } else if (players.get(indexTurn).getColor().equals(Color.YELLOW)) {
-                        yellowLeaveNest();
-                    }
-
-                } else if (players.get(indexTurn).canMove(board, Die.getThrown())) {
-                    movePawn(players.get(indexTurn), players.get(indexTurn).firstMoveablePawn(board));
-                }
-
-                if (lastMovedPawn != null && lastMovedPawn.isFinished() && players.get(indexTurn).canMove(board, 10)) {
-                    Die.setTen();
-                    jump10(players.get(indexTurn).firstMoveablePawn(board));
-                }
-
-                if (!Die.isRollAgain()) {
-                    endAITurn = true;
-                }
             }
+        }
 
-            //DEBUGGING SOUT ABOUT BOTS
-            System.out.println("Turn " + turn);
-            System.out.println(players.get(indexTurn).getName() + " rolled a : " + Die.getThrown());
-            System.out.println("Location of pawns:");
-            for (Pawn p : players.get(indexTurn).pawns) {
-                System.out.println("Pawn " + p.getPawnNumber() + " on tile " + p.getPosition().getNr());
-            }
-            System.out.println();
+        //DEBUGGING SOUT ABOUT BOTS
+        System.out.println("Turn " + turn);
+        System.out.println(players.get(indexTurn).getName() + " rolled a : " + Die.getThrown());
+        System.out.println("Location of pawns:");
+        for (Pawn p : players.get(indexTurn).pawns) {
+            System.out.println("Pawn " + p.getPawnNumber() + " on tile " + p.getPosition().getNr());
+        }
+        System.out.println();
     }
 
     public boolean isEndAITurn() {
