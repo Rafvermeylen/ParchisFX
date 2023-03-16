@@ -12,15 +12,15 @@ import java.util.Scanner;
 public class Leaderboards {
     private static List<Score> scores;
 
-    public static void addScore(Score score){
-        if (scores == null){
+    public static void addScore(Score score) {
+        if (scores == null) {
             read();
         }
         scores.add(score);
         store();
     }
 
-    public static void read(){
+    public static void read() {
         ArrayList<Score> newList = new ArrayList<>();
         Scanner fileScanner = null;
         try {
@@ -35,13 +35,13 @@ public class Leaderboards {
             String[] parts = line.split(", ");
             String name = parts[0].substring(1, parts[0].length() - 1);
             int score = Integer.parseInt(parts[1]);
-            newList.add(new Score(name,score));
+            newList.add(new Score(name, score));
         }
         fileScanner.close();
         scores = new ArrayList<>(newList);
     }
 
-    public static void store(){
+    public static void store() {
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(Paths.get("resources/data/scores.csv").toFile()))) {
 
@@ -57,13 +57,12 @@ public class Leaderboards {
         }
     }
 
-    public static String printScores(){
+    public static String printScores() {
         StringBuilder sb = new StringBuilder();
         scores.sort(Collections.reverseOrder());
-        for (int i = 0; i<5; i++){
-            sb.append(i+1).append(". ").append(scores.get(i)).append("\n");
+        for (int i = 0; i < 5; i++) {
+            sb.append(i + 1).append(". ").append(scores.get(i)).append("\n");
         }
         return sb.toString();
     }
-
 }

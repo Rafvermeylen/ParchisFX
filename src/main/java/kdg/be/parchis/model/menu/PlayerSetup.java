@@ -4,16 +4,17 @@ import kdg.be.parchis.model.game.Color;
 import kdg.be.parchis.model.game.Player;
 import kdg.be.parchis.model.game.ai_Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerSetup {
     private List<Player> players = new ArrayList<>(4);
     private final int amountPlayers;
     private int[] rolls;
 
-    public PlayerSetup(int amountPlayers){
+    public PlayerSetup(int amountPlayers) {
         this.amountPlayers = amountPlayers;
-        rolls = new int[]{0,0,0,0};
+        rolls = new int[]{0, 0, 0, 0};
     }
 
     public List<Player> getPlayers() {
@@ -24,7 +25,7 @@ public class PlayerSetup {
         return amountPlayers;
     }
 
-    public void setPlayers(String naam1){
+    public void setPlayers(String naam1) {
         players.add(new Player(naam1, Color.YELLOW));
         players.add(new ai_Player("Bot_Blue", Color.BLUE));
         players.add(new ai_Player("Bot_Red", Color.RED));
@@ -32,7 +33,7 @@ public class PlayerSetup {
 
     }
 
-    public void setPlayers(String naam1, String naam2){
+    public void setPlayers(String naam1, String naam2) {
         players.add(new Player(naam1, Color.YELLOW));
         players.add(new Player(naam2, Color.BLUE));
         players.add(new ai_Player("Bot_Red", Color.RED));
@@ -40,7 +41,7 @@ public class PlayerSetup {
 
     }
 
-    public void setPlayers(String naam1, String naam2, String naam3){
+    public void setPlayers(String naam1, String naam2, String naam3) {
         players.add(new Player(naam1, Color.YELLOW));
         players.add(new Player(naam2, Color.BLUE));
         players.add(new Player(naam3, Color.RED));
@@ -48,7 +49,7 @@ public class PlayerSetup {
 
     }
 
-    public void setPlayers(String naam1, String naam2, String naam3, String naam4){
+    public void setPlayers(String naam1, String naam2, String naam3, String naam4) {
         players.add(new Player(naam1, Color.YELLOW));
         players.add(new Player(naam2, Color.BLUE));
         players.add(new Player(naam3, Color.RED));
@@ -56,7 +57,7 @@ public class PlayerSetup {
 
     }
 
-    public void order(){
+    public void order() {
 // Sort the rolls in descending order using a simple sorting algorithm
         for (int i = 0; i < 4; i++) {
             int maxIndex = i;
@@ -79,17 +80,16 @@ public class PlayerSetup {
 // The player at index 3 in the list corresponds to the lowest roll in the rolls array
     }
 
-    public boolean didPlayersRoll(){
-        for (Integer roll : rolls){
-            if (roll == 0){
+    public boolean didPlayersRoll() {
+        for (Integer roll : rolls) {
+            if (roll == 0) {
                 return false;
             }
         }
         return true;
     }
 
-    public void addRoll(int index, int rolled){
+    public void addRoll(int index, int rolled) {
         rolls[index] = rolled;
     }
-
 }

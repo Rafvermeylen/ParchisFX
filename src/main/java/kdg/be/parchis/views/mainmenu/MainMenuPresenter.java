@@ -10,7 +10,6 @@ import kdg.be.parchis.model.game.Color;
 import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.game.Player;
 import kdg.be.parchis.model.game.ai_Player;
-import kdg.be.parchis.model.menu.Cheats;
 import kdg.be.parchis.model.musicLogic.Music;
 import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.credits.CreditsPresenter;
@@ -35,6 +34,17 @@ public class MainMenuPresenter {
         this.view = view;
         this.addEventHandlers();
         this.updateView();
+    }
+
+    class Cheats {
+        public static boolean activated = false;
+        public static void clickButton(){
+            activated = !activated;
+        }
+
+        public static boolean getActivated(){
+            return activated;
+        }
     }
 
     private void addEventHandlers() {

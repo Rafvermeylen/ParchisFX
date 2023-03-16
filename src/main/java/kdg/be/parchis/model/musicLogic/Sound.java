@@ -21,11 +21,11 @@ public class Sound {
         }
     }
 
-    public static void playClick(){
+    public static void playClick() {
         initSound(path, "click.mp3");
     }
 
-    public static void playPawnMove(){
+    public static void playPawnMove() {
         initSound(path, "pawn_move.mp3");
     }
 
@@ -41,7 +41,7 @@ public class Sound {
         initSound(path, "Barrier.mp3");
     }
 
-    public static void playRoll(){
+    public static void playRoll() {
         initSound(path, "roll.wav");
         try {
             sleep(2 * 1000);
@@ -50,7 +50,7 @@ public class Sound {
         }
     }
 
-    public static void playVictory(){
+    public static void playVictory() {
         initSound(path, "win.mp3");
     }
 
