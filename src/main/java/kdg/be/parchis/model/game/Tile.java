@@ -23,10 +23,6 @@ public class Tile {
         safe = kind.equals(TileKind.SAFESPACE);
     }
 
-    public int getNr() {
-        return nr;
-    }
-
     public void pawnLands(Pawn landedPawn) {
         if (hasPawn && safe && !isBarrier) {
             for (Pawn p : standingPawns) {
@@ -63,8 +59,8 @@ public class Tile {
         return !hasPawn;
     }
 
-    public List<Pawn> getStandingPawns() {
-        return standingPawns;
+    public int getNr() {
+        return nr;
     }
 
     public Color getBarrierColor() {
@@ -73,5 +69,9 @@ public class Tile {
 
     public boolean getSafe() {
         return safe;
+    }
+
+    public List<Pawn> getStandingPawns() {
+        return standingPawns;
     }
 }

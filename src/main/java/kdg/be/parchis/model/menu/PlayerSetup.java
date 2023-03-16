@@ -17,14 +17,6 @@ public class PlayerSetup {
         rolls = new int[]{0, 0, 0, 0};
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public int getAmountPlayers() {
-        return amountPlayers;
-    }
-
     public void setPlayers(String naam1) {
         players.add(new Player(naam1, Color.YELLOW));
         players.add(new ai_Player("Bot_Blue", Color.BLUE));
@@ -92,4 +84,13 @@ public class PlayerSetup {
     public void addRoll(int index, int rolled) {
         rolls[index] = rolled;
     }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public int getAmountPlayers() {
+        return amountPlayers;
+    }
+
 }
