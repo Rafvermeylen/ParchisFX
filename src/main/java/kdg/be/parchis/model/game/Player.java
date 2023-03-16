@@ -36,25 +36,6 @@ public class Player {
         hasBarrier=false;
     }
 
-    public String getName() {
-        return name;
-    }
-
-
-    public Color getColor() {
-        return color;
-    }
-
-
-    public int getStartPosition() {
-        return startPosition;
-    }
-
-
-    public int getNestPosition() {
-        return nestPosition;
-    }
-
     public boolean canMove(Board board, int thrown) {
         for (Pawn p : pawns) {
             if (p.isCanMove(board, thrown) && !p.isFinished()) {
@@ -207,30 +188,8 @@ public class Player {
         return false;
     }
 
-    public Pawn getFinisherPawn(Board board){
-        for (Pawn p : pawns){
-            if (p.canFinish(board)){
-                return p;
-            }
-        }
-        return null;
-    }
-
     public void setBarrier(){
         hasBarrier= !hasBarrier;
-    }
-
-    public boolean getHasBarrier(){
-        return hasBarrier;
-    }
-
-    public Pawn getKillPawn(Board board){
-        for(Pawn p : pawns){
-            if (p.canKill(board)){
-                return p;
-            }
-        }
-        return null;
     }
 
     public boolean canKill(Board board){
@@ -260,4 +219,41 @@ public class Player {
         return name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getStartPosition() {
+        return startPosition;
+    }
+
+    public int getNestPosition() {
+        return nestPosition;
+    }
+
+    public boolean getHasBarrier(){
+        return hasBarrier;
+    }
+
+    public Pawn getKillPawn(Board board){
+        for(Pawn p : pawns){
+            if (p.canKill(board)){
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Pawn getFinisherPawn(Board board){
+        for (Pawn p : pawns){
+            if (p.canFinish(board)){
+                return p;
+            }
+        }
+        return null;
+    }
 }
