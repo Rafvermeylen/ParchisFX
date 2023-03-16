@@ -16,12 +16,12 @@ import kdg.be.parchis.views.playerselect.PlayerSelectView;
 import java.io.FileNotFoundException;
 
 public class PlayerSetupPresenter extends BorderPane {
-    private PlayerSetup setup;
-    private PlayerSetupView view;
-    private PlayerSelectView backView;
     private final KeyCode fullscreenKey = KeyCode.F;
+    private final PlayerSetup setup;
+    private final PlayerSetupView view;
+    private final PlayerSelectView backView;
 
-    public PlayerSetupPresenter (
+    public PlayerSetupPresenter(
             PlayerSetup model,
             PlayerSetupView view,
             PlayerSelectView backView) {
@@ -31,11 +31,13 @@ public class PlayerSetupPresenter extends BorderPane {
         this.addEventHandlers();
         this.updateView();
     }
+
     private void addEventHandlers() {
         view.getBack().setOnAction(actionEvent -> {
             Sound.playClick();
             view.getScene().setRoot(backView);
         });
+
         view.getPlay().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -99,17 +101,19 @@ public class PlayerSetupPresenter extends BorderPane {
             }
         });
     }
+
     private void updateView() {
-        if (setup.getAmountPlayers()==1){
+        if (setup.getAmountPlayers() == 1) {
             view.getSetupNames().getChildren().add(view.getPlayer1NameArea());
-        } else if (setup.getAmountPlayers()==2){
-            view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(),view.getPlayer2NameArea());
-        }else if (setup.getAmountPlayers()==3){
-            view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(), view.getPlayer2NameArea(),view.getPlayer3NameArea());
-        }else if (setup.getAmountPlayers()==4){
-            view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(),view.getPlayer2NameArea(),view.getPlayer3NameArea(),view.getPlayer4NameArea());
+        } else if (setup.getAmountPlayers() == 2) {
+            view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(), view.getPlayer2NameArea());
+        } else if (setup.getAmountPlayers() == 3) {
+            view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(), view.getPlayer2NameArea(), view.getPlayer3NameArea());
+        } else if (setup.getAmountPlayers() == 4) {
+            view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(), view.getPlayer2NameArea(), view.getPlayer3NameArea(), view.getPlayer4NameArea());
         }
     }
+
     public void addWindowEventHandlers() {
         view.getScene().setOnKeyPressed(e -> {
             if (e.getCode() == fullscreenKey) {
@@ -121,12 +125,12 @@ public class PlayerSetupPresenter extends BorderPane {
             }
         });
 
-        if (Music.getMediaPlayer().isMute()){
+        if (Music.getMediaPlayer().isMute()) {
             view.getMusicPic().setImage(view.getMusicMute());
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());
         }
-        if (Sound.isMuted()){
+        if (Sound.isMuted()) {
             view.getSoundPic().setImage(view.getSfxMute());
         } else {
             view.getSoundPic().setImage(view.getSfxLoud());

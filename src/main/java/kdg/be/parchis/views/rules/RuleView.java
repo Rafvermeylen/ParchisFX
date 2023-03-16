@@ -13,7 +13,7 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class RuleView extends BorderPane{
+public class RuleView extends BorderPane {
     public static final String MONOSPACED = "Monospaced";
     private Button soundButton;
     private Button fxButton;
@@ -62,7 +62,12 @@ public class RuleView extends BorderPane{
 
     private void layoutNodes() {
         rules.setText("""
-                \n\n\n\n\n\n
+                                
+                                
+                                
+                                
+                                
+                                
                 1. When a five is thrown, you can get out of 
                    nest (starting place).
                    
@@ -144,5 +149,4 @@ public class RuleView extends BorderPane{
     public Image getSfxMute() {
         return sfxMute;
     }
-
 }

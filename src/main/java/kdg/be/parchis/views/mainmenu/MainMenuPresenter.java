@@ -28,8 +28,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class MainMenuPresenter {
-    private MainMenuView view;
     private final KeyCode fullscreenKey = KeyCode.F;
+    private final MainMenuView view;
 
     public MainMenuPresenter(MainMenuView view) {
         this.view = view;
@@ -109,10 +109,11 @@ public class MainMenuPresenter {
                 view.getScene().setRoot(leadView);
             }
         });
+
         view.getStartButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if (!Cheats.getActivated()){
+                if (!Cheats.getActivated()) {
                     PlayerSelectView psView = null;
                     try {
                         psView = new PlayerSelectView();
@@ -181,17 +182,16 @@ public class MainMenuPresenter {
         });
     }
 
-    public void updateIcons(){
-        if (Music.getMediaPlayer().isMute()){
+    public void updateIcons() {
+        if (Music.getMediaPlayer().isMute()) {
             view.getMusicPic().setImage(view.getMusicMute());
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());
         }
-        if (Sound.isMuted()){
+        if (Sound.isMuted()) {
             view.getSoundPic().setImage(view.getSfxMute());
         } else {
             view.getSoundPic().setImage(view.getSfxLoud());
         }
     }
-
 }

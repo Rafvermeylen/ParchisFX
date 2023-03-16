@@ -18,7 +18,6 @@ import java.io.FileNotFoundException;
 
 public class LeaderboardView extends BorderPane {
     public static final String MONOSPACED = "Monospaced";
-
     private Button back;
     private Button soundButton;
     private Button fxButton;
@@ -36,6 +35,7 @@ public class LeaderboardView extends BorderPane {
         this.initialiseNodes();
         this.layoutNodes();
     }
+
     private void initialiseNodes() throws FileNotFoundException {
         back = new Button("Back");
         scores = new Text();
@@ -62,8 +62,8 @@ public class LeaderboardView extends BorderPane {
 
         fxButton.setMinSize(50, 50);
         fxButton.setMaxSize(50, 50);
-
     }
+
     private void layoutNodes() {
         //Get leaderboards scores, then put it in label
         Leaderboards.read();
@@ -87,6 +87,7 @@ public class LeaderboardView extends BorderPane {
         BorderPane.setAlignment(vBox, Pos.CENTER);
         BorderPane.setMargin(back, new Insets(90));
     }
+
     public Button getBack() {
         return back;
     }
@@ -122,6 +123,4 @@ public class LeaderboardView extends BorderPane {
     public Image getSfxMute() {
         return sfxMute;
     }
-
-
 }

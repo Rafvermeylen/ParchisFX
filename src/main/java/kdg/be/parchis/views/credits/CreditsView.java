@@ -70,19 +70,13 @@ public class CreditsView extends BorderPane {
                 - Rui Daniel Gomes Vieira
                 - Raf Vermeylen
                 Game Testers: 
-                - Andreas Baelus
                 - Akino Verschueren
-                - Wietse de Winter
                 - Pieter Corstens
                 - Robby Crijns
-                - Jorne Liekens
                 - Niels Haegemans
-                - Joel Chapon
-                - Georgia Spencer
-                - Ben Jacobs
-                - Arne van Craen"""
+                - Joel Chapon"""
         );
-        credits.setFont(Font.font(MONOSPACED, 18));
+        credits.setFont(Font.font(MONOSPACED, 24));
         title.setScaleX(3);
         title.setScaleY(3);
 

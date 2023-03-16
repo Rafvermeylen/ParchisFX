@@ -15,9 +15,9 @@ import kdg.be.parchis.views.playersetup.PlayerSetupView;
 import java.io.FileNotFoundException;
 
 public class PlayerSelectPresenter {
-    private PlayerSelectView view;
-    private MainMenuView backView;
     private final KeyCode fullscreenKey = KeyCode.F;
+    private final PlayerSelectView view;
+    private final MainMenuView backView;
 
     public PlayerSelectPresenter(
             PlayerSelectView view, MainMenuView backView) {
@@ -26,6 +26,7 @@ public class PlayerSelectPresenter {
         this.addEventHandlers();
         this.updateView();
     }
+
     private void addEventHandlers() {
         view.getOnePlayer().setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -34,6 +35,7 @@ public class PlayerSelectPresenter {
                 selectedPlayers(playerSetup);
             }
         });
+
         view.getTwoPlayers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -41,6 +43,7 @@ public class PlayerSelectPresenter {
                 selectedPlayers(playerSetup);
             }
         });
+
         view.getThreePlayers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -48,6 +51,7 @@ public class PlayerSelectPresenter {
                 selectedPlayers(playerSetup);
             }
         });
+
         view.getFourPlayers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -55,6 +59,7 @@ public class PlayerSelectPresenter {
                 selectedPlayers(playerSetup);
             }
         });
+
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -87,21 +92,22 @@ public class PlayerSelectPresenter {
                 }
             }
         });
-
     }
+
     private void updateView() {
-        if (Music.getMediaPlayer().isMute()){
+        if (Music.getMediaPlayer().isMute()) {
             view.getMusicPic().setImage(view.getMusicMute());
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());
         }
-        if (Sound.isMuted()){
+        if (Sound.isMuted()) {
             view.getSoundPic().setImage(view.getSfxMute());
         } else {
             view.getSoundPic().setImage(view.getSfxLoud());
         }
     }
-    public void addWindowEventHandlers () {
+
+    public void addWindowEventHandlers() {
         view.getScene().setOnKeyPressed(e -> {
             if (e.getCode() == fullscreenKey) {
                 Scene scene = view.getScene();

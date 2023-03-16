@@ -7,8 +7,8 @@ import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
 public class RulePresenter {
-    private RuleView view;
-    private MainMenuView backView;
+    private final RuleView view;
+    private final MainMenuView backView;
 
     public RulePresenter(RuleView view, MainMenuView backView) {
         this.view = view;
@@ -18,10 +18,6 @@ public class RulePresenter {
     }
 
     private void addEventHandlers() {
-// Koppelt event handlers (anon. inner klassen)
-// aan de controls uit de view.
-// Event handlers: roepen methodes aan uit het
-// model en zorgen voor een update van de view.
         view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -54,16 +50,15 @@ public class RulePresenter {
                 }
             }
         });
-
     }
 
     private void updateView() {
-        if (Music.getMediaPlayer().isMute()){
+        if (Music.getMediaPlayer().isMute()) {
             view.getMusicPic().setImage(view.getMusicMute());
         } else {
             view.getMusicPic().setImage(view.getMusicLoud());
         }
-        if (Sound.isMuted()){
+        if (Sound.isMuted()) {
             view.getSoundPic().setImage(view.getSfxMute());
         } else {
             view.getSoundPic().setImage(view.getSfxLoud());
