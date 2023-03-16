@@ -9,14 +9,6 @@ public class Score implements Comparable<Score> {
         this.score = score;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
     @Override
     public int compareTo(Score o) {
         return Integer.compare(o.score, score);
@@ -25,5 +17,13 @@ public class Score implements Comparable<Score> {
     @Override
     public String toString() {
         return String.format("%-20s %d", name, score);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getScore() {
+        return score;
     }
 }

@@ -1,6 +1,9 @@
 package kdg.be.parchis.model.game;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Board {
     Map<Integer, Tile> board;

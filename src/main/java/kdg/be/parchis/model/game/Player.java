@@ -33,26 +33,7 @@ public class Player {
             startPosition = 56;
             nestPosition = 72;
         }
-        hasBarrier=false;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-
-    public Color getColor() {
-        return color;
-    }
-
-
-    public int getStartPosition() {
-        return startPosition;
-    }
-
-
-    public int getNestPosition() {
-        return nestPosition;
+        hasBarrier = false;
     }
 
     public boolean canMove(Board board, int thrown) {
@@ -147,9 +128,9 @@ public class Player {
         return 0;
     }
 
-    public void checkIfFinished(){
-        for (Pawn p : pawns){
-            if (!p.isFinished()){
+    public void checkIfFinished() {
+        for (Pawn p : pawns) {
+            if (!p.isFinished()) {
                 return;
             }
         }
@@ -160,20 +141,9 @@ public class Player {
         isFinished = true;
     }
 
-    public boolean getIsFinished(){
-        return isFinished;
-    }
-
-    public void setPawns(Board board) {
-        pawns.add(new Pawn(1, this, board.board.get(nestPosition)));
-        pawns.add(new Pawn(2, this, board.board.get(nestPosition)));
-        pawns.add(new Pawn(3, this, board.board.get(nestPosition)));
-        pawns.add(new Pawn(4, this, board.board.get(nestPosition)));
-    }
-
-    public boolean isNestEmpty(){
-        for (Pawn p : pawns){
-            if (!p.isInGame()){
+    public boolean isNestEmpty() {
+        for (Pawn p : pawns) {
+            if (!p.isInGame()) {
                 return false;
             }
         }
@@ -198,44 +168,18 @@ public class Player {
         return null;
     }
 
-    public boolean canFinish(Board board){
-        for (Pawn p : pawns){
-            if (p.canFinish(board)){
+    public boolean canFinish(Board board) {
+        for (Pawn p : pawns) {
+            if (p.canFinish(board)) {
                 return true;
             }
         }
         return false;
     }
 
-    public Pawn getFinisherPawn(Board board){
-        for (Pawn p : pawns){
-            if (p.canFinish(board)){
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public void setBarrier(){
-        hasBarrier= !hasBarrier;
-    }
-
-    public boolean getHasBarrier(){
-        return hasBarrier;
-    }
-
-    public Pawn getKillPawn(Board board){
-        for(Pawn p : pawns){
-            if (p.canKill(board)){
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public boolean canKill(Board board){
-        for (Pawn p : pawns){
-            if (p.canKill(board)){
+    public boolean canKill(Board board) {
+        for (Pawn p : pawns) {
+            if (p.canKill(board)) {
                 return true;
             }
         }
@@ -260,4 +204,56 @@ public class Player {
         return name;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getStartPosition() {
+        return startPosition;
+    }
+
+    public int getNestPosition() {
+        return nestPosition;
+    }
+
+    public boolean getHasBarrier() {
+        return hasBarrier;
+    }
+
+    public boolean getIsFinished() {
+        return isFinished;
+    }
+
+    public Pawn getKillPawn(Board board) {
+        for (Pawn p : pawns) {
+            if (p.canKill(board)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public Pawn getFinisherPawn(Board board) {
+        for (Pawn p : pawns) {
+            if (p.canFinish(board)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public void setBarrier() {
+        hasBarrier = !hasBarrier;
+    }
+
+    public void setPawns(Board board) {
+        pawns.add(new Pawn(1, this, board.board.get(nestPosition)));
+        pawns.add(new Pawn(2, this, board.board.get(nestPosition)));
+        pawns.add(new Pawn(3, this, board.board.get(nestPosition)));
+        pawns.add(new Pawn(4, this, board.board.get(nestPosition)));
+    }
 }

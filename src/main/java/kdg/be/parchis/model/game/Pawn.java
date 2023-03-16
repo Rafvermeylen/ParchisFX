@@ -24,17 +24,6 @@ public class Pawn {
         position = nest;
     }
 
-
-    public int getPawnNumber() {
-        return pawnNumber;
-    }
-
-
-    public Tile getPosition() {
-        return position;
-    }
-
-
     public void leaveNest(Tile startTile) {
         position = startTile;
         inGame = true;
@@ -84,19 +73,14 @@ public class Pawn {
         onLandingstrip = true;
     }
 
-
-    public boolean getOnLandingstrip() {
-        return onLandingstrip;
-    }
-
-    public boolean canKill(Board board){
+    public boolean canKill(Board board) {
         int tileToCheck = position.getNr() + Die.getThrown();
-        if (tileToCheck > 68){
-            tileToCheck-=68;
+        if (tileToCheck > 68) {
+            tileToCheck -= 68;
         }
-        if (!board.board.get(tileToCheck).isFree() && !board.board.get(tileToCheck).IsBarrier() && !board.board.get(tileToCheck).getSafe()){
-            for (Pawn p : board.board.get(position.getNr() + Die.getThrown()).getStandingPawns()){
-                if (!p.owner.getColor().equals(owner.getColor())){
+        if (!board.board.get(tileToCheck).isFree() && !board.board.get(tileToCheck).IsBarrier() && !board.board.get(tileToCheck).getSafe()) {
+            for (Pawn p : board.board.get(position.getNr() + Die.getThrown()).getStandingPawns()) {
+                if (!p.owner.getColor().equals(owner.getColor())) {
                     return true;
                 }
             }
@@ -104,7 +88,7 @@ public class Pawn {
         return false;
     }
 
-    public boolean canFinish(Board board){
+    public boolean canFinish(Board board) {
         ArrayList<Integer> centrumTiles = new ArrayList<>();
         centrumTiles.add(80);
         centrumTiles.add(88);
@@ -119,13 +103,13 @@ public class Pawn {
     }
 
     public boolean checkNoBarrier(int thrown, Board board) {
-        for (int i = 1; i < thrown+1; i++) {
+        for (int i = 1; i < thrown + 1; i++) {
             //first check if current position has barrier of another color
-            if (board.board.get(position.getNr()).IsBarrier() && !board.board.get(position.getNr()).getBarrierColor().equals(owner.getColor())){
+            if (board.board.get(position.getNr()).IsBarrier() && !board.board.get(position.getNr()).getBarrierColor().equals(owner.getColor())) {
                 return false;
             }
 
-            if (position.getNr()+ i > 68 && !owner.getColor().equals(Color.YELLOW)){
+            if (position.getNr() + i > 68 && !owner.getColor().equals(Color.YELLOW)) {
                 if (board.board.get(position.getNr() + i - 68).IsBarrier()) {
                     return false;
                 }
@@ -139,12 +123,19 @@ public class Pawn {
         return true;
     }
 
-    public void setOnLandingstrip(boolean onLandingstrip) {
-        this.onLandingstrip = onLandingstrip;
+    public boolean getOnLandingstrip() {
+        return onLandingstrip;
     }
 
-    @Override
-    public String toString() {
-        return "Pawn is on tile " + position;
+    public int getPawnNumber() {
+        return pawnNumber;
+    }
+
+    public Tile getPosition() {
+        return position;
+    }
+
+    public void setOnLandingstrip(boolean onLandingstrip) {
+        this.onLandingstrip = onLandingstrip;
     }
 }

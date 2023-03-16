@@ -17,6 +17,42 @@ public class PlayerSetup {
         rolls = new int[]{0, 0, 0, 0};
     }
 
+    public void order() {
+    // Sort the rolls in descending order using a simple sorting algorithm
+        for (int i = 0; i < 4; i++) {
+            int maxIndex = i;
+            for (int j = i + 1; j < 4; j++) {
+                if (rolls[j] > rolls[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+            if (maxIndex != i) {
+                int temp = rolls[i];
+                rolls[i] = rolls[maxIndex];
+                rolls[maxIndex] = temp;
+                Player tempPlayer = players.get(i);
+                players.set(i, players.get(maxIndex));
+                players.set(maxIndex, tempPlayer);
+            }
+        }
+    // The players list is now sorted based on the values in the rolls array
+    // The player at index 0 in the list corresponds to the highest roll in the rolls array
+    // The player at index 3 in the list corresponds to the lowest roll in the rolls array
+    }
+
+    public boolean didPlayersRoll() {
+        for (Integer roll : rolls) {
+            if (roll == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void addRoll(int index, int rolled) {
+        rolls[index] = rolled;
+    }
+
     public List<Player> getPlayers() {
         return players;
     }
@@ -55,41 +91,5 @@ public class PlayerSetup {
         players.add(new Player(naam3, Color.RED));
         players.add(new Player(naam4, Color.GREEN));
 
-    }
-
-    public void order() {
-// Sort the rolls in descending order using a simple sorting algorithm
-        for (int i = 0; i < 4; i++) {
-            int maxIndex = i;
-            for (int j = i + 1; j < 4; j++) {
-                if (rolls[j] > rolls[maxIndex]) {
-                    maxIndex = j;
-                }
-            }
-            if (maxIndex != i) {
-                int temp = rolls[i];
-                rolls[i] = rolls[maxIndex];
-                rolls[maxIndex] = temp;
-                Player tempPlayer = players.get(i);
-                players.set(i, players.get(maxIndex));
-                players.set(maxIndex, tempPlayer);
-            }
-        }
-// The players list is now sorted based on the values in the rolls array
-// The player at index 0 in the list corresponds to the highest roll in the rolls array
-// The player at index 3 in the list corresponds to the lowest roll in the rolls array
-    }
-
-    public boolean didPlayersRoll() {
-        for (Integer roll : rolls) {
-            if (roll == 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void addRoll(int index, int rolled) {
-        rolls[index] = rolled;
     }
 }
