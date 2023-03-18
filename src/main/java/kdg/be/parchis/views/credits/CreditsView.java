@@ -74,7 +74,9 @@ public class CreditsView extends BorderPane {
                 - Pieter Corstens
                 - Robby Crijns
                 - Niels Haegemans
-                - Joel Chapon"""
+                - Joel Chapon
+                Optimisation Wizard:
+                - Pierre Franck"""
         );
         credits.setFont(Font.font(MONOSPACED, 24));
         title.setScaleX(3);

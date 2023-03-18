@@ -164,4 +164,12 @@ public class CoordinateConverter {
         return positionMap.get(tileNr).getY();
     }
 
+    public int getPosition (int x, int y) {
+        for (Map.Entry<Integer, Position> entry : positionMap.entrySet()) {
+            if (entry.getValue().getX() == x && entry.getValue().getY() == y) {
+                return entry.getKey();
+            }
+        }
+        return 0;
+    }
 }
