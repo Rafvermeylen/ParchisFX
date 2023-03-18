@@ -65,9 +65,5 @@ public class CreditsPresenter {
             view.getSoundPic().setImage(view.getSfxLoud());
         }
     }
-
-    public void addWindowEventHandlers() {
-
-    }
 }
 

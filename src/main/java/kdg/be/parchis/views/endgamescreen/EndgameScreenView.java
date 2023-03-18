@@ -30,7 +30,8 @@ public class EndgameScreenView extends BorderPane {
         this.setCenter(scoreWinner);
         this.setBottom(backToMenu);
 
-        this.setBackground(new Background(new BackgroundImage(background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        this.setBackground(new Background(new BackgroundImage(
+                background, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
 
         BorderPane.setAlignment(backToMenu, Pos.BOTTOM_CENTER);
         BorderPane.setMargin(backToMenu, new Insets(30));
