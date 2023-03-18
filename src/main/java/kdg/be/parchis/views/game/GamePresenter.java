@@ -3,6 +3,7 @@ package kdg.be.parchis.views.game;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import kdg.be.parchis.model.game.*;
 import kdg.be.parchis.model.menu.Leaderboards;
@@ -1284,17 +1285,15 @@ public class GamePresenter {
 
     private void updateView() {
         //set names
-        for (Player p : gameSession.getPlayers()) {
-            if (p.getColor().equals(Color.YELLOW)) {
-                view.getYellowPlayer().setText(p.getName());
-            } else if (p.getColor().equals(Color.BLUE)) {
-                view.getBluePlayer().setText(p.getName());
-            } else if (p.getColor().equals(Color.RED)) {
-                view.getRedPlayer().setText(p.getName());
-            } else if (p.getColor().equals(Color.GREEN)) {
-                view.getGreenPlayer().setText(p.getName());
+        for (Player p : gameSession.getPlayers()){
+            switch (p.getColor().name()) {
+                case "YELLOW" -> view.getPlayerNames().get(0).setText(p.getName());
+                case "BLUE" -> view.getPlayerNames().get(1).setText(p.getName());
+                case "RED" -> view.getPlayerNames().get(2).setText(p.getName());
+                case "GREEN" -> view.getPlayerNames().get(3).setText(p.getName());
             }
         }
+
         if (!(gameSession.getPlayers().get(0) instanceof AiPlayer)) {
             displayControlsCurrentPlayer();
         }

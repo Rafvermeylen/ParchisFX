@@ -11,12 +11,13 @@ import kdg.be.parchis.model.game.Die;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameView extends StackPane {
-    private Label yellowPlayer;
+    private List<Label> playerNames;
     private Button roll1;
     private ImageView die1;
     private Button finish1;
@@ -26,7 +27,6 @@ public class GameView extends StackPane {
     private ImageView yp_2;
     private ImageView yp_3;
     private ImageView yp_4;
-    private Label bluePlayer;
     private Button roll2;
     private ImageView die2;
     private Button finish2;
@@ -36,7 +36,6 @@ public class GameView extends StackPane {
     private ImageView bp_2;
     private ImageView bp_3;
     private ImageView bp_4;
-    private Label redPlayer;
     private Button roll3;
     private ImageView die3;
     private Button finish3;
@@ -46,7 +45,6 @@ public class GameView extends StackPane {
     private ImageView rp_2;
     private ImageView rp_3;
     private ImageView rp_4;
-    private Label greenPlayer;
     private Button roll4;
     private ImageView die4;
     private Button finish4;
@@ -56,7 +54,6 @@ public class GameView extends StackPane {
     private ImageView gp_2;
     private ImageView gp_3;
     private ImageView gp_4;
-    private Image boardImg;
     private Image background;
     private ImageView board;
     private Image glowNestYellow;
@@ -64,7 +61,6 @@ public class GameView extends StackPane {
     private Image glowNestRed;
     private Image glowNestGreen;
     private ImageView nestGlow;
-    private Image status;
     private ImageView statusBar;
     private Label turns;
 
@@ -74,15 +70,20 @@ public class GameView extends StackPane {
     }
 
     private void initialiseNodes() throws FileNotFoundException {
-        boardImg = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
+        Image boardImg = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
         background = new Image(new FileInputStream("resources\\backgrounds\\ingame_background.png"));
         board = new ImageView(boardImg);
-        status = new Image(new FileInputStream("resources\\graphics\\game\\statusBar.png"));
+        Image status = new Image(new FileInputStream("resources\\graphics\\game\\statusBar.png"));
         statusBar = new ImageView(status);
 
         turns = new Label();
 
-        yellowPlayer = new Label();
+        playerNames = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            playerNames.add(new Label(""));
+        }
+
+        //yellowPlayer = new Label();
         yellowPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_yellow.png"));
         yellowPawnGlow = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_yellow_glow.png"));
         yp_1 = new ImageView(yellowPawn);
@@ -90,7 +91,7 @@ public class GameView extends StackPane {
         yp_3 = new ImageView(yellowPawn);
         yp_4 = new ImageView(yellowPawn);
 
-        bluePlayer = new Label();
+        //bluePlayer = new Label();
         bluePawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_blue.png"));
         bluePawnGlow = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_blue_glow.png"));
         bp_1 = new ImageView(bluePawn);
@@ -98,7 +99,7 @@ public class GameView extends StackPane {
         bp_3 = new ImageView(bluePawn);
         bp_4 = new ImageView(bluePawn);
 
-        redPlayer = new Label();
+        //redPlayer = new Label();
         redPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_red.png"));
         redPawnGlow = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_red_glow.png"));
         rp_1 = new ImageView(redPawn);
@@ -106,7 +107,7 @@ public class GameView extends StackPane {
         rp_3 = new ImageView(redPawn);
         rp_4 = new ImageView(redPawn);
 
-        greenPlayer = new Label();
+        //greenPlayer = new Label();
         greenPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_green.png"));
         greenPawnGlow = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_green_glow.png"));
         gp_1 = new ImageView(greenPawn);
@@ -145,11 +146,11 @@ public class GameView extends StackPane {
         roll1.setVisible(false);
         finish1.setVisible(false);
         die1.setVisible(false);
-        this.getChildren().add(yellowPlayer);
+        this.getChildren().add(playerNames.get(0));
         this.getChildren().add(controls1);
         this.getChildren().add(finish1);
-        yellowPlayer.setTranslateX(500);
-        yellowPlayer.setTranslateY(-250);
+        playerNames.get(0).setTranslateX(500);
+        playerNames.get(0).setTranslateY(-250);
         controls1.setTranslateX(500);
         controls1.setTranslateY(-180);
         finish1.setTranslateX(500);
@@ -172,11 +173,11 @@ public class GameView extends StackPane {
         roll2.setVisible(false);
         die2.setVisible(false);
         finish2.setVisible(false);
-        this.getChildren().add(bluePlayer);
+        this.getChildren().add(playerNames.get(1));
         this.getChildren().add(controls2);
         this.getChildren().add(finish2);
-        bluePlayer.setTranslateX(-500);
-        bluePlayer.setTranslateY(-250);
+        playerNames.get(1).setTranslateX(-500);
+        playerNames.get(1).setTranslateY(-250);
         controls2.setTranslateX(-500);
         controls2.setTranslateY(-180);
         finish2.setTranslateX(-500);
@@ -199,11 +200,11 @@ public class GameView extends StackPane {
         roll3.setVisible(false);
         die3.setVisible(false);
         finish3.setVisible(false);
-        this.getChildren().add(redPlayer);
+        this.getChildren().add(playerNames.get(2));
         this.getChildren().add(controls3);
         this.getChildren().add(finish3);
-        redPlayer.setTranslateX(-500);
-        redPlayer.setTranslateY(200);
+        playerNames.get(2).setTranslateX(-500);
+        playerNames.get(2).setTranslateY(200);
         controls3.setTranslateX(-500);
         controls3.setTranslateY(270);
         finish3.setTranslateX(-500);
@@ -226,11 +227,11 @@ public class GameView extends StackPane {
         roll4.setVisible(false);
         die4.setVisible(false);
         finish4.setVisible(false);
-        this.getChildren().add(greenPlayer);
+        this.getChildren().add(playerNames.get(3));
         this.getChildren().add(controls4);
         this.getChildren().add(finish4);
-        greenPlayer.setTranslateX(500);
-        greenPlayer.setTranslateY(200);
+        playerNames.get(3).setTranslateX(500);
+        playerNames.get(3).setTranslateY(200);
         controls4.setTranslateX(500);
         controls4.setTranslateY(270);
         finish4.setTranslateX(500);
@@ -260,11 +261,6 @@ public class GameView extends StackPane {
                 gp_1, gp_2, gp_3, gp_4);
         nestGlow.setVisible(false);
     }
-
-    public Label getYellowPlayer() {
-        return yellowPlayer;
-    }
-
     public Button getRoll1() {
         return roll1;
     }
@@ -275,10 +271,6 @@ public class GameView extends StackPane {
 
     public Button getFinish1() {
         return finish1;
-    }
-
-    public Label getBluePlayer() {
-        return bluePlayer;
     }
 
     public Button getRoll2() {
@@ -293,10 +285,6 @@ public class GameView extends StackPane {
         return finish2;
     }
 
-    public Label getRedPlayer() {
-        return redPlayer;
-    }
-
     public Button getRoll3() {
         return roll3;
     }
@@ -307,10 +295,6 @@ public class GameView extends StackPane {
 
     public Button getFinish3() {
         return finish3;
-    }
-
-    public Label getGreenPlayer() {
-        return greenPlayer;
     }
 
     public Button getRoll4() {
@@ -445,6 +429,10 @@ public class GameView extends StackPane {
         return greenPawnGlow;
     }
 
+    public List<Label> getPlayerNames() {
+        return playerNames;
+    }
+
     public void rearrangePawns() {
         // Create a Comparator that compares Nodes by their Y coordinate
         Comparator<Node> nodeYComparator = Comparator.comparingDouble(node -> {
@@ -454,11 +442,9 @@ public class GameView extends StackPane {
         // Get all the ImageViews, Labels and Buttons from the StackPane's children, except for the nest glow
         List<Node> pawnsIVs = this.getChildren().stream()
                 .filter(node -> node instanceof ImageView || node instanceof Label || node instanceof Button)
-                .filter(node -> node != nestGlow)
-                .collect(Collectors.toList());
+                .filter(node -> node != nestGlow).sorted(nodeYComparator).toList();
 
         // Sort the Nodes by their Y coordinate
-        pawnsIVs.sort(nodeYComparator);
 
         // Remove all the ImageViews and Labels from the StackPane
         this.getChildren().removeAll(pawnsIVs);
