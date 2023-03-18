@@ -25,7 +25,7 @@ public class GamePresenter {
         this.gameSession = model;
         this.view = view;
         this.addEventHandlers();
-        if (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
+        if (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
             playAI();
         }
         this.updateView();
@@ -1216,7 +1216,7 @@ public class GamePresenter {
                 view.getGreenPlayer().setText(p.getName());
             }
         }
-        if (!(gameSession.getPlayers().get(0) instanceof ai_Player)) {
+        if (!(gameSession.getPlayers().get(0) instanceof AiPlayer)) {
             displayControlsCurrentPlayer();
         }
         updateAllPawnPositions();
@@ -1327,7 +1327,7 @@ public class GamePresenter {
 
     private void playAI() {
         new Thread(() -> {
-            while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof ai_Player) {
+            while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
                 do {
                     gameSession.playAiTurn();
                     updateDieFace();

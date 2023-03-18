@@ -38,7 +38,7 @@ public class Game {
         for (Player s : players) {
             s.checkIfFinished();
             if (s.getIsFinished()) {
-                if (!(s instanceof ai_Player)) {
+                if (!(s instanceof AiPlayer)) {
                     winner = new Score(s.getName(), turn);
                 }
                 return true;
