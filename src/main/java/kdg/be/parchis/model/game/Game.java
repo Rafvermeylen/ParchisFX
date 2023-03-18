@@ -38,13 +38,22 @@ public class Game {
         for (Player s : players) {
             s.checkIfFinished();
             if (s.getIsFinished()) {
-                if (!(s instanceof ai_Player)) {
+                if (!(s instanceof AiPlayer)) {
                     winner = new Score(s.getName(), turn);
                 }
                 return true;
             }
         }
         return false;
+    }
+
+    public Player getPlayer(String color) {
+        for (Player p : players) {
+            if (p.getColor().getName().equals(color)) {
+                return p;
+            }
+        }
+        return null;
     }
 
     public void jump10(Pawn chosenPawn) {
@@ -267,6 +276,11 @@ public class Game {
         return p.canMove(board, Die.getThrown());
     }
 
+    public void leaveNest(String color) {
+        Pawn left = getPlayer(color).firstLeavesNest(board.board.get(getPlayer(color).getStartPosition()));
+        checkNestKill(left);
+    }
+
     public void yellowLeaveNest() {
         Pawn left = getYellowPlayer().firstLeavesNest(board.board.get(getYellowPlayer().getStartPosition()));
         checkNestKill(left);
@@ -446,5 +460,42 @@ public class Game {
 
     public Board getBoard() {
         return board;
+    }
+
+    public Player getPlayer(int i) {
+        return players.get(i);
+    }
+
+    public int getCurrentPlayer() {
+        return switch (players.get(indexTurn).getColor()) {
+            case YELLOW -> 0;
+            case BLUE -> 1;
+            case RED -> 2;
+            case GREEN -> 3;
+        };
+    }
+
+    public Player getRawPlayer(int i) {
+        return switch (i) {
+            case 0 -> getYellowPlayer();
+            case 1 -> getBluePlayer();
+            case 2 -> getRedPlayer();
+            case 3 -> getGreenPlayer();
+            default -> throw new IllegalStateException("Unexpected value: " + i);
+        };
+    }
+
+    public int getPawnIndex(int pos) {
+        for (int i = 0; i < players.get(indexTurn).pawns.size(); i++) {
+            Pawn p = players.get(indexTurn).pawns.get(i);
+            if (p.getPosition().getNr() == pos) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public boolean pawnCanMove(int index) {
+        return players.get(indexTurn).pawns.get(index).isCanMove(board, Die.getThrown());
     }
 }

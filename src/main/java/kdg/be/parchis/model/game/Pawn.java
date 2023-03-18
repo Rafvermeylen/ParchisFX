@@ -138,4 +138,8 @@ public class Pawn {
     public void setOnLandingstrip(boolean onLandingstrip) {
         this.onLandingstrip = onLandingstrip;
     }
+
+    public Player getOwner() {
+        return owner;
+    }
 }

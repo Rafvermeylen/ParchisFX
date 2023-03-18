@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import kdg.be.parchis.model.game.Color;
 import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.game.Player;
-import kdg.be.parchis.model.game.ai_Player;
+import kdg.be.parchis.model.game.AiPlayer;
 import kdg.be.parchis.model.musicLogic.Music;
 import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.credits.CreditsPresenter;
@@ -138,10 +138,10 @@ public class MainMenuPresenter {
                     Music.stopMusic();
                     Music.playGameMusic();
                     ArrayList<Player> players = new ArrayList<>();
-                    players.add(new ai_Player("Bot_Yellow", Color.YELLOW));
-                    players.add(new ai_Player("Bot_Blue", Color.BLUE));
-                    players.add(new ai_Player("Bot_Red", Color.RED));
-                    players.add(new ai_Player("Bot_Green", Color.GREEN));
+                    players.add(new AiPlayer("Bot_Yellow", Color.YELLOW));
+                    players.add(new AiPlayer("Bot_Blue", Color.BLUE));
+                    players.add(new AiPlayer("Bot_Red", Color.RED));
+                    players.add(new AiPlayer("Bot_Green", Color.GREEN));
                     Game gameSession = new Game(players);
                     GameView gameView = null;
                     try {

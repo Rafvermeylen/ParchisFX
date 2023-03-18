@@ -2,7 +2,7 @@ package kdg.be.parchis.model.menu;
 
 import kdg.be.parchis.model.game.Color;
 import kdg.be.parchis.model.game.Player;
-import kdg.be.parchis.model.game.ai_Player;
+import kdg.be.parchis.model.game.AiPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,17 +63,17 @@ public class PlayerSetup {
 
     public void setPlayers(String naam1) {
         players.add(new Player(naam1, Color.YELLOW));
-        players.add(new ai_Player("Bot_Blue", Color.BLUE));
-        players.add(new ai_Player("Bot_Red", Color.RED));
-        players.add(new ai_Player("Bot_Green", Color.GREEN));
+        players.add(new AiPlayer("Bot_Blue", Color.BLUE));
+        players.add(new AiPlayer("Bot_Red", Color.RED));
+        players.add(new AiPlayer("Bot_Green", Color.GREEN));
 
     }
 
     public void setPlayers(String naam1, String naam2) {
         players.add(new Player(naam1, Color.YELLOW));
         players.add(new Player(naam2, Color.BLUE));
-        players.add(new ai_Player("Bot_Red", Color.RED));
-        players.add(new ai_Player("Bot_Green", Color.GREEN));
+        players.add(new AiPlayer("Bot_Red", Color.RED));
+        players.add(new AiPlayer("Bot_Green", Color.GREEN));
 
     }
 
@@ -81,7 +81,7 @@ public class PlayerSetup {
         players.add(new Player(naam1, Color.YELLOW));
         players.add(new Player(naam2, Color.BLUE));
         players.add(new Player(naam3, Color.RED));
-        players.add(new ai_Player("Bot_Green", Color.GREEN));
+        players.add(new AiPlayer("Bot_Green", Color.GREEN));
 
     }
 
