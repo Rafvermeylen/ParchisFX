@@ -485,6 +485,16 @@ public class Game {
         };
     }
 
+    public int colorToIndex(Color c) {
+        return switch (c.getName()) {
+            case "yellow" -> 0;
+            case "blue" -> 1;
+            case "red" -> 2;
+            case "green" -> 3;
+            default -> throw new IllegalStateException("Unexpected value: " + c.getName());
+        };
+    }
+
     public int getPawnIndex(int pos) {
         for (int i = 0; i < players.get(indexTurn).pawns.size(); i++) {
             Pawn p = players.get(indexTurn).pawns.get(i);

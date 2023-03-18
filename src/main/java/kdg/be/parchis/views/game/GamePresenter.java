@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import kdg.be.parchis.model.game.*;
 import kdg.be.parchis.model.menu.Leaderboards;
@@ -42,25 +41,6 @@ public class GamePresenter {
         view.getFinish(i).setVisible(visible);
     }
 
-    private String getColor(int i) {
-        return switch (i) {
-            case 0, 1, 2, 3 -> "yellow";
-            case 4, 5, 6, 7 -> "blue";
-            case 8, 9, 10, 11 -> "red";
-            case 12, 13, 14, 15 -> "green";
-
-            default -> throw new IllegalStateException("Unexpected value: " + i);
-        };
-    }
-
-    private String getColor(ImageView im) {
-        String s = im.getImage().getUrl().split("_")[1];
-        if (s.contains(".")) {
-            return s.split(".")[0];
-        }
-        return s;
-    }
-
     private void addEventHandlers() {
 
         for (Button b : view.getRoll()) {
@@ -79,40 +59,40 @@ public class GamePresenter {
                         }
                         // CHECK TO SEE IF IT IS RIGHT ONE, IF INDEXTURN IS CORRECT
                         setFinishVisible(gameSession.getCurrentPlayer(), true);
-                    }
-
-                    updateDieFace();
-
-                    Player player = gameSession.getPlayer(gameSession.getIndexTurn());
-
-                    if (!gameSession.canPlayerMove(player) &&
-                            !player.getHasBarrier() && Die.getThrown() != 5) {
-                        //do nothing when you cant do anything
-                        if (Die.isRollAgain()) {
-                            b.setVisible(true);
-                        } else {
-                            setFinishVisible(gameSession.getCurrentPlayer(), true);
-                        }
-                    } else if (!gameSession.canPlayerMove(player) && Die.getThrown() == 5
-                            && gameSession.isStartOK(player) && !player.isNestEmpty()) {
-                        view.addNestGlow(player.getColor().getName());
-                        view.getNestGlow().setVisible(true);
-                    } else if (gameSession.canPlayerMove(player) && !player.getHasBarrier() && Die.getThrown() != 5) {
-                        glowMoveablePawn(player);
-                    } else if (player.getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)) {
-                        List<Pawn> moveable = gameSession.getBarrierPawns(player);
-                        movablePawns(moveable);
                     } else {
-                        if (!player.isNestEmpty() && gameSession.isStartOK(player) && Die.getThrown() == 5) {
+                        updateDieFace();
+
+                        Player player = gameSession.getPlayer(gameSession.getIndexTurn());
+
+                        if (!gameSession.canPlayerMove(player) &&
+                                !player.getHasBarrier() && Die.getThrown() != 5) {
+                            //do nothing when you cant do anything
+                            if (Die.isRollAgain()) {
+                                b.setVisible(true);
+                            } else {
+                                setFinishVisible(gameSession.getCurrentPlayer(), true);
+                            }
+                        } else if (!gameSession.canPlayerMove(player) && Die.getThrown() == 5
+                                && gameSession.isStartOK(player) && !player.isNestEmpty()) {
                             view.addNestGlow(player.getColor().getName());
                             view.getNestGlow().setVisible(true);
-                        } else if (!player.canMove(gameSession.getBoard(), Die.getThrown()) && Die.getThrown() == 5) {
-                            setFinishVisible(gameSession.getCurrentPlayer(), true);
-                        }
-                        glowMoveablePawn(player);
-                        if (Die.isRollAgain()) {
-                            b.setVisible(true);
-                            setFinishVisible(gameSession.getCurrentPlayer(), true);
+                        } else if (gameSession.canPlayerMove(player) && !player.getHasBarrier() && Die.getThrown() != 5) {
+                            glowMoveablePawn(player);
+                        } else if (player.getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)) {
+                            List<Pawn> moveable = gameSession.getBarrierPawns(player);
+                            movablePawns(moveable);
+                        } else {
+                            if (!player.isNestEmpty() && gameSession.isStartOK(player) && Die.getThrown() == 5) {
+                                view.addNestGlow(player.getColor().getName());
+                                view.getNestGlow().setVisible(true);
+                            } else if (!player.canMove(gameSession.getBoard(), Die.getThrown()) && Die.getThrown() == 5) {
+                                setFinishVisible(gameSession.getCurrentPlayer(), true);
+                            }
+                            glowMoveablePawn(player);
+                            if (Die.isRollAgain()) {
+                                b.setVisible(true);
+                                setFinishVisible(gameSession.getCurrentPlayer(), true);
+                            }
                         }
                     }
                 }
@@ -149,11 +129,9 @@ public class GamePresenter {
             public void handle(MouseEvent mouseEvent) {
                 Sound.playPawnMove();
 
-                for (int i = 0; i < 4; i++) {
-                    gameSession.leaveNest(gameSession.getPlayer(gameSession.getIndexTurn()).getColor().getName());
-                    view.getFinish(i).setVisible(true);
-                    break;
-                }
+                gameSession.leaveNest(gameSession.getPlayer(gameSession.getIndexTurn()).getColor().getName());
+                view.getFinish(gameSession.getCurrentPlayer()).setVisible(true);
+
 
                 view.getNestGlow().setVisible(false);
                 view.removeAllGlow();
