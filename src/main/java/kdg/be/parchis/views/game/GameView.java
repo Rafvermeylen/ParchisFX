@@ -12,6 +12,7 @@ import kdg.be.parchis.model.game.Die;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,7 +47,6 @@ public class GameView extends StackPane {
     private Image background;
     private ImageView board;
     private ImageView nestGlow;
-    private Image status;
     private ImageView statusBar;
     private Label turns;
 
@@ -56,10 +56,10 @@ public class GameView extends StackPane {
     }
 
     private void initialiseNodes() throws FileNotFoundException {
-        boardImg = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
+        Image boardImg = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
         background = new Image(new FileInputStream("resources\\backgrounds\\ingame_background.png"));
         board = new ImageView(boardImg);
-        status = new Image(new FileInputStream("resources\\graphics\\game\\statusBar.png"));
+        Image status = new Image(new FileInputStream("resources\\graphics\\game\\statusBar.png"));
         statusBar = new ImageView(status);
 
         turns = new Label();
@@ -307,11 +307,9 @@ public class GameView extends StackPane {
         // Get all the ImageViews, Labels and Buttons from the StackPane's children, except for the nest glow
         List<Node> pawnsIVs = this.getChildren().stream()
                 .filter(node -> node instanceof ImageView || node instanceof Label || node instanceof Button)
-                .filter(node -> node != nestGlow)
-                .collect(Collectors.toList());
+                .filter(node -> node != nestGlow).sorted(nodeYComparator).toList();
 
         // Sort the Nodes by their Y coordinate
-        pawnsIVs.sort(nodeYComparator);
 
         // Remove all the ImageViews and Labels from the StackPane
         this.getChildren().removeAll(pawnsIVs);
