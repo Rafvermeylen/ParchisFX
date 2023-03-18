@@ -467,11 +467,12 @@ public class Game {
     }
 
     public int getCurrentPlayer() {
-        return switch (players.get(indexTurn).getColor()) {
-            case YELLOW -> 0;
-            case BLUE -> 1;
-            case RED -> 2;
-            case GREEN -> 3;
+        return switch (players.get(indexTurn).getColor().getName()) {
+            case "yellow" -> 0;
+            case "blue" -> 1;
+            case "red" -> 2;
+            case "green" -> 3;
+            default -> throw new IllegalArgumentException("Unexpected value: " + players.get(indexTurn).getColor().getName());
         };
     }
 
@@ -505,7 +506,7 @@ public class Game {
         return 0;
     }
 
-    public boolean pawnCanMove(int index) {
-        return players.get(indexTurn).pawns.get(index).isCanMove(board, Die.getThrown());
+    public boolean pawnCanMove(int index, int player) {
+        return getRawPlayer(player).pawns.get(index).isCanMove(board, Die.getThrown());
     }
 }

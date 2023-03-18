@@ -112,8 +112,8 @@ public class GamePresenter {
                     if (isNextAi()) {
                         playAI();
                     } else {
-                        view.getRoll(getOffset(color)).setVisible(true);
-
+                        displayControlsCurrentPlayer();
+                        //view.getRoll(getOffset(color)).setVisible(true);
                         try {
                             checkIfEnded();
                         } catch (FileNotFoundException e) {
@@ -139,6 +139,61 @@ public class GamePresenter {
             }
         });
 
+        for (int i = 0; i < 16; i++) {
+            ImageView im = view.getPawn(i);
+            int index = i%4;
+            int playerIndex = i/4;
+            im.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    if (gameSession.pawnCanMove(index, playerIndex) && view.hasGlow(im)) {
+                        Sound.playPawnMove();
+                        Player player = gameSession.getPlayer(gameSession.getIndexTurn());
+                        if (Die.getThrown() != 10) {
+                            gameSession.movePawn(player, player.pawns.get(index));
+                        } else {
+                            gameSession.jump10(player.pawns.get(index));
+                            if (!Die.isRollAgain()) {
+                                view.getFinish(getOffset(player.getColor().getName())).setVisible(true);
+                            } else {
+                                view.getRoll(getOffset(player.getColor().getName())).setVisible(true);
+                            }
+                        }
+
+                        view.removeAllGlow();
+
+                        view.getNestGlow().setVisible(false);
+
+                        if (player.pawns.get(index).isFinished() && player.canMove(gameSession.getBoard(), Die.getThrown())) {
+                            glowJumpKill(player.getColor().getName());
+                        }
+
+                        if (!Die.isRollAgain()) {
+                            view.getFinish(getOffset(player.getColor().getName())).setVisible(true);
+                        } else {
+                            if (Die.getThrown() != 10) {
+                                view.getRoll(getOffset(player.getColor().getName())).setVisible(true);
+                            }
+                        }
+
+                        updateAllPawnPositions();
+
+                        if (player.pawns.get(index).isFinished()) {
+                            Sound.playVictory();
+                        }
+                    }
+
+                    try {
+                        checkIfEnded();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+
+        }
+
+        /*
         for (ImageView im : view.getPawn()) {
             im.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
@@ -190,6 +245,8 @@ public class GamePresenter {
                 }
             });
         }
+
+         */
     }
 
     private void glowJumpKill(String color) {
