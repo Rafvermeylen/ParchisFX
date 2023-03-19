@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Die {
     private static int thrown = 0;
-    private static Image empty;
+    private static final Image empty;
     private static boolean rollAgain = false;
 
     static {
@@ -28,8 +28,8 @@ public class Die {
         }
     }
 
-    private static ImageView diceFoto = new ImageView(empty);
-    private static Random rn = new Random();
+    private static final ImageView diceFoto = new ImageView(empty);
+    private static final Random rn = new Random();
 
     public static void throwDie() {
         // Get random number between 1 and 6 for the die.
@@ -37,7 +37,7 @@ public class Die {
 
         getDiceFoto().setImage(die(thrown));
 
-        rollAgain = thrown == 6;
+        rollAgain = (thrown == 6);
     }
 
     public static boolean isRollAgain() {

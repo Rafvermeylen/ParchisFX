@@ -281,26 +281,6 @@ public class Game {
         checkNestKill(left);
     }
 
-    public void yellowLeaveNest() {
-        Pawn left = getYellowPlayer().firstLeavesNest(board.board.get(getYellowPlayer().getStartPosition()));
-        checkNestKill(left);
-    }
-
-    public void blueLeaveNest() {
-        Pawn left = getBluePlayer().firstLeavesNest(board.board.get(getBluePlayer().getStartPosition()));
-        checkNestKill(left);
-    }
-
-    public void redLeaveNest() {
-        Pawn left = getRedPlayer().firstLeavesNest(board.board.get(getRedPlayer().getStartPosition()));
-        checkNestKill(left);
-    }
-
-    public void greenLeaveNest() {
-        Pawn left = getGreenPlayer().firstLeavesNest(board.board.get(getGreenPlayer().getStartPosition()));
-        checkNestKill(left);
-    }
-
     public void movePawn(Player p, Pawn pawn) {
         lastMovedPawn = pawn;
         int value = p.moveByTile(pawn, board.board.get(pawn.getPosition().getNr() + Die.getThrown()));
@@ -349,16 +329,7 @@ public class Game {
             } else if (players.get(indexTurn).canFinish(board)) {
                 movePawn(players.get(indexTurn), players.get(indexTurn).getFinisherPawn(board));
             } else if (Die.getThrown() == 5 && !players.get(indexTurn).isNestEmpty() && isStartOK(players.get(indexTurn))) {
-                if (players.get(indexTurn).getColor().equals(Color.BLUE)) {
-                    blueLeaveNest();
-                } else if (players.get(indexTurn).getColor().equals(Color.RED)) {
-                    redLeaveNest();
-                } else if (players.get(indexTurn).getColor().equals(Color.GREEN)) {
-                    greenLeaveNest();
-                } else if (players.get(indexTurn).getColor().equals(Color.YELLOW)) {
-                    yellowLeaveNest();
-                }
-
+                leaveNest(players.get(indexTurn).getColor().getName());
             } else if (players.get(indexTurn).canMove(board, Die.getThrown())) {
                 movePawn(players.get(indexTurn), players.get(indexTurn).firstMoveablePawn(board));
             }
@@ -376,42 +347,6 @@ public class Game {
 
     public boolean isEndAITurn() {
         return endAITurn;
-    }
-
-    public Player getYellowPlayer() {
-        for (Player p : players) {
-            if (p.getColor().equals(Color.YELLOW)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public Player getBluePlayer() {
-        for (Player p : players) {
-            if (p.getColor().equals(Color.BLUE)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public Player getRedPlayer() {
-        for (Player p : players) {
-            if (p.getColor().equals(Color.RED)) {
-                return p;
-            }
-        }
-        return null;
-    }
-
-    public Player getGreenPlayer() {
-        for (Player p : players) {
-            if (p.getColor().equals(Color.GREEN)) {
-                return p;
-            }
-        }
-        return null;
     }
 
     public List<Pawn> getMoveablePawns(Player p) {
@@ -477,33 +412,20 @@ public class Game {
     }
 
     public Player getRawPlayer(int i) {
-        return switch (i) {
-            case 0 -> getYellowPlayer();
-            case 1 -> getBluePlayer();
-            case 2 -> getRedPlayer();
-            case 3 -> getGreenPlayer();
+        Color desiredColor = null;
+        switch (i) {
+            case 0 -> desiredColor = Color.YELLOW;
+            case 1 -> desiredColor = Color.BLUE;
+            case 2 -> desiredColor = Color.RED;
+            case 3 -> desiredColor = Color.GREEN;
             default -> throw new IllegalStateException("Unexpected value: " + i);
-        };
-    }
-
-    public int colorToIndex(Color c) {
-        return switch (c.getName()) {
-            case "yellow" -> 0;
-            case "blue" -> 1;
-            case "red" -> 2;
-            case "green" -> 3;
-            default -> throw new IllegalStateException("Unexpected value: " + c.getName());
-        };
-    }
-
-    public int getPawnIndex(int pos) {
-        for (int i = 0; i < players.get(indexTurn).pawns.size(); i++) {
-            Pawn p = players.get(indexTurn).pawns.get(i);
-            if (p.getPosition().getNr() == pos) {
-                return i;
+        }
+        for(Player p : players){
+            if (p.getColor().equals(desiredColor)){
+                return p;
             }
         }
-        return 0;
+        return null;
     }
 
     public boolean pawnCanMove(int index, int player) {
