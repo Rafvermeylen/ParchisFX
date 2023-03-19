@@ -21,6 +21,8 @@ public class GamePresenter {
     private final Game gameSession;
     private final CoordinateConverter converter;
     private final GameView view;
+    private volatile boolean stopThread = false;
+
 
     public GamePresenter(
             Game model,
@@ -238,11 +240,10 @@ public class GamePresenter {
             if (gameSession.getWinner() != null) {
                 Leaderboards.addScore(gameSession.getWinner());
             }
+            stopThread();
             EndgameScreenView endgameScreenView = new EndgameScreenView();
             EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
-            Platform.runLater(() -> {
-                view.getScene().setRoot(endgameScreenView);
-            });
+            view.getScene().setRoot(endgameScreenView);
         }
         updateAllPawnPositions();
     }
@@ -278,14 +279,16 @@ public class GamePresenter {
     private void playAI() {
         final ReadWriteLock gameSessionLock = new ReentrantReadWriteLock();
         new Thread(() -> {
-            while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
+            while (!stopThread && gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
                 gameSessionLock.readLock().lock(); // acquire read lock
                 try {
-                    do {
-                        gameSession.playAiTurn();
-                        updateDieFace();
-                        Platform.runLater(this::updateAllPawnPositions);
-                    } while (!gameSession.isEndAITurn());
+                    synchronized (gameSession.getPlayers()) {
+                        do {
+                            gameSession.playAiTurn();
+                            updateDieFace();
+                            Platform.runLater(this::updateAllPawnPositions);
+                        } while (!gameSession.isEndAITurn());
+                    }
                     gameSession.endTurn();
                     checkIfEnded();
                 } catch (FileNotFoundException e) {
@@ -319,4 +322,9 @@ public class GamePresenter {
     private void updateTurn() {
         view.getTurns().setText("turn: " + gameSession.getTurn());
     }
+
+    public void stopThread() {
+        stopThread = true;
+    }
+
 }
