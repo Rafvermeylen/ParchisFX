@@ -14,6 +14,8 @@ import kdg.be.parchis.views.endgamescreen.EndgameScreenView;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class GamePresenter {
     private final Game gameSession;
@@ -140,8 +142,8 @@ public class GamePresenter {
 
         for (int i = 0; i < 16; i++) {
             ImageView im = view.getPawn(i);
-            int index = i%4;
-            int playerIndex = i/4;
+            int index = i % 4;
+            int playerIndex = i / 4;
             im.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
@@ -238,7 +240,9 @@ public class GamePresenter {
             }
             EndgameScreenView endgameScreenView = new EndgameScreenView();
             EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
-            view.getScene().setRoot(endgameScreenView);
+            Platform.runLater(() -> {
+                view.getScene().setRoot(endgameScreenView);
+            });
         }
         updateAllPawnPositions();
     }
@@ -272,20 +276,22 @@ public class GamePresenter {
     }
 
     private void playAI() {
+        final ReadWriteLock gameSessionLock = new ReentrantReadWriteLock();
         new Thread(() -> {
             while (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
-                synchronized (gameSession.getPlayers()) {
+                gameSessionLock.readLock().lock(); // acquire read lock
+                try {
                     do {
                         gameSession.playAiTurn();
                         updateDieFace();
                         Platform.runLater(this::updateAllPawnPositions);
                     } while (!gameSession.isEndAITurn());
                     gameSession.endTurn();
-                    try {
-                        checkIfEnded();
-                    } catch (FileNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
+                    checkIfEnded();
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                } finally {
+                    gameSessionLock.readLock().unlock(); // release read lock
                 }
             }
             displayControlsCurrentPlayer();
