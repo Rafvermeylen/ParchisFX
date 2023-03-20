@@ -1,10 +1,7 @@
-/*
-This code is used to set up the right amount of players and remembers stuff around the players.
-*/
-
 package kdg.be.parchis.model.menu;
 
 import kdg.be.parchis.model.game.Color;
+import kdg.be.parchis.model.game.Dice;
 import kdg.be.parchis.model.game.Player;
 import kdg.be.parchis.model.game.AiPlayer;
 
@@ -12,13 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerSetup {
-    private final List<Player> players = new ArrayList<>(4);
+    private List<Player> players = new ArrayList<>(4);
     private final int amountPlayers;
     private int[] rolls;
+    private Dice die;
+    private int thrown;
 
     public PlayerSetup(int amountPlayers) {
         this.amountPlayers = amountPlayers;
         rolls = new int[]{0, 0, 0, 0};
+        die = new Dice();
     }
 
     public void order() {
@@ -65,31 +65,42 @@ public class PlayerSetup {
         return amountPlayers;
     }
 
-    public void setPlayers(String name1) {
-        players.add(new Player(name1, Color.YELLOW));
+    public void setPlayers(String naam1) {
+        players.add(new Player(naam1, Color.YELLOW));
         players.add(new AiPlayer("Bot_Blue", Color.BLUE));
         players.add(new AiPlayer("Bot_Red", Color.RED));
         players.add(new AiPlayer("Bot_Green", Color.GREEN));
+
     }
 
-    public void setPlayers(String name1, String name2) {
-        players.add(new Player(name1, Color.YELLOW));
-        players.add(new Player(name2, Color.BLUE));
+    public void setPlayers(String naam1, String naam2) {
+        players.add(new Player(naam1, Color.YELLOW));
+        players.add(new Player(naam2, Color.BLUE));
         players.add(new AiPlayer("Bot_Red", Color.RED));
         players.add(new AiPlayer("Bot_Green", Color.GREEN));
+
     }
 
-    public void setPlayers(String name1, String name2, String name3) {
-        players.add(new Player(name1, Color.YELLOW));
-        players.add(new Player(name2, Color.BLUE));
-        players.add(new Player(name3, Color.RED));
+    public void setPlayers(String naam1, String naam2, String naam3) {
+        players.add(new Player(naam1, Color.YELLOW));
+        players.add(new Player(naam2, Color.BLUE));
+        players.add(new Player(naam3, Color.RED));
         players.add(new AiPlayer("Bot_Green", Color.GREEN));
+
     }
 
-    public void setPlayers(String name1, String name2, String name3, String name4) {
-        players.add(new Player(name1, Color.YELLOW));
-        players.add(new Player(name2, Color.BLUE));
-        players.add(new Player(name3, Color.RED));
-        players.add(new Player(name4, Color.GREEN));
+    public void setPlayers(String naam1, String naam2, String naam3, String naam4) {
+        players.add(new Player(naam1, Color.YELLOW));
+        players.add(new Player(naam2, Color.BLUE));
+        players.add(new Player(naam3, Color.RED));
+        players.add(new Player(naam4, Color.GREEN));
+    }
+
+    public void roll(){
+        thrown = die.roll();
+    }
+
+    public int getThrown(){
+        return thrown;
     }
 }

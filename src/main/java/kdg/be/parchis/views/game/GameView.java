@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import kdg.be.parchis.model.game.Die;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,6 +21,7 @@ public class GameView extends StackPane {
     private List<Button> rolls;
     private List<Label> playerNames;
     private List<Image> glowingPawns;
+    private List<Image> dieFaces;
     private Image yellowPawn;
     private Image yellowGlowPawn;
     private Image bluePawn;
@@ -82,10 +82,10 @@ public class GameView extends StackPane {
         );
 
         dice = Arrays.asList(
-                new ImageView(Die.getEmpty()),
-                new ImageView(Die.getEmpty()),
-                new ImageView(Die.getEmpty()),
-                new ImageView(Die.getEmpty())
+                new ImageView(),
+                new ImageView(),
+                new ImageView(),
+                new ImageView()
         );
 
         finish = Arrays.asList(
@@ -115,6 +115,16 @@ public class GameView extends StackPane {
             redGlowPawn,
             greenGlowPawn
         );
+
+        dieFaces = Arrays.asList(
+                new Image(new FileInputStream("resources/graphics/die/empty.png")),
+                new Image(new FileInputStream("resources/graphics/die/1.png")),
+                new Image(new FileInputStream("resources/graphics/die/2.png")),
+                new Image(new FileInputStream("resources/graphics/die/3.png")),
+                new Image(new FileInputStream("resources/graphics/die/4.png")),
+                new Image(new FileInputStream("resources/graphics/die/5.png")),
+                new Image(new FileInputStream("resources/graphics/die/6.png"))
+                );
 
         nestGlow = new ImageView();
     }
@@ -311,5 +321,13 @@ public class GameView extends StackPane {
                 case 3 -> pawns.get(i).setImage(greenPawn);
             }
         }
+    }
+
+    public Image getDieFoto(int dieFace){
+        return dieFaces.get(dieFace);
+    }
+
+    public List<Image> getDieFaces() {
+        return dieFaces;
     }
 }

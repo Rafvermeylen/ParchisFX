@@ -19,8 +19,6 @@ public class GamePresenter {
     private final CoordinateConverter converter;
     private final GameView view;
     private volatile boolean stopThread = false;
-
-
     public GamePresenter(
             Game model,
             GameView view) {
@@ -28,14 +26,14 @@ public class GamePresenter {
         this.gameSession = model;
         this.view = view;
         this.addEventHandlers();
-        if (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
+        if (gameSession.getPLAYERS().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
             playAI();
         }
         this.updateView();
     }
 
     private boolean isNextAi() {
-        return gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer;
+        return gameSession.getPLAYERS().get(gameSession.getIndexTurn()) instanceof AiPlayer;
     }
 
     private void setFinishVisible(int i) {
@@ -49,7 +47,7 @@ public class GamePresenter {
                 Sound.playRoll();
                 gameSession.roll();
 
-                if (Die.isRollAgain() && gameSession.getAmountThrows() == 3) {
+                if (gameSession.isThrowAgain() && gameSession.getAmountThrows() == 3) {
                     //return last pawn when you throw six, 3x if not null
                     if (gameSession.getLastMovedPawn() != null) {
                         gameSession.lastBackToNest();
@@ -62,31 +60,31 @@ public class GamePresenter {
                     Player player = gameSession.getPlayer(gameSession.getIndexTurn());
 
                     if (!gameSession.canPlayerMove(player) &&
-                            !player.getHasBarrier() && Die.getThrown() != 5) {
+                            !player.getHasBarrier() && gameSession.getThrown() != 5) {
                         //do nothing when you cant do anything
-                        if (Die.isRollAgain()) {
+                        if (gameSession.isThrowAgain()) {
                             b.setVisible(true);
                         } else {
                             setFinishVisible(gameSession.getCurrentPlayer());
                         }
-                    } else if (!gameSession.canPlayerMove(player) && Die.getThrown() == 5
+                    } else if (!gameSession.canPlayerMove(player) && gameSession.getThrown() == 5
                             && gameSession.isStartOK(player) && !player.isNestEmpty()) {
                         view.addNestGlow(player.getColor().getName());
                         view.getNestGlow().setVisible(true);
-                    } else if (gameSession.canPlayerMove(player) && !player.getHasBarrier() && Die.getThrown() != 5) {
+                    } else if (gameSession.canPlayerMove(player) && !player.getHasBarrier() && gameSession.getThrown() != 5) {
                         glowMoveablePawn(player);
-                    } else if (player.getHasBarrier() && (Die.getThrown() == 6 || Die.getThrown() == 7)) {
+                    } else if (player.getHasBarrier() && gameSession.isThrowAgain()) {
                         List<Pawn> moveable = gameSession.getBarrierPawns(player);
                         movablePawns(moveable);
                     } else {
-                        if (!player.isNestEmpty() && gameSession.isStartOK(player) && Die.getThrown() == 5) {
+                        if (!player.isNestEmpty() && gameSession.isStartOK(player) && gameSession.getThrown() == 5) {
                             view.addNestGlow(player.getColor().getName());
                             view.getNestGlow().setVisible(true);
-                        } else if (!player.canMove(gameSession.getBoard(), Die.getThrown()) && Die.getThrown() == 5) {
+                        } else if (!player.canMove(gameSession.getBOARD(), gameSession.getThrown()) && gameSession.getThrown() == 5) {
                             setFinishVisible(gameSession.getCurrentPlayer());
                         }
                         glowMoveablePawn(player);
-                        if (Die.isRollAgain()) {
+                        if (gameSession.isThrowAgain()) {
                             b.setVisible(true);
                             setFinishVisible(gameSession.getCurrentPlayer());
                         }
@@ -135,11 +133,11 @@ public class GamePresenter {
                 if (gameSession.pawnCanMove(index, playerIndex) && view.hasGlow(im)) {
                     Sound.playPawnMove();
                     Player player = gameSession.getPlayer(gameSession.getIndexTurn());
-                    if (Die.getThrown() != 10) {
+                    if (gameSession.getThrown() != 10) {
                         gameSession.movePawn(player, player.pawns.get(index));
                     } else {
                         gameSession.jump10(player.pawns.get(index));
-                        if (!Die.isRollAgain()) {
+                        if (!gameSession.isThrowAgain()) {
                             view.getFinish(getOffset(player.getColor().getName())).setVisible(true);
                         } else {
                             view.getRoll(getOffset(player.getColor().getName())).setVisible(true);
@@ -149,14 +147,14 @@ public class GamePresenter {
                     view.removeAllGlow();
                     view.getNestGlow().setVisible(false);
 
-                    if (player.pawns.get(index).isFinished() && player.canMove(gameSession.getBoard(), Die.getThrown())) {
+                    if (player.pawns.get(index).isFinished() && player.canMove(gameSession.getBOARD(), gameSession.getThrown())) {
                         glowJumpKill(player.getColor().getName());
                     }
 
-                    if (!Die.isRollAgain()) {
+                    if (!gameSession.isThrowAgain()) {
                         view.getFinish(getOffset(player.getColor().getName())).setVisible(true);
                     } else {
-                        if (Die.getThrown() != 10) {
+                        if (gameSession.getThrown() != 10) {
                             view.getRoll(getOffset(player.getColor().getName())).setVisible(true);
                         }
                     }
@@ -179,14 +177,13 @@ public class GamePresenter {
 
     private void glowJumpKill(String color) {
         view.getFinish(getOffset(color)).setVisible(false);
-        Die.setTen();
         List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getPlayer(color));
         movablePawns(moveable);
         if (moveable.size() == 0) {
-            if (Die.getThrown() != 6 && Die.getThrown() != 7) {
+            if (!gameSession.isThrowAgain()) {
                 view.getFinish(getOffset(color)).setVisible(true);
             } else {
-                if (!Die.isRollAgain()) {
+                if (gameSession.isThrowAgain()) {
                     view.getRoll(getOffset(color)).setVisible(true);
                 }
             }
@@ -230,11 +227,11 @@ public class GamePresenter {
 
     private void updateView() {
         //set names
-        for (int i = 0; i < gameSession.getPlayers().size(); i++) {
+        for (int i = 0; i < gameSession.getPLAYERS().size(); i++) {
             view.getPlayerName(i).setText(gameSession.getRawPlayer(i).getName());
         }
 
-        if (!(gameSession.getPlayers().get(0) instanceof AiPlayer)) {
+        if (!(gameSession.getPLAYERS().get(0) instanceof AiPlayer)) {
             displayControlsCurrentPlayer();
         }
         updateAllPawnPositions();
@@ -259,10 +256,10 @@ public class GamePresenter {
     private void playAI() {
         final ReadWriteLock gameSessionLock = new ReentrantReadWriteLock();
         new Thread(() -> {
-            while (!stopThread && gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
+            while (!stopThread && gameSession.getPLAYERS().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
                 gameSessionLock.readLock().lock(); // acquire read lock
                 try {
-                    synchronized (gameSession.getPlayers()) {
+                    synchronized (gameSession.getPLAYERS()) {
                         do {
                             gameSession.playAiTurn();
                             updateDieFace();
@@ -285,7 +282,7 @@ public class GamePresenter {
         hideDieFaces();
         int i = gameSession.getCurrentPlayer();
         view.getDie(i).setVisible(true);
-        view.getDie(i).setImage(Die.getDicePhoto().getImage());
+        view.getDie(i).setImage(view.getDieFoto(gameSession.getDieFace()));
     }
 
     private void hideDieFaces() {

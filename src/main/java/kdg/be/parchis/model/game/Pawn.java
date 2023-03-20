@@ -76,13 +76,13 @@ public class Pawn {
         onLandingstrip = true;
     }
 
-    public boolean canKill(Board board) {
-        int tileToCheck = position.getNr() + Die.getThrown();
+    public boolean canKill(Board board, int thrown) {
+        int tileToCheck = position.getNr() + thrown;
         if (tileToCheck > 68) {
             tileToCheck -= 68;
         }
         if (!board.board.get(tileToCheck).isFree() && !board.board.get(tileToCheck).IsBarrier() && !board.board.get(tileToCheck).getSafe()) {
-            for (Pawn p : board.board.get(position.getNr() + Die.getThrown()).getStandingPawns()) {
+            for (Pawn p : board.board.get(position.getNr() + thrown).getStandingPawns()) {
                 if (!p.owner.getColor().equals(owner.getColor())) {
                     return true;
                 }
@@ -91,13 +91,13 @@ public class Pawn {
         return false;
     }
 
-    public boolean canFinish(Board board) {
+    public boolean canFinish(Board board, int thrown) {
         ArrayList<Integer> centrumTiles = new ArrayList<>();
         centrumTiles.add(80);
         centrumTiles.add(88);
         centrumTiles.add(96);
         centrumTiles.add(104);
-        return getOnLandingstrip() && centrumTiles.contains(position.getNr() + Die.getThrown()) && !isFinished;
+        return getOnLandingstrip() && centrumTiles.contains(position.getNr() + thrown) && !isFinished;
     }
 
     public void Finished() {

@@ -7,11 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.musicLogic.Music;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.List;
 
 public class OrderView extends StackPane {
     private Image background;
@@ -31,6 +32,7 @@ public class OrderView extends StackPane {
     private ImageView diceFoto2;
     private ImageView diceFoto3;
     private ImageView diceFoto4;
+    private List<Image> dieFaces;
 
     public OrderView() throws FileNotFoundException, InterruptedException {
         this.initialiseNodes();
@@ -52,10 +54,20 @@ public class OrderView extends StackPane {
         start = new Button("START");
         board = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
         boardView = new ImageView(board);
-        diceFoto1 = new ImageView(Die.getEmpty());
-        diceFoto2 = new ImageView(Die.getEmpty());
-        diceFoto3 = new ImageView(Die.getEmpty());
-        diceFoto4 = new ImageView(Die.getEmpty());
+        diceFoto1 = new ImageView();
+        diceFoto2 = new ImageView();
+        diceFoto3 = new ImageView();
+        diceFoto4 = new ImageView();
+
+        dieFaces = Arrays.asList(
+                new Image(new FileInputStream("resources/graphics/die/empty.png")),
+                new Image(new FileInputStream("resources/graphics/die/1.png")),
+                new Image(new FileInputStream("resources/graphics/die/2.png")),
+                new Image(new FileInputStream("resources/graphics/die/3.png")),
+                new Image(new FileInputStream("resources/graphics/die/4.png")),
+                new Image(new FileInputStream("resources/graphics/die/5.png")),
+                new Image(new FileInputStream("resources/graphics/die/6.png"))
+        );
     }
 
     private void layoutNodes() throws InterruptedException {
@@ -175,5 +187,9 @@ public class OrderView extends StackPane {
 
     public Button getStart() {
         return start;
+    }
+
+    public Image getDieFace(int thrown){
+        return dieFaces.get(thrown);
     }
 }

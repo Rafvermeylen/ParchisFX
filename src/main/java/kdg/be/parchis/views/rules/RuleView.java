@@ -93,7 +93,6 @@ public class RuleView extends BorderPane {
                 7. You have to throw the right amount of eyes to 
                    get to the finish.
                 """
-
         );
         rules.setFont(Font.font(MONOSPACED, 15));
 

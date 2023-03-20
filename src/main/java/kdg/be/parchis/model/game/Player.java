@@ -154,9 +154,9 @@ public class Player {
         return true;
     }
 
-    public Pawn firstMoveablePawn(Board board) {
+    public Pawn firstMoveablePawn(Board board, int thrown) {
         for (Pawn p : pawns) {
-            if (p.isCanMove(board, Die.getThrown())) {
+            if (p.isCanMove(board, thrown)) {
                 return p;
             }
         }
@@ -172,18 +172,18 @@ public class Player {
         return null;
     }
 
-    public boolean canFinish(Board board) {
+    public boolean canFinish(Board board, int thrown) {
         for (Pawn p : pawns) {
-            if (p.canFinish(board)) {
+            if (p.canFinish(board, thrown)) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean canKill(Board board) {
+    public boolean canKill(Board board, int thrown) {
         for (Pawn p : pawns) {
-            if (p.canKill(board)) {
+            if (p.canKill(board, thrown)) {
                 return true;
             }
         }
@@ -232,18 +232,18 @@ public class Player {
         return isFinished;
     }
 
-    public Pawn getKillPawn(Board board) {
+    public Pawn getKillPawn(Board board, int thrown) {
         for (Pawn p : pawns) {
-            if (p.canKill(board)) {
+            if (p.canKill(board, thrown)) {
                 return p;
             }
         }
         return null;
     }
 
-    public Pawn getFinisherPawn(Board board) {
+    public Pawn getFinisherPawn(Board board, int thrown) {
         for (Pawn p : pawns) {
-            if (p.canFinish(board)) {
+            if (p.canFinish(board, thrown)) {
                 return p;
             }
         }
