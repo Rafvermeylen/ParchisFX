@@ -12,10 +12,8 @@ import kdg.be.parchis.model.game.Die;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GameView extends StackPane {
     private List<ImageView> pawns;
@@ -25,25 +23,13 @@ public class GameView extends StackPane {
     private List<Label> playerNames;
     private List<Image> glowingPawns;
     private Image yellowPawn;
-
     private Image yellowGlowPawn;
-
-    //private Label bluePlayer;
     private Image bluePawn;
-    //private Label redPlayer;
-
     private Image blueGlowPawn;
-
     private Image redPawn;
-    //private Label greenPlayer;
-
     private Image redGlowPawn;
-
     private Image greenPawn;
-
     private Image greenGlowPawn;
-
-    private Image boardImg;
     private Image background;
     private ImageView board;
     private ImageView nestGlow;
@@ -64,25 +50,17 @@ public class GameView extends StackPane {
 
         turns = new Label();
 
-        //yellowPlayer = new Label();
         yellowPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_yellow.png"));
         yellowGlowPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_yellow_glow.png"));
 
-
-        //bluePlayer = new Label();
         bluePawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_blue.png"));
         blueGlowPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_blue_glow.png"));
 
-
-        //redPlayer = new Label();
         redPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_red.png"));
         redGlowPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_red_glow.png"));
 
-
-        //greenPlayer = new Label();
         greenPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_green.png"));
         greenGlowPawn = new Image(new FileInputStream("resources\\graphics\\game\\pawn\\pawn_green_glow.png"));
-
 
         pawns = Arrays.asList(
                 new ImageView(yellowPawn),
@@ -138,7 +116,6 @@ public class GameView extends StackPane {
             greenGlowPawn
         );
 
-
         nestGlow = new ImageView();
     }
 
@@ -157,7 +134,6 @@ public class GameView extends StackPane {
             this.getChildren().add(getFinish(i));
             switch (i) {
                 case 0 -> {
-
                     getPlayerName(i).setTranslateX(500);
                     getPlayerName(i).setTranslateY(-250);
                     box.setTranslateX(500);
@@ -243,7 +219,6 @@ public class GameView extends StackPane {
         this.getChildren().add(turns);
         setAlignment(turns, Pos.TOP_CENTER);
 
-
         this.getChildren().addAll(nestGlow);
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -263,10 +238,6 @@ public class GameView extends StackPane {
 
     public ImageView getPawn(int i) {
         return pawns.get(i);
-    }
-
-    public List<ImageView> getPawn() {
-        return pawns;
     }
 
     public ImageView getDie(int i) {
@@ -293,39 +264,21 @@ public class GameView extends StackPane {
         return playerNames.get(i);
     }
 
-    public List<Label> getPlayerName() {
-        return playerNames;
-    }
-
-
     public void rearrangePawns() {
-        // Create a Comparator that compares Nodes by their Y coordinate
-        Comparator<Node> nodeYComparator = Comparator.comparingDouble(node -> {
-            return node.getBoundsInParent().getMinY();
-        });
+        // Create Comparator that compares Nodes Y coordinates
+        Comparator<Node> nodeYComparator = Comparator.comparingDouble(node -> node.getBoundsInParent().getMinY());
 
-        // Get all the ImageViews, Labels and Buttons from the StackPane's children, except for the nest glow
+        // Get all ImageViews, Labels and Buttons from StackPane children, not nest glow
         List<Node> pawnsIVs = this.getChildren().stream()
                 .filter(node -> node instanceof ImageView || node instanceof Label || node instanceof Button)
                 .filter(node -> node != nestGlow).sorted(nodeYComparator).toList();
 
-        // Sort the Nodes by their Y coordinate
-
-        // Remove all the ImageViews and Labels from the StackPane
+        // Remove all ImageViews and Labels from StackPane
         this.getChildren().removeAll(pawnsIVs);
 
-        // Add the ImageViews and Labels back to the StackPane in the correct order
+        // Add ImageViews and Labels back to StackPane in correct order
         this.getChildren().addAll(pawnsIVs);
         board.toBack();
-    }
-
-    public void removeGlow(ImageView p, String color) {
-        switch (color) {
-            case "yellow" -> p.setImage(yellowPawn);
-            case "blue" -> p.setImage(bluePawn);
-            case "red" -> p.setImage(redPawn);
-            case "green" -> p.setImage(greenPawn);
-        }
     }
 
     public void addGlow(ImageView p, String color) {

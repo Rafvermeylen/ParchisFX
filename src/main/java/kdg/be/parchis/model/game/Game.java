@@ -412,7 +412,7 @@ public class Game {
     }
 
     public Player getRawPlayer(int i) {
-        Color desiredColor = null;
+        Color desiredColor;
         switch (i) {
             case 0 -> desiredColor = Color.YELLOW;
             case 1 -> desiredColor = Color.BLUE;
