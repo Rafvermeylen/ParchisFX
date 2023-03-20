@@ -1,13 +1,10 @@
+/*
+This record compares the scores. It gives back a to-string method to print it in a nice way.
+*/
+
 package kdg.be.parchis.model.menu;
 
-public class Score implements Comparable<Score> {
-    private final String name;
-    private final int score;
-
-    public Score(String name, int score) {
-        this.name = name;
-        this.score = score;
-    }
+public record Score(String name, int score) implements Comparable<Score> {
 
     @Override
     public int compareTo(Score o) {
@@ -17,13 +14,5 @@ public class Score implements Comparable<Score> {
     @Override
     public String toString() {
         return String.format("%-20s %d", name, score);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getScore() {
-        return score;
     }
 }

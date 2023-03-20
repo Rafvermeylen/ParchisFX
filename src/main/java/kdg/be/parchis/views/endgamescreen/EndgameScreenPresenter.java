@@ -45,8 +45,8 @@ public class EndgameScreenPresenter {
         if (gameSession.getWinner() == null) {
             view.getScoreWinner().setText("Aww, you didn't win. Better luck next time!");
         } else {
-            view.getScoreWinner().setText("Well played, " + gameSession.getWinner().getName() +
-                    "!\nYour score was: " + gameSession.getWinner().getScore());
+            view.getScoreWinner().setText("Well played, " + gameSession.getWinner().name() +
+                    "!\nYour score was: " + gameSession.getWinner().score());
         }
     }
 }

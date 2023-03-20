@@ -1,3 +1,7 @@
+/*
+This code is used for the leaderboard. It uses the 'scores.csv' file to get the top-scores. It only shows the top 5.
+*/
+
 package kdg.be.parchis.model.menu;
 
 import java.io.FileWriter;
@@ -22,16 +26,17 @@ public class Leaderboards {
 
     public static void read() {
         ArrayList<Score> newList = new ArrayList<>();
-        Scanner fileScanner = null;
+        // Changed this
+        Scanner fileScanner;
         try {
             fileScanner = new Scanner(Paths.get("resources/data/scores.csv"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        String line = fileScanner.nextLine();
         while (fileScanner.hasNext()) {
-            line = fileScanner.nextLine();
+            // Changed this
+            String line = fileScanner.nextLine();
             String[] parts = line.split(", ");
             String name = parts[0].substring(1, parts[0].length() - 1);
             int score = Integer.parseInt(parts[1]);
@@ -45,11 +50,11 @@ public class Leaderboards {
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(Paths.get("resources/data/scores.csv").toFile()))) {
 
-            writer.println("\"naam\", \"score\"");
+            writer.println("\"name\", \"score\"");
 
             for (Score s : scores) {
                 //Write in file
-                writer.printf("\"%s\", %d\n", s.getName(), s.getScore());
+                writer.printf("\"%s\", %d\n", s.name(), s.score());
             }
             writer.close();
         } catch (IOException e) {
