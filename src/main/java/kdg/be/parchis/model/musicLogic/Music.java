@@ -1,3 +1,7 @@
+/*
+This class does everything with music. It uses statics because it's much easier to call it that way.
+*/
+
 package kdg.be.parchis.model.musicLogic;
 
 import javafx.scene.media.Media;
@@ -9,46 +13,45 @@ import java.util.Collections;
 import java.util.List;
 
 public class Music {
-    private static Media menu_music;
     private static MediaPlayer mediaPlayer;
     private static List<Media> songs = new ArrayList<>();
-    private static String path = "resources\\audio\\music\\";
+    private final static String path = "resources\\audio\\music\\";
 
     public static void playMenuMusic() {
-        menu_music = new Media(new File(path + "menu_music.mp3").toURI().toString());
+        Media menu_music = new Media(new File(path + "menu_music.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(menu_music);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
 
-    private static void addMusic(String filepath, String name) {
-        songs.add(new Media(new File(filepath + name).toURI().toString()));
+    private static void addMusic(String name) {
+        songs.add(new Media(new File(path + name).toURI().toString()));
     }
 
     public static void playGameMusic() {
-        addMusic(path, "Bag.mp3");
-        addMusic(path, "Bluebird.mp3");
-        addMusic(path, "Bluesy.mp3");
-        addMusic(path, "Bossa.mp3");
-        addMusic(path, "Bumper.mp3");
-        addMusic(path, "Called.mp3");
-        addMusic(path, "Chances.mp3");
-        addMusic(path, "Daydream.mp3");
-        addMusic(path, "Forget.mp3");
-        addMusic(path, "Groove.mp3");
-        addMusic(path, "Jazz.mp3");
-        addMusic(path, "Lounge.mp3");
-        addMusic(path, "Love.mp3");
-        addMusic(path, "Messenger.mp3");
-        addMusic(path, "Moon.mp3");
-        addMusic(path, "Moonlight.mp3");
-        addMusic(path, "Nighttime.mp3");
-        addMusic(path, "Old.mp3");
-        addMusic(path, "Silent.mp3");
-        addMusic(path, "Soul.mp3");
-        addMusic(path, "Together.mp3");
-        addMusic(path, "Watercolours.mp3");
-        addMusic(path, "You.mp3");
+        addMusic("Bag.mp3");
+        addMusic("Bluebird.mp3");
+        addMusic("Bluesy.mp3");
+        addMusic("Bossa.mp3");
+        addMusic("Bumper.mp3");
+        addMusic("Called.mp3");
+        addMusic("Chances.mp3");
+        addMusic("Daydream.mp3");
+        addMusic("Forget.mp3");
+        addMusic("Groove.mp3");
+        addMusic("Jazz.mp3");
+        addMusic("Lounge.mp3");
+        addMusic("Love.mp3");
+        addMusic("Messenger.mp3");
+        addMusic("Moon.mp3");
+        addMusic("Moonlight.mp3");
+        addMusic("Nighttime.mp3");
+        addMusic("Old.mp3");
+        addMusic("Silent.mp3");
+        addMusic("Soul.mp3");
+        addMusic("Together.mp3");
+        addMusic("Watercolours.mp3");
+        addMusic("You.mp3");
 
         Collections.shuffle(songs);
         // Create a MediaPlayer with the first song

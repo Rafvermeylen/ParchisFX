@@ -1,3 +1,7 @@
+/*
+This class does everything with sounds. It uses statics because it's much easier to call it that way.
+*/
+
 package kdg.be.parchis.model.musicLogic;
 
 import javafx.scene.media.AudioClip;
@@ -8,10 +12,10 @@ import java.io.File;
 import static java.lang.Thread.sleep;
 
 public class Sound {
-    private static String path = "resources\\audio\\sfx\\";
+    private static final String path = "resources\\audio\\sfx\\";
     private static boolean muted = false;
 
-    private static void initSound(String path, String name) {
+    private static void initSound(String name) {
         if (!muted) {
             Media media = new Media(new File(path + name).toURI().toString());
             // Just media doesn't work, x.getSource has to be added as well.
@@ -22,27 +26,27 @@ public class Sound {
     }
 
     public static void playClick() {
-        initSound(path, "click.mp3");
+        initSound("click.mp3");
     }
 
     public static void playPawnMove() {
-        initSound(path, "pawn_move.mp3");
+        initSound("pawn_move.mp3");
     }
 
     public static void playKill() {
-        initSound(path, "kill.mp3");
+        initSound("kill.mp3");
     }
 
     public static void playFail() {
-        initSound(path, "fail.mp3");
+        initSound("fail.mp3");
     }
 
     public static void barrierMade() {
-        initSound(path, "Barrier.mp3");
+        initSound("Barrier.mp3");
     }
 
     public static void playRoll() {
-        initSound(path, "roll.wav");
+        initSound("roll.wav");
         try {
             sleep(2 * 1000);
         } catch (InterruptedException e) {
@@ -51,7 +55,7 @@ public class Sound {
     }
 
     public static void playVictory() {
-        initSound(path, "win.mp3");
+        initSound("win.mp3");
     }
 
     public static void clickMute() {
