@@ -1,10 +1,17 @@
+/*
+This code is used to make it easier to get/place pawns on a position. It uses the inner record Position.
+*/
+
 package kdg.be.parchis.model.game;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class CoordinateConverter {
-    private Map<Integer, Position> positionMap = new HashMap<>();
+    private final Map<Integer, Position> positionMap = new HashMap<>();
+
+    private record Position(int x, int y) {
+    }
 
     public CoordinateConverter() {
         //NESTS
@@ -115,7 +122,7 @@ public class CoordinateConverter {
         positionMap.put(67, new Position(287, 60));
         positionMap.put(68, new Position(287, 10));
 
-        //yellow landingstrip
+        //yellow landing-strip
         positionMap.put(73, new Position(258, 10));
         positionMap.put(74, new Position(230, 10));
         positionMap.put(75, new Position(200, 10));
@@ -125,7 +132,7 @@ public class CoordinateConverter {
         positionMap.put(79, new Position(82, 10));
         positionMap.put(80, new Position(50, 10));
 
-        //blue landingstrip
+        //blue landing-strip
         positionMap.put(81, new Position(0, -250));
         positionMap.put(82, new Position(0, -220));
         positionMap.put(83, new Position(0, -190));
@@ -135,7 +142,7 @@ public class CoordinateConverter {
         positionMap.put(87, new Position(0, -70));
         positionMap.put(88, new Position(0, -40));
 
-        // red landingstrip
+        // red landing-strip
         positionMap.put(89, new Position(-260, 10));
         positionMap.put(90, new Position(-230, 10));
         positionMap.put(91, new Position(-200, 10));
@@ -145,7 +152,7 @@ public class CoordinateConverter {
         positionMap.put(95, new Position(-85, 10));
         positionMap.put(96, new Position(-45, 10));
 
-        // Green landingstrip
+        // Green landing-strip
         positionMap.put(97, new Position(0, 270));
         positionMap.put(98, new Position(0, 240));
         positionMap.put(99, new Position(0, 210));
@@ -157,19 +164,10 @@ public class CoordinateConverter {
     }
 
     public int getX(int tileNr) {
-        return positionMap.get(tileNr).getX();
+        return positionMap.get(tileNr).x();
     }
 
     public int getY(int tileNr) {
-        return positionMap.get(tileNr).getY();
-    }
-
-    public int getPosition (int x, int y) {
-        for (Map.Entry<Integer, Position> entry : positionMap.entrySet()) {
-            if (entry.getValue().getX() == x && entry.getValue().getY() == y) {
-                return entry.getKey();
-            }
-        }
-        return 0;
+        return positionMap.get(tileNr).y();
     }
 }

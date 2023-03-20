@@ -1,3 +1,7 @@
+/*
+This code is used to make the tile-logic.
+*/
+
 package kdg.be.parchis.model.game;
 
 import kdg.be.parchis.model.musicLogic.Sound;
@@ -6,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tile {
-    private final TileKind kind;
     private final int nr;
     private List<Pawn> standingPawns;
     private boolean hasPawn;
@@ -15,7 +18,6 @@ public class Tile {
     private boolean safe;
 
     public Tile(TileKind kind, int id) {
-        this.kind = kind;
         nr = id;
         standingPawns = new ArrayList<>(2);
         hasPawn = false;

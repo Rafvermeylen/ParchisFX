@@ -285,7 +285,7 @@ public class GamePresenter {
         hideDieFaces();
         int i = gameSession.getCurrentPlayer();
         view.getDie(i).setVisible(true);
-        view.getDie(i).setImage(Die.getDiceFoto().getImage());
+        view.getDie(i).setImage(Die.getDicePhoto().getImage());
     }
 
     private void hideDieFaces() {

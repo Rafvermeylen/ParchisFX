@@ -51,7 +51,7 @@ public class OrderPresenter {
                 view.getRoll1().setDisable(false);
                 Die.throwDie();
                 setup.addRoll(0, Die.getThrown());
-                view.getDiceFoto1().setImage(Die.getDiceFoto().getImage());
+                view.getDiceFoto1().setImage(Die.getDicePhoto().getImage());
                 view.getBack().setVisible(false);
                 if (setup.didPlayersRoll()) {
                     setup.order();
@@ -69,7 +69,7 @@ public class OrderPresenter {
                 view.getRoll2().setDisable(false);
                 Die.throwDie();
                 setup.addRoll(1, Die.getThrown());
-                view.getDiceFoto2().setImage(Die.getDiceFoto().getImage());
+                view.getDiceFoto2().setImage(Die.getDicePhoto().getImage());
                 view.getBack().setVisible(false);
                 if (setup.didPlayersRoll()) {
                     setup.order();
@@ -87,7 +87,7 @@ public class OrderPresenter {
                 view.getRoll3().setDisable(false);
                 Die.throwDie();
                 setup.addRoll(2, Die.getThrown());
-                view.getDiceFoto3().setImage(Die.getDiceFoto().getImage());
+                view.getDiceFoto3().setImage(Die.getDicePhoto().getImage());
                 view.getBack().setVisible(false);
                 if (setup.didPlayersRoll()) {
                     setup.order();
@@ -105,7 +105,7 @@ public class OrderPresenter {
                 view.getRoll4().setDisable(false);
                 Die.throwDie();
                 setup.addRoll(3, Die.getThrown());
-                view.getDiceFoto4().setImage(Die.getDiceFoto().getImage());
+                view.getDiceFoto4().setImage(Die.getDicePhoto().getImage());
                 view.getBack().setVisible(false);
                 if (setup.didPlayersRoll()) {
                     setup.order();
@@ -141,21 +141,21 @@ public class OrderPresenter {
             view.getRoll2().setVisible(false);
             //roll as cpu
             Die.throwDie();
-            view.getDiceFoto2().setImage(Die.getDiceFoto().getImage());
+            view.getDiceFoto2().setImage(Die.getDicePhoto().getImage());
             setup.addRoll(1, Die.getThrown());
         }
         if (setup.getAmountPlayers() < 3) {
             view.getRoll3().setVisible(false);
             //roll as cpu
             Die.throwDie();
-            view.getDiceFoto3().setImage(Die.getDiceFoto().getImage());
+            view.getDiceFoto3().setImage(Die.getDicePhoto().getImage());
             setup.addRoll(2, Die.getThrown());
         }
         if (setup.getAmountPlayers() < 4) {
             view.getRoll4().setVisible(false);
             //roll as cpu
             Die.throwDie();
-            view.getDiceFoto4().setImage(Die.getDiceFoto().getImage());
+            view.getDiceFoto4().setImage(Die.getDicePhoto().getImage());
             setup.addRoll(3, Die.getThrown());
         }
     }

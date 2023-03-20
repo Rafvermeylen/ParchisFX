@@ -1,12 +1,15 @@
+/*
+This code is used to make pawns, 'connect' them to the right player and other stuff.
+*/
+
 package kdg.be.parchis.model.game;
 
 import kdg.be.parchis.model.musicLogic.Sound;
-
 import java.util.ArrayList;
 
 public class Pawn {
     public Player owner;
-    private int pawnNumber;
+    private final int pawnNumber;
     private Tile position;
     private boolean inGame;
     private boolean isFinished;

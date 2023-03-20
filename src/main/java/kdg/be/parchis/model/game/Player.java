@@ -1,3 +1,7 @@
+/*
+This code is used for the player. The player gets a list with pawns and can do stuff with the pawns.
+*/
+
 package kdg.be.parchis.model.game;
 
 import java.util.ArrayList;
@@ -58,7 +62,7 @@ public class Player {
     public int moveByTile(Pawn p, Tile t) {
         p.move(t);
 
-        //yellow pawn staying on landingstip and finishing
+        //yellow pawn staying on landing-strip and finishing
         if (p.getOnLandingstrip() && t.getNr() > 80 && color.equals(Color.YELLOW)) {
             return (-t.getNr() + 80);
         } else if (p.getOnLandingstrip() && t.getNr() == 80 && color.equals(Color.YELLOW)) {
@@ -66,7 +70,7 @@ public class Player {
             return 0;
         }
 
-        //blue pawn staying on landingstip and finishing
+        //blue pawn staying on landing-strip and finishing
         if (p.getOnLandingstrip() && t.getNr() > 88 && color.equals(Color.BLUE)) {
             return (-t.getNr() + 88);
         } else if (p.getOnLandingstrip() && t.getNr() == 88 && color.equals(Color.BLUE)) {
@@ -74,7 +78,7 @@ public class Player {
             return 0;
         }
 
-        //red pawn staying on landingstip and finishing
+        //red pawn staying on landing-strip and finishing
         if (p.getOnLandingstrip() && t.getNr() > 96 && color.equals(Color.RED)) {
             return (-t.getNr() + 96);
         } else if (p.getOnLandingstrip() && t.getNr() == 96 && color.equals(Color.RED)) {
@@ -82,7 +86,7 @@ public class Player {
             return 0;
         }
 
-        //green pawn staying on landingstip and finishing
+        //green pawn staying on landing-strip and finishing
         if (p.getOnLandingstrip() && t.getNr() > 104 && color.equals(Color.GREEN)) {
             return (-t.getNr() + 104);
         } else if (p.getOnLandingstrip() && t.getNr() == 104 && color.equals(Color.GREEN)) {
@@ -95,7 +99,7 @@ public class Player {
         }
 
 
-        //If a yellow pawn goes past 68, it goes to the landingstrip
+        //If a yellow pawn goes past 68, it goes to the landing-strip
         if (p.getPosition().getNr() > 68 && color.equals(Color.YELLOW) && p.HasMoved() && !p.getOnLandingstrip()) {
             p.isOnLandingstrip();
             return (p.getPosition().getNr() + 4);
@@ -104,21 +108,21 @@ public class Player {
             return (p.getPosition().getNr() - 68);
         }
 
-        //If a blue pawn passes tile 17, it goes to landingstrip
+        //If a blue pawn passes tile 17, it goes to landing-strip
         if (p.getPosition().getNr() > 17 && color.equals(Color.BLUE) && p.HasMoved() && !p.getOnLandingstrip()) {
             p.isOnLandingstrip();
             //p.ui.printMove(p.getPawnNumber(), oldLocation, p.getPosition());
             return (p.getPosition().getNr() + 63);
         }
 
-        //If a red pawn passes tile 34, it goes to landingstrip
+        //If a red pawn passes tile 34, it goes to landing-strip
         if (p.getPosition().getNr() > 34 && color.equals(Color.RED) && p.HasMoved() && !p.getOnLandingstrip()) {
             p.isOnLandingstrip();
             //p.ui.printMove(p.getPawnNumber(), oldLocation, p.getPosition());
             return (p.getPosition().getNr() + 54);
         }
 
-        //If a green pawn passes tile 51, it goes to landingstrip
+        //If a green pawn passes tile 51, it goes to landing-strip
         if (p.getPosition().getNr() > 51 && color.equals(Color.GREEN) && p.HasMoved() && !p.getOnLandingstrip()) {
             p.isOnLandingstrip();
             //p.ui.printMove(p.getPawnNumber(), oldLocation, p.getPosition());
