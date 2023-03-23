@@ -47,19 +47,17 @@ public class Leaderboards {
     }
 
     public static void store() {
-
-        try (PrintWriter writer = new PrintWriter(new FileWriter(Paths.get("resources/data/scores.csv").toFile()))) {
-
-            writer.println("\"name\", \"score\"");
-
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter(new FileWriter(Paths.get("resources/data/scores.csv").toFile()));
             for (Score s : scores) {
                 //Write in file
                 writer.printf("\"%s\", %d\n", s.name(), s.score());
             }
-            writer.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        writer.close();
     }
 
     public static String printScores() {

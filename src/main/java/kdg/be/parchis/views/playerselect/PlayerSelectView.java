@@ -10,6 +10,8 @@ import javafx.scene.shape.Circle;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.List;
 
 public class PlayerSelectView extends BorderPane {
     private Button soundButton;
@@ -20,10 +22,7 @@ public class PlayerSelectView extends BorderPane {
     private Image sfxMute;
     private ImageView musicPic;
     private ImageView soundPic;
-    private Button onePlayer;
-    private Button twoPlayers;
-    private Button threePlayers;
-    private Button fourPlayers;
+    private List<Button> players;
     private Image background;
     private Button back;
 
@@ -38,10 +37,14 @@ public class PlayerSelectView extends BorderPane {
         Image twoPlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\two_player.png"));
         Image threePlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\three_player.png"));
         Image fourPlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\four_player.png"));
-        onePlayer = new Button("", new ImageView(onePlayerPic));
-        twoPlayers = new Button("", new ImageView(twoPlayerPic));
-        threePlayers = new Button("", new ImageView(threePlayerPic));
-        fourPlayers = new Button("", new ImageView(fourPlayerPic));
+
+        players = Arrays.asList(
+                new Button("", new ImageView(onePlayerPic)),
+                new Button("", new ImageView(twoPlayerPic)),
+                new Button("", new ImageView(threePlayerPic)),
+                new Button("", new ImageView(fourPlayerPic))
+        );
+
         background = new Image(new FileInputStream("resources\\backgrounds\\Background.png"));
 
         musicLoud = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_loud.png"));
@@ -69,12 +72,11 @@ public class PlayerSelectView extends BorderPane {
 
     private void layoutNodes() {
         HBox hBox = new HBox(20);
-        onePlayer.setPrefSize(100, 100);
-        twoPlayers.setPrefSize(100, 100);
-        threePlayers.setPrefSize(100, 100);
-        fourPlayers.setPrefSize(100, 100);
+        for (Button p : players) {
+            p.setPrefSize(100, 100);
+            hBox.getChildren().add(p);
+        }
 
-        hBox.getChildren().addAll(onePlayer, twoPlayers, threePlayers, fourPlayers);
         hBox.setAlignment(Pos.CENTER);
 
         HBox buttonsTop = new HBox(15);
@@ -90,20 +92,8 @@ public class PlayerSelectView extends BorderPane {
         BorderPane.setMargin(back, new Insets(20));
     }
 
-    public Button getOnePlayer() {
-        return onePlayer;
-    }
-
-    public Button getTwoPlayers() {
-        return twoPlayers;
-    }
-
-    public Button getThreePlayers() {
-        return threePlayers;
-    }
-
-    public Button getFourPlayers() {
-        return fourPlayers;
+    public List<Button> getPlayers() {
+        return players;
     }
 
     public Button getBack() {

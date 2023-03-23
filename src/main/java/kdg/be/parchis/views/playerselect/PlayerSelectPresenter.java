@@ -2,6 +2,7 @@ package kdg.be.parchis.views.playerselect;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.model.musicLogic.Music;
 import kdg.be.parchis.model.musicLogic.Sound;
@@ -24,37 +25,17 @@ public class PlayerSelectPresenter {
     }
 
     private void addEventHandlers() {
-        VIEW.getOnePlayer().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                PlayerSetup playerSetup = new PlayerSetup(1);
-                selectedPlayers(playerSetup);
-            }
-        });
 
-        VIEW.getTwoPlayers().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                PlayerSetup playerSetup = new PlayerSetup(2);
-                selectedPlayers(playerSetup);
-            }
-        });
-
-        VIEW.getThreePlayers().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                PlayerSetup playerSetup = new PlayerSetup(3);
-                selectedPlayers(playerSetup);
-            }
-        });
-
-        VIEW.getFourPlayers().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                PlayerSetup playerSetup = new PlayerSetup(4);
-                selectedPlayers(playerSetup);
-            }
-        });
+        for (int i = 0; i < VIEW.getPlayers().size(); i++) {
+            int finalI = i + 1;
+            VIEW.getPlayers().get(i).setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    PlayerSetup playerSetup = new PlayerSetup(finalI);
+                    selectedPlayers(playerSetup);
+                }
+            });
+        }
 
         VIEW.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
