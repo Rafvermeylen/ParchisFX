@@ -7,46 +7,46 @@ import kdg.be.parchis.model.musicLogic.Sound;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
 public class RulePresenter {
-    private final RuleView view;
-    private final MainMenuView backView;
+    private final RuleView VIEW;
+    private final MainMenuView BACKVIEW;
 
     public RulePresenter(RuleView view, MainMenuView backView) {
-        this.view = view;
-        this.backView = backView;
+        this.VIEW = view;
+        this.BACKVIEW = backView;
         this.addEventHandlers();
         this.updateView();
     }
 
     private void addEventHandlers() {
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Sound.playClick();
-                view.getScene().setRoot(backView);
+                VIEW.getScene().setRoot(BACKVIEW);
             }
         });
 
-        view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Music.muteMenuMusic();
                 if (Music.getMediaPlayer().isMute()) {
-                    view.getMusicPic().setImage(view.getMusicMute());
+                    VIEW.getMusicPic().setImage(VIEW.getMusicMute());
                 } else {
-                    view.getMusicPic().setImage(view.getMusicLoud());
+                    VIEW.getMusicPic().setImage(VIEW.getMusicLoud());
                 }
             }
         });
 
-        view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Sound.clickMute();
 
                 if (Sound.isMuted()) {
-                    view.getSoundPic().setImage(view.getSfxMute());
+                    VIEW.getSoundPic().setImage(VIEW.getSfxMute());
                 } else {
-                    view.getSoundPic().setImage(view.getSfxLoud());
+                    VIEW.getSoundPic().setImage(VIEW.getSfxLoud());
                 }
             }
         });
@@ -54,14 +54,14 @@ public class RulePresenter {
 
     private void updateView() {
         if (Music.getMediaPlayer().isMute()) {
-            view.getMusicPic().setImage(view.getMusicMute());
+            VIEW.getMusicPic().setImage(VIEW.getMusicMute());
         } else {
-            view.getMusicPic().setImage(view.getMusicLoud());
+            VIEW.getMusicPic().setImage(VIEW.getMusicLoud());
         }
         if (Sound.isMuted()) {
-            view.getSoundPic().setImage(view.getSfxMute());
+            VIEW.getSoundPic().setImage(VIEW.getSfxMute());
         } else {
-            view.getSoundPic().setImage(view.getSfxLoud());
+            VIEW.getSoundPic().setImage(VIEW.getSfxLoud());
         }
     }
 }

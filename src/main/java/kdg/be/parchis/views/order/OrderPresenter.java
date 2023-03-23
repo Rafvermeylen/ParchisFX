@@ -12,26 +12,26 @@ import kdg.be.parchis.views.playersetup.PlayerSetupView;
 import java.io.FileNotFoundException;
 
 public class OrderPresenter {
-    private final PlayerSetup setup;
-    private final OrderView view;
-    private final PlayerSetupView backView;
+    private final PlayerSetup SETUP;
+    private final OrderView VIEW;
+    private final PlayerSetupView BACKVIEW;
     public OrderPresenter(
             PlayerSetup model,
             OrderView view,
             PlayerSetupView backView) {
-        this.setup = model;
-        this.view = view;
-        this.backView = backView;
+        this.SETUP = model;
+        this.VIEW = view;
+        this.BACKVIEW = backView;
         this.addEventHandlers();
         this.updateView();
     }
 
     private void addEventHandlers() {
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Sound.playClick();
-                view.getScene().setRoot(backView);
+                VIEW.getScene().setRoot(BACKVIEW);
                 if (!Music.getMediaPlayer().isMute()) {
                     Music.stopMusic();
                     Music.playMenuMusic();
@@ -39,83 +39,83 @@ public class OrderPresenter {
             }
         });
 
-        view.getRoll1().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getRoll1().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                view.getRoll1().setVisible(false);
+                VIEW.getRoll1().setVisible(false);
                 Sound.playRoll();
-                view.getRoll1().setDisable(true);
-                view.getRoll1().setDisable(false);
-                setup.roll();
-                setup.addRoll(0, setup.getThrown());
-                view.getDiceFoto1().setImage(view.getDieFace(setup.getThrown()));
-                view.getBack().setVisible(false);
-                if (setup.didPlayersRoll()) {
-                    setup.order();
-                    view.getStart().setVisible(true);
+                VIEW.getRoll1().setDisable(true);
+                VIEW.getRoll1().setDisable(false);
+                SETUP.roll();
+                SETUP.addRoll(0, SETUP.getThrown());
+                VIEW.getDicePhoto1().setImage(VIEW.getDieFace(SETUP.getThrown()));
+                VIEW.getBack().setVisible(false);
+                if (SETUP.didPlayersRoll()) {
+                    SETUP.order();
+                    VIEW.getStart().setVisible(true);
                 }
             }
         });
 
-        view.getRoll2().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getRoll2().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                view.getRoll2().setVisible(false);
+                VIEW.getRoll2().setVisible(false);
                 Sound.playRoll();
-                view.getRoll2().setDisable(true);
-                view.getRoll2().setDisable(false);
-                setup.roll();
-                setup.addRoll(1, setup.getThrown());
-                view.getDiceFoto2().setImage(view.getDieFace(setup.getThrown()));
-                view.getBack().setVisible(false);
-                if (setup.didPlayersRoll()) {
-                    setup.order();
-                    view.getStart().setVisible(true);
+                VIEW.getRoll2().setDisable(true);
+                VIEW.getRoll2().setDisable(false);
+                SETUP.roll();
+                SETUP.addRoll(1, SETUP.getThrown());
+                VIEW.getDicePhoto2().setImage(VIEW.getDieFace(SETUP.getThrown()));
+                VIEW.getBack().setVisible(false);
+                if (SETUP.didPlayersRoll()) {
+                    SETUP.order();
+                    VIEW.getStart().setVisible(true);
                 }
             }
         });
 
-        view.getRoll3().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getRoll3().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                view.getRoll3().setVisible(false);
+                VIEW.getRoll3().setVisible(false);
                 Sound.playRoll();
-                view.getRoll3().setDisable(true);
-                view.getRoll3().setDisable(false);
-                setup.roll();
-                setup.addRoll(2, setup.getThrown());
-                view.getDiceFoto3().setImage(view.getDieFace(setup.getThrown()));
-                view.getBack().setVisible(false);
-                if (setup.didPlayersRoll()) {
-                    setup.order();
-                    view.getStart().setVisible(true);
+                VIEW.getRoll3().setDisable(true);
+                VIEW.getRoll3().setDisable(false);
+                SETUP.roll();
+                SETUP.addRoll(2, SETUP.getThrown());
+                VIEW.getDicePhoto3().setImage(VIEW.getDieFace(SETUP.getThrown()));
+                VIEW.getBack().setVisible(false);
+                if (SETUP.didPlayersRoll()) {
+                    SETUP.order();
+                    VIEW.getStart().setVisible(true);
                 }
             }
         });
 
-        view.getRoll4().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getRoll4().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                view.getRoll4().setVisible(false);
+                VIEW.getRoll4().setVisible(false);
                 Sound.playRoll();
-                view.getRoll4().setDisable(true);
-                view.getRoll4().setDisable(false);
-                setup.roll();
-                setup.addRoll(3, setup.getThrown());
-                view.getDiceFoto4().setImage(view.getDieFace(setup.getThrown()));
-                view.getBack().setVisible(false);
-                if (setup.didPlayersRoll()) {
-                    setup.order();
-                    view.getStart().setVisible(true);
+                VIEW.getRoll4().setDisable(true);
+                VIEW.getRoll4().setDisable(false);
+                SETUP.roll();
+                SETUP.addRoll(3, SETUP.getThrown());
+                VIEW.getDicePhoto4().setImage(VIEW.getDieFace(SETUP.getThrown()));
+                VIEW.getBack().setVisible(false);
+                if (SETUP.didPlayersRoll()) {
+                    SETUP.order();
+                    VIEW.getStart().setVisible(true);
                 }
             }
         });
 
-        view.getStart().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getStart().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Sound.playClick();
-                Game gameSession = new Game(setup.getPlayers());
+                Game gameSession = new Game(SETUP.getPlayers());
                 GameView gameView = null;
                 try {
                     gameView = new GameView();
@@ -123,37 +123,37 @@ public class OrderPresenter {
                     throw new RuntimeException(e);
                 }
                 GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
-                view.getScene().setRoot(gameView);
+                VIEW.getScene().setRoot(gameView);
             }
         });
     }
 
     private void updateView() {
-        view.getPlayer1Name().setText(setup.getPlayers().get(0).getName());
-        view.getPlayer2Name().setText(setup.getPlayers().get(1).getName());
-        view.getPlayer3Name().setText(setup.getPlayers().get(2).getName());
-        view.getPlayer4Name().setText(setup.getPlayers().get(3).getName());
+        VIEW.getPlayer1Name().setText(SETUP.getPlayers().get(0).getName());
+        VIEW.getPlayer2Name().setText(SETUP.getPlayers().get(1).getName());
+        VIEW.getPlayer3Name().setText(SETUP.getPlayers().get(2).getName());
+        VIEW.getPlayer4Name().setText(SETUP.getPlayers().get(3).getName());
 
-        if (setup.getAmountPlayers() < 2) {
-            view.getRoll2().setVisible(false);
+        if (SETUP.getAmountPlayers() < 2) {
+            VIEW.getRoll2().setVisible(false);
             //roll as cpu
-            setup.roll();
-            view.getDiceFoto2().setImage(view.getDieFace(setup.getThrown()));
-            setup.addRoll(1, setup.getThrown());
+            SETUP.roll();
+            VIEW.getDicePhoto2().setImage(VIEW.getDieFace(SETUP.getThrown()));
+            SETUP.addRoll(1, SETUP.getThrown());
         }
-        if (setup.getAmountPlayers() < 3) {
-            view.getRoll3().setVisible(false);
+        if (SETUP.getAmountPlayers() < 3) {
+            VIEW.getRoll3().setVisible(false);
             //roll as cpu
-            setup.roll();
-            view.getDiceFoto3().setImage(view.getDieFace(setup.getThrown()));
-            setup.addRoll(2, setup.getThrown());
+            SETUP.roll();
+            VIEW.getDicePhoto3().setImage(VIEW.getDieFace(SETUP.getThrown()));
+            SETUP.addRoll(2, SETUP.getThrown());
         }
-        if (setup.getAmountPlayers() < 4) {
-            view.getRoll4().setVisible(false);
+        if (SETUP.getAmountPlayers() < 4) {
+            VIEW.getRoll4().setVisible(false);
             //roll as cpu
-            setup.roll();
-            view.getDiceFoto4().setImage(view.getDieFace(setup.getThrown()));
-            setup.addRoll(3, setup.getThrown());
+            SETUP.roll();
+            VIEW.getDicePhoto4().setImage(VIEW.getDieFace(SETUP.getThrown()));
+            SETUP.addRoll(3, SETUP.getThrown());
         }
     }
 }

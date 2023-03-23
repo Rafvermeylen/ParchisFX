@@ -67,30 +67,30 @@ public class RuleView extends BorderPane {
                                 
                                 
                                             
-                1. When a five is thrown, you can get out of 
+                1. When a five is thrown, you can get out of\s
                    nest (starting place).
                    
-                2. When a six is thrown, you can throw again 
+                2. When a six is thrown, you can throw again\s
                    (max. 3 times).
                    
-                3. When all your pawns are out of nest, a six 
+                3. When all your pawns are out of nest, a six\s
                    becomes a seven.
                    
-                4. When you 'eat' a pawn from another player, 
+                4. When you 'eat' a pawn from another player,\s
                    you move 20 spaces (if possible).
                    
-                5. When a pawn finishes, a pawn of your choosing 
+                5. When a pawn finishes, a pawn of your choosing\s
                    can move 10 spaces (if possible).
                    
-                6. Tiles with a circle are safe spaces. 
+                6. Tiles with a circle are safe spaces.\s
                    Multiple pawns can land on them. If 2 pawns
-                   of the same colour are on said tile, they 
-                   create a barrier. It is impossible for 
-                   anybody to move further. If the owner of the 
-                   barrier has thrown a 6 or 7, the barrier must 
+                   of the same colour are on said tile, they\s
+                   create a barrier. It is impossible for\s
+                   anybody to move further. If the owner of the\s
+                   barrier has thrown a 6 or 7, the barrier must\s
                    be broken.
                    
-                7. You have to throw the right amount of eyes to 
+                7. You have to throw the right amount of eyes to\s
                    get to the finish.
                 """
         );

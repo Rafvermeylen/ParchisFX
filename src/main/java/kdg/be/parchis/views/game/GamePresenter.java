@@ -15,91 +15,91 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class GamePresenter {
-    private final Game gameSession;
-    private final CoordinateConverter converter;
-    private final GameView view;
+    private final Game GAMESESSION;
+    private final CoordinateConverter CONVERTER;
+    private final GameView VIEW;
     private volatile boolean stopThread = false;
     public GamePresenter(
             Game model,
             GameView view) {
-        converter = new CoordinateConverter();
-        this.gameSession = model;
-        this.view = view;
+        CONVERTER = new CoordinateConverter();
+        this.GAMESESSION = model;
+        this.VIEW = view;
         this.addEventHandlers();
-        if (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
+        if (GAMESESSION.getPlayers().get(GAMESESSION.getIndexTurn()) instanceof AiPlayer) {
             playAI();
         }
         this.updateView();
     }
 
     private boolean isNextAi() {
-        return gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer;
+        return GAMESESSION.getPlayers().get(GAMESESSION.getIndexTurn()) instanceof AiPlayer;
     }
 
     private void setFinishVisible(int i) {
-        view.getFinish(i).setVisible(true);
+        VIEW.getFinish(i).setVisible(true);
     }
 
     private void addEventHandlers() {
-        for (Button b : view.getRoll()) {
+        for (Button b : VIEW.getRoll()) {
             b.setOnAction(actionEvent -> {
                 b.setVisible(false);
                 Sound.playRoll();
-                gameSession.roll();
+                GAMESESSION.roll();
 
-                if (gameSession.isThrowAgain() && gameSession.getAmountThrows() == 3) {
+                if (GAMESESSION.isThrowAgain() && GAMESESSION.getAmountThrows() == 3) {
                     //return last pawn when you throw six, 3x if not null
-                    if (gameSession.getLastMovedPawn() != null) {
-                        gameSession.lastBackToNest();
+                    if (GAMESESSION.getLastMovedPawn() != null) {
+                        GAMESESSION.lastBackToNest();
                         updateAllPawnPositions();
                     }
-                    setFinishVisible(gameSession.getCurrentPlayer());
+                    setFinishVisible(GAMESESSION.getCurrentPlayer());
                 } else {
                     updateDieFace();
 
-                    Player player = gameSession.getPlayer(gameSession.getIndexTurn());
+                    Player player = GAMESESSION.getPlayer(GAMESESSION.getIndexTurn());
 
-                    if (!gameSession.canPlayerMove(player) &&
-                            !player.getHasBarrier() && gameSession.getThrown() != 5) {
+                    if (!GAMESESSION.canPlayerMove(player) &&
+                            !player.getHasBarrier() && GAMESESSION.getThrown() != 5) {
                         //do nothing when you cant do anything
-                        if (gameSession.isThrowAgain()) {
+                        if (GAMESESSION.isThrowAgain()) {
                             b.setVisible(true);
                         } else {
-                            setFinishVisible(gameSession.getCurrentPlayer());
+                            setFinishVisible(GAMESESSION.getCurrentPlayer());
                         }
-                    } else if (!gameSession.canPlayerMove(player) && gameSession.getThrown() == 5
-                            && gameSession.isStartOK(player) && !player.isNestEmpty()) {
-                        view.addNestGlow(player.getColor().getName());
-                        view.getNestGlow().setVisible(true);
-                    } else if (gameSession.canPlayerMove(player) && !player.getHasBarrier() && gameSession.getThrown() != 5) {
+                    } else if (!GAMESESSION.canPlayerMove(player) && GAMESESSION.getThrown() == 5
+                            && GAMESESSION.isStartOK(player) && !player.isNestEmpty()) {
+                        VIEW.addNestGlow(player.getColor().getName());
+                        VIEW.getNestGlow().setVisible(true);
+                    } else if (GAMESESSION.canPlayerMove(player) && !player.getHasBarrier() && GAMESESSION.getThrown() != 5) {
                         glowMoveablePawn(player);
-                    } else if (player.getHasBarrier() && gameSession.isThrowAgain()) {
-                        List<Pawn> moveable = gameSession.getBarrierPawns(player);
+                    } else if (player.getHasBarrier() && GAMESESSION.isThrowAgain()) {
+                        List<Pawn> moveable = GAMESESSION.getBarrierPawns(player);
                         movablePawns(moveable);
                     } else {
-                        if (!player.isNestEmpty() && gameSession.isStartOK(player) && gameSession.getThrown() == 5) {
-                            view.addNestGlow(player.getColor().getName());
-                            view.getNestGlow().setVisible(true);
-                        } else if (!player.canMove(gameSession.getBoard(), gameSession.getThrown()) && gameSession.getThrown() == 5) {
-                            setFinishVisible(gameSession.getCurrentPlayer());
+                        if (!player.isNestEmpty() && GAMESESSION.isStartOK(player) && GAMESESSION.getThrown() == 5) {
+                            VIEW.addNestGlow(player.getColor().getName());
+                            VIEW.getNestGlow().setVisible(true);
+                        } else if (!player.canMove(GAMESESSION.getBoard(), GAMESESSION.getThrown()) && GAMESESSION.getThrown() == 5) {
+                            setFinishVisible(GAMESESSION.getCurrentPlayer());
                         }
                         glowMoveablePawn(player);
-                        if (gameSession.isThrowAgain()) {
+                        if (GAMESESSION.isThrowAgain()) {
                             b.setVisible(true);
-                            setFinishVisible(gameSession.getCurrentPlayer());
+                            setFinishVisible(GAMESESSION.getCurrentPlayer());
                         }
                     }
                 }
             });
         }
 
-        for (Button b : view.getFinish()) {
+        for (Button b : VIEW.getFinish()) {
             b.setOnAction(actionEvent -> {
-                String color = gameSession.getPlayer(gameSession.getIndexTurn()).getColor().getName();
+                String color = GAMESESSION.getPlayer(GAMESESSION.getIndexTurn()).getColor().getName();
                 Sound.playClick();
                 b.setVisible(false);
-                view.getDie(getOffset(color)).setVisible(false);
-                gameSession.endTurn();
+                VIEW.getDie(getOffset(color)).setVisible(false);
+                GAMESESSION.endTurn();
                 updateTurn();
                 if (isNextAi()) {
                     playAI();
@@ -114,48 +114,48 @@ public class GamePresenter {
             });
         }
 
-        view.getNestGlow().setOnMouseClicked(mouseEvent -> {
+        VIEW.getNestGlow().setOnMouseClicked(mouseEvent -> {
             Sound.playPawnMove();
 
-            gameSession.leaveNest(gameSession.getPlayer(gameSession.getIndexTurn()).getColor().getName());
-            view.getFinish(gameSession.getCurrentPlayer()).setVisible(true);
+            GAMESESSION.leaveNest(GAMESESSION.getPlayer(GAMESESSION.getIndexTurn()).getColor().getName());
+            VIEW.getFinish(GAMESESSION.getCurrentPlayer()).setVisible(true);
 
-            view.getNestGlow().setVisible(false);
-            view.removeAllGlow();
+            VIEW.getNestGlow().setVisible(false);
+            VIEW.removeAllGlow();
             updateAllPawnPositions();
         });
 
         for (int i = 0; i < 16; i++) {
-            ImageView im = view.getPawn(i);
+            ImageView im = VIEW.getPawn(i);
             int index = i % 4;
             int playerIndex = i / 4;
             im.setOnMouseClicked(mouseEvent -> {
-                if (gameSession.pawnCanMove(index, playerIndex) && view.hasGlow(im)) {
+                if (GAMESESSION.pawnCanMove(index, playerIndex) && VIEW.hasGlow(im)) {
                     Sound.playPawnMove();
-                    Player player = gameSession.getPlayer(gameSession.getIndexTurn());
-                    if (gameSession.getThrown() != 10) {
-                        gameSession.movePawn(player, player.pawns.get(index));
+                    Player player = GAMESESSION.getPlayer(GAMESESSION.getIndexTurn());
+                    if (GAMESESSION.getThrown() != 10) {
+                        GAMESESSION.movePawn(player, player.pawns.get(index));
                     } else {
-                        gameSession.jump10(player.pawns.get(index));
-                        if (!gameSession.isThrowAgain()) {
-                            view.getFinish(getOffset(player.getColor().getName())).setVisible(true);
+                        GAMESESSION.jump10(player.pawns.get(index));
+                        if (!GAMESESSION.isThrowAgain()) {
+                            VIEW.getFinish(getOffset(player.getColor().getName())).setVisible(true);
                         } else {
-                            view.getRoll(getOffset(player.getColor().getName())).setVisible(true);
+                            VIEW.getRoll(getOffset(player.getColor().getName())).setVisible(true);
                         }
                     }
 
-                    view.removeAllGlow();
-                    view.getNestGlow().setVisible(false);
+                    VIEW.removeAllGlow();
+                    VIEW.getNestGlow().setVisible(false);
 
-                    if (player.pawns.get(index).isFinished() && player.canMove(gameSession.getBoard(), gameSession.getThrown())) {
+                    if (player.pawns.get(index).isFinished() && player.canMove(GAMESESSION.getBoard(), GAMESESSION.getThrown())) {
                         glowJumpKill(player.getColor().getName());
                     }
 
-                    if (!gameSession.isThrowAgain()) {
-                        view.getFinish(getOffset(player.getColor().getName())).setVisible(true);
+                    if (!GAMESESSION.isThrowAgain()) {
+                        VIEW.getFinish(getOffset(player.getColor().getName())).setVisible(true);
                     } else {
-                        if (gameSession.getThrown() != 10) {
-                            view.getRoll(getOffset(player.getColor().getName())).setVisible(true);
+                        if (GAMESESSION.getThrown() != 10) {
+                            VIEW.getRoll(getOffset(player.getColor().getName())).setVisible(true);
                         }
                     }
 
@@ -176,15 +176,15 @@ public class GamePresenter {
     }
 
     private void glowJumpKill(String color) {
-        view.getFinish(getOffset(color)).setVisible(false);
-        List<Pawn> moveable = gameSession.getMoveablePawns(gameSession.getPlayer(color));
+        VIEW.getFinish(getOffset(color)).setVisible(false);
+        List<Pawn> moveable = GAMESESSION.getMoveablePawns(GAMESESSION.getPlayer(color));
         movablePawns(moveable);
         if (moveable.size() == 0) {
-            if (!gameSession.isThrowAgain()) {
-                view.getFinish(getOffset(color)).setVisible(true);
+            if (!GAMESESSION.isThrowAgain()) {
+                VIEW.getFinish(getOffset(color)).setVisible(true);
             } else {
-                if (gameSession.isThrowAgain()) {
-                    view.getRoll(getOffset(color)).setVisible(true);
+                if (GAMESESSION.isThrowAgain()) {
+                    VIEW.getRoll(getOffset(color)).setVisible(true);
                 }
             }
         }
@@ -203,35 +203,35 @@ public class GamePresenter {
     private void movablePawns(List<Pawn> moveable) {
         for (Pawn p : moveable) {
             int offset = getOffset(p.getOwner().getColor().getName());
-            view.addGlow(view.getPawn((p.getPawnNumber() - 1) + (4 * offset)), p.getOwner().getColor().getName());
+            VIEW.addGlow(VIEW.getPawn((p.getPawnNumber() - 1) + (4 * offset)), p.getOwner().getColor().getName());
         }
     }
 
     private void glowMoveablePawn(Player player) {
-        List<Pawn> moveable = gameSession.getMoveablePawns(player);
+        List<Pawn> moveable = GAMESESSION.getMoveablePawns(player);
         movablePawns(moveable);
     }
 
     private void checkIfEnded() throws FileNotFoundException {
-        if (gameSession.hasGameEnded()) {
-            if (gameSession.getWinner() != null) {
-                Leaderboards.addScore(gameSession.getWinner());
+        if (GAMESESSION.hasGameEnded()) {
+            if (GAMESESSION.getWinner() != null) {
+                Leaderboards.addScore(GAMESESSION.getWinner());
             }
             stopThread();
             EndgameScreenView endgameScreenView = new EndgameScreenView();
-            EndgameScreenPresenter presenter = new EndgameScreenPresenter(gameSession, endgameScreenView);
-            view.getScene().setRoot(endgameScreenView);
+            EndgameScreenPresenter presenter = new EndgameScreenPresenter(GAMESESSION, endgameScreenView);
+            VIEW.getScene().setRoot(endgameScreenView);
         }
         updateAllPawnPositions();
     }
 
     private void updateView() {
         //set names
-        for (int i = 0; i < gameSession.getPlayers().size(); i++) {
-            view.getPlayerName(i).setText(gameSession.getRawPlayer(i).getName());
+        for (int i = 0; i < GAMESESSION.getPlayers().size(); i++) {
+            VIEW.getPlayerName(i).setText(GAMESESSION.getRawPlayer(i).getName());
         }
 
-        if (!(gameSession.getPlayers().get(0) instanceof AiPlayer)) {
+        if (!(GAMESESSION.getPlayers().get(0) instanceof AiPlayer)) {
             displayControlsCurrentPlayer();
         }
         updateAllPawnPositions();
@@ -240,33 +240,33 @@ public class GamePresenter {
     public void updateAllPawnPositions() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                view.getPawn(j + 4 * i).setTranslateX(converter.getX(gameSession.getRawPlayer(i).pawns.get(j).getPosition().getNr()));
-                view.getPawn(j + 4 * i).setTranslateY(converter.getY(gameSession.getRawPlayer(i).pawns.get(j).getPosition().getNr()));
-                if (j > 0 && !(gameSession.getRawPlayer(i).pawns.get(j).isInGame())) {
-                    int offset = gameSession.getRawPlayer(i).pawns.get(j).getPosition().getNr() * 100;
-                    view.getPawn(j + 4 * i).setTranslateX(converter.getX(offset + j + 1));
-                    view.getPawn(j + 4 * i).setTranslateY(converter.getY(offset + j + 1));
+                VIEW.getPawn(j + 4 * i).setTranslateX(CONVERTER.getX(GAMESESSION.getRawPlayer(i).pawns.get(j).getPosition().getNr()));
+                VIEW.getPawn(j + 4 * i).setTranslateY(CONVERTER.getY(GAMESESSION.getRawPlayer(i).pawns.get(j).getPosition().getNr()));
+                if (j > 0 && !(GAMESESSION.getRawPlayer(i).pawns.get(j).isInGame())) {
+                    int offset = GAMESESSION.getRawPlayer(i).pawns.get(j).getPosition().getNr() * 100;
+                    VIEW.getPawn(j + 4 * i).setTranslateX(CONVERTER.getX(offset + j + 1));
+                    VIEW.getPawn(j + 4 * i).setTranslateY(CONVERTER.getY(offset + j + 1));
                 }
             }
         }
-        Platform.runLater(view::rearrangePawns);
+        Platform.runLater(VIEW::rearrangePawns);
         Platform.runLater(this::updateTurn);
     }
 
     private void playAI() {
         final ReadWriteLock gameSessionLock = new ReentrantReadWriteLock();
         new Thread(() -> {
-            while (!stopThread && gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
+            while (!stopThread && GAMESESSION.getPlayers().get(GAMESESSION.getIndexTurn()) instanceof AiPlayer) {
                 gameSessionLock.readLock().lock(); // acquire read lock
                 try {
-                    synchronized (gameSession.getPlayers()) {
+                    synchronized (GAMESESSION.getPlayers()) {
                         do {
-                            gameSession.playAiTurn();
+                            GAMESESSION.playAiTurn();
                             updateDieFace();
                             Platform.runLater(this::updateAllPawnPositions);
-                        } while (!gameSession.isEndAiTurn());
+                        } while (!GAMESESSION.isEndAiTurn());
                     }
-                    gameSession.endTurn();
+                    GAMESESSION.endTurn();
                     checkIfEnded();
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
@@ -280,24 +280,24 @@ public class GamePresenter {
 
     private void updateDieFace() {
         hideDieFaces();
-        int i = gameSession.getCurrentPlayer();
-        view.getDie(i).setVisible(true);
-        view.getDie(i).setImage(view.getDieFoto(gameSession.getDieFace()));
+        int i = GAMESESSION.getCurrentPlayer();
+        VIEW.getDie(i).setVisible(true);
+        VIEW.getDie(i).setImage(VIEW.getDiePhoto(GAMESESSION.getDieFace()));
     }
 
     private void hideDieFaces() {
         for (int i = 0; i < 4; i++) {
-            view.getDie(i).setVisible(false);
+            VIEW.getDie(i).setVisible(false);
         }
     }
 
     private void displayControlsCurrentPlayer() {
-        int i = gameSession.getCurrentPlayer();
-        view.getRoll(i).setVisible(true);
+        int i = GAMESESSION.getCurrentPlayer();
+        VIEW.getRoll(i).setVisible(true);
     }
 
     private void updateTurn() {
-        view.getTurns().setText("turn: " + gameSession.getTurn());
+        VIEW.getTurns().setText("turn: " + GAMESESSION.getTurn());
     }
 
     public void stopThread() {

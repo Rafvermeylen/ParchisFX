@@ -323,11 +323,7 @@ public class GameView extends StackPane {
         }
     }
 
-    public Image getDieFoto(int dieFace){
+    public Image getDiePhoto(int dieFace){
         return dieFaces.get(dieFace);
-    }
-
-    public List<Image> getDieFaces() {
-        return dieFaces;
     }
 }

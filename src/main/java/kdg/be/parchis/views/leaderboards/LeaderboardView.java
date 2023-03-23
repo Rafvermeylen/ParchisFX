@@ -15,7 +15,6 @@ import kdg.be.parchis.model.menu.Leaderboards;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-
 public class LeaderboardView extends BorderPane {
     public static final String MONOSPACED = "Monospaced";
     private Button back;

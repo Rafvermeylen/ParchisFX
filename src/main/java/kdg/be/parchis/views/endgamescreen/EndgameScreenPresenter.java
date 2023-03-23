@@ -10,20 +10,20 @@ import kdg.be.parchis.views.mainmenu.MainMenuView;
 import java.io.FileNotFoundException;
 
 public class EndgameScreenPresenter {
-    private final Game gameSession;
-    private final EndgameScreenView view;
+    private final Game GAMESESSION;
+    private final EndgameScreenView VIEW;
 
     public EndgameScreenPresenter(
             Game model,
             EndgameScreenView view) {
-        this.gameSession = model;
-        this.view = view;
+        this.GAMESESSION = model;
+        this.VIEW = view;
         this.addEventHandlers();
         this.updateView();
     }
 
     private void addEventHandlers() {
-        view.getBackToMenu().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getBackToMenu().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -33,7 +33,7 @@ public class EndgameScreenPresenter {
                         Music.stopMusic();
                         Music.muteMenuMusic();
                     }
-                    view.getScene().setRoot(menuView);
+                    VIEW.getScene().setRoot(menuView);
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
@@ -42,11 +42,11 @@ public class EndgameScreenPresenter {
     }
 
     private void updateView() {
-        if (gameSession.getWinner() == null) {
-            view.getScoreWinner().setText("Aww, you didn't win. Better luck next time!");
+        if (GAMESESSION.getWinner() == null) {
+            VIEW.getScoreWinner().setText("Aww, you didn't win. Better luck next time!");
         } else {
-            view.getScoreWinner().setText("Well played, " + gameSession.getWinner().name() +
-                    "!\nYour score was: " + gameSession.getWinner().score());
+            VIEW.getScoreWinner().setText("Well played, " + GAMESESSION.getWinner().name() +
+                    "!\nYour score was: " + GAMESESSION.getWinner().score());
         }
     }
 }

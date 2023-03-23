@@ -21,13 +21,9 @@ public class PlayerSelectView extends BorderPane {
     private ImageView musicPic;
     private ImageView soundPic;
     private Button onePlayer;
-    private Image onePlayerPic;
     private Button twoPlayers;
-    private Image twoPlayerPic;
     private Button threePlayers;
-    private Image threePlayerPic;
     private Button fourPlayers;
-    private Image fourPlayerPic;
     private Image background;
     private Button back;
 
@@ -38,10 +34,10 @@ public class PlayerSelectView extends BorderPane {
 
     private void initialiseNodes() throws FileNotFoundException {
         back = new Button("Back");
-        onePlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\one_player.png"));
-        twoPlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\two_player.png"));
-        threePlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\three_player.png"));
-        fourPlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\four_player.png"));
+        Image onePlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\one_player.png"));
+        Image twoPlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\two_player.png"));
+        Image threePlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\three_player.png"));
+        Image fourPlayerPic = new Image(new FileInputStream("resources\\graphics\\buttons\\amountPlayers\\four_player.png"));
         onePlayer = new Button("", new ImageView(onePlayerPic));
         twoPlayers = new Button("", new ImageView(twoPlayerPic));
         threePlayers = new Button("", new ImageView(threePlayerPic));

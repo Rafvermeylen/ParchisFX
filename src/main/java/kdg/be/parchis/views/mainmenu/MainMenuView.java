@@ -22,7 +22,6 @@ public class MainMenuView extends BorderPane {
     private Button soundButton;
     private Button fxButton;
     private Image background;
-    private Image logo;
     private Image musicLoud;
     private Image musicMute;
     private Image sfxLoud;
@@ -31,7 +30,6 @@ public class MainMenuView extends BorderPane {
     private ImageView musicPic;
     private ImageView soundPic;
 
-
     public MainMenuView() throws FileNotFoundException {
         this.initialiseNodes();
         this.layoutNodes();
@@ -39,7 +37,7 @@ public class MainMenuView extends BorderPane {
 
     private void initialiseNodes() throws FileNotFoundException {
         background = new Image(new FileInputStream("resources\\backgrounds\\Background.png"));
-        logo = new Image(new FileInputStream("resources\\graphics\\logo.png"));
+        Image logo = new Image(new FileInputStream("resources\\graphics\\logo.png"));
         im = new ImageView(logo);
 
         musicLoud = new Image(new FileInputStream("resources/graphics/buttons/mute/MuteButton_loud.png"));
@@ -83,15 +81,15 @@ public class MainMenuView extends BorderPane {
         buttonsTop.getChildren().addAll(soundButton, fxButton);
         buttonsTop.setAlignment(Pos.TOP_RIGHT);
 
-        VBox buttonsmiddle = new VBox(15);
-        buttonsmiddle.getChildren().addAll(im, startButton, leaderboards, credits, rules, cheat);
-        buttonsmiddle.setAlignment(Pos.TOP_CENTER);
+        VBox buttonsMiddle = new VBox(15);
+        buttonsMiddle.getChildren().addAll(im, startButton, leaderboards, credits, rules, cheat);
+        buttonsMiddle.setAlignment(Pos.TOP_CENTER);
 
-        this.setCenter(buttonsmiddle);
+        this.setCenter(buttonsMiddle);
         this.setTop(buttonsTop);
         this.setBottom(exit);
 
-        BorderPane.setAlignment(buttonsmiddle, Pos.CENTER);
+        BorderPane.setAlignment(buttonsMiddle, Pos.CENTER);
         BorderPane.setAlignment(im, Pos.TOP_CENTER);
         BorderPane.setAlignment(exit, Pos.BOTTOM_CENTER);
         BorderPane.setMargin(exit, new Insets(30));

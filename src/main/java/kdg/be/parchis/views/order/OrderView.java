@@ -16,7 +16,6 @@ import java.util.List;
 
 public class OrderView extends StackPane {
     private Image background;
-    private Image board;
     private ImageView boardView;
     private Label player1Name;
     private Button roll1;
@@ -28,10 +27,10 @@ public class OrderView extends StackPane {
     private Button roll4;
     private Button back;
     private Button start;
-    private ImageView diceFoto1;
-    private ImageView diceFoto2;
-    private ImageView diceFoto3;
-    private ImageView diceFoto4;
+    private ImageView dicePhoto1;
+    private ImageView dicePhoto2;
+    private ImageView dicePhoto3;
+    private ImageView dicePhoto4;
     private List<Image> dieFaces;
 
     public OrderView() throws FileNotFoundException, InterruptedException {
@@ -52,12 +51,12 @@ public class OrderView extends StackPane {
 
         back = new Button("Back");
         start = new Button("START");
-        board = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
+        Image board = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
         boardView = new ImageView(board);
-        diceFoto1 = new ImageView();
-        diceFoto2 = new ImageView();
-        diceFoto3 = new ImageView();
-        diceFoto4 = new ImageView();
+        dicePhoto1 = new ImageView();
+        dicePhoto2 = new ImageView();
+        dicePhoto3 = new ImageView();
+        dicePhoto4 = new ImageView();
 
         dieFaces = Arrays.asList(
                 new Image(new FileInputStream("resources/graphics/die/empty.png")),
@@ -70,12 +69,12 @@ public class OrderView extends StackPane {
         );
     }
 
-    private void layoutNodes() throws InterruptedException {
+    private void layoutNodes() {
         this.getChildren().add(boardView);
 
         //player1 stuff
         VBox controls1 = new VBox(20);
-        controls1.getChildren().addAll(roll1, diceFoto1);
+        controls1.getChildren().addAll(roll1, dicePhoto1);
         controls1.setAlignment(Pos.CENTER);
         this.getChildren().add(player1Name);
         this.getChildren().add(controls1);
@@ -86,7 +85,7 @@ public class OrderView extends StackPane {
 
         //player2 stuff
         VBox controls2 = new VBox(20);
-        controls2.getChildren().addAll(roll2, diceFoto2);
+        controls2.getChildren().addAll(roll2, dicePhoto2);
         controls2.setAlignment(Pos.CENTER);
         this.getChildren().add(player2Name);
         this.getChildren().add(controls2);
@@ -97,7 +96,7 @@ public class OrderView extends StackPane {
 
         //player3 stuff
         VBox controls3 = new VBox(20);
-        controls3.getChildren().addAll(roll3, diceFoto3);
+        controls3.getChildren().addAll(roll3, dicePhoto3);
         controls3.setAlignment(Pos.CENTER);
         this.getChildren().add(player3Name);
         this.getChildren().add(controls3);
@@ -109,7 +108,7 @@ public class OrderView extends StackPane {
 
         //player4 stuff
         VBox controls4 = new VBox(20);
-        controls4.getChildren().addAll(roll4, diceFoto4);
+        controls4.getChildren().addAll(roll4, dicePhoto4);
         controls4.setAlignment(Pos.CENTER);
         this.getChildren().add(player4Name);
         this.getChildren().add(controls4);
@@ -141,8 +140,8 @@ public class OrderView extends StackPane {
         return roll1;
     }
 
-    public ImageView getDiceFoto1() {
-        return diceFoto1;
+    public ImageView getDicePhoto1() {
+        return dicePhoto1;
     }
 
     public Label getPlayer1Name() {
@@ -173,16 +172,16 @@ public class OrderView extends StackPane {
         return roll4;
     }
 
-    public ImageView getDiceFoto2() {
-        return diceFoto2;
+    public ImageView getDicePhoto2() {
+        return dicePhoto2;
     }
 
-    public ImageView getDiceFoto3() {
-        return diceFoto3;
+    public ImageView getDicePhoto3() {
+        return dicePhoto3;
     }
 
-    public ImageView getDiceFoto4() {
-        return diceFoto4;
+    public ImageView getDicePhoto4() {
+        return dicePhoto4;
     }
 
     public Button getStart() {

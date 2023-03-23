@@ -12,19 +12,19 @@ import kdg.be.parchis.views.playersetup.PlayerSetupView;
 import java.io.FileNotFoundException;
 
 public class PlayerSelectPresenter {
-    private final PlayerSelectView view;
-    private final MainMenuView backView;
+    private final PlayerSelectView VIEW;
+    private final MainMenuView BACKVIEW;
 
     public PlayerSelectPresenter(
             PlayerSelectView view, MainMenuView backView) {
-        this.view = view;
-        this.backView = backView;
+        this.VIEW = view;
+        this.BACKVIEW = backView;
         this.addEventHandlers();
         this.updateView();
     }
 
     private void addEventHandlers() {
-        view.getOnePlayer().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getOnePlayer().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 PlayerSetup playerSetup = new PlayerSetup(1);
@@ -32,7 +32,7 @@ public class PlayerSelectPresenter {
             }
         });
 
-        view.getTwoPlayers().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getTwoPlayers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 PlayerSetup playerSetup = new PlayerSetup(2);
@@ -40,7 +40,7 @@ public class PlayerSelectPresenter {
             }
         });
 
-        view.getThreePlayers().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getThreePlayers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 PlayerSetup playerSetup = new PlayerSetup(3);
@@ -48,7 +48,7 @@ public class PlayerSelectPresenter {
             }
         });
 
-        view.getFourPlayers().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getFourPlayers().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 PlayerSetup playerSetup = new PlayerSetup(4);
@@ -56,35 +56,35 @@ public class PlayerSelectPresenter {
             }
         });
 
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Sound.playClick();
-                view.getScene().setRoot(backView);
+                VIEW.getScene().setRoot(BACKVIEW);
             }
         });
 
-        view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Music.muteMenuMusic();
                 if (Music.getMediaPlayer().isMute()) {
-                    view.getMusicPic().setImage(view.getMusicMute());
+                    VIEW.getMusicPic().setImage(VIEW.getMusicMute());
                 } else {
-                    view.getMusicPic().setImage(view.getMusicLoud());
+                    VIEW.getMusicPic().setImage(VIEW.getMusicLoud());
                 }
             }
         });
 
-        view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
+        VIEW.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Sound.clickMute();
 
                 if (Sound.isMuted()) {
-                    view.getSoundPic().setImage(view.getSfxMute());
+                    VIEW.getSoundPic().setImage(VIEW.getSfxMute());
                 } else {
-                    view.getSoundPic().setImage(view.getSfxLoud());
+                    VIEW.getSoundPic().setImage(VIEW.getSfxLoud());
                 }
             }
         });
@@ -92,14 +92,14 @@ public class PlayerSelectPresenter {
 
     private void updateView() {
         if (Music.getMediaPlayer().isMute()) {
-            view.getMusicPic().setImage(view.getMusicMute());
+            VIEW.getMusicPic().setImage(VIEW.getMusicMute());
         } else {
-            view.getMusicPic().setImage(view.getMusicLoud());
+            VIEW.getMusicPic().setImage(VIEW.getMusicLoud());
         }
         if (Sound.isMuted()) {
-            view.getSoundPic().setImage(view.getSfxMute());
+            VIEW.getSoundPic().setImage(VIEW.getSfxMute());
         } else {
-            view.getSoundPic().setImage(view.getSfxLoud());
+            VIEW.getSoundPic().setImage(VIEW.getSfxLoud());
         }
     }
 
@@ -110,8 +110,8 @@ public class PlayerSelectPresenter {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        PlayerSetupPresenter psPres = new PlayerSetupPresenter(playerSetup, psView, view);
+        PlayerSetupPresenter psPres = new PlayerSetupPresenter(playerSetup, psView, VIEW);
         Sound.playClick();
-        view.getScene().setRoot(psView);
+        VIEW.getScene().setRoot(psView);
     }
 }

@@ -36,7 +36,7 @@ public class MainMenuPresenter {
         this.updateView();
     }
 
-    class Cheats {
+    static class Cheats {
         public static boolean activated = false;
 
         public static void clickButton() {
