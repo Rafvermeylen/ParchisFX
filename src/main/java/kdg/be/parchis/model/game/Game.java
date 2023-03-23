@@ -10,15 +10,15 @@ public class Game {
     private int turn;
     private final List<Player> PLAYERS;
     private final Board BOARD;
+    private final Dice DIE;
     private Score winner;
     private int indexTurn;
-    private final Dice die;
     private int dieFace;
     private int thrown;
     private boolean throwAgain;
     private int amountThrows;
     private Pawn lastMovedPawn;
-    private boolean endAITurn;
+    private boolean endAiTurn;
 
     public Game(List<Player> players) {
         turn = 1;
@@ -28,8 +28,8 @@ public class Game {
         indexTurn = 0;
         amountThrows = 0;
         startSetup();
-        endAITurn = false;
-        die = new Dice();
+        endAiTurn = false;
+        DIE = new Dice();
         throwAgain = false;
     }
 
@@ -260,7 +260,7 @@ public class Game {
     }
 
     public void endTurn() {
-        endAITurn = false;
+        endAiTurn = false;
         indexTurn++;
         if (indexTurn == 4) {
             indexTurn = 0;
@@ -272,7 +272,7 @@ public class Game {
 
     public void roll() {
         throwAgain = false;
-        thrown = die.roll();
+        thrown = DIE.roll();
         dieFace = thrown;
         amountThrows++;
         if (thrown == 6) {
@@ -331,7 +331,7 @@ public class Game {
                 Sound.playFail();
                 lastBackToNest();
             }
-            endAITurn = true;
+            endAiTurn = true;
         } else {
             if (PLAYERS.get(indexTurn).getHasBarrier() && (throwAgain)) {
                 movePawn(PLAYERS.get(indexTurn), PLAYERS.get(indexTurn).firstBarrierPawn());
@@ -351,13 +351,13 @@ public class Game {
             }
 
             if (!throwAgain) {
-                endAITurn = true;
+                endAiTurn = true;
             }
         }
     }
 
-    public boolean isEndAITurn() {
-        return endAITurn;
+    public boolean isEndAiTurn() {
+        return endAiTurn;
     }
 
     public List<Pawn> getMoveablePawns(Player p) {
@@ -384,7 +384,7 @@ public class Game {
         return winner;
     }
 
-    public List<Player> getPLAYERS() {
+    public List<Player> getPlayers() {
         return PLAYERS;
     }
 
@@ -404,7 +404,7 @@ public class Game {
         return lastMovedPawn;
     }
 
-    public Board getBOARD() {
+    public Board getBoard() {
         return BOARD;
     }
 

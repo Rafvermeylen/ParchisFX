@@ -14,7 +14,6 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-
 public class CreditsView extends BorderPane {
     public static final String MONOSPACED = "Monospaced";
     private Button soundButton;

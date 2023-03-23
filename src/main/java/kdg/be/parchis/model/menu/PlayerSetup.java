@@ -10,13 +10,13 @@ import java.util.List;
 
 public class PlayerSetup {
     private List<Player> players = new ArrayList<>(4);
-    private final int amountPlayers;
+    private final int AMOUNTPLAYERS;
     private int[] rolls;
     private Dice die;
     private int thrown;
 
     public PlayerSetup(int amountPlayers) {
-        this.amountPlayers = amountPlayers;
+        this.AMOUNTPLAYERS = amountPlayers;
         rolls = new int[]{0, 0, 0, 0};
         die = new Dice();
     }
@@ -62,7 +62,7 @@ public class PlayerSetup {
     }
 
     public int getAmountPlayers() {
-        return amountPlayers;
+        return AMOUNTPLAYERS;
     }
 
     public void setPlayers(String naam1) {

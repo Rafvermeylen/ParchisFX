@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Pawn {
     public Player owner;
-    private final int pawnNumber;
+    private final int PAWNNUMBER;
     private Tile position;
     private boolean inGame;
     private boolean isFinished;
@@ -18,7 +18,7 @@ public class Pawn {
 
 
     public Pawn(int pawnNumber, Player owner, Tile nest) {
-        this.pawnNumber = pawnNumber;
+        this.PAWNNUMBER = pawnNumber;
         inGame = false;
         isFinished = false;
         hasMoved = false;
@@ -131,7 +131,7 @@ public class Pawn {
     }
 
     public int getPawnNumber() {
-        return pawnNumber;
+        return PAWNNUMBER;
     }
 
     public Tile getPosition() {

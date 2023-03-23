@@ -12,12 +12,12 @@ import java.io.File;
 import static java.lang.Thread.sleep;
 
 public class Sound {
-    private static final String path = "resources\\audio\\sfx\\";
+    private static final String PATH = "resources\\audio\\sfx\\";
     private static boolean muted = false;
 
     private static void initSound(String name) {
         if (!muted) {
-            Media media = new Media(new File(path + name).toURI().toString());
+            Media media = new Media(new File(PATH + name).toURI().toString());
             // Just media doesn't work, x.getSource has to be added as well.
             AudioClip sound = new AudioClip(media.getSource());
             sound.setVolume(100);

@@ -26,14 +26,14 @@ public class GamePresenter {
         this.gameSession = model;
         this.view = view;
         this.addEventHandlers();
-        if (gameSession.getPLAYERS().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
+        if (gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
             playAI();
         }
         this.updateView();
     }
 
     private boolean isNextAi() {
-        return gameSession.getPLAYERS().get(gameSession.getIndexTurn()) instanceof AiPlayer;
+        return gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer;
     }
 
     private void setFinishVisible(int i) {
@@ -80,7 +80,7 @@ public class GamePresenter {
                         if (!player.isNestEmpty() && gameSession.isStartOK(player) && gameSession.getThrown() == 5) {
                             view.addNestGlow(player.getColor().getName());
                             view.getNestGlow().setVisible(true);
-                        } else if (!player.canMove(gameSession.getBOARD(), gameSession.getThrown()) && gameSession.getThrown() == 5) {
+                        } else if (!player.canMove(gameSession.getBoard(), gameSession.getThrown()) && gameSession.getThrown() == 5) {
                             setFinishVisible(gameSession.getCurrentPlayer());
                         }
                         glowMoveablePawn(player);
@@ -147,7 +147,7 @@ public class GamePresenter {
                     view.removeAllGlow();
                     view.getNestGlow().setVisible(false);
 
-                    if (player.pawns.get(index).isFinished() && player.canMove(gameSession.getBOARD(), gameSession.getThrown())) {
+                    if (player.pawns.get(index).isFinished() && player.canMove(gameSession.getBoard(), gameSession.getThrown())) {
                         glowJumpKill(player.getColor().getName());
                     }
 
@@ -227,11 +227,11 @@ public class GamePresenter {
 
     private void updateView() {
         //set names
-        for (int i = 0; i < gameSession.getPLAYERS().size(); i++) {
+        for (int i = 0; i < gameSession.getPlayers().size(); i++) {
             view.getPlayerName(i).setText(gameSession.getRawPlayer(i).getName());
         }
 
-        if (!(gameSession.getPLAYERS().get(0) instanceof AiPlayer)) {
+        if (!(gameSession.getPlayers().get(0) instanceof AiPlayer)) {
             displayControlsCurrentPlayer();
         }
         updateAllPawnPositions();
@@ -256,15 +256,15 @@ public class GamePresenter {
     private void playAI() {
         final ReadWriteLock gameSessionLock = new ReentrantReadWriteLock();
         new Thread(() -> {
-            while (!stopThread && gameSession.getPLAYERS().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
+            while (!stopThread && gameSession.getPlayers().get(gameSession.getIndexTurn()) instanceof AiPlayer) {
                 gameSessionLock.readLock().lock(); // acquire read lock
                 try {
-                    synchronized (gameSession.getPLAYERS()) {
+                    synchronized (gameSession.getPlayers()) {
                         do {
                             gameSession.playAiTurn();
                             updateDieFace();
                             Platform.runLater(this::updateAllPawnPositions);
-                        } while (!gameSession.isEndAITurn());
+                        } while (!gameSession.isEndAiTurn());
                     }
                     gameSession.endTurn();
                     checkIfEnded();

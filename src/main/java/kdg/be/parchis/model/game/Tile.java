@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tile {
-    private final int nr;
+    private final int NR;
     private List<Pawn> standingPawns;
     private boolean hasPawn;
     private boolean isBarrier;
@@ -18,7 +18,7 @@ public class Tile {
     private boolean safe;
 
     public Tile(TileKind kind, int id) {
-        nr = id;
+        NR = id;
         standingPawns = new ArrayList<>(2);
         hasPawn = false;
         isBarrier = false;
@@ -62,7 +62,7 @@ public class Tile {
     }
 
     public int getNr() {
-        return nr;
+        return NR;
     }
 
     public Color getBarrierColor() {

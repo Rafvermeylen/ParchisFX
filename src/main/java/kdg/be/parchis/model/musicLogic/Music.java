@@ -15,17 +15,17 @@ import java.util.List;
 public class Music {
     private static MediaPlayer mediaPlayer;
     private static List<Media> songs = new ArrayList<>();
-    private final static String path = "resources\\audio\\music\\";
+    private final static String PATH = "resources\\audio\\music\\";
 
     public static void playMenuMusic() {
-        Media menu_music = new Media(new File(path + "menu_music.mp3").toURI().toString());
+        Media menu_music = new Media(new File(PATH + "menu_music.mp3").toURI().toString());
         mediaPlayer = new MediaPlayer(menu_music);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
     }
 
     private static void addMusic(String name) {
-        songs.add(new Media(new File(path + name).toURI().toString()));
+        songs.add(new Media(new File(PATH + name).toURI().toString()));
     }
 
     public static void playGameMusic() {
