@@ -56,118 +56,97 @@ public class MainMenuPresenter {
             }
         });
 
-        view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Music.muteMenuMusic();
+        view.getSoundButton().setOnAction(actionEvent -> {
+            Music.muteMenuMusic();
 
-                if (Music.getMediaPlayer().isMute()) {
-                    view.getMusicPic().setImage(view.getMusicMute());
-                } else {
-                    view.getMusicPic().setImage(view.getMusicLoud());
-                }
+            if (Music.getMediaPlayer().isMute()) {
+                view.getMusicPic().setImage(view.getMusicMute());
+            } else {
+                view.getMusicPic().setImage(view.getMusicLoud());
             }
         });
 
-        view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.clickMute();
+        view.getFxButton().setOnAction(actionEvent -> {
+            Sound.clickMute();
 
-                if (Sound.isMuted()) {
-                    view.getSoundPic().setImage(view.getSfxMute());
-                } else {
-                    view.getSoundPic().setImage(view.getSfxLoud());
-                }
+            if (Sound.isMuted()) {
+                view.getSoundPic().setImage(view.getSfxMute());
+            } else {
+                view.getSoundPic().setImage(view.getSfxLoud());
             }
         });
 
-        view.getCheat().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.playClick();
-                Cheats.clickButton();
-                updateView();
-            }
+        view.getCheat().setOnAction(actionEvent -> {
+            Sound.playClick();
+            Cheats.clickButton();
+            updateView();
         });
 
-        view.getRules().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                RuleView ruleView = null;
+        view.getRules().setOnAction(actionEvent -> {
+            RuleView ruleView = null;
+            try {
+                ruleView = new RuleView();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            RulePresenter rulePresenter = new RulePresenter(ruleView, view);
+            Sound.playClick();
+            view.getScene().setRoot(ruleView);
+        });
+
+        view.getLeaderboards().setOnAction(actionEvent -> {
+            LeaderboardView leadView = null;
+            try {
+                leadView = new LeaderboardView();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            LeaderboardPresenter leadPres = new LeaderboardPresenter(leadView, view);
+            Sound.playClick();
+            view.getScene().setRoot(leadView);
+        });
+
+        view.getStartButton().setOnAction(actionEvent -> {
+            if (!Cheats.getActivated()) {
+                PlayerSelectView psView = null;
                 try {
-                    ruleView = new RuleView();
+                    psView = new PlayerSelectView();
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-                RulePresenter rulePresenter = new RulePresenter(ruleView, view);
+                PlayerSelectPresenter psPresenter = new PlayerSelectPresenter(psView, view);
                 Sound.playClick();
-                view.getScene().setRoot(ruleView);
-            }
-        });
-
-        view.getLeaderboards().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                LeaderboardView leadView = null;
+                view.getScene().setRoot(psView);
+            } else {
+                Music.stopMusic();
+                Music.playGameMusic();
+                ArrayList<Player> players = new ArrayList<>();
+                players.add(new AiPlayer("Bot_Yellow", Color.YELLOW));
+                players.add(new AiPlayer("Bot_Blue", Color.BLUE));
+                players.add(new AiPlayer("Bot_Red", Color.RED));
+                players.add(new AiPlayer("Bot_Green", Color.GREEN));
+                Game gameSession = new Game(players);
+                GameView gameView = null;
                 try {
-                    leadView = new LeaderboardView();
+                    gameView = new GameView();
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
                 }
-                LeaderboardPresenter leadPres = new LeaderboardPresenter(leadView, view);
-                Sound.playClick();
-                view.getScene().setRoot(leadView);
+                GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
+                view.getScene().setRoot(gameView);
             }
         });
 
-        view.getStartButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                if (!Cheats.getActivated()) {
-                    PlayerSelectView psView = null;
-                    try {
-                        psView = new PlayerSelectView();
-                    } catch (FileNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    PlayerSelectPresenter psPresenter = new PlayerSelectPresenter(psView, view);
-                    Sound.playClick();
-                    view.getScene().setRoot(psView);
-                } else {
-                    Music.stopMusic();
-                    Music.playGameMusic();
-                    ArrayList<Player> players = new ArrayList<>();
-                    players.add(new AiPlayer("Bot_Yellow", Color.YELLOW));
-                    players.add(new AiPlayer("Bot_Blue", Color.BLUE));
-                    players.add(new AiPlayer("Bot_Red", Color.RED));
-                    players.add(new AiPlayer("Bot_Green", Color.GREEN));
-                    Game gameSession = new Game(players);
-                    GameView gameView = null;
-                    try {
-                        gameView = new GameView();
-                    } catch (FileNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                    GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
-                    view.getScene().setRoot(gameView);
-                }
+        view.getCredits().setOnAction(actionEvent -> {
+            CreditsView creditsView = null;
+            try {
+                creditsView = new CreditsView();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
             }
-        });
-
-        view.getCredits().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                CreditsView creditsView = null;
-                try {
-                    creditsView = new CreditsView();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-                CreditsPresenter creditsPresenter = new CreditsPresenter(creditsView, view);
-                Sound.playClick();
-                view.getScene().setRoot(creditsView);
-            }
+            CreditsPresenter creditsPresenter = new CreditsPresenter(creditsView, view);
+            Sound.playClick();
+            view.getScene().setRoot(creditsView);
         });
     }
 

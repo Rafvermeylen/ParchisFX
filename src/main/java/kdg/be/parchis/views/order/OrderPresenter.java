@@ -10,24 +10,24 @@ import kdg.be.parchis.views.playersetup.PlayerSetupView;
 import java.io.FileNotFoundException;
 
 public class OrderPresenter {
-    private final PlayerSetup SETUP;
-    private final OrderView VIEW;
-    private final PlayerSetupView BACKVIEW;
+    private final PlayerSetup setup;
+    private final OrderView view;
+    private final PlayerSetupView backview;
     public OrderPresenter(
             PlayerSetup model,
             OrderView view,
             PlayerSetupView backView) {
-        this.SETUP = model;
-        this.VIEW = view;
-        this.BACKVIEW = backView;
+        this.setup = model;
+        this.view = view;
+        this.backview = backView;
         this.addEventHandlers();
         this.updateView();
     }
 
     private void addEventHandlers() {
-        VIEW.getBack().setOnAction(actionEvent -> {
+        view.getBack().setOnAction(actionEvent -> {
             Sound.playClick();
-            VIEW.getScene().setRoot(BACKVIEW);
+            view.getScene().setRoot(backview);
             if (!Music.getMediaPlayer().isMute()) {
                 Music.stopMusic();
                 Music.playMenuMusic();
@@ -36,24 +36,24 @@ public class OrderPresenter {
 
         for (int i = 0; i < 4; i++) {
             int finalI = i;
-            VIEW.getRollButtons(finalI).setOnAction(actionEvent -> {
-                VIEW.getRollButtons(finalI).setVisible(false);
+            view.getRollButtons(finalI).setOnAction(actionEvent -> {
+                view.getRollButtons(finalI).setVisible(false);
                 Sound.playRoll();
-                SETUP.roll();
-                SETUP.addRoll(finalI, SETUP.getThrown());
-                VIEW.getDieView(finalI).setImage(VIEW.getDieFace(SETUP.getThrown()));
-                VIEW.getBack().setVisible(false);
-                if (SETUP.didPlayersRoll()) {
-                    SETUP.order();
-                    VIEW.getStart().setVisible(true);
+                setup.roll();
+                setup.addRoll(finalI, setup.getThrown());
+                view.getDieView(finalI).setImage(view.getDieFace(setup.getThrown()));
+                view.getBack().setVisible(false);
+                if (setup.didPlayersRoll()) {
+                    setup.order();
+                    view.getStart().setVisible(true);
                 }
             });
         }
 
 
-        VIEW.getStart().setOnAction(actionEvent -> {
+        view.getStart().setOnAction(actionEvent -> {
             Sound.playClick();
-            Game gameSession = new Game(SETUP.getPlayers());
+            Game gameSession = new Game(setup.getPlayers());
             GameView gameView;
             try {
                 gameView = new GameView();
@@ -61,35 +61,35 @@ public class OrderPresenter {
                 throw new RuntimeException(e);
             }
             GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
-            VIEW.getScene().setRoot(gameView);
+            view.getScene().setRoot(gameView);
         });
     }
 
     private void updateView() {
         for (int i = 0; i < 4; i++) {
-            VIEW.getPlayerName(i).setText(SETUP.getPlayers().get(i).getName());
+            view.getPlayerName(i).setText(setup.getPlayers().get(i).getName());
         }
 
-        if (SETUP.getAmountPlayers() < 2) {
-            VIEW.getRollButtons(1).setVisible(false);
+        if (setup.getAmountPlayers() < 2) {
+            view.getRollButtons(1).setVisible(false);
             //roll as cpu
-            SETUP.roll();
-            VIEW.getDieView(1).setImage(VIEW.getDieFace(SETUP.getThrown()));
-            SETUP.addRoll(1, SETUP.getThrown());
+            setup.roll();
+            view.getDieView(1).setImage(view.getDieFace(setup.getThrown()));
+            setup.addRoll(1, setup.getThrown());
         }
-        if (SETUP.getAmountPlayers() < 3) {
-            VIEW.getRollButtons(2).setVisible(false);
+        if (setup.getAmountPlayers() < 3) {
+            view.getRollButtons(2).setVisible(false);
             //roll as cpu
-            SETUP.roll();
-            VIEW.getDieView(2).setImage(VIEW.getDieFace(SETUP.getThrown()));
-            SETUP.addRoll(2, SETUP.getThrown());
+            setup.roll();
+            view.getDieView(2).setImage(view.getDieFace(setup.getThrown()));
+            setup.addRoll(2, setup.getThrown());
         }
-        if (SETUP.getAmountPlayers() < 4) {
-            VIEW.getRollButtons(3).setVisible(false);
+        if (setup.getAmountPlayers() < 4) {
+            view.getRollButtons(3).setVisible(false);
             //roll as cpu
-            SETUP.roll();
-            VIEW.getDieView(3).setImage(VIEW.getDieFace(SETUP.getThrown()));
-            SETUP.addRoll(3, SETUP.getThrown());
+            setup.roll();
+            view.getDieView(3).setImage(view.getDieFace(setup.getThrown()));
+            setup.addRoll(3, setup.getThrown());
         }
     }
 }

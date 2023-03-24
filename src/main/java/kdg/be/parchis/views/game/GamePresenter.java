@@ -11,95 +11,98 @@ import kdg.be.parchis.views.endgamescreen.EndgameScreenView;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import static java.lang.Thread.sleep;
+
 public class GamePresenter {
-    private final Game GAMESESSION;
-    private final CoordinateConverter CONVERTER;
-    private final GameView VIEW;
+    private final Game gamesession;
+    private final CoordinateConverter converter;
+    private final GameView view;
     private volatile boolean stopThread = false;
     public GamePresenter(
             Game model,
             GameView view) {
-        CONVERTER = new CoordinateConverter();
-        this.GAMESESSION = model;
-        this.VIEW = view;
+        converter = new CoordinateConverter();
+        this.gamesession = model;
+        this.view = view;
         this.addEventHandlers();
-        if (GAMESESSION.getPlayers().get(GAMESESSION.getIndexTurn()) instanceof AiPlayer) {
+        if (gamesession.getPlayers().get(gamesession.getIndexTurn()) instanceof AiPlayer) {
             playAI();
         }
         this.updateView();
     }
 
     private boolean isNextAi() {
-        return GAMESESSION.getPlayers().get(GAMESESSION.getIndexTurn()) instanceof AiPlayer;
+        return gamesession.getPlayers().get(gamesession.getIndexTurn()) instanceof AiPlayer;
     }
 
     private void setFinishVisible(int i) {
-        VIEW.getFinish(i).setVisible(true);
+        view.getFinish(i).setVisible(true);
     }
 
     private void addEventHandlers() {
-        for (Button b : VIEW.getRoll()) {
+        for (Button b : view.getRoll()) {
             b.setOnAction(actionEvent -> {
                 b.setVisible(false);
                 Sound.playRoll();
-                GAMESESSION.roll();
+                gamesession.roll();
 
-                if (GAMESESSION.isThrowAgain() && GAMESESSION.getAmountThrows() == 3) {
+                if (gamesession.isThrowAgain() && gamesession.getAmountThrows() == 3) {
                     //return last pawn when you throw six, 3x if not null
-                    if (GAMESESSION.getLastMovedPawn() != null) {
-                        GAMESESSION.lastBackToNest();
+                    if (gamesession.getLastMovedPawn() != null) {
+                        gamesession.lastBackToNest();
                         updateAllPawnPositions();
                     }
-                    setFinishVisible(GAMESESSION.getCurrentPlayer());
+                    setFinishVisible(gamesession.getCurrentPlayer());
                 } else {
                     updateDieFace();
 
-                    Player player = GAMESESSION.getPlayer(GAMESESSION.getIndexTurn());
+                    Player player = gamesession.getPlayer(gamesession.getIndexTurn());
 
-                    if (!GAMESESSION.canPlayerMove(player) &&
-                            !player.getHasBarrier() && GAMESESSION.getThrown() != 5) {
+                    if (!gamesession.canPlayerMove(player) &&
+                            !player.getHasBarrier() && gamesession.getThrown() != 5) {
                         //do nothing when you cant do anything
-                        if (GAMESESSION.isThrowAgain()) {
+                        if (gamesession.isThrowAgain()) {
                             b.setVisible(true);
                         } else {
-                            setFinishVisible(GAMESESSION.getCurrentPlayer());
+                            setFinishVisible(gamesession.getCurrentPlayer());
                         }
-                    } else if (!GAMESESSION.canPlayerMove(player) && GAMESESSION.getThrown() == 5
-                            && GAMESESSION.isStartOK(player) && !player.isNestEmpty()) {
-                        VIEW.addNestGlow(player.getColor().getName());
-                        VIEW.getNestGlow().setVisible(true);
-                    } else if (GAMESESSION.canPlayerMove(player) && !player.getHasBarrier() && GAMESESSION.getThrown() != 5) {
+                    } else if (!gamesession.canPlayerMove(player) && gamesession.getThrown() == 5
+                            && gamesession.isStartOK(player) && !player.isNestEmpty()) {
+                        view.addNestGlow(player.getColor().getName());
+                        view.getNestGlow().setVisible(true);
+                    } else if (gamesession.canPlayerMove(player) && !player.getHasBarrier() && gamesession.getThrown() != 5) {
                         glowMoveablePawn(player);
-                    } else if (player.getHasBarrier() && GAMESESSION.isThrowAgain()) {
-                        List<Pawn> moveable = GAMESESSION.getBarrierPawns(player);
+                    } else if (player.getHasBarrier() && gamesession.isThrowAgain()) {
+                        List<Pawn> moveable = gamesession.getBarrierPawns(player);
                         movablePawns(moveable);
                     } else {
-                        if (!player.isNestEmpty() && GAMESESSION.isStartOK(player) && GAMESESSION.getThrown() == 5) {
-                            VIEW.addNestGlow(player.getColor().getName());
-                            VIEW.getNestGlow().setVisible(true);
-                        } else if (!player.canMove(GAMESESSION.getBoard(), GAMESESSION.getThrown()) && GAMESESSION.getThrown() == 5) {
-                            setFinishVisible(GAMESESSION.getCurrentPlayer());
+                        if (!player.isNestEmpty() && gamesession.isStartOK(player) && gamesession.getThrown() == 5) {
+                            view.addNestGlow(player.getColor().getName());
+                            view.getNestGlow().setVisible(true);
+                        } else if (!player.canMove(gamesession.getBoard(), gamesession.getThrown()) && gamesession.getThrown() == 5) {
+                            setFinishVisible(gamesession.getCurrentPlayer());
                         }
                         glowMoveablePawn(player);
-                        if (GAMESESSION.isThrowAgain()) {
+                        if (gamesession.isThrowAgain()) {
                             b.setVisible(true);
-                            setFinishVisible(GAMESESSION.getCurrentPlayer());
+                            setFinishVisible(gamesession.getCurrentPlayer());
                         }
                     }
                 }
             });
         }
 
-        for (Button b : VIEW.getFinish()) {
+        for (Button b : view.getFinish()) {
             b.setOnAction(actionEvent -> {
-                String color = GAMESESSION.getPlayer(GAMESESSION.getIndexTurn()).getColor().getName();
+                String color = gamesession.getPlayer(gamesession.getIndexTurn()).getColor().getName();
                 Sound.playClick();
                 b.setVisible(false);
-                VIEW.getDie(getOffset(color)).setVisible(false);
-                GAMESESSION.endTurn();
+                view.getDie(getOffset(color)).setVisible(false);
+                gamesession.endTurn();
                 updateTurn();
                 if (isNextAi()) {
                     playAI();
@@ -114,48 +117,48 @@ public class GamePresenter {
             });
         }
 
-        VIEW.getNestGlow().setOnMouseClicked(mouseEvent -> {
+        view.getNestGlow().setOnMouseClicked(mouseEvent -> {
             Sound.playPawnMove();
 
-            GAMESESSION.leaveNest(GAMESESSION.getPlayer(GAMESESSION.getIndexTurn()).getColor().getName());
-            VIEW.getFinish(GAMESESSION.getCurrentPlayer()).setVisible(true);
+            gamesession.leaveNest(gamesession.getPlayer(gamesession.getIndexTurn()).getColor().getName());
+            view.getFinish(gamesession.getCurrentPlayer()).setVisible(true);
 
-            VIEW.getNestGlow().setVisible(false);
-            VIEW.removeAllGlow();
+            view.getNestGlow().setVisible(false);
+            view.removeAllGlow();
             updateAllPawnPositions();
         });
 
         for (int i = 0; i < 16; i++) {
-            ImageView im = VIEW.getPawn(i);
+            ImageView im = view.getPawn(i);
             int index = i % 4;
             int playerIndex = i / 4;
             im.setOnMouseClicked(mouseEvent -> {
-                if (GAMESESSION.pawnCanMove(index, playerIndex) && VIEW.hasGlow(im)) {
+                if (gamesession.pawnCanMove(index, playerIndex) && view.hasGlow(im)) {
                     Sound.playPawnMove();
-                    Player player = GAMESESSION.getPlayer(GAMESESSION.getIndexTurn());
-                    if (GAMESESSION.getThrown() != 10) {
-                        GAMESESSION.movePawn(player, player.pawns.get(index));
+                    Player player = gamesession.getPlayer(gamesession.getIndexTurn());
+                    if (gamesession.getThrown() != 10) {
+                        gamesession.movePawn(player, player.pawns.get(index));
                     } else {
-                        GAMESESSION.jump10(player.pawns.get(index));
-                        if (!GAMESESSION.isThrowAgain()) {
-                            VIEW.getFinish(getOffset(player.getColor().getName())).setVisible(true);
+                        gamesession.jump10(player.pawns.get(index));
+                        if (!gamesession.isThrowAgain()) {
+                            view.getFinish(getOffset(player.getColor().getName())).setVisible(true);
                         } else {
-                            VIEW.getRoll(getOffset(player.getColor().getName())).setVisible(true);
+                            view.getRoll(getOffset(player.getColor().getName())).setVisible(true);
                         }
                     }
 
-                    VIEW.removeAllGlow();
-                    VIEW.getNestGlow().setVisible(false);
+                    view.removeAllGlow();
+                    view.getNestGlow().setVisible(false);
 
-                    if (player.pawns.get(index).isFinished() && player.canMove(GAMESESSION.getBoard(), GAMESESSION.getThrown())) {
+                    if (player.pawns.get(index).isFinished() && player.canMove(gamesession.getBoard(), gamesession.getThrown())) {
                         glowJumpKill(player.getColor().getName());
                     }
 
-                    if (!GAMESESSION.isThrowAgain()) {
-                        VIEW.getFinish(getOffset(player.getColor().getName())).setVisible(true);
+                    if (!gamesession.isThrowAgain()) {
+                        view.getFinish(getOffset(player.getColor().getName())).setVisible(true);
                     } else {
-                        if (GAMESESSION.getThrown() != 10) {
-                            VIEW.getRoll(getOffset(player.getColor().getName())).setVisible(true);
+                        if (gamesession.getThrown() != 10) {
+                            view.getRoll(getOffset(player.getColor().getName())).setVisible(true);
                         }
                     }
 
@@ -176,15 +179,15 @@ public class GamePresenter {
     }
 
     private void glowJumpKill(String color) {
-        VIEW.getFinish(getOffset(color)).setVisible(false);
-        List<Pawn> moveable = GAMESESSION.getMoveablePawns(GAMESESSION.getPlayer(color));
+        view.getFinish(getOffset(color)).setVisible(false);
+        List<Pawn> moveable = gamesession.getMoveablePawns(gamesession.getPlayer(color));
         movablePawns(moveable);
         if (moveable.size() == 0) {
-            if (!GAMESESSION.isThrowAgain()) {
-                VIEW.getFinish(getOffset(color)).setVisible(true);
+            if (!gamesession.isThrowAgain()) {
+                view.getFinish(getOffset(color)).setVisible(true);
             } else {
-                if (GAMESESSION.isThrowAgain()) {
-                    VIEW.getRoll(getOffset(color)).setVisible(true);
+                if (gamesession.isThrowAgain()) {
+                    view.getRoll(getOffset(color)).setVisible(true);
                 }
             }
         }
@@ -203,35 +206,35 @@ public class GamePresenter {
     private void movablePawns(List<Pawn> moveable) {
         for (Pawn p : moveable) {
             int offset = getOffset(p.getOwner().getColor().getName());
-            VIEW.addGlow(VIEW.getPawn((p.getPawnNumber() - 1) + (4 * offset)), p.getOwner().getColor().getName());
+            view.addGlow(view.getPawn((p.getPawnNumber() - 1) + (4 * offset)), p.getOwner().getColor().getName());
         }
     }
 
     private void glowMoveablePawn(Player player) {
-        List<Pawn> moveable = GAMESESSION.getMoveablePawns(player);
+        List<Pawn> moveable = gamesession.getMoveablePawns(player);
         movablePawns(moveable);
     }
 
     private void checkIfEnded() throws FileNotFoundException {
-        if (GAMESESSION.hasGameEnded()) {
-            if (GAMESESSION.getWinner() != null) {
-                Leaderboards.addScore(GAMESESSION.getWinner());
+        if (gamesession.hasGameEnded()) {
+            if (gamesession.getWinner() != null) {
+                Leaderboards.addScore(gamesession.getWinner());
             }
             stopThread();
             EndgameScreenView endgameScreenView = new EndgameScreenView();
-            EndgameScreenPresenter presenter = new EndgameScreenPresenter(GAMESESSION, endgameScreenView);
-            VIEW.getScene().setRoot(endgameScreenView);
+            EndgameScreenPresenter presenter = new EndgameScreenPresenter(gamesession, endgameScreenView);
+            view.getScene().setRoot(endgameScreenView);
         }
         updateAllPawnPositions();
     }
 
     private void updateView() {
         //set names
-        for (int i = 0; i < GAMESESSION.getPlayers().size(); i++) {
-            VIEW.getPlayerName(i).setText(GAMESESSION.getRawPlayer(i).getName());
+        for (int i = 0; i < gamesession.getPlayers().size(); i++) {
+            view.getPlayerName(i).setText(gamesession.getRawPlayer(i).getName());
         }
 
-        if (!(GAMESESSION.getPlayers().get(0) instanceof AiPlayer)) {
+        if (!(gamesession.getPlayers().get(0) instanceof AiPlayer)) {
             displayControlsCurrentPlayer();
         }
         updateAllPawnPositions();
@@ -240,35 +243,41 @@ public class GamePresenter {
     public void updateAllPawnPositions() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                VIEW.getPawn(j + 4 * i).setTranslateX(CONVERTER.getX(GAMESESSION.getRawPlayer(i).pawns.get(j).getPosition().getNr()));
-                VIEW.getPawn(j + 4 * i).setTranslateY(CONVERTER.getY(GAMESESSION.getRawPlayer(i).pawns.get(j).getPosition().getNr()));
-                if (j > 0 && !(GAMESESSION.getRawPlayer(i).pawns.get(j).isInGame())) {
-                    int offset = GAMESESSION.getRawPlayer(i).pawns.get(j).getPosition().getNr() * 100;
-                    VIEW.getPawn(j + 4 * i).setTranslateX(CONVERTER.getX(offset + j + 1));
-                    VIEW.getPawn(j + 4 * i).setTranslateY(CONVERTER.getY(offset + j + 1));
+                view.getPawn(j + 4 * i).setTranslateX(converter.getX(gamesession.getRawPlayer(i).pawns.get(j).getPosition().getNr()));
+                view.getPawn(j + 4 * i).setTranslateY(converter.getY(gamesession.getRawPlayer(i).pawns.get(j).getPosition().getNr()));
+                if (j > 0 && !(gamesession.getRawPlayer(i).pawns.get(j).isInGame())) {
+                    int offset = gamesession.getRawPlayer(i).pawns.get(j).getPosition().getNr() * 100;
+                    view.getPawn(j + 4 * i).setTranslateX(converter.getX(offset + j + 1));
+                    view.getPawn(j + 4 * i).setTranslateY(converter.getY(offset + j + 1));
                 }
             }
         }
-        Platform.runLater(VIEW::rearrangePawns);
+        Platform.runLater(view::rearrangePawns);
         Platform.runLater(this::updateTurn);
     }
 
     private void playAI() {
         final ReadWriteLock gameSessionLock = new ReentrantReadWriteLock();
+
         new Thread(() -> {
-            while (!stopThread && GAMESESSION.getPlayers().get(GAMESESSION.getIndexTurn()) instanceof AiPlayer) {
+            while (!stopThread && gamesession.getPlayers().get(gamesession.getIndexTurn()) instanceof AiPlayer) {
                 gameSessionLock.readLock().lock(); // acquire read lock
                 try {
-                    synchronized (GAMESESSION.getPlayers()) {
+                    synchronized (gamesession.getPlayers()) {
                         do {
-                            GAMESESSION.playAiTurn();
-                            updateDieFace();
-                            Platform.runLater(this::updateAllPawnPositions);
-                        } while (!GAMESESSION.isEndAiTurn());
+                            gamesession.roll();
+                            Sound.playRoll();
+                            CompletableFuture<Void> future = CompletableFuture.runAsync(() -> gamesession.playAiTurn());
+                            future.thenRun(() -> Platform.runLater(() -> {
+                                updateDieFace();
+                                updateAllPawnPositions();
+                            }));
+                            Thread.sleep(1000); // wait for 1 second
+                        } while (!gamesession.isEndAiTurn());
                     }
-                    GAMESESSION.endTurn();
+                    gamesession.endTurn();
                     checkIfEnded();
-                } catch (FileNotFoundException e) {
+                } catch (InterruptedException | FileNotFoundException e) {
                     throw new RuntimeException(e);
                 } finally {
                     gameSessionLock.readLock().unlock(); // release read lock
@@ -276,28 +285,29 @@ public class GamePresenter {
             }
             displayControlsCurrentPlayer();
         }).start();
+
     }
 
     private void updateDieFace() {
         hideDieFaces();
-        int i = GAMESESSION.getCurrentPlayer();
-        VIEW.getDie(i).setVisible(true);
-        VIEW.getDie(i).setImage(VIEW.getDiePhoto(GAMESESSION.getDieFace()));
+        int i = gamesession.getCurrentPlayer();
+        view.getDie(i).setVisible(true);
+        view.getDie(i).setImage(view.getDiePhoto(gamesession.getDieFace()));
     }
 
     private void hideDieFaces() {
         for (int i = 0; i < 4; i++) {
-            VIEW.getDie(i).setVisible(false);
+            view.getDie(i).setVisible(false);
         }
     }
 
     private void displayControlsCurrentPlayer() {
-        int i = GAMESESSION.getCurrentPlayer();
-        VIEW.getRoll(i).setVisible(true);
+        int i = gamesession.getCurrentPlayer();
+        view.getRoll(i).setVisible(true);
     }
 
     private void updateTurn() {
-        VIEW.getTurns().setText("turn: " + GAMESESSION.getTurn());
+        view.getTurns().setText("turn: " + gamesession.getTurn());
     }
 
     public void stopThread() {

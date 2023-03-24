@@ -7,47 +7,47 @@ import kdg.be.parchis.model.musiclogic.Sound;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 
 public class CreditsPresenter {
-    private final CreditsView VIEW;
-    private final MainMenuView BACKVIEW;
+    private final CreditsView view;
+    private final MainMenuView backview;
 
 
     public CreditsPresenter(CreditsView view, MainMenuView backView) {
-        this.VIEW = view;
-        this.BACKVIEW = backView;
+        this.view = view;
+        this.backview = backView;
         this.addEventHandlers();
         this.updateView();
     }
 
     private void addEventHandlers() {
-        VIEW.getBack().setOnAction(new EventHandler<ActionEvent>() {
+        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Sound.playClick();
-                VIEW.getScene().setRoot(BACKVIEW);
+                view.getScene().setRoot(backview);
             }
         });
 
-        VIEW.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
+        view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Music.muteMenuMusic();
                 if (Music.getMediaPlayer().isMute()) {
-                    VIEW.getMusicPic().setImage(VIEW.getMusicMute());
+                    view.getMusicPic().setImage(view.getMusicMute());
                 } else {
-                    VIEW.getMusicPic().setImage(VIEW.getMusicLoud());
+                    view.getMusicPic().setImage(view.getMusicLoud());
                 }
             }
         });
 
-        VIEW.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
+        view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Sound.clickMute();
 
                 if (Sound.isMuted()) {
-                    VIEW.getSoundPic().setImage(VIEW.getSfxMute());
+                    view.getSoundPic().setImage(view.getSfxMute());
                 } else {
-                    VIEW.getSoundPic().setImage(VIEW.getSfxLoud());
+                    view.getSoundPic().setImage(view.getSfxLoud());
                 }
             }
         });
@@ -55,14 +55,14 @@ public class CreditsPresenter {
 
     private void updateView() {
         if (Music.getMediaPlayer().isMute()) {
-            VIEW.getMusicPic().setImage(VIEW.getMusicMute());
+            view.getMusicPic().setImage(view.getMusicMute());
         } else {
-            VIEW.getMusicPic().setImage(VIEW.getMusicLoud());
+            view.getMusicPic().setImage(view.getMusicLoud());
         }
         if (Sound.isMuted()) {
-            VIEW.getSoundPic().setImage(VIEW.getSfxMute());
+            view.getSoundPic().setImage(view.getSfxMute());
         } else {
-            VIEW.getSoundPic().setImage(VIEW.getSfxLoud());
+            view.getSoundPic().setImage(view.getSfxLoud());
         }
     }
 }
