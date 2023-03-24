@@ -11,27 +11,22 @@ import kdg.be.parchis.model.musicLogic.Music;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class OrderView extends StackPane {
+    private List<Button> rollButtons;
+    private List<ImageView> dieView;
+    private List<Image> dieFaces;
     private Image background;
     private ImageView boardView;
     private Label player1Name;
-    private Button roll1;
     private Label player2Name;
-    private Button roll2;
     private Label player3Name;
-    private Button roll3;
     private Label player4Name;
-    private Button roll4;
     private Button back;
     private Button start;
-    private ImageView dicePhoto1;
-    private ImageView dicePhoto2;
-    private ImageView dicePhoto3;
-    private ImageView dicePhoto4;
-    private List<Image> dieFaces;
 
     public OrderView() throws FileNotFoundException, InterruptedException {
         this.initialiseNodes();
@@ -40,23 +35,31 @@ public class OrderView extends StackPane {
 
     private void initialiseNodes() throws FileNotFoundException {
         background = new Image(new FileInputStream("resources\\backgrounds\\ingame_background.png"));
+
+        rollButtons = Arrays.asList(
+                new Button("Roll"),
+                new Button("Roll"),
+                new Button("Roll"),
+                new Button("Roll")
+        );
+
         player1Name = new Label();
         player2Name = new Label();
         player3Name = new Label();
         player4Name = new Label();
-        roll1 = new Button("Roll");
-        roll2 = new Button("Roll");
-        roll3 = new Button("Roll");
-        roll4 = new Button("Roll");
+
 
         back = new Button("Back");
         start = new Button("START");
         Image board = new Image(new FileInputStream("resources\\graphics\\game\\board.png"));
         boardView = new ImageView(board);
-        dicePhoto1 = new ImageView();
-        dicePhoto2 = new ImageView();
-        dicePhoto3 = new ImageView();
-        dicePhoto4 = new ImageView();
+
+        dieView = Arrays.asList(
+                new ImageView(),
+                new ImageView(),
+                new ImageView(),
+                new ImageView()
+        );
 
         dieFaces = Arrays.asList(
                 new Image(new FileInputStream("resources/graphics/die/empty.png")),
@@ -74,7 +77,7 @@ public class OrderView extends StackPane {
 
         //player1 stuff
         VBox controls1 = new VBox(20);
-        controls1.getChildren().addAll(roll1, dicePhoto1);
+        controls1.getChildren().addAll(rollButtons.get(0), dieView.get(0));
         controls1.setAlignment(Pos.CENTER);
         this.getChildren().add(player1Name);
         this.getChildren().add(controls1);
@@ -85,7 +88,7 @@ public class OrderView extends StackPane {
 
         //player2 stuff
         VBox controls2 = new VBox(20);
-        controls2.getChildren().addAll(roll2, dicePhoto2);
+        controls2.getChildren().addAll(rollButtons.get(1), dieView.get(1));
         controls2.setAlignment(Pos.CENTER);
         this.getChildren().add(player2Name);
         this.getChildren().add(controls2);
@@ -96,7 +99,7 @@ public class OrderView extends StackPane {
 
         //player3 stuff
         VBox controls3 = new VBox(20);
-        controls3.getChildren().addAll(roll3, dicePhoto3);
+        controls3.getChildren().addAll(rollButtons.get(2), dieView.get(2));
         controls3.setAlignment(Pos.CENTER);
         this.getChildren().add(player3Name);
         this.getChildren().add(controls3);
@@ -108,7 +111,7 @@ public class OrderView extends StackPane {
 
         //player4 stuff
         VBox controls4 = new VBox(20);
-        controls4.getChildren().addAll(roll4, dicePhoto4);
+        controls4.getChildren().addAll(rollButtons.get(3), dieView.get(3));
         controls4.setAlignment(Pos.CENTER);
         this.getChildren().add(player4Name);
         this.getChildren().add(controls4);
@@ -136,14 +139,6 @@ public class OrderView extends StackPane {
         return back;
     }
 
-    public Button getRoll1() {
-        return roll1;
-    }
-
-    public ImageView getDicePhoto1() {
-        return dicePhoto1;
-    }
-
     public Label getPlayer1Name() {
         return player1Name;
     }
@@ -152,36 +147,12 @@ public class OrderView extends StackPane {
         return player2Name;
     }
 
-    public Button getRoll2() {
-        return roll2;
-    }
-
     public Label getPlayer3Name() {
         return player3Name;
     }
 
-    public Button getRoll3() {
-        return roll3;
-    }
-
     public Label getPlayer4Name() {
         return player4Name;
-    }
-
-    public Button getRoll4() {
-        return roll4;
-    }
-
-    public ImageView getDicePhoto2() {
-        return dicePhoto2;
-    }
-
-    public ImageView getDicePhoto3() {
-        return dicePhoto3;
-    }
-
-    public ImageView getDicePhoto4() {
-        return dicePhoto4;
     }
 
     public Button getStart() {
@@ -190,5 +161,13 @@ public class OrderView extends StackPane {
 
     public Image getDieFace(int thrown){
         return dieFaces.get(thrown);
+    }
+
+    public Button getRollButtons(int index) {
+        return rollButtons.get(index);
+    }
+
+    public ImageView getDieView(int index) {
+        return dieView.get(index);
     }
 }

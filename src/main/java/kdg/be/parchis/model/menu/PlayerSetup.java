@@ -12,13 +12,13 @@ public class PlayerSetup {
     private List<Player> players = new ArrayList<>(4);
     private final int AMOUNTPLAYERS;
     private int[] rolls;
-    private Dice die;
+    private final Dice DIE;
     private int thrown;
 
     public PlayerSetup(int amountPlayers) {
         this.AMOUNTPLAYERS = amountPlayers;
         rolls = new int[]{0, 0, 0, 0};
-        die = new Dice();
+        DIE = new Dice();
     }
 
     public void order() {
@@ -97,7 +97,7 @@ public class PlayerSetup {
     }
 
     public void roll(){
-        thrown = die.roll();
+        thrown = DIE.roll();
     }
 
     public int getThrown(){
