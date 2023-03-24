@@ -7,11 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import kdg.be.parchis.model.musicLogic.Music;
+import kdg.be.parchis.model.musiclogic.Music;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
