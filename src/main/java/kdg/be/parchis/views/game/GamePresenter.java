@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import kdg.be.parchis.model.game.*;
 import kdg.be.parchis.model.menu.Leaderboards;
-import kdg.be.parchis.model.musicLogic.Sound;
+import kdg.be.parchis.model.musiclogic.Sound;
 import kdg.be.parchis.views.endgamescreen.EndgameScreenPresenter;
 import kdg.be.parchis.views.endgamescreen.EndgameScreenView;
 

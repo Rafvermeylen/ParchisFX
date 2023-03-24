@@ -3,7 +3,7 @@ package kdg.be.parchis.views.endgamescreen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import kdg.be.parchis.model.game.Game;
-import kdg.be.parchis.model.musicLogic.Music;
+import kdg.be.parchis.model.musiclogic.Music;
 import kdg.be.parchis.views.mainmenu.MainMenuPresenter;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 

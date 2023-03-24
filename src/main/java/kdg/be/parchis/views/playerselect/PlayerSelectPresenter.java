@@ -2,10 +2,9 @@ package kdg.be.parchis.views.playerselect;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import kdg.be.parchis.model.menu.PlayerSetup;
-import kdg.be.parchis.model.musicLogic.Music;
-import kdg.be.parchis.model.musicLogic.Sound;
+import kdg.be.parchis.model.musiclogic.Music;
+import kdg.be.parchis.model.musiclogic.Sound;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
 import kdg.be.parchis.views.playersetup.PlayerSetupPresenter;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;

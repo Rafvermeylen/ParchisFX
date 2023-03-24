@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
-import kdg.be.parchis.model.musicLogic.Music;
+import kdg.be.parchis.model.musiclogic.Music;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

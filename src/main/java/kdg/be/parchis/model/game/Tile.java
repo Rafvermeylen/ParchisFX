@@ -4,7 +4,7 @@ This code is used to make the tile-logic.
 
 package kdg.be.parchis.model.game;
 
-import kdg.be.parchis.model.musicLogic.Sound;
+import kdg.be.parchis.model.musiclogic.Sound;
 
 import java.util.ArrayList;
 import java.util.List;

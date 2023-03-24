@@ -4,7 +4,7 @@ This code is used to make pawns, 'connect' them to the right player and other st
 
 package kdg.be.parchis.model.game;
 
-import kdg.be.parchis.model.musicLogic.Sound;
+import kdg.be.parchis.model.musiclogic.Sound;
 import java.util.ArrayList;
 
 public class Pawn {

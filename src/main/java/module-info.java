@@ -5,5 +5,5 @@ module kdg.be.parchis {
     exports kdg.be.parchis;
     exports kdg.be.parchis.model.menu;
     exports kdg.be.parchis.model.game;
-    exports kdg.be.parchis.model.musicLogic;
+    exports kdg.be.parchis.model.musiclogic;
 }
