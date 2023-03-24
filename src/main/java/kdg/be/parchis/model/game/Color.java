@@ -1,8 +1,3 @@
-/*
-This code is used to make an enum for the different colors. We make the colors lowercase, as to make it a bit easier to
-write and compare.
-*/
-
 package kdg.be.parchis.model.game;
 
 public enum Color {

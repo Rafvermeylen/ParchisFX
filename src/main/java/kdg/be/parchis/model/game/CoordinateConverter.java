@@ -1,7 +1,3 @@
-/*
-This code is used to make it easier to get/place pawns on a position. It uses the inner record Position.
-*/
-
 package kdg.be.parchis.model.game;
 
 import java.util.HashMap;

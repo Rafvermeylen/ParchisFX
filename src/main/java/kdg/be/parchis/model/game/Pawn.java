@@ -10,7 +10,7 @@ public class Pawn {
      * or in game).
      * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
      */
-    public Player owner;
+    private Player owner;
     private final int pawnnumber;
     private Tile position;
     private boolean inGame;

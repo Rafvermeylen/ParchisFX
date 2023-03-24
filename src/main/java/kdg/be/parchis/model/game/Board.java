@@ -1,8 +1,3 @@
-/*
-This code is used to use create the board. We have divided the board in different parts. That way, we can differentiate
-between all the tiles. We use a different class called 'Tile.java' which has the enum 'TileKind'.
-*/
-
 package kdg.be.parchis.model.game;
 
 import java.util.ArrayList;

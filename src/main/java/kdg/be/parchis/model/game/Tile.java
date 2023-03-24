@@ -30,11 +30,11 @@ public class Tile {
         if (hasPawn && safe && !isBarrier) {
             for (Pawn p : standingPawns) {
                 if (landedPawn.getPawnNumber() != p.getPawnNumber() &&
-                        landedPawn.owner.equals(p.owner)) {
+                        landedPawn.getOwner().equals(p.getOwner())) {
                     isBarrier = true;
                     Sound.barrierMade();
-                    barrierColor = landedPawn.owner.getColor();
-                    landedPawn.owner.setBarrier();
+                    barrierColor = landedPawn.getOwner().getColor();
+                    landedPawn.getOwner().setBarrier();
                     break;
                 }
             }
@@ -45,9 +45,9 @@ public class Tile {
     }
 
     public void pawnLeaves(Pawn leavingPawn) {
-        if (isBarrier && leavingPawn.owner.getColor().equals(barrierColor)) {
+        if (isBarrier && leavingPawn.getOwner().getColor().equals(barrierColor)) {
             isBarrier = false;
-            leavingPawn.owner.setBarrier();
+            leavingPawn.getOwner().setBarrier();
         } else if (standingPawns.size() == 1) {
             hasPawn = false;
         }

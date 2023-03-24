@@ -14,9 +14,6 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-
-import static java.lang.Thread.sleep;
-
 public class GamePresenter {
     private final Game gamesession;
     private final CoordinateConverter converter;
@@ -267,12 +264,12 @@ public class GamePresenter {
                         do {
                             gamesession.roll();
                             Sound.playRoll();
-                            CompletableFuture<Void> future = CompletableFuture.runAsync(() -> gamesession.playAiTurn());
+                            CompletableFuture<Void> future = CompletableFuture.runAsync(gamesession::playAiTurn);
                             future.thenRun(() -> Platform.runLater(() -> {
                                 updateDieFace();
                                 updateAllPawnPositions();
                             }));
-                            Thread.sleep(1000); // wait for 1 second
+                            Thread.sleep(500); // wait for .5 seconds
                         } while (!gamesession.isEndAiTurn());
                     }
                     gamesession.endTurn();
