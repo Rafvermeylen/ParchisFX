@@ -26,17 +26,16 @@ public class Leaderboards {
 
     public static void read() {
         ArrayList<Score> newList = new ArrayList<>();
-        // Changed this
-        Scanner fileScanner;
+        Scanner fileScanner = null;
         try {
             fileScanner = new Scanner(Paths.get("resources/data/scores.csv"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+        String line = fileScanner.nextLine();
         while (fileScanner.hasNext()) {
-            // Changed this
-            String line = fileScanner.nextLine();
+            line = fileScanner.nextLine();
             String[] parts = line.split(", ");
             String name = parts[0].substring(1, parts[0].length() - 1);
             int score = Integer.parseInt(parts[1]);
