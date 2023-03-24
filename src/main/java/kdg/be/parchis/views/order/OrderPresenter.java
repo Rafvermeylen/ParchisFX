@@ -1,13 +1,11 @@
 package kdg.be.parchis.views.order;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.menu.PlayerSetup;
-import kdg.be.parchis.model.musiclogic.Music;
-import kdg.be.parchis.model.musiclogic.Sound;
 import kdg.be.parchis.views.game.GamePresenter;
 import kdg.be.parchis.views.game.GameView;
+import kdg.be.parchis.model.musiclogic.Music;
+import kdg.be.parchis.model.musiclogic.Sound;
 import kdg.be.parchis.views.playersetup.PlayerSetupView;
 import java.io.FileNotFoundException;
 
@@ -27,15 +25,12 @@ public class OrderPresenter {
     }
 
     private void addEventHandlers() {
-        VIEW.getBack().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.playClick();
-                VIEW.getScene().setRoot(BACKVIEW);
-                if (!Music.getMediaPlayer().isMute()) {
-                    Music.stopMusic();
-                    Music.playMenuMusic();
-                }
+        VIEW.getBack().setOnAction(actionEvent -> {
+            Sound.playClick();
+            VIEW.getScene().setRoot(BACKVIEW);
+            if (!Music.getMediaPlayer().isMute()) {
+                Music.stopMusic();
+                Music.playMenuMusic();
             }
         });
 
@@ -56,28 +51,24 @@ public class OrderPresenter {
         }
 
 
-        VIEW.getStart().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.playClick();
-                Game gameSession = new Game(SETUP.getPlayers());
-                GameView gameView = null;
-                try {
-                    gameView = new GameView();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-                GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
-                VIEW.getScene().setRoot(gameView);
+        VIEW.getStart().setOnAction(actionEvent -> {
+            Sound.playClick();
+            Game gameSession = new Game(SETUP.getPlayers());
+            GameView gameView;
+            try {
+                gameView = new GameView();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
             }
+            GamePresenter gamePresenter = new GamePresenter(gameSession, gameView);
+            VIEW.getScene().setRoot(gameView);
         });
     }
 
     private void updateView() {
-        VIEW.getPlayer1Name().setText(SETUP.getPlayers().get(0).getName());
-        VIEW.getPlayer2Name().setText(SETUP.getPlayers().get(1).getName());
-        VIEW.getPlayer3Name().setText(SETUP.getPlayers().get(2).getName());
-        VIEW.getPlayer4Name().setText(SETUP.getPlayers().get(3).getName());
+        for (int i = 0; i < 4; i++) {
+            VIEW.getPlayerName(i).setText(SETUP.getPlayers().get(i).getName());
+        }
 
         if (SETUP.getAmountPlayers() < 2) {
             VIEW.getRollButtons(1).setVisible(false);
