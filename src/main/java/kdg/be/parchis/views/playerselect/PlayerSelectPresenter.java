@@ -27,45 +27,33 @@ public class PlayerSelectPresenter {
 
         for (int i = 0; i < view.getPlayers().size(); i++) {
             int finalI = i + 1;
-            view.getPlayers().get(i).setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    PlayerSetup playerSetup = new PlayerSetup(finalI);
-                    selectedPlayers(playerSetup);
-                }
+            view.getPlayers().get(i).setOnAction(actionEvent -> {
+                PlayerSetup playerSetup = new PlayerSetup(finalI);
+                selectedPlayers(playerSetup);
             });
         }
 
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.playClick();
-                view.getScene().setRoot(backview);
+        view.getBack().setOnAction(actionEvent -> {
+            Sound.playClick();
+            view.getScene().setRoot(backview);
+        });
+
+        view.getSoundButton().setOnAction(actionEvent -> {
+            Music.muteMenuMusic();
+            if (Music.getMediaPlayer().isMute()) {
+                view.getMusicPic().setImage(view.getMusicMute());
+            } else {
+                view.getMusicPic().setImage(view.getMusicLoud());
             }
         });
 
-        view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Music.muteMenuMusic();
-                if (Music.getMediaPlayer().isMute()) {
-                    view.getMusicPic().setImage(view.getMusicMute());
-                } else {
-                    view.getMusicPic().setImage(view.getMusicLoud());
-                }
-            }
-        });
+        view.getFxButton().setOnAction(actionEvent -> {
+            Sound.clickMute();
 
-        view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.clickMute();
-
-                if (Sound.isMuted()) {
-                    view.getSoundPic().setImage(view.getSfxMute());
-                } else {
-                    view.getSoundPic().setImage(view.getSfxLoud());
-                }
+            if (Sound.isMuted()) {
+                view.getSoundPic().setImage(view.getSfxMute());
+            } else {
+                view.getSoundPic().setImage(view.getSfxLoud());
             }
         });
     }

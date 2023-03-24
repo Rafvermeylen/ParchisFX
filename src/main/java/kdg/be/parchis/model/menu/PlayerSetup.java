@@ -14,16 +14,17 @@ public class PlayerSetup {
      * the thrown value gets remembered. Then the players get ordered based on what they threw.
      * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
      */
-    private List<Player> players = new ArrayList<>(4);
-    private final int AMOUNTPLAYERS;
+    private List<Player> players;
+    private final int amountPlayers;
     private int[] rolls;
-    private final Die DIE;
+    private final Die die;
     private int thrown;
 
     public PlayerSetup(int amountPlayers) {
-        this.AMOUNTPLAYERS = amountPlayers;
+        this.amountPlayers = amountPlayers;
         rolls = new int[]{0, 0, 0, 0};
-        DIE = new Die();
+        die = new Die();
+        players = new ArrayList<>(4);
     }
 
     public void order() {
@@ -67,42 +68,42 @@ public class PlayerSetup {
     }
 
     public int getAmountPlayers() {
-        return AMOUNTPLAYERS;
+        return amountPlayers;
     }
 
-    public void setPlayers(String naam1) {
-        players.add(new Player(naam1, Color.YELLOW));
+    public void setPlayers(String name1) {
+        players.add(new Player(name1, Color.YELLOW));
         players.add(new AiPlayer("Bot_Blue", Color.BLUE));
         players.add(new AiPlayer("Bot_Red", Color.RED));
         players.add(new AiPlayer("Bot_Green", Color.GREEN));
 
     }
 
-    public void setPlayers(String naam1, String naam2) {
-        players.add(new Player(naam1, Color.YELLOW));
-        players.add(new Player(naam2, Color.BLUE));
+    public void setPlayers(String name1, String name2) {
+        players.add(new Player(name1, Color.YELLOW));
+        players.add(new Player(name2, Color.BLUE));
         players.add(new AiPlayer("Bot_Red", Color.RED));
         players.add(new AiPlayer("Bot_Green", Color.GREEN));
 
     }
 
-    public void setPlayers(String naam1, String naam2, String naam3) {
-        players.add(new Player(naam1, Color.YELLOW));
-        players.add(new Player(naam2, Color.BLUE));
-        players.add(new Player(naam3, Color.RED));
+    public void setPlayers(String name1, String name2, String name3) {
+        players.add(new Player(name1, Color.YELLOW));
+        players.add(new Player(name2, Color.BLUE));
+        players.add(new Player(name3, Color.RED));
         players.add(new AiPlayer("Bot_Green", Color.GREEN));
 
     }
 
-    public void setPlayers(String naam1, String naam2, String naam3, String naam4) {
-        players.add(new Player(naam1, Color.YELLOW));
-        players.add(new Player(naam2, Color.BLUE));
-        players.add(new Player(naam3, Color.RED));
-        players.add(new Player(naam4, Color.GREEN));
+    public void setPlayers(String name1, String name2, String name3, String name4) {
+        players.add(new Player(name1, Color.YELLOW));
+        players.add(new Player(name2, Color.BLUE));
+        players.add(new Player(name3, Color.RED));
+        players.add(new Player(name4, Color.GREEN));
     }
 
     public void roll(){
-        thrown = DIE.roll();
+        thrown = die.roll();
     }
 
     public int getThrown(){

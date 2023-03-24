@@ -1,7 +1,5 @@
 package kdg.be.parchis.views.endgamescreen;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import kdg.be.parchis.model.game.Game;
 import kdg.be.parchis.model.musiclogic.Music;
 import kdg.be.parchis.views.mainmenu.MainMenuPresenter;
@@ -23,20 +21,17 @@ public class EndgameScreenPresenter {
     }
 
     private void addEventHandlers() {
-        view.getBackToMenu().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    MainMenuView menuView = new MainMenuView();
-                    MainMenuPresenter presenter = new MainMenuPresenter(menuView);
-                    if (!Music.getMediaPlayer().isMute()) {
-                        Music.stopMusic();
-                        Music.muteMenuMusic();
-                    }
-                    view.getScene().setRoot(menuView);
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
+        view.getBackToMenu().setOnAction(event -> {
+            try {
+                MainMenuView menuView = new MainMenuView();
+                MainMenuPresenter presenter = new MainMenuPresenter(menuView);
+                if (!Music.getMediaPlayer().isMute()) {
+                    Music.stopMusic();
+                    Music.muteMenuMusic();
                 }
+                view.getScene().setRoot(menuView);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
             }
         });
     }

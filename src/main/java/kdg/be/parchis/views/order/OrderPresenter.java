@@ -70,6 +70,7 @@ public class OrderPresenter {
             view.getPlayerName(i).setText(setup.getPlayers().get(i).getName());
         }
 
+        // Needs to be optimized
         if (setup.getAmountPlayers() < 2) {
             view.getRollButtons(1).setVisible(false);
             //roll as cpu

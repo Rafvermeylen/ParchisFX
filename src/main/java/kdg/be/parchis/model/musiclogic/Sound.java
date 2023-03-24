@@ -1,7 +1,3 @@
-/*
-This class does everything with sounds. It uses statics because it's much easier to call it that way.
-*/
-
 package kdg.be.parchis.model.musiclogic;
 
 import javafx.scene.media.AudioClip;
@@ -12,6 +8,10 @@ import java.io.File;
 import static java.lang.Thread.sleep;
 
 public class Sound {
+    /**
+     * This class does everything with sounds. It uses statics because it's much easier to call it that way.
+     * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
+     */
     private static final String PATH = "resources\\audio\\sfx\\";
     private static boolean muted = false;
 

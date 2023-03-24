@@ -43,6 +43,7 @@ public class PlayerSetupView extends BorderPane {
         back = new Button("Back");
         background = new Image(new FileInputStream("resources\\backgrounds\\Background.png"));
 
+        // Needs to be optimized
         player1NameArea = new TextField("");
         player2NameArea = new TextField("");
         player3NameArea = new TextField("");
@@ -75,6 +76,7 @@ public class PlayerSetupView extends BorderPane {
     }
 
     private void layoutNodes() {
+        // Needs to be optimized
         player1NameArea.setPrefSize(200, 10);
         player2NameArea.setPrefSize(200, 10);
         player3NameArea.setPrefSize(200, 10);
@@ -90,12 +92,14 @@ public class PlayerSetupView extends BorderPane {
             }
         };
 
+        // Needs to be optimized
         StringConverter<String> converter = new DefaultStringConverter();
         TextFormatter<String> textFormatter1 = new TextFormatter<>(converter, "", lengthFilter);
         TextFormatter<String> textFormatter2 = new TextFormatter<>(converter, "", lengthFilter);
         TextFormatter<String> textFormatter3 = new TextFormatter<>(converter, "", lengthFilter);
         TextFormatter<String> textFormatter4 = new TextFormatter<>(converter, "", lengthFilter);
 
+        // Needs to be optimized
         player1NameArea.setTextFormatter(textFormatter1);
         player2NameArea.setTextFormatter(textFormatter2);
         player3NameArea.setTextFormatter(textFormatter3);

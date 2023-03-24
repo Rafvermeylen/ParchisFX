@@ -1,7 +1,3 @@
-/*
-This class does everything with music. It uses statics because it's much easier to call it that way.
-*/
-
 package kdg.be.parchis.model.musiclogic;
 
 import javafx.scene.media.Media;
@@ -13,6 +9,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Music {
+    /**
+     * This class does everything with music. It uses statics because it's much easier to call it that way.
+     * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
+     */
     private static MediaPlayer mediaPlayer;
     private static List<Media> songs = new ArrayList<>();
     private final static String PATH = "resources\\audio\\music\\";

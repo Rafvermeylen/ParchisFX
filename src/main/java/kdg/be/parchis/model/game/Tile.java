@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Tile {
     /**
-     * The tile class shows what kind of tile it is and which pawns are standing on it. Also can tell if
+     * The tile class shows what kind of tile it is and which pawns are standing on it. Also, can tell if
      * there is a barrier made on it and says when there is a barrier on it.
      * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
      */

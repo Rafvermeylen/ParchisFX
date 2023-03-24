@@ -1,7 +1,5 @@
 package kdg.be.parchis.views.credits;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import kdg.be.parchis.model.musiclogic.Music;
 import kdg.be.parchis.model.musiclogic.Sound;
 import kdg.be.parchis.views.mainmenu.MainMenuView;
@@ -19,36 +17,27 @@ public class CreditsPresenter {
     }
 
     private void addEventHandlers() {
-        view.getBack().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.playClick();
-                view.getScene().setRoot(backview);
+        view.getBack().setOnAction(actionEvent -> {
+            Sound.playClick();
+            view.getScene().setRoot(backview);
+        });
+
+        view.getSoundButton().setOnAction(actionEvent -> {
+            Music.muteMenuMusic();
+            if (Music.getMediaPlayer().isMute()) {
+                view.getMusicPic().setImage(view.getMusicMute());
+            } else {
+                view.getMusicPic().setImage(view.getMusicLoud());
             }
         });
 
-        view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Music.muteMenuMusic();
-                if (Music.getMediaPlayer().isMute()) {
-                    view.getMusicPic().setImage(view.getMusicMute());
-                } else {
-                    view.getMusicPic().setImage(view.getMusicLoud());
-                }
-            }
-        });
+        view.getFxButton().setOnAction(actionEvent -> {
+            Sound.clickMute();
 
-        view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.clickMute();
-
-                if (Sound.isMuted()) {
-                    view.getSoundPic().setImage(view.getSfxMute());
-                } else {
-                    view.getSoundPic().setImage(view.getSfxLoud());
-                }
+            if (Sound.isMuted()) {
+                view.getSoundPic().setImage(view.getSfxMute());
+            } else {
+                view.getSoundPic().setImage(view.getSfxLoud());
             }
         });
     }

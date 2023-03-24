@@ -1,8 +1,6 @@
 package kdg.be.parchis.views.mainmenu;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -49,12 +47,7 @@ public class MainMenuPresenter {
     }
 
     private void addEventHandlers() {
-        view.getExit().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Platform.exit();
-            }
-        });
+        view.getExit().setOnAction(actionEvent -> Platform.exit());
 
         view.getSoundButton().setOnAction(actionEvent -> {
             Music.muteMenuMusic();

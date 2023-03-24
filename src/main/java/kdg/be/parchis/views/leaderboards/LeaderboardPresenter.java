@@ -1,7 +1,5 @@
 package kdg.be.parchis.views.leaderboards;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import kdg.be.parchis.model.musiclogic.Music;
 import kdg.be.parchis.model.musiclogic.Sound;
 import kdg.be.parchis.views.mainmenu.MainMenuView;

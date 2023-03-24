@@ -27,7 +27,7 @@ public class Leaderboards {
 
     public static void read() {
         ArrayList<Score> newList = new ArrayList<>();
-        Scanner fileScanner = null;
+        Scanner fileScanner;
         try {
             fileScanner = new Scanner(Paths.get("resources/data/scores.csv"));
         } catch (IOException e) {

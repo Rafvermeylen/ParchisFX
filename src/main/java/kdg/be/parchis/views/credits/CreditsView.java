@@ -68,7 +68,7 @@ public class CreditsView extends BorderPane {
                 Creators:
                 - Rui Daniel Gomes Vieira
                 - Raf Vermeylen
-                Game Testers: 
+                Game Testers:
                 - Akino Verschueren
                 - Pieter Corstens
                 - Robby Crijns

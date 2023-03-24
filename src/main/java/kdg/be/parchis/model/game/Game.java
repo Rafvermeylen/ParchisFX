@@ -122,7 +122,7 @@ public class Game {
                         moved.getOwner().moveByTile(moved, board.board.get(moved.getPosition().getNr() + value + value));
                     }
 
-                    //Make sure that if pawn goes on the landingstrip and off again, it won't go on another landingstrip
+                    //Make sure that if pawn goes on the landing strip and off again, it won't go on another landing strip
                     if (moved.getOwner().getColor().equals(Color.BLUE) && moved.getPosition().getNr() < 81 && moved.getPosition().getNr() > 17) {
                         switch (moved.getPosition().getNr()) {
                             case 18 -> moved.getOwner().moveByTile(moved, board.board.get(81));
@@ -132,7 +132,7 @@ public class Game {
                             case 78 -> moved.getOwner().moveByTile(moved, board.board.get(15));
                             case 77 -> moved.getOwner().moveByTile(moved, board.board.get(14));
                         }
-                        // Goes to right position if blue gets a higher position than 88 (landingstrip ends at 88)
+                        // Goes to right position if blue gets a higher position than 88 (landing strip ends at 88)
                     } else if (moved.getOwner().getColor().equals(Color.BLUE) && moved.getPosition().getNr() > 88) {
                         switch (moved.getPosition().getNr()) {
                             case 89 -> moved.getOwner().moveByTile(moved, board.board.get(87));

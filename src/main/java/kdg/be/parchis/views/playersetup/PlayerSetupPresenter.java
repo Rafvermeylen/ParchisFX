@@ -1,7 +1,5 @@
 package kdg.be.parchis.views.playersetup;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.layout.BorderPane;
 import kdg.be.parchis.model.menu.PlayerSetup;
 import kdg.be.parchis.model.musiclogic.Music;
@@ -34,66 +32,69 @@ public class PlayerSetupPresenter extends BorderPane {
             view.getScene().setRoot(backview);
         });
 
-        view.getPlay().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                Sound.playClick();
-                //Add players to player list
-                if (setup.getAmountPlayers() == 1) {
-                    setup.setPlayers(
-                            view.getPlayer1NameArea().getText());
-                } else if (setup.getAmountPlayers() == 2) {
-                    setup.setPlayers(
-                            view.getPlayer1NameArea().getText(),
-                            view.getPlayer2NameArea().getText());
-                } else if (setup.getAmountPlayers() == 3) {
-                    setup.setPlayers(
-                            view.getPlayer1NameArea().getText(),
-                            view.getPlayer2NameArea().getText(),
-                            view.getPlayer3NameArea().getText());
-                } else if (setup.getAmountPlayers() == 4) {
-                    setup.setPlayers(
-                            view.getPlayer1NameArea().getText(),
-                            view.getPlayer2NameArea().getText(),
-                            view.getPlayer3NameArea().getText(),
-                            view.getPlayer4NameArea().getText());
-                }
-                //change view
-                OrderView orderview = null;
-                try {
-                    orderview = new OrderView();
-                } catch (FileNotFoundException | InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                OrderPresenter orderPresenter = new OrderPresenter(setup, orderview, view);
-                view.getScene().setRoot(orderview);
+        // Needs to be optimized
+        view.getPlay().setOnAction(event -> {
+            Sound.playClick();
+            //Add players to player list
+            if (setup.getAmountPlayers() == 1) {
+                setup.setPlayers(
+                        view.getPlayer1NameArea().getText());
+            } else if (setup.getAmountPlayers() == 2) {
+                setup.setPlayers(
+                        view.getPlayer1NameArea().getText(),
+                        view.getPlayer2NameArea().getText());
+            } else if (setup.getAmountPlayers() == 3) {
+                setup.setPlayers(
+                        view.getPlayer1NameArea().getText(),
+                        view.getPlayer2NameArea().getText(),
+                        view.getPlayer3NameArea().getText());
+            } else if (setup.getAmountPlayers() == 4) {
+                setup.setPlayers(
+                        view.getPlayer1NameArea().getText(),
+                        view.getPlayer2NameArea().getText(),
+                        view.getPlayer3NameArea().getText(),
+                        view.getPlayer4NameArea().getText());
+            }
+            //change view
+            OrderView orderview;
+            try {
+                orderview = new OrderView();
+            } catch (FileNotFoundException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            OrderPresenter orderPresenter = new OrderPresenter(setup, orderview, view);
+            view.getScene().setRoot(orderview);
+        });
+
+        view.getSoundButton().setOnAction(actionEvent -> {
+            Music.muteMenuMusic();
+            if (Music.getMediaPlayer().isMute()) {
+                view.getMusicPic().setImage(view.getMusicMute());
+            } else {
+                view.getMusicPic().setImage(view.getMusicLoud());
             }
         });
 
-        view.getSoundButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Music.muteMenuMusic();
-                if (Music.getMediaPlayer().isMute()) {
-                    view.getMusicPic().setImage(view.getMusicMute());
-                } else {
-                    view.getMusicPic().setImage(view.getMusicLoud());
-                }
+        view.getFxButton().setOnAction(actionEvent -> {
+            Sound.clickMute();
+
+            if (Sound.isMuted()) {
+                view.getSoundPic().setImage(view.getSfxMute());
+            } else {
+                view.getSoundPic().setImage(view.getSfxLoud());
             }
         });
 
-        view.getFxButton().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                Sound.clickMute();
-
-                if (Sound.isMuted()) {
-                    view.getSoundPic().setImage(view.getSfxMute());
-                } else {
-                    view.getSoundPic().setImage(view.getSfxLoud());
-                }
-            }
-        });
+        if (Music.getMediaPlayer().isMute()) {
+            view.getMusicPic().setImage(view.getMusicMute());
+        } else {
+            view.getMusicPic().setImage(view.getMusicLoud());
+        }
+        if (Sound.isMuted()) {
+            view.getSoundPic().setImage(view.getSfxMute());
+        } else {
+            view.getSoundPic().setImage(view.getSfxLoud());
+        }
     }
 
     private void updateView() {
@@ -105,19 +106,6 @@ public class PlayerSetupPresenter extends BorderPane {
             view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(), view.getPlayer2NameArea(), view.getPlayer3NameArea());
         } else if (setup.getAmountPlayers() == 4) {
             view.getSetupNames().getChildren().addAll(view.getPlayer1NameArea(), view.getPlayer2NameArea(), view.getPlayer3NameArea(), view.getPlayer4NameArea());
-        }
-    }
-
-    public void addWindowEventHandlers() {
-        if (Music.getMediaPlayer().isMute()) {
-            view.getMusicPic().setImage(view.getMusicMute());
-        } else {
-            view.getMusicPic().setImage(view.getMusicLoud());
-        }
-        if (Sound.isMuted()) {
-            view.getSoundPic().setImage(view.getSfxMute());
-        } else {
-            view.getSoundPic().setImage(view.getSfxLoud());
         }
     }
 }

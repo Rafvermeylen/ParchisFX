@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Pawn {
     /**
      * The pawn class represents the pawn that a player has. It has a position and a number to make every pawn
-     * uniaue. Here the pawn can move, checks if it can move or not and shows in what state the pawn is (finished
+     * unique. Here the pawn can move, checks if it can move or not and shows in what state the pawn is (finished
      * or in game).
      * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
      */

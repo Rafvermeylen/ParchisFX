@@ -73,6 +73,8 @@ public class OrderView extends StackPane {
     private void layoutNodes() {
         this.getChildren().add(boardView);
 
+        // Needs to be optimized
+
         //player1 stuff
         VBox controls1 = new VBox(20);
         controls1.getChildren().addAll(rollButtons.get(0), dieView.get(0));
