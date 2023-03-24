@@ -1,15 +1,17 @@
-/*
-This code is used to make pawns, 'connect' them to the right player and other stuff.
-*/
-
 package kdg.be.parchis.model.game;
 
 import kdg.be.parchis.model.musiclogic.Sound;
 import java.util.ArrayList;
 
 public class Pawn {
+    /**
+     * The pawn class represents the pawn that a player has. It has a position and a number to make every pawn
+     * uniaue. Here the pawn can move, checks if it can move or not and shows in what state the pawn is (finished
+     * or in game).
+     * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
+     */
     public Player owner;
-    private final int PAWNNUMBER;
+    private final int pawnnumber;
     private Tile position;
     private boolean inGame;
     private boolean isFinished;
@@ -18,7 +20,7 @@ public class Pawn {
 
 
     public Pawn(int pawnNumber, Player owner, Tile nest) {
-        this.PAWNNUMBER = pawnNumber;
+        this.pawnnumber = pawnNumber;
         inGame = false;
         isFinished = false;
         hasMoved = false;
@@ -131,7 +133,7 @@ public class Pawn {
     }
 
     public int getPawnNumber() {
-        return PAWNNUMBER;
+        return pawnnumber;
     }
 
     public Tile getPosition() {

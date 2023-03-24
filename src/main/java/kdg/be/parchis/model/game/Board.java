@@ -11,8 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Board {
-    Map<Integer, Tile> board;
 
+    Map<Integer, Tile> board;
+    /**
+     * This class creates the board in a map and adds all the tiles to it. It can return tiles.
+     * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
+     */
     public Board() {
         board = new HashMap<>();
         int id = 0;

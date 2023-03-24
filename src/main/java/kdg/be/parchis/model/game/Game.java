@@ -9,10 +9,15 @@ import java.util.List;
 import static java.lang.Thread.sleep;
 
 public class Game {
+    /**
+     * This class contains the game logic and all the moves a player can do. It will determine whose
+     * turn it is and which pawns moves like what.
+     * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
+     */
     private int turn;
     private final List<Player> players;
     private final Board board;
-    private final Dice die;
+    private final Die die;
     private Score winner;
     private int indexTurn;
     private int dieFace;
@@ -31,7 +36,7 @@ public class Game {
         amountThrows = 0;
         startSetup();
         endAiTurn = false;
-        die = new Dice();
+        die = new Die();
         throwAgain = false;
     }
 

@@ -1,7 +1,3 @@
-/*
-This code is used for the leaderboard. It uses the 'scores.csv' file to get the top-scores. It only shows the top 5.
-*/
-
 package kdg.be.parchis.model.menu;
 
 import java.io.FileWriter;
@@ -14,6 +10,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Leaderboards {
+    /**
+     * This code is used for the leaderboard. It uses the 'scores.csv'
+     * file to get the top-scores. It only shows the top 5.
+     * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
+     */
     private static List<Score> scores;
 
     public static void addScore(Score score) {

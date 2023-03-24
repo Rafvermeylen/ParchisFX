@@ -1,7 +1,7 @@
 package kdg.be.parchis.model.menu;
 
 import kdg.be.parchis.model.game.Color;
-import kdg.be.parchis.model.game.Dice;
+import kdg.be.parchis.model.game.Die;
 import kdg.be.parchis.model.game.Player;
 import kdg.be.parchis.model.game.AiPlayer;
 
@@ -9,16 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerSetup {
+    /**
+     * This class determines the order in which the players get to play. Here everyone gets to roll and
+     * the thrown value gets remembered. Then the players get ordered based on what they threw.
+     * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
+     */
     private List<Player> players = new ArrayList<>(4);
     private final int AMOUNTPLAYERS;
     private int[] rolls;
-    private final Dice DIE;
+    private final Die DIE;
     private int thrown;
 
     public PlayerSetup(int amountPlayers) {
         this.AMOUNTPLAYERS = amountPlayers;
         rolls = new int[]{0, 0, 0, 0};
-        DIE = new Dice();
+        DIE = new Die();
     }
 
     public void order() {

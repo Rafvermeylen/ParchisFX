@@ -1,7 +1,3 @@
-/*
-This code is used to make the tile-logic.
-*/
-
 package kdg.be.parchis.model.game;
 
 import kdg.be.parchis.model.musiclogic.Sound;
@@ -10,7 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tile {
-    private final int NR;
+    /**
+     * The tile class shows what kind of tile it is and which pawns are standing on it. Also can tell if
+     * there is a barrier made on it and says when there is a barrier on it.
+     * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
+     */
+    private final int nr;
     private List<Pawn> standingPawns;
     private boolean hasPawn;
     private boolean isBarrier;
@@ -18,7 +19,7 @@ public class Tile {
     private boolean safe;
 
     public Tile(TileKind kind, int id) {
-        NR = id;
+        nr = id;
         standingPawns = new ArrayList<>(2);
         hasPawn = false;
         isBarrier = false;
@@ -62,7 +63,7 @@ public class Tile {
     }
 
     public int getNr() {
-        return NR;
+        return nr;
     }
 
     public Color getBarrierColor() {

@@ -8,6 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CoordinateConverter {
+    /**
+     * This class will give the correct x and y values for every possible tile on the board. This is used to place
+     * the pawns correctly on the board.
+     * Authors: Rui Daniel Gomes Vieira & Raf Vermeylen
+     */
     private final Map<Integer, Position> positionMap = new HashMap<>();
 
     private record Position(int x, int y) {
